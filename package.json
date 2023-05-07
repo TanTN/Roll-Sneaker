@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@tippyjs/react": "^4.2.6",
     "axios": "^1.4.0",
+    "dotenv": "^16.0.3",
     "formik": "^2.2.9",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
@@ -19,8 +22,11 @@
     "react-router": "^6.11.1",
     "react-router-dom": "^6.11.1",
     "react-slick": "^0.29.0",
+    "redux-persist": "^6.0.0",
     "require": "^2.4.20",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tippy": "^0.0.0",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

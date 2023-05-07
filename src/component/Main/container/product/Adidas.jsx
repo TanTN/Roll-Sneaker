@@ -12,11 +12,16 @@ const Adidas = () => {
             <span><span className='px-[8px] text-gray-400'>/</span>YEEZY FOAM RUNNER</span>            
             <span><span className='px-[8px] text-gray-400'>/</span>YEEZY SLIDE</span>            
         </div>
-        <div className='grid gap-5 grid-cols-2'>
+        <div className='grid gap-5 grid-cols-2 pt-5'>
             {dataAdidas.map((data,index) => 
                 <div key={index}>
-                    <div className='mx-[-13px]'>
-                        <img className='' src={data.img} alt="product" />
+                    <div className='relative'>
+                        <div className='mx-[-13px]'>
+                            <img className='' src={data.img} alt="product" />
+                        </div>
+                        <div className='absolute top-0 left-2 bg-primary text-white font-bold w-[50px] h-[50px] text-center leading-[50px] rounded-[50%]'>
+                            {data.percent}
+                        </div>
                     </div>
                     <p className='text-center font-semibold text-[#505050]'>{data.name}</p>
                     <div className='pt-2 text-center'>

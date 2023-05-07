@@ -7,6 +7,7 @@ const dataSneaker = [
         price:'1.190.000',
         priceDropped:'1.700.000',
         percent:'-30%',
+        isDeal:true
     },
     {
         name:'Giày MLB Chunky Liner Mid Classic Monogram Boston Red Sox L.Beige Like Auth',
@@ -24,6 +25,8 @@ const dataSneaker = [
         price:'1.190.000',
         priceDropped:'2.000.000',
         percent:'-41%',
+        isDeal:true
+
 
     },
     {
@@ -33,6 +36,7 @@ const dataSneaker = [
         price:'798.000',
         priceDropped:'1.500.000',
         percent:'-47%',
+        isDeal:true
 
     },
     {
@@ -51,6 +55,8 @@ const dataSneaker = [
         price:'1.890.000',
         priceDropped:'3.000.000',
         percent:'-37%',
+        isDeal:true
+
 
     },
     {
@@ -60,6 +66,8 @@ const dataSneaker = [
         price:'990.000',
         priceDropped:'1.990.000',
         percent:'-50%',
+        isDeal:true
+
 
     },
     {
@@ -69,7 +77,7 @@ const dataSneaker = [
         price:'1.790.000',
         priceDropped:'4.500.000',
         percent:'-60%',
-
+        isDeal:true
     },
 ]
 

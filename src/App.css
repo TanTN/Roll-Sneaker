@@ -14,6 +14,17 @@
     h2 {
         @apply text-[24px] font-IBM 
     }
+    a {
+        @apply no-underline
+    }
+    li {
+        @apply list-none
+    }
+}
+@layer components {
+    .input-style {
+        @apply block rounded-sm text-[18px] font-normal border-[1px] border-slate-400 shadow-sm w-[100%] leading-9 focus:outline-[#f3d64380] focus:drop-shadow-[0_0_6px_#f3d64380]
+    }
 }
 .custom {
     overflow: hidden;
