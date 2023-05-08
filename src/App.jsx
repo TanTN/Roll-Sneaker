@@ -4,30 +4,20 @@ import { Fragment, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setMobile } from './redux/reducer';
-import Main from './page/Main';
 import pluginRouters from './routers/routers';
 import LayoutDefault from './layout/layoutDefault/LayouDefault';
 
 function App() {
-    const [isMobile, setIsMobile] = useState(true);
     const [widthDisplay, setWidthDisplay] = useState(undefined);
     const dispatch = useDispatch();
     const isLogin = useSelector((state) => state.store.isLogin);
 
     useEffect(() => {
         setWidthDisplay(window.innerWidth);
-        if (widthDisplay < 768) {
-
-            setIsMobile(false);
-            dispatch(setMobile(isMobile));
-        } else {
-            setIsMobile(true);
-            dispatch(setMobile(isMobile));
-        }
+        dispatch(setMobile(widthDisplay < 768));
         const handleWidthDp = () => {
             setWidthDisplay(window.innerWidth);
-            setIsMobile(widthDisplay < 768);
-            dispatch(setMobile(isMobile));
+            dispatch(setMobile(widthDisplay < 768));
         };
 
         window.addEventListener('resize', handleWidthDp);
