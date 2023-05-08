@@ -30,11 +30,11 @@ const Register = () => {
 
     }
     const validationSchema = Yup.object().shape({
-      username:Yup.string().required('Username field is required').min(2,'Must be 2 characters be more'),
-      email:Yup.string().required('Email field is required').matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'Please enter a valid email'),
-      phone:Yup.string().required('Phone number field is required').matches(/^0\d{8,9}$/,'Please enter a valid phone number'),
-      password:Yup.string().required('Password field is required').min(4,'Must be 4 characters be more'),
-      confirmPassword:Yup.string().required('Confirm password field is required').oneOf([Yup.ref('password')],'Password must match')
+      username:Yup.string().trim().required('Username field is required').min(2,'Must be 2 characters be more and max be 20 character').max(15,'Must be 2 characters be more and max be 15 character'),
+      email:Yup.string().trim().required('Email field is required').matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'Please enter a valid email'),
+      phone:Yup.string().trim().required('Phone number field is required').matches(/^0\d{8,9}$/,'Please enter a valid phone number'),
+      password:Yup.string().trim().required('Password field is required').min(4,'Must be 4 characters be more'),
+      confirmPassword:Yup.string().trim().required('Confirm password field is required').oneOf([Yup.ref('password')],'Password must match')
     })
   return (
     <Formik
