@@ -14,7 +14,7 @@ const otherSneaker = [
 const contact = [
     {
         header:'LIÊN HỆ VỚI SHOP',
-        content:['Hướng dẫn đặt hàng','Điều Khoản và Điều Kiện Thanh Toán','Chính sách giao hàng và nhận hàng','contact','Đổi Trả - Bảo Hành','Giới thiệu Shopgiayreplica.com']
+        content:['Hướng dẫn đặt hàng','Điều Khoản và Điều Kiện Thanh Toán','Chính sách giao hàng và nhận hàng','Contact','Đổi Trả - Bảo Hành','Giới thiệu Shopgiayreplica.com']
     }
 ]
 

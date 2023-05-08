@@ -41,10 +41,10 @@ const Login = () => {
                   </div>
                 }
                 <div className='w-100% text-lg font-semibold'>
-                    <div className='text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center'>
+                    <div className='text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]'>
                       User Login
                     </div>
-                    <div className='mx-auto px-[40px] mt-[50px]'>
+                    <div className='mx-auto px-[40px] mt-[50px] md:px-[140px]'>
                       <Form>
                           <div className='mb-[10px]'>
                             <label htmlFor="username" >Username</label>

@@ -7,10 +7,11 @@ import Tippy from '@tippyjs/react/headless';
 
 import MenuNavbar from './MenuNavbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setIsLogin } from '../../../redux/reducer';
 
 const Navbar = ({ setIsOverflow }) => {
+    const userCurrent = useSelector(state => state.store.userCurrent)
     const [isShowPerson, setIsShowPerson] = useState(false);
     const [isMenu, setIsMenu] = useState(false);
     const isMobile = useSelector(state => state.store.isMobile)
@@ -61,6 +62,10 @@ const Navbar = ({ setIsOverflow }) => {
                                 render={(attrs) => (
                                     <div className="box w-[100%]" tabIndex="-1" {...attrs}>
                                         <div className="bg-white py-4 border-[1px] border-[#e4e4e4] text-c1 leading-[30px] px-[14px] rounded-xm drop-shadow-lg md:px-0">
+                                            <div className="flex justify-center items-center pb-1 md:px-[14px] md:mb-2 md:mx-2 md:py-1 border-b-[1px] border-[#d3d3d3]" onClick={handleSignout}>
+                                                <IoPersonSharp className='text-[18px]'/>
+                                                <p className='pl-2 font-medium md:text-[23px] leading-[25px]'>{userCurrent.username}</p>
+                                            </div>
                                             <div className="flex items-center pb-1 cursor-pointer md:px-[14px] md:mb-2 md:mx-2 md:py-1 md:hover:bg-[#ebeaea] md:rounded-sm" onClick={handleSignout}>
                                                 <IoLogOutOutline />
                                                 <p className='pl-2 font-medium md:text-lg'>Sign Out</p>

@@ -7,7 +7,7 @@ const LayoutDefault = ({ children }) => {
         <div
             className={`overflow-x-hidden relative ${
                 isOverflow ? 'overflow-hidden h-[100vh]' : ''
-            } max-w-[1140px] mx-auto`}
+            }`}
         >
             <Navbar setIsOverflow={setIsOverflow} />
             {children}
