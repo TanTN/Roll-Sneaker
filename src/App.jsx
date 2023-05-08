@@ -15,6 +15,9 @@ function App() {
     const isLogin = useSelector((state) => state.store.isLogin);
 
     useEffect(() => {
+        setWidthDisplay(window.innerWidth);
+        setIsMobile(widthDisplay < 768);
+        dispatch(setMobile(isMobile));
         const handleWidthDp = () => {
             setWidthDisplay(window.innerWidth);
             setIsMobile(widthDisplay < 768);
