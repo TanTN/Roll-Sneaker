@@ -6,16 +6,16 @@ const httpRequest = axios.create({
 })
 
 const postUser = async (value) => {
-    const res = await axios.post('https://6457a1a11a4c152cf9867627.mockapi.io/api/users',value)
+    const res = await httpRequest.post('users',value)
 }
 const validateRegister = async (value) => {
-    const res = await axios.get('https://6457a1a11a4c152cf9867627.mockapi.io/api/users')
+    const res = await httpRequest.get('users')
     const isEmail = await res.data.every((data) => data.email !== value.email)
     const isUsername = await res.data.every((data) => data.username !== value.username)
     return {isEmail,isUsername}
 }
 const validateLogin = async (value,dispatch) => {
-    const res = await axios.get('https://6457a1a11a4c152cf9867627.mockapi.io/api/users')
+    const res = await httpRequest.get('users')
     const isLogin = await res.data.find((data) => data.username === value.username && data.password === value.password)
     if (isLogin) {
         dispatch(setUserCurrent(isLogin))
