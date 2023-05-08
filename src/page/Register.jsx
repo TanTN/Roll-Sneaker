@@ -54,7 +54,6 @@ const Register = () => {
             validationSchema={validationSchema}
             onSubmit={async (values) => {
                 const { isEmail, isUsername } = await validateRegister(values);
-                console.log({ isEmail, isUsername });
                 if (isEmail && isUsername) {
                     await postUser(values);
                     await navigate('/login');
@@ -81,18 +80,18 @@ const Register = () => {
                         </div>
                     )}
                     <div className="w-100% text-lg font-semibold">
-                        <div className="text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center md:mx-[140px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
+                        <div className="text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
                             Sign Up
                             {isLogin && (
                                 <div
-                                    className="absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#b0b2ee] translate-y-[-50%] text-white cursor-pointer hover:text-[#7075f7] hover:bg-[#dfbb06] md:left-[0] md:border-white md:text-[#dfbb06] md:hover:bg-white"
+                                    className="absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#b0b2ee] translate-y-[-50%] text-white cursor-pointer hover:text-[#7075f7] hover:bg-[#dfbb06] xl:left-[25px] md:left-[-65px] md:border-white md:text-[#dfbb06] md:hover:bg-white"
                                     onClick={() => navigate('/')}
                                 >
                                     <AiOutlineDoubleLeft />
                                 </div>
                             )}
                         </div>
-                        <div className="mx-auto px-[40px] mt-[50px] md:px-[140px]">
+                        <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
                             <Form>
                                 <Tippy
                                     placement="bottom"
@@ -179,7 +178,7 @@ const Register = () => {
                                     </button>
                                 </div>
 
-                                <div className="flex w-[100%] mt-[10px]">
+                                <div className="flex w-[100%] mt-[10px] md:mt-[18px]">
                                     <button
                                         className="mx-auto border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#ecc813] min-w-[90%] leading-[40px] text-[#ecc813] text-xl rounded-[20px] hover:bg-[#ecc813] hover:text-white"
                                         onClick={() => navigate('/login')}
