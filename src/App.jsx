@@ -1,42 +1,61 @@
-import './App.css'
-import {Routes,Route} from 'react-router'
-import { useEffect, useState } from 'react';
-import Login from './page/Login';
-import Main from './page/Main';
-import Register from './page/Register';
-import ShoppingCart from './page/ShoppingCart';
-import DetailProduct from './page/DetailProduct';
-import { useDispatch } from 'react-redux';
-import { setMobile } from './redux/reducer';
+import './App.css';
+import { Routes, Route, Navigate } from 'react-router';
+import { Fragment, useEffect, useState } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setMobile } from './redux/reducer';
+import Main from './page/Main';
+import pluginRouters from './routers/routers';
+import LayoutDefault from './layout/layoutDefault/LayouDefault';
 
 function App() {
-  const [isMobile, setIsMobile] = useState(true)
-  const [widthDisplay , setWidthDisplay] = useState(undefined)
-  const dispatch = useDispatch()
+    const [isMobile, setIsMobile] = useState(true);
+    const [widthDisplay, setWidthDisplay] = useState(undefined);
+    const dispatch = useDispatch();
+    const isLogin = useSelector((state) => state.store.isLogin);
 
-  useEffect(() => {
-    const handleWidthDp = () => {
-      setWidthDisplay(window.innerWidth)
-      setIsMobile(widthDisplay < 768)
-      dispatch(setMobile(isMobile))
-    }
+    useEffect(() => {
+        const handleWidthDp = () => {
+            setWidthDisplay(window.innerWidth);
+            setIsMobile(widthDisplay < 768);
+            dispatch(setMobile(isMobile));
+        };
 
-    window.addEventListener('resize', handleWidthDp)
-    return () => window.removeEventListener('resize', handleWidthDp)
-  },[widthDisplay])
-  return (
-    <div className=''>
-      <Routes>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/' element={<Main />}/>
-        <Route path='/register' element={<Register />}/>
-        <Route path='/shoppingCart' element={<ShoppingCart />}/>
-        <Route path='/detailProduct' element={<DetailProduct />}/>
-      </Routes>
-    </div>
-  
-  )
+        window.addEventListener('resize', handleWidthDp);
+        return () => window.removeEventListener('resize', handleWidthDp);
+    }, [widthDisplay]);
+    return (
+        <div className="">
+            <Routes>
+                {pluginRouters.map((route, index) => {
+                    let Layout = LayoutDefault;
+                    let Page = isLogin ? <route.component /> : <Navigate replace to='/login'/>;
+                    if (route.layout) {
+                        Layout = route.layout;
+                    } else if (route.layout === null) {
+                        Layout = Fragment;
+                    }
+                    if (route.path === '/login') {
+                      Page = <route.component />
+                    }
+                    if (route.path === '/register') {
+                      Page = <route.component />
+                    }
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    {Page}
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
+            </Routes>
+        </div>
+    );
 }
 
-export default App
+export default App;

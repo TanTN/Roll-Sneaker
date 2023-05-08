@@ -6,16 +6,21 @@ import { useNavigate } from 'react-router'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { postUser, validateRegister } from '../component/utils/axios'
+import { postUser, validateRegister } from '../utils/axios'
 
 const Register = () => {
-    const [message,setMessage] = useState(false) 
+    const [messageEmail,setMessageEmail] = useState(false) 
+    const [messageUsername,setMessageUsername] = useState(false) 
     const isMobile = useSelector(state => state.store.isMobile) 
+    const isLogin = useSelector(state => state.store.isLogin) 
     const navigate = useNavigate()
-    const isMessage = () => {
-      console.log(message)
-      setTimeout(() => setMessage(false),5000)
+    const isMessageAndUsername = () => {
+      setTimeout(() => {
+        setMessageEmail(false)
+        setMessageUsername(false)
+      },5000)
     }
+
     const initialValues = {
       username:'',
       email:'',
@@ -36,17 +41,24 @@ const Register = () => {
     initialValues={initialValues}
     validationSchema={validationSchema}
     onSubmit={ async(values) => {
-      const isRegiter = await validateRegister(values)
-      if (isRegiter) {
+      const {isEmail,isUsername} = await validateRegister(values)
+      console.log({isEmail,isUsername})
+      if (isEmail && isUsername) {
         await postUser(values)
         await navigate('/login')
-      } else {
-        setMessage(true)
-        isMessage()
+      }
+      if (!isEmail) {
+        setMessageEmail(true)
+        isMessageAndUsername()
+      }
+      if (!isUsername) {
+        setMessageUsername(true)
+        isMessageAndUsername()
       }
     }}
     >
         {(formik) => (
+          
             <div className='md:grid md:grid-cols-3'>
                 {!isMobile && 
                   <div className='md:col-span-2 md:h-[100vh]'>
@@ -56,23 +68,35 @@ const Register = () => {
                 <div className='w-100% text-lg font-semibold'>
                     <div className='text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center'>
                       Sign Up
-                      <div className='absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#a8a597d2] translate-y-[-50%] text-white' onClick={() => navigate('/')} >
+                      {isLogin && (<div className='absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#a8a597d2] translate-y-[-50%] text-white' onClick={() => navigate('/')} >
                         <AiOutlineDoubleLeft />
-                      </div>
+                      </div>)}
                     </div>
                     <div className='mx-auto px-[40px] mt-[50px]'>
                       <Form>
-
-                          <div className='mb-[10px]'>
-                            <label htmlFor="username" >Username</label>
-                            <Field type='text' name='username' className='input-style' />
-                            <ErrorMessage name='username' component='span' className='text-primary font-normal text-[15px]'/>
-                          </div>
+                          <Tippy
+                            placement='bottom'
+                            offset={[0,3]}
+                            visible={messageUsername}
+                            render={attrs => (
+                              <div className="box w-[100%]" tabIndex="-1" {...attrs}>
+                                <div className='bg-[#6586D2] text-white leading-[30px] px-[50px] rounded-2xl'>
+                                  Username đã tồn tại
+                                </div>
+                              </div>
+                            )}
+                          >
+                            <div className='mb-[10px]'>
+                              <label htmlFor="username" >Username</label>
+                              <Field type='text' name='username' className='input-style' />
+                              <ErrorMessage name='username' component='span' className='text-primary font-normal text-[15px]'/>
+                            </div>
+                          </Tippy>
 
                           <Tippy
                             placement='bottom'
                             offset={[0,3]}
-                            visible={message}
+                            visible={messageEmail}
                             render={attrs => (
                               <div className="box w-[100%]" tabIndex="-1" {...attrs}>
                                 <div className='bg-[#6586D2] text-white leading-[30px] px-[50px] rounded-2xl'>

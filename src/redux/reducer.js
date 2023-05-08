@@ -17,5 +17,5 @@ const storeSlice = createSlice({
 
 const {reducer,actions} = storeSlice
 
-export const {setMobile,setUserCurrent} = actions
+export const {setMobile,setUserCurrent,setIsLogin} = actions
 export default reducer

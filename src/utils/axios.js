@@ -1,23 +1,25 @@
 import axios from "axios";
-import { setUserCurrent } from "../../redux/reducer";
+import { setIsLogin, setUserCurrent } from "../redux/reducer";
 const baseURL = import.meta.env.VITE_BASE_URL
 const httpRequest = axios.create({
     baseURL: baseURL
 })
 
 const postUser = async (value) => {
-    const res = await httpRequest.post('register',value)
+    const res = await httpRequest.post('users',value)
 }
 const validateRegister = async (value) => {
-    const res = await httpRequest.get('register')
-    const isRegister = await res.data.every((data) => data.email !== value.email)
-    return isRegister
+    const res = await httpRequest.get('users')
+    const isEmail = await res.data.every((data) => data.email !== value.email)
+    const isUsername = await res.data.every((data) => data.username !== value.username)
+    return {isEmail,isUsername}
 }
 const validateLogin = async (value,dispatch) => {
-    const res = await httpRequest.get('register')
+    const res = await httpRequest.get('users')
     const isLogin = await res.data.find((data) => data.username === value.username && data.password === value.password)
     if (isLogin) {
         dispatch(setUserCurrent(isLogin))
+        dispatch(setIsLogin(true))
     }
     return isLogin
 }

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router'
 
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { validateLogin } from '../component/utils/axios'
+import { validateLogin } from '../utils/axios'
 
 const Login = () => {
     const [isLoginFalse,setIsLoginFalse] = useState(false) 
@@ -42,9 +42,6 @@ const Login = () => {
                 <div className='w-100% text-lg font-semibold'>
                     <div className='text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center'>
                       User Login
-                      <div className='absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#a8a597d2] translate-y-[-50%] text-white' onClick={() => navigate('/')} >
-                        <AiOutlineDoubleLeft />
-                      </div>
                     </div>
                     <div className='mx-auto px-[40px] mt-[50px]'>
                       <Form>
