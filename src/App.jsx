@@ -16,8 +16,14 @@ function App() {
 
     useEffect(() => {
         setWidthDisplay(window.innerWidth);
-        setIsMobile(widthDisplay < 768);
-        dispatch(setMobile(isMobile));
+        if (widthDisplay < 768) {
+
+            setIsMobile(false);
+            dispatch(setMobile(isMobile));
+        } else {
+            setIsMobile(true);
+            dispatch(setMobile(isMobile));
+        }
         const handleWidthDp = () => {
             setWidthDisplay(window.innerWidth);
             setIsMobile(widthDisplay < 768);

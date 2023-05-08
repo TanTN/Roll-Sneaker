@@ -68,7 +68,7 @@ const Register = () => {
                 <div className='w-100% text-lg font-semibold'>
                     <div className='text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center'>
                       Sign Up
-                      {isLogin && (<div className='absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#a8a597d2] translate-y-[-50%] text-white' onClick={() => navigate('/')} >
+                      {isLogin && (<div className='absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#b0b2ee] translate-y-[-50%] text-white cursor-pointer hover:text-[#7075f7] hover:bg-[#dfbb06]'onClick={() => navigate('/')} >
                         <AiOutlineDoubleLeft />
                       </div>)}
                     </div>
@@ -132,13 +132,13 @@ const Register = () => {
                           </div>
 
                           <div className='flex w-[100%] mt-[30px]'>
-                            <button type='submit' className='mx-auto border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#139cec] min-w-[90%] leading-[40px] text-[#139cec] text-xl rounded-[20px]'>
+                            <button type='submit' className='mx-auto border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#139cec] min-w-[90%] leading-[40px] text-[#139cec] text-xl rounded-[20px] hover:bg-[#139cec] hover:text-white'>
                               Sign up
                               </button>
                           </div>
 
                           <div className='flex w-[100%] mt-[10px]'>
-                            <button className='mx-auto border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#ecc813] min-w-[90%] leading-[40px] text-[#ecc813] text-xl rounded-[20px]' onClick={() => navigate('/login')}>
+                            <button className='mx-auto border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#ecc813] min-w-[90%] leading-[40px] text-[#ecc813] text-xl rounded-[20px] hover:bg-[#ecc813] hover:text-white' onClick={() => navigate('/login')}>
                               Sign in
                             </button>
                           </div>

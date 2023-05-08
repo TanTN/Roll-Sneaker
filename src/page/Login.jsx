@@ -34,6 +34,7 @@ const Login = () => {
     >
         {(formik) => (
             <div className='md:grid md:grid-cols-3'>
+              {console.log(isMobile)}
                 {!isMobile && 
                   <div className='md:col-span-2 md:h-[100vh]'>
                       <img className='h-[100%] object-cover' src="https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg" alt="store" />
@@ -56,12 +57,12 @@ const Login = () => {
                           </div>
                           {isLoginFalse && (<div className='text-primary text-center font-normal'>Tên đăng nhập hoặc mật khẩu không đúng.</div>)}
                           <div className='flex w-[100%] mt-[30px]'>
-                            <button type='submit' className='mx-auto border-[2px] border-[#ecc813] min-w-[90%] leading-[40px] text-[#ecc813] text-xl rounded-[20px]'>
+                            <button type='submit' className='mx-auto border-[2px] border-[#ecc813] min-w-[90%] leading-[40px] text-[#ecc813] text-xl rounded-[20px] hover:bg-[#ecc813] hover:text-white'>
                               Sign in
                             </button>
                           </div>
                           <div className='flex w-[100%] mt-[10px]'>
-                            <button type='submit' className='mx-auto border-[2px] border-[#139cec] min-w-[90%] leading-[40px] text-[#139cec] text-xl rounded-[20px]' onClick={() => navigate('/register')}>
+                            <button type='submit' className='mx-auto border-[2px] border-[#139cec] min-w-[90%] leading-[40px] text-[#139cec] text-xl rounded-[20px] hover:bg-[#139cec] hover:text-white' onClick={() => navigate('/register')}>
                               Sign up
                             </button>
                           </div>
