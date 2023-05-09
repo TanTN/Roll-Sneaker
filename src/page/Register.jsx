@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Tippy from '@tippyjs/react/headless';
 import { AiOutlineDoubleLeft } from 'react-icons/ai';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -11,7 +11,7 @@ import { postUser, validateRegister } from '../utils/axios';
 const Register = () => {
     const [messageEmail, setMessageEmail] = useState(false);
     const [messageUsername, setMessageUsername] = useState(false);
-    const isMobile = useSelector((state) => state.store.isMobile);
+    const user = useSelector(state => state.store.userCurrent)
     const isLogin = useSelector((state) => state.store.isLogin);
     const navigate = useNavigate();
     const isMessageAndUsername = () => {
@@ -55,7 +55,7 @@ const Register = () => {
             onSubmit={async (values) => {
                 const { isEmail, isUsername } = await validateRegister(values);
                 if (isEmail && isUsername) {
-                    await postUser(values);
+                    await postUser({...values,products:[]});
                     await navigate('/login');
                 }
                 if (!isEmail) {
@@ -70,22 +70,22 @@ const Register = () => {
         >
             {(formik) => (
                 <div className="md:grid md:grid-cols-3">
-                    {!isMobile && (
-                        <div className="md:col-span-2 md:h-[100vh]">
+                    
+                        <div className="hidden md:block md:col-span-2 md:h-[100vh]">
                             <img
                                 className="h-[100%] object-cover"
                                 src="https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg"
                                 alt="store"
                             />
                         </div>
-                    )}
+                    
                     <div className="w-100% text-lg font-semibold">
                         <div className="text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
                             Sign Up
                             {isLogin && (
                                 <div
                                     className="absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#b0b2ee] translate-y-[-50%] text-white cursor-pointer hover:text-[#7075f7] hover:bg-[#dfbb06] xl:left-[25px] md:left-[-65px] md:border-white md:text-[#dfbb06] md:hover:bg-white"
-                                    onClick={() => navigate('/')}
+                                    onClick={() => navigate(`/${user.username}`)}
                                 >
                                     <AiOutlineDoubleLeft />
                                 </div>

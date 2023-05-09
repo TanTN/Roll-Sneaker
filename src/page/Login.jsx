@@ -23,7 +23,7 @@ const Login = () => {
                 const isLogin = await validateLogin(values, dispatch);
                 if (isLogin) {
                     setIsLoginFalse(false);
-                    navigate('/');
+                    navigate(`/${isLogin.username}`);
                 } else {
                     setIsLoginFalse(true);
                 }
@@ -31,15 +31,15 @@ const Login = () => {
         >
             {(formik) => (
                 <div className="md:grid md:grid-cols-3">
-                    {!isMobile && (
-                        <div className="md:col-span-2 md:h-[100vh]">
-                            <img
-                                className="h-[100%] object-cover"
-                                src="https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg"
-                                alt="store"
-                            />
-                        </div>
-                    )}
+                    
+                    <div className="hidden md:block md:col-span-2 md:h-[100vh]">
+                        <img
+                            className="h-[100%] object-cover"
+                            src="https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg"
+                            alt="store"
+                        />
+                    </div>
+                    
                     <div className="w-100% text-lg font-semibold">
                         <div className="text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
                             User Login
@@ -55,7 +55,7 @@ const Login = () => {
                                     <Field type="password" name="password" className="input-style" />
                                 </div>
                                 {isLoginFalse && (
-                                    <div className="text-primary text-center font-normal">
+                                    <div className="text-primary text-center font-normal text-[15px]">
                                         Tên đăng nhập hoặc mật khẩu không đúng.
                                     </div>
                                 )}

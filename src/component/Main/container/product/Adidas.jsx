@@ -23,7 +23,7 @@ const Adidas = () => {
                             {data.percent}
                         </div>
                     </div>
-                    <p className='text-center font-semibold cursor-pointer text-[#505050] md:text-[18px]'>{data.name}</p>
+                    <p className='text-center font-semibold cursor-pointer text-[#505050] md:text-[18px] hover:text-[#23527c]'>{data.name}</p>
                     <div className='pt-2 text-center'>
                         <span className='text-[15px] font-bold text-[#ce1111] md:text-[18px]'>{data.price}<span className='underline'>đ</span></span>
                         <span className='text-[14px] pl-2 font-semibold line-through text-[#adadad] md:text-[16px] md:pl-5'>{data.priceDropped}<span className='underline'>đ</span></span>

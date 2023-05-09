@@ -14,15 +14,16 @@ function App() {
 
     useEffect(() => {
         setWidthDisplay(window.innerWidth);
-        dispatch(setMobile(widthDisplay < 768));
+        dispatch(setMobile(widthDisplay < 1024));
         const handleWidthDp = () => {
             setWidthDisplay(window.innerWidth);
-            dispatch(setMobile(widthDisplay < 768));
+            dispatch(setMobile(widthDisplay < 1024));
         };
 
         window.addEventListener('resize', handleWidthDp);
         return () => window.removeEventListener('resize', handleWidthDp);
     }, [widthDisplay]);
+    
     return (
         <div className="">
             <Routes>

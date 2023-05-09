@@ -8,7 +8,7 @@ const routes = {
     detailProduct:'/detailProduct',
     login:'/login',
     register:'/register',
-    main:'/',
+    main:'/:user',
     cart:'/cart'
 }
 

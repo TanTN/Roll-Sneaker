@@ -4,6 +4,10 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+  ],
   theme: {
     fontFamily:{
       IBM:['"IBM Plex Sans"','sans-serif']
@@ -25,6 +29,9 @@ export default {
           '0%': { opacity: '.5', transform:'scale(1.2)' },
           '100%': { opacity: '1', transform:'scale(1)' },
         }
+      },
+      dropShadow : {
+        'ShadowRoot':'0px 5px 6px rgba(0,0,0,0.2)'
       }
     },
   },

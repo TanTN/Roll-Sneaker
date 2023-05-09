@@ -18,12 +18,12 @@ const Tips = () => {
         adaptiveHeight: true,
         autoplay:true,
         autoplaySpeed:3000,
-        arrows:false,
+        arrows:true,
         ...optionsPc
     }
 
   return (
-    <div className='text-center md:mx-[-15px] md:mb-[60px]'>
+    <div className='text-center lg:mx-[-15px] md:mb-[60px]'>
         <h1 className='pb-6'>KIẾN THỨC & MẸO VẶT</h1>
         <Slider {...options}>
             {dataTips.map((data,index) => 

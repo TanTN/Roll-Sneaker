@@ -2,15 +2,24 @@
 
 import React from 'react'
 import { dataSneaker } from '../../../data/dataSneaker'
+import { useDispatch } from 'react-redux'
+import { setProduct } from '../../../../redux/reducer'
+import { useNavigate } from 'react-router'
 
 const ProductHot = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const handleAddProduct = (data) => {
+        dispatch(setProduct(data))
+        navigate('/detailProduct')
+    }
   return (
     <div className='mb-[50px] overflow-hidden md:mb-[70px]'>
         <h1 className='text-center mb-[20px] md:mb-[40px]'>SẢN PHẨM BÁN CHẠY</h1>
         <div className='grid gap-5 grid-cols-2 md:grid-cols-4 md:gap-10'>
             {dataSneaker.map((data,index) => 
                 <div key={index}>
-                    <div className='group/item relative overflow-hidden cursor-pointer'>
+                    <div className='group/item relative overflow-hidden cursor-pointer' onClick={() => handleAddProduct(data)}>
                         <div className='md:py-4'>
                             <div className='group/edit mx-[-13px] md:mx-[-38px] md:visible md:group-hover/item:invisible'>
                                 <img src={data.img} alt="product1" />
@@ -22,12 +31,14 @@ const ProductHot = () => {
                                 {data.percent}
                             </div>
                             {data.isDeal && (
-                                <div className='absolute top-[18px] left-[67px] shadow-[#b8b8b8] shadow-md text-center rotate-[45deg] bg-primary text-white font-semibold w-[150px] md:text-lg md:top-[26px] md:left-[146px]'>
-                                    Deal Sốc
+                                <div className='absolute top-0 right-0 block overflow-hidden w-[var(--width-box-deal)] h-[var(--width-box-deal)] md:w-[var(--width-box-deal-md)] md:h-[var(--width-box-deal-md)]'>
+                                    <div className='absolute top-[15px] left-[-2px] w-[var(--width-deal)] shadow-[#b8b8b8] shadow-md text-center rotate-[45deg] bg-primary text-white font-semibold md:w-[var(--width-deal-md)] md:top-[16px] md:left-[1px] md:text-lg'>
+                                        Deal Sốc
+                                    </div>
                                 </div>
                             )}
                         </div>
-                        <p className='text-center font-semibold text-[#505050] md:text-[18px] cursor-pointer'>{data.name}</p>
+                        <p className='text-center font-semibold text-[#505050] md:text-[18px] hover:text-[#23527c] cursor-pointer'>{data.name}</p>
                     </div>
                     <div className='pt-2 text-center'>
                         <span className='text-[15px] font-bold text-[#ce1111] md:text-[18px]'>{data.price}<span className='underline'>đ</span></span>

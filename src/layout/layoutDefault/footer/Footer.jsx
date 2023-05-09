@@ -1,5 +1,5 @@
 import React from 'react';
-import { contact, otherSneaker, sneaker } from '../../data/dataFooter';
+import { contact, otherSneaker, sneaker } from '../../../component/data/dataFooter';
 import { AiFillFacebook, AiFillYoutube } from 'react-icons/ai';
 import { IoMdShareAlt } from 'react-icons/io';
 import { CgPin } from 'react-icons/cg';
@@ -11,10 +11,10 @@ import { BsInstagram, BsTwitter, BsPinterest } from 'react-icons/bs';
 const Footer = () => {
     return (
         <div className="bg-black">
-            <div className='max-w-[1140px] mx-auto'>
+            <div className="max-w-[1140px] mx-auto">
                 <div className="grid grid-cols-2 gap-5 px-[20px] py-8 md:grid-cols-9 md:gap-3 md:pt-[80px] md:pb-[50px]">
                     {sneaker.map((data, index) => (
-                        <div key={index} className='col-span-1 md:col-span-2'>
+                        <div key={index} className="col-span-1 md:col-span-2">
                             <p className="text-lg font-semibold pb-3 text-[#c2c2c2]">{data.header}</p>
                             <ul>
                                 {data.content.map((data, index) => (
@@ -26,7 +26,7 @@ const Footer = () => {
                         </div>
                     ))}
                     {otherSneaker.map((data, index) => (
-                        <div key={index} className='col-span-1 md:col-span-2'>
+                        <div key={index} className="col-span-1 md:col-span-2">
                             <p className="text-lg font-semibold pb-3 text-[#c2c2c2]">{data.header}</p>
                             <ul>
                                 {data.content.map((data, index) => (
@@ -38,7 +38,7 @@ const Footer = () => {
                         </div>
                     ))}
                     {contact.map((data, index) => (
-                        <div key={index} className='col-span-2'>
+                        <div key={index} className="col-span-2">
                             <p className="text-lg font-semibold pb-3 text-[#c2c2c2]">{data.header}</p>
                             <ul>
                                 {data.content.map((data, index) => (
@@ -73,7 +73,10 @@ const Footer = () => {
                             </div>
                         </a>
                         <div className="flex justify-between px-[15px]">
-                            <a className="absolute bottom-3 left-6 md:bottom-[40%]" href="https://www.facebook.com/102066926119211">
+                            <a
+                                className="absolute bottom-3 left-6 md:bottom-[40%]"
+                                href="https://www.facebook.com/102066926119211"
+                            >
                                 <div className="flex bg-white text-gray-800 items-center p-[2px] rounded-[2px]">
                                     <AiFillFacebook />
                                     <p className="pl-1">Theo dõi Trang</p>
@@ -131,7 +134,9 @@ const Footer = () => {
                         <div className="flex justify-center w-[20px]">
                             <CgMail className="text-xl text-[#969595]" />
                         </div>
-                        <p className="pl-1 md:text-[15px] text-[13px] text-[#969595] pb-1">shopgiayreplicahn@gmail.com</p>
+                        <p className="pl-1 md:text-[15px] text-[13px] text-[#969595] pb-1">
+                            shopgiayreplicahn@gmail.com
+                        </p>
                     </div>
                 </div>
                 <div className="flex py-5 border-b-[1px] border-[#969595] justify-center text-gray-400">

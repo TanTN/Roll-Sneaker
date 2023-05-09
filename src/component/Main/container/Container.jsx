@@ -10,11 +10,11 @@ import Tips from './product/Tips'
 
 const Container = () => {
   return (
-    <div className='mt-[96px] max-w-[1140px] mx-auto'>
-        <div className='pb-[30px] px-[15px] md:px-0 md:pb-[40px]'>
+    <div className='mt-[70px] max-w-[1140px] mx-auto md:mt-[90px] lg:mt-0'>
+        <div className='pb-[30px] px-[15px] lg:px-0 md:pb-[40px]'>
             <img className=' md:w-[100%]' src="https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg" alt="shop" />
         </div>
-        <div className='px-[15px] md:px-0'>
+        <div className='px-[15px] lg:px-0'>
             <ProductHot />
             <Nike />
             <Adidas />

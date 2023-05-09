@@ -23,5 +23,8 @@ const validateLogin = async (value,dispatch) => {
     }
     return isLogin
 }
+const updateUser = async (value) => {
+    const res = await httpRequest.put(`users/${value.id}`,value)
+}
 
-export {postUser,validateRegister,validateLogin}
+export {postUser,validateRegister,validateLogin,updateUser}
