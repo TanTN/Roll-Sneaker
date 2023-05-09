@@ -8,9 +8,11 @@ import pluginRouters from './routers/routers';
 import LayoutDefault from './layout/layoutDefault/LayouDefault';
 
 function App() {
-    const [widthDisplay, setWidthDisplay] = useState(undefined);
     const dispatch = useDispatch();
     const isLogin = useSelector((state) => state.store.isLogin);
+    const user = useSelector(state => state.store.userCurrent)
+    
+    const [widthDisplay, setWidthDisplay] = useState(undefined);
 
     useEffect(() => {
         setWidthDisplay(window.innerWidth);
@@ -29,15 +31,20 @@ function App() {
             <Routes>
                 {pluginRouters.map((route, index) => {
                     let Layout = LayoutDefault;
-                    let Page = isLogin ? <route.component /> : <Navigate replace to='/login'/>;
+                    let Page = isLogin ? <route.component /> : <Navigate replace to='/'/>;
                     if (route.layout) {
                         Layout = route.layout;
                     } else if (route.layout === null) {
                         Layout = Fragment;
                     }
-                    if (route.path === '/login') {
+                    if (route.path === '/' && !isLogin) {
                       Page = <route.component />
-                    }
+                    } 
+                    if (route.path === '/' && isLogin) {
+
+                      Page = <Navigate replace to={`/main/${user.username}`}/>
+                    } 
+                    
                     if (route.path === '/register') {
                       Page = <route.component />
                     }

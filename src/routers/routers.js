@@ -6,11 +6,10 @@ import Cart from "../page/Cart"
 
 const routes = {
     detailProduct:'/detailProduct',
-    login:'/login',
+    login:'/',
     register:'/register',
-    user:'/:user',
+    user:'main/:user',
     cart:'/cart',
-    changeLogin:'/'
 }
 
 const pluginRouters = [
@@ -18,7 +17,6 @@ const pluginRouters = [
     {path: routes.login , component: Login ,layout: null},
     {path: routes.register , component: Register, layout: null},
     {path: routes.user , component: Main },
-    {path: routes.changeLogin , component: Main },
     {path: routes.cart , component: Cart },
 ]
 

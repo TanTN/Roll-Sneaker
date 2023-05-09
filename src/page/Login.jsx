@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { validateLogin } from '../utils/axios';
 
 const Login = () => {
-    const [isLoginFalse, setIsLoginFalse] = useState(false);
-    const isMobile = useSelector((state) => state.store.isMobile);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [isLoginFalse, setIsLoginFalse] = useState(false);
+
     const initialValues = {
         username: '',
         password: '',
@@ -23,7 +24,7 @@ const Login = () => {
                 const isLogin = await validateLogin(values, dispatch);
                 if (isLogin) {
                     setIsLoginFalse(false);
-                    navigate(`/${isLogin.username}`);
+                    navigate(`main/${isLogin.username}`);
                 } else {
                     setIsLoginFalse(true);
                 }
