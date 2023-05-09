@@ -8,15 +8,17 @@ const routes = {
     detailProduct:'/detailProduct',
     login:'/login',
     register:'/register',
-    main:'/:user',
-    cart:'/cart'
+    user:'/:user',
+    cart:'/cart',
+    changeLogin:'/'
 }
 
 const pluginRouters = [
     {path: routes.detailProduct , component: DetailProduct },
     {path: routes.login , component: Login ,layout: null},
     {path: routes.register , component: Register, layout: null},
-    {path: routes.main , component: Main },
+    {path: routes.user , component: Main },
+    {path: routes.changeLogin , component: Main },
     {path: routes.cart , component: Cart },
 ]
 
