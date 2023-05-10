@@ -3,6 +3,7 @@ import { BsCartDash } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
 import { IoPersonSharp, IoLogOutOutline, IoPersonAddSharp } from 'react-icons/io5';
 import Tippy from '@tippyjs/react/headless';
+import TippyCart from '@tippyjs/react/headless';
 
 
 import MenuNavbar from './MenuNavbar';
@@ -33,7 +34,7 @@ const Navbar = ({ setIsOverflow }) => {
     const tippy = isMobile && ({visible:isShowPerson,offset:[0,20]})
     const handleSignout = () => {
         dispatch(setIsLogin(false))
-        navigate('/login')
+        navigate('/')
     }
     const handleSignup = () => {
         navigate('/register')
@@ -54,7 +55,7 @@ const Navbar = ({ setIsOverflow }) => {
         <>
             <div className="fixed h-[70px] top-0 left-0 right-0 pb-[5px] border-b-2 border-[#e4e4e4] z-30 bg-white md:h-[90px] lg:static">
                 <div className="flex justify-between items-center md:mx-auto md:max-w-[1140px] px-[15px]">
-                    <div className="flex justify-center py-2 pl-[30px] md:pl-[50px]">
+                    <div className="flex justify-center my-2 ml-[30px] md:ml-[50px] cursor-pointer" onClick={() => navigate(`/main/${userCurrent.username}`)}>
                         <img
                             className="max-h-[50px] w-auto md:min-h-[70px]"
                             src="https://shopgiayreplica.com/wp-content/uploads/2017/01/cropped-cropped-cropped-logo-1-2.png"
@@ -62,12 +63,20 @@ const Navbar = ({ setIsOverflow }) => {
                         />
                     </div>
                     <div className="flex justify-end">
-                        <div className="relative cursor-pointer px-[12px] md:px-[20px]">
-                            <BsCartDash size={'30px'} className="text-slate-400" />
-                            <div className='absolute top-[-10px] right-[0px] md:right-[6px] w-[23px] h-[23px] leading-[23px] rounded-[25px] bg-primary text-white font-semibold text-center'>
-                                {userCurrent.products.length > 0 ? userCurrent.products.length : 0}
+                        <TippyCart
+                            render={attrs => (
+                                <div className='box w-[300px] border-[1px] border-[#ccc]' tabIndex='-1' {...attrs}>
+                                    dsfsdfsdfsdfsdfds
+                                </div>
+                            )}
+                        >
+                            <div className="relative cursor-pointer px-[12px] md:px-[20px]">
+                                <BsCartDash size={'30px'} className="text-slate-400" />
+                                <div className='absolute top-[-8px] right-[2px] px-[3px] h-[19px] text-[15px] md:right-[10px] md:leading-[19px] leading-[20px] rounded-[25px] bg-primary text-white font-medium text-center'>
+                                    {userCurrent.products.length > 0 ? userCurrent.products.length : 0}
+                                </div>
                             </div>
-                        </div>
+                        </TippyCart>
                         <div>
                             <Tippy
                                 offset={[0,30]}
@@ -95,7 +104,7 @@ const Navbar = ({ setIsOverflow }) => {
                                 )}
                                 interactive
                             >
-                                <div className="px-[12px] md:px-[20px] md:mr-[20px] cursor-pointer" onClick={handleShowPerson}>
+                                <div className="px-[5px] mx-[10px] md:px-[20px] md:mr-[20px] cursor-pointer" onClick={handleShowPerson}>
                                     <IoPersonSharp size={'30px'} className="text-slate-400" />
                                 </div>
                             </Tippy>

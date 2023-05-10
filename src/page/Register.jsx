@@ -56,7 +56,7 @@ const Register = () => {
                 const { isEmail, isUsername } = await validateRegister(values);
                 if (isEmail && isUsername) {
                     await postUser({...values,products:[]});
-                    await navigate('/login');
+                    await navigate('/');
                 }
                 if (!isEmail) {
                     setMessageEmail(true);

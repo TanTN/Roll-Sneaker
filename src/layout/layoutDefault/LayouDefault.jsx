@@ -6,8 +6,8 @@ const LayoutDefault = ({ children }) => {
     const [isOverflow, setIsOverflow] = useState(false);
     return (
         <div
-            className={`overflow-x-hidden relative ${
-                isOverflow ? 'overflow-hidden h-[100vh] lg:overflow-y-auto lg:h-auto' : ''
+            className={`overflow-x-hidden relative  lg:overflow-y-auto lg:h-auto ${
+                isOverflow ? 'overflow-hidden h-[100vh]' : ''
             }`}
         >
             <Navbar setIsOverflow={setIsOverflow} />

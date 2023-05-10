@@ -5,19 +5,21 @@ import { dataSneaker } from '../../../data/dataSneaker'
 import { useDispatch } from 'react-redux'
 import { setProduct } from '../../../../redux/reducer'
 import { useNavigate } from 'react-router'
+import { dataProductSame } from '../../../data/dataProductSame'
 
-const ProductHot = () => {
+const ProductHot = ({isProductSame}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleAddProduct = (data) => {
         dispatch(setProduct(data))
         navigate('/detailProduct')
     }
+    const dataProductHot = isProductSame ? dataProductSame : dataSneaker
   return (
     <div className='mb-[50px] overflow-hidden md:mb-[70px]'>
         <h1 className='text-center mb-[20px] md:mb-[40px]'>SẢN PHẨM BÁN CHẠY</h1>
         <div className='grid gap-5 grid-cols-2 md:grid-cols-4 md:gap-10'>
-            {dataSneaker.map((data,index) => 
+            {dataProductHot.map((data,index) => 
                 <div key={index}>
                     <div className='group/item relative overflow-hidden cursor-pointer' onClick={() => handleAddProduct(data)}>
                         <div className='md:py-4'>
