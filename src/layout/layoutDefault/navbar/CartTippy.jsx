@@ -46,10 +46,8 @@ const CartTippy = ({children}) => {
     }
     const handleFixProduct = async(product) => {
         await dispatch(setProduct(product))
-        await window.scrollTo(0,0)
         await navigator('/detailProduct')
-        await window.location.reload()
-        await navigator('/detailProduct')
+        
     }
   return (
     <div>
