@@ -18,18 +18,19 @@ const DetailProduct = () => {
     const [isChecked, setChecked] = useState(product.size ? true : false);
     const [isProduct, setIsProduct] = useState(false);
     const [numberProduct, setNumberProduct] = useState(product.numberProducts || 1);
+    const [isUpdateProduct, setIsUpdateProduct] = useState(true)
 
     const dispatch = useDispatch();
     const navigator = useNavigate()
 
     useEffect(() => {
-        window.scrollTo(0,0)
         if (product.size) {
             const sizeProduct = sizes.map(sizeProd => sizeProd.size === product.size ? {...sizeProd,isChecked: true} : {...sizeProd,isChecked: false})
             const index = sizes.findIndex(sizeProd => sizeProd.size == product.size)
             setSelectSize(product.size)
             setSizeActive(index)
             setSizes(sizeProduct)
+            setIsUpdateProduct(false)
         }
     },[])
 
@@ -82,14 +83,18 @@ const DetailProduct = () => {
         const isAdd = user.products.every((prod) => {
             return prod.name !== product.name || prod.size !== selectSize;
         });
-        const isUpdateSize = user.products.findIndex(
+        const indexUpdateSize = user.products.findIndex(
             (prod) => prod.name === product.name && prod.size === selectSize && prod.numberProducts !== numberProduct,
         );
+        const indexUpdateProduct = user.products.findIndex(
+            (prod) => prod.name == product.name && prod.size == product.size && prod.numberProduct == product.numberProduct,
+        )
+        
         if (isChecked) {
-            if (isUpdateSize !== -1 || 0) {
+            if (indexUpdateProduct !== -1 || 0) {
                 const newProduct = [...user.products]
                 
-                newProduct[isUpdateSize] = {
+                newProduct[indexUpdateProduct] = {
                     ...product,
                     size: selectSize,
                     numberProducts: numberProduct,
@@ -102,8 +107,26 @@ const DetailProduct = () => {
                 await updateUser(newUser);
                 await dispatch(setUserCurrent(newUser));
                 await navigator(`/main/${user.name}`)
+                await window.scrollTo(0,0)
             }
-            if (isAdd) {
+            if (indexUpdateSize !== -1 || 0 && isUpdateProduct) {
+                const newProduct = [...user.products]
+                
+                newProduct[indexUpdateSize] = {
+                    ...product,
+                    numberProducts: numberProduct,
+                }
+                const newUser = {
+                    ...user,
+                    products:newProduct
+                }
+           
+                await updateUser(newUser);
+                await dispatch(setUserCurrent(newUser));
+                await navigator(`/main/${user.name}`)
+                await window.scrollTo(0,0)
+            }
+            if (isAdd && isUpdateProduct) {
                 const newUser = {
                     ...user,
                     products: [
@@ -118,17 +141,19 @@ const DetailProduct = () => {
                 await updateUser(newUser);
                 await dispatch(setUserCurrent(newUser));
                 await navigator(`/main/${user.name}`)
+                await window.scrollTo(0,0)
+
             }
         }
     };
     return (
         <div className="mt-[66px] max-w-[1140px] mx-auto lg:mt-[30px] ">
             <div className="px-[15px] lg:px-0">
-                <div className="lg:flex lg:justify-between">
-                    <div>
+                <div className="lg:grid lg:grid-cols-11">
+                    <div className='col-span-5'>
                         <img src={product.img} alt="img" />
                     </div>
-                    <div className="">
+                    <div className=" col-span-6">
                         <div className="text-[27px] font-medium pb-4">{product.name}</div>
                         <div className="flex items-end">
                             <span className="flex items-center text-[28px] font-bold text-primary">

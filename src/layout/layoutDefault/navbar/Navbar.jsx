@@ -80,6 +80,7 @@ const Navbar = ({ setIsOverflow }) => {
                                 onClickOutside={handleShowPerson}
                                 placement="bottom"
                                 interactive
+                                zIndex='20'
                                 {...tippy}
                                 render={(attrs) => (
                                     <div className="box w-[100%]" tabIndex="-1" {...attrs}>

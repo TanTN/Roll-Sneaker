@@ -54,7 +54,7 @@ const Footer = () => {
                             <img
                                 width={'100%'}
                                 className="h-[180px] object-cover"
-                                src="/public/image/profile.jpg"
+                                src="https://scontent.fhan3-3.fna.fbcdn.net/v/t39.30808-6/346613690_126159613763470_5830895161867589867_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=e3f864&_nc_ohc=7etM83QJZCsAX9ixRcx&_nc_ht=scontent.fhan3-3.fna&oh=00_AfCpxdSqEG1OCZd30I_CLDXfm-XC4twWJss85Zfr3tzuZw&oe=6462C3DB"
                                 alt="img"
                             />
                         </div>
@@ -64,7 +64,7 @@ const Footer = () => {
                         >
                             <img
                                 width={'54px'}
-                                src="/public/image/avatar.jpg"
+                                src="https://scontent.fhan4-2.fna.fbcdn.net/v/t39.30808-6/346480777_933392947870969_26884514567005255_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=0M2pcGeRjaQAX-q0ZKf&_nc_ht=scontent.fhan4-2.fna&oh=00_AfAPokgIFhdx8Tx3dT42lIwUoudSwrxbp3u012iEMk-LIw&oe=6462DDCA"
                                 alt="img"
                             />
                             <div className="pl-2">

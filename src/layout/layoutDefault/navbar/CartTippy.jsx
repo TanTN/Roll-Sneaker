@@ -55,17 +55,18 @@ const CartTippy = ({children}) => {
             offset={isMobile ? [0,20] : [0,30]}
             delay={[200,300]}
             placement='bottom'
-            trigger={`${isMobile ? 'click' : 'mouseenter click'}`}
+            trigger={`${isMobile ? 'click' : 'mouseenter'}`}
             interactive
+            zIndex= '20'
             render={(attrs) => (
-                <div className='box' tabIndex='-1' {...attrs}>
+                <div className='box overflow-x-hidden' tabIndex='-1' {...attrs}>
                 {userCurrent.products.length > 0 
                 ? 
-                <div className='w-[300px] pt-[15px] border-[1px] border-[#ccc] bg-white drop-shadow-ShadowRoot lg:min-w-[400px]'>
-                    <div className='max-h-[34vh] lg:max-h-[33vh] overflow-y-auto'>
+                <div className='h-[100vh] border-[1px] border-[#ccc] bg-white drop-shadow-ShadowRoot md:h-auto md:max-w-[450px]'>
+                    <div className='h-[80vh] md:max-h-[34vh] lg:max-h-[33vh] overflow-y-auto'>
                         {userCurrent.products.map((product,index) =>(
                         <div key={index} className='relative' >
-                            <div className='grid grid-cols-3 py-1 border-b-[1px] border-[#bebebe] cursor-pointer hover:border-primary pr-3' onClick={() => handleFixProduct(product)}>
+                            <div className='grid grid-cols-3 py-1 border-b-[1px] border-[#bebebe] cursor-pointer hover:border-primary pr-3 text-sm md:text-base' onClick={() => handleFixProduct(product)}>
                                 <div>
                                     <img src={product.img} alt="photo" />
                                 </div>
@@ -78,15 +79,15 @@ const CartTippy = ({children}) => {
                                 </div>
                             </div>
                             <div className='absolute top-0 left-0 cursor-pointer select-none' onClick={() => handleDeleteProduct(product)}>
-                                <AiFillCloseSquare className='text-[25px] hover:text-primary'/>
+                                <AiFillCloseSquare className='text-[25px] lg:hover:text-primary'/>
                             </div>
                         </div>
                         ))}
                     </div>
-                    <div className='text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7]'>
+                    <div className='text-sm md:text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7]'>
                         <span className='font-bold'>Tổng số phụ: </span><span>{priceCart}<span className='underline'>đ</span></span>
                     </div>
-                    <div className='grid grid-cols-2 bg-[#383737] text-center leading-[30px] text-[16px] text-[#e4e4e4]'>
+                    <div className='grid grid-cols-2 bg-[#383737] text-center leading-[30px] text-sm md:text-base text-[#e4e4e4]'>
                             <button className='cursor-pointer'>XEM GIỎ HÀNG</button>
                         
                             <button className='border-l-[1px] border-[#ccc] cursor-pointer'>THANH TOÁN</button>
@@ -95,7 +96,7 @@ const CartTippy = ({children}) => {
                 :
                 <div className='w-[300px] bg-white border-[1px] border-[#ccc] drop-shadow-ShadowRoot'>
                     <div className='p-3 pr-8'>
-                        <img src="/public/image/empty_cart.png" alt="cart" />
+                        <img src="https://th.bing.com/th/id/OIP.wMEWMvtcH9ITnHSDg2vqswHaDm?pid=ImgDet&rs=1" alt="cart" />
                     </div>
                     <div className='text-center text-sm py-3'>Chưa có sản phẩm nào trong giỏ hàng</div>
                 </div>

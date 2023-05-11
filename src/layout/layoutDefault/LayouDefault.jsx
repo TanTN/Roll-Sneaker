@@ -4,6 +4,7 @@ import Footer from './footer/Footer';
 
 const LayoutDefault = ({ children }) => {
     const [isOverflow, setIsOverflow] = useState(false);
+
     return (
         <div
             className={`overflow-x-hidden relative  lg:overflow-y-auto lg:h-auto ${
