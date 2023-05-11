@@ -46,9 +46,10 @@ const CartTippy = ({children}) => {
     }
     const handleFixProduct = async(product) => {
         await dispatch(setProduct(product))
-        await navigator('/detailProduct')
         await window.scrollTo(0,0)
-        // await window.location.reload()
+        await navigator('/detailProduct')
+        await window.location.reload()
+        await navigator('/detailProduct')
     }
   return (
     <div>
@@ -96,7 +97,7 @@ const CartTippy = ({children}) => {
                 :
                 <div className='w-[300px] bg-white border-[1px] border-[#ccc] drop-shadow-ShadowRoot'>
                     <div className='p-3 pr-8'>
-                        <img src="/src/image/empty_cart.png" alt="cart" />
+                        <img src="/public/image/empty_cart.png" alt="cart" />
                     </div>
                     <div className='text-center text-sm py-3'>Chưa có sản phẩm nào trong giỏ hàng</div>
                 </div>

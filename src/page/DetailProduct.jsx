@@ -23,6 +23,7 @@ const DetailProduct = () => {
     const navigator = useNavigate()
 
     useEffect(() => {
+
         if (product.size) {
             const sizeProduct = sizes.map(sizeProd => sizeProd.size === product.size ? {...sizeProd,isChecked: true} : {...sizeProd,isChecked: false})
             const index = sizes.findIndex(sizeProd => sizeProd.size == product.size)

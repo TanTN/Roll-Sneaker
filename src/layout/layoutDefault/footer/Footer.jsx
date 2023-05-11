@@ -54,7 +54,7 @@ const Footer = () => {
                             <img
                                 width={'100%'}
                                 className="h-[180px] object-cover"
-                                src="/src/image/profile.jpg"
+                                src="/public/image/profile.jpg"
                                 alt="img"
                             />
                         </div>
@@ -64,7 +64,7 @@ const Footer = () => {
                         >
                             <img
                                 width={'54px'}
-                                src="/src/image/avatar.jpg"
+                                src="/public/image/avatar.jpg"
                                 alt="img"
                             />
                             <div className="pl-2">
