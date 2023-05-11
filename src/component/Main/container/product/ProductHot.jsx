@@ -2,22 +2,27 @@
 
 import React from 'react'
 import { dataSneaker } from '../../../data/dataSneaker'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setProduct } from '../../../../redux/reducer'
 import { useNavigate } from 'react-router'
 import { dataProductSame } from '../../../data/dataProductSame'
 
-const ProductHot = ({isProductSame}) => {
+const ProductHot = ({isProductSame ,isReloads}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const handleAddProduct = (data) => {
-        dispatch(setProduct(data))
-        navigate('/detailProduct')
+    const handleAddProduct = async (data) => {
+        if (isProductSame) {
+            await isReloads()
+        }
+        await dispatch(setProduct(data))
+        await navigate(`/detailProduct`)
+        await window.scrollTo(0, 0)
+        
     }
     const dataProductHot = isProductSame ? dataProductSame : dataSneaker
   return (
     <div className='mb-[50px] overflow-hidden md:mb-[70px]'>
-        <h1 className='text-center mb-[20px] md:mb-[40px]'>SẢN PHẨM BÁN CHẠY</h1>
+        <h1 className='text-center mb-[20px] md:mb-[40px]'>{isProductSame ? 'SẢN PHẨM TƯƠNG TỰ': 'PHẨM BÁN CHẠY'}</h1>
         <div className='grid gap-5 grid-cols-2 md:grid-cols-4 md:gap-10'>
             {dataProductHot.map((data,index) => 
                 <div key={index}>
@@ -34,7 +39,7 @@ const ProductHot = ({isProductSame}) => {
                             </div>
                             {data.isDeal && (
                                 <div className='absolute top-0 right-0 block overflow-hidden w-[var(--width-box-deal)] h-[var(--width-box-deal)] md:w-[var(--width-box-deal-md)] md:h-[var(--width-box-deal-md)]'>
-                                    <div className='absolute top-[15px] left-[-2px] w-[var(--width-deal)] shadow-[#b8b8b8] shadow-md text-center rotate-[45deg] bg-primary text-white font-semibold md:w-[var(--width-deal-md)] md:top-[16px] md:left-[1px] md:text-lg'>
+                                    <div className='absolute text-sm top-[15px] left-[-2px] w-[var(--width-deal)] shadow-[#b8b8b8] shadow-md text-center rotate-[45deg] bg-primary text-white font-semibold md:w-[var(--width-deal-md)] md:top-[16px] md:left-[1px] md:text-base lg:text-lg'>
                                         Deal Sốc
                                     </div>
                                 </div>

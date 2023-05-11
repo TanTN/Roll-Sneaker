@@ -1,83 +1,77 @@
 
 const dataProductSame = [
     {
-        name:'Giày MLB Chunky Liner Mid Classic Monogram LA Blue Like Auth',
+        name:'Giày Nike Air Force 1 Low Paisley Swoosh Like Auth',
         img:'https://shopgiayreplica.com/wp-content/uploads/2023/04/GIAY-MLB-CHUNKY-LINER-MID-MONOGRAM-LA-BLUE-800x599.jpg',
         imgHover:'https://shopgiayreplica.com/wp-content/uploads/2023/04/giay-mlb-chunky-liner-mid-classic-monogram-la-blue-3-300x300.jpg',
         price:'1.190.000',
         priceDropped:'1.700.000',
         percent:'-30%',
-        isDeal:true
     },
     {
-        name:'Giày MLB Chunky Liner Mid Classic Monogram Boston Red Sox L.Beige Like Auth',
-        img:'https://shopgiayreplica.com/wp-content/uploads/2023/02/giay-mlb-chunky-liner-mid-classic-monogram-boston-Beige-800x601.jpg',
-        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2023/02/giay-mlb-chunky-liner-mid-classic-monogram-boston-red-sox-beige-2-300x300.jpg',
+        name:'Nike Air Force 1 Low UV Reactive Swoosh (đổi màu logo)',
+        img:'https://shopgiayreplica.com/wp-content/uploads/2021/08/Nike-Air-Force-1-Low-UV-Reactive-Swoosh-800x600.jpg',
+        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2021/08/giay-Nike-Af1-Low-UV-Reactive-Swoosh-rep11-300x300.jpg',
+        price:'798.000',
+        priceDropped:'1.200.000',
+        percent:'-34%',
+
+    },
+    {
+        name:"Nike Air Force Just do It trắng Rep 1:1",
+        img:'https://shopgiayreplica.com/wp-content/uploads/2018/10/nike-just-do-it-replica-800x601.jpg',
+        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2018/10/giay-nike-air-max-just-do-it-replica-1-300x300.jpg',
+        price:'798.000',
+        priceDropped:'1.700.000',
+        percent:'-52%',
+
+
+    },
+    {
+        name:'Nike Air Force 1 Low Stussy Fossil Like Auth',
+        img:'https://shopgiayreplica.com/wp-content/uploads/2021/08/Nike-Air-Force-1-Low-Stussy-Fossil-800x600.jpg',
+        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2021/08/Air-Force-1-Low-Stussy-Fossil-2-300x300.jpg',
         price:'1.190.000',
         priceDropped:'1.700.000',
         percent:'-30%',
 
     },
     {
-        name:"Giày Nike Air Jordan 1 Low SE \‘Concord\’ Like Auth",
-        img:'https://shopgiayreplica.com/wp-content/uploads/2023/02/giay_nike_air_jordan_1_low_concord-800x600.jpeg',
-        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2023/02/giay-air-jordan-1-low-se-concord-10-300x300.jpg',
-        price:'1.190.000',
-        priceDropped:'2.000.000',
-        percent:'-41%',
-        isDeal:true
-
-
-    },
-    {
-        name:'Giày Adidas Adifom Superstar ‘White Black’ Like Auth',
-        img:'https://shopgiayreplica.com/wp-content/uploads/2023/02/Adidas-adiFOM-Superstar-White-Black-800x601.jpg',
-        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2023/02/giay-adidas-adifom-superstar-white-black-1-300x300.jpg',
+        name:'Nike Air Force 1 Shadow Pale Ivory (7 màu)',
+        img:'https://shopgiayreplica.com/wp-content/uploads/2019/11/nike-air-force-1-shadow-replica-800x600.jpg',
+        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2019/11/nike-air-force-1-shadow-replica-5-300x300.jpg',
         price:'798.000',
-        priceDropped:'1.500.000',
-        percent:'-47%',
-        isDeal:true
+        priceDropped:'1.800.000',
+        percent:'-56%',
 
     },
     {
-        name:'Giày Nike Air Jordan 1 Low Travis Scott ‘Reverse Mocha’ Like Auth',
-        img:'https://shopgiayreplica.com/wp-content/uploads/2022/12/travis-scott-air-jordan-1-reverse-mocha-sneakernew-800x600.jpg',
-        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2022/05/air-jordan-1-low-travis-scott-reverse-mocha-like-auth-1-300x300.jpg',
-        price:'1.690.000',
-        priceDropped:'3.500.000',
-        percent:'-52%',
-
-    },
-    {
-        name:'Giày Nike Air Jordan 1 High Travis Scott Like Auth',
-        img:'https://shopgiayreplica.com/wp-content/uploads/2020/11/jordan-1-high-travis-scott-800x600.jpg',
-        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2022/05/jordan-1-high-travis-scott-300x300.jpg',
-        price:'1.890.000',
-        priceDropped:'3.000.000',
-        percent:'-37%',
-        isDeal:true
+        name:'Nike Air Force 1 Shadow Beige Pale Ivory',
+        img:'https://shopgiayreplica.com/wp-content/uploads/2020/08/Nike-Air-Force-1-Shadow-Beige-Pale-Ivory-replica-800x600.jpg',
+        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2020/08/Giay-Nike-Air-Force-1-Shadow-Beige-Pale-Ivory-replica6-2-1-300x300.jpg',
+        price:'798.000',
+        priceDropped:'1.400.000',
+        percent:'-43%',
 
 
     },
     {
-        name:'Giày MLB Chunky Liner New York Yankees White Black Like Auth',
-        img:'https://shopgiayreplica.com/wp-content/uploads/2022/05/mlb-chunky-liner-ny-black-white-rep11-800x600.jpg',
-        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2022/05/giay-mlb-chunky-liner-white-black-1-300x300.jpg',
-        price:'990.000',
-        priceDropped:'1.990.000',
-        percent:'-50%',
-        isDeal:true
+        name:'Nike Air Force 1 07 LX “UV Reactive” (đổi màu full)',
+        img:'https://shopgiayreplica.com/wp-content/uploads/2021/08/Nike-AF1-Low-UV-Doi-Mau-800x600.jpg',
+        imgHover:'https://shopgiayreplica.com/wp-content/uploads/2021/08/Nike-Air-Force-1-doi-mau-rep11-300x300.jpg',
+        price:'798.000',
+        priceDropped:'1.200.000',
+        percent:'-34%',
 
 
     },
     {
-        name:'Giày Louis Vuitton x Nike Air Force 1 Low By Virgil Abloh ‘White’ Like Auth',
-        img:'https://shopgiayreplica.com/wp-content/uploads/2022/06/giay-louis-vuitton-x-nike-air-force-1-by-virgril-abloh-white-800x600.jpeg',
+        name:'Nike Air Force 1 Shadow Aura Green',
+        img:'https://shopgiayreplica.com/wp-content/uploads/2020/07/giay-Nike-Air-Force-1-Shadow-Spruce-Aura-green-replica-800x600.jpg',
         imgHover:'https://shopgiayreplica.com/wp-content/uploads/2022/06/lv-air-force-1-virgil-abloh-white-8-300x300.jpg',
-        price:'1.790.000',
-        priceDropped:'4.500.000',
-        percent:'-60%',
-        isDeal:true
+        price:'798.000',
+        priceDropped:'1.800.000',
+        percent:'-56%',
     },
 ]
 

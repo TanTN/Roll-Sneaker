@@ -53,8 +53,8 @@ const Footer = () => {
                         <div className="">
                             <img
                                 width={'100%'}
-                                className="h-[180px]"
-                                src="https://scontent.fhph1-2.fna.fbcdn.net/v/t39.30808-6/342036108_5956797801108745_5463867297716745361_n.jpg?stp=dst-jpg_s350x350&_nc_cat=110&ccb=1-7&_nc_sid=dd9801&_nc_ohc=_DfxKJEwN0oAX_AFWSN&_nc_ht=scontent.fhph1-2.fna&oh=00_AfB6RfJy6MgESOusmyIX0NVcsTOD9dZlb09bN2pcHdbVtQ&oe=645960E0"
+                                className="h-[180px] object-cover"
+                                src="/src/image/profile.jpg"
                                 alt="img"
                             />
                         </div>
@@ -64,11 +64,11 @@ const Footer = () => {
                         >
                             <img
                                 width={'54px'}
-                                src="https://scontent.fhph1-2.fna.fbcdn.net/v/t39.30808-1/341699436_1419001595594211_9035110618624878235_n.jpg?stp=cp0_dst-jpg_p50x50&_nc_cat=110&ccb=1-7&_nc_sid=dbb9e7&_nc_ohc=AP7Ys3uSxXQAX88Viko&_nc_ht=scontent.fhph1-2.fna&oh=00_AfCkTHQ6K1nNylYd4MXX0ekE5SpXwyRX4P_4hO3g2KDqGA&oe=645A68B7"
+                                src="/src/image/avatar.jpg"
                                 alt="img"
                             />
                             <div className="pl-2">
-                                <p className="font-semibold text-lg ">Shop giày Rep Hà Nội</p>
+                                <p className="font-semibold text-lg text-[#e2ff7a]">Shop giày Rep Hà Nội</p>
                                 <p className="font-medium text-sm text-slate-100">189 người theo dõi</p>
                             </div>
                         </a>

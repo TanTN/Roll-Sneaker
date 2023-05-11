@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductHot from '../component/Main/container/product/ProductHot';
 import Tips from '../component/Main/container/product/Tips';
 import dataSizes from '../component/data/dataSizes';
@@ -6,58 +6,118 @@ import { FcOk } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../utils/axios';
 import { setUserCurrent } from '../redux/reducer';
+import { useNavigate } from 'react-router';
 
 const DetailProduct = () => {
+    const user = useSelector((state) => state.store.userCurrent);
+    const product = useSelector((state) => state.store.viewProduct);
+
     const [sizes, setSizes] = useState(dataSizes);
     const [selectSize, setSelectSize] = useState(undefined);
-    const [sizeActive, seSizeActive] = useState(undefined);
-    const [isChecked, seIChecked] = useState(false);
-    const [isProduct, setIsProduct] = useState(false)
+    const [sizeActive, setSizeActive] = useState(undefined);
+    const [isChecked, setChecked] = useState(product.size ? true : false);
+    const [isProduct, setIsProduct] = useState(false);
+    const [numberProduct, setNumberProduct] = useState(product.numberProducts || 1);
 
-    const product = useSelector((state) => state.store.viewProduct);
-    const user = useSelector((state) => state.store.userCurrent);
     const dispatch = useDispatch();
+    const navigator = useNavigate()
 
-    useState(() => {
-        const isHref = window.location.href.slice(-13)
-        if(isHref === 'detailProduct') {
-            setIsProduct(true)
-        } else {
-            setIsProduct(false)
-
+    useEffect(() => {
+        if (product.size) {
+            const sizeProduct = sizes.map(sizeProd => sizeProd.size === product.size ? {...sizeProd,isChecked: true} : {...sizeProd,isChecked: false})
+            const index = sizes.findIndex(sizeProd => sizeProd.size == product.size)
+            setSelectSize(product.size)
+            setSizeActive(index)
+            setSizes(sizeProduct)
         }
-    })
+    },[])
+
+    useEffect(() => {
+        const isHref = window.location.href.slice(-13);
+        if (isHref === 'detailProduct') {
+            setIsProduct(true);
+        } else {
+            setIsProduct(false);
+        }
+        
+    }, []);
+
+    const isReload = () => {
+        setChecked(false);
+        setSizeActive(undefined);
+        setSizes(dataSizes)
+    }
+
     const handelSelectSize = (e, index) => {
-        const { value, checked } = e.target;
+        const { value } = e.target;
         setSelectSize(value);
-        seSizeActive(index);
-        seIChecked(true);
+        setSizeActive(index);
+        setChecked(true);
         const newSizes = sizes.map((size) =>
-            size.size === value ? { ...size, isChecked: checked } : { ...size, isChecked: !checked },
+                size.size == value ? { ...size, isChecked: true } : { ...size, isChecked: false },
         );
         setSizes(newSizes);
     };
+
     const handleClearSize = () => {
-        seIChecked(false);
+        setChecked(false);
         const newSizes = sizes.map((size) => ({ ...size, isChecked: false }));
-        seSizeActive(undefined);
+        setSizeActive(undefined);
         setSizes(newSizes);
     };
+
+    const handleMinusNumber = () => {
+        if (numberProduct > 1) {
+            setNumberProduct((number) => number - 1);
+        }
+    };
+
+    const handleAddNumber = () => {
+        setNumberProduct((number) => number + 1);
+    };
+
     const handleAddProduct = async () => {
+
+        const isAdd = user.products.every((prod) => {
+            return prod.name !== product.name || prod.size !== selectSize;
+        });
+        const isUpdateSize = user.products.findIndex(
+            (prod) => prod.name === product.name && prod.size === selectSize && prod.numberProducts !== numberProduct,
+        );
         if (isChecked) {
-            const newUser = {
-                ...user,
-                products: [
-                    ...user.products,
-                    {
-                        ...product,
-                        size: selectSize,
-                    },
-                ],
-            };
-            console.log(newUser);
-            await updateUser(newUser);
-            await dispatch(setUserCurrent(newUser));
+            if (isUpdateSize !== -1 || 0) {
+                const newProduct = [...user.products]
+                
+                newProduct[isUpdateSize] = {
+                    ...product,
+                    size: selectSize,
+                    numberProducts: numberProduct,
+                }
+                const newUser = {
+                    ...user,
+                    products:newProduct
+                }
+           
+                await updateUser(newUser);
+                await dispatch(setUserCurrent(newUser));
+                await navigator(`/main/${user.name}`)
+            }
+            if (isAdd) {
+                const newUser = {
+                    ...user,
+                    products: [
+                        ...user.products,
+                        {
+                            ...product,
+                            size: selectSize,
+                            numberProducts: numberProduct,
+                        },
+                    ],
+                };
+                await updateUser(newUser);
+                await dispatch(setUserCurrent(newUser));
+                await navigator(`/main/${user.name}`)
+            }
         }
     };
     return (
@@ -81,9 +141,9 @@ const DetailProduct = () => {
                         </div>
                         <div className="flex pt-3">
                             <div>
-                                <p className="font-semibold pb-2">SIZE</p>
+                                <p className="font-semibold pb-2">SIZE:</p>
                                 {isChecked && (
-                                    <p className="text-c1" onClick={handleClearSize}>
+                                    <p className="text-c1 cursor-pointer" onClick={handleClearSize}>
                                         Xóa
                                     </p>
                                 )}
@@ -100,7 +160,7 @@ const DetailProduct = () => {
                                         >
                                             <label
                                                 htmlFor={data.size}
-                                                className="text-[18px] w-[100%] leading-[40px] text-center text-c1 cursor-pointer hover:bg-[#e7e7e7]"
+                                                className="text-[18px] select-none w-[100%] leading-[40px] text-center text-c1 cursor-pointer lg:hover:bg-[#e7e7e7]"
                                             >
                                                 {data.size}
                                             </label>
@@ -111,14 +171,32 @@ const DetailProduct = () => {
                                                 value={data.size}
                                                 name="size"
                                                 onChange={(e) => handelSelectSize(e, index)}
-                                                checked={sizes.isChecked}
+                                                checked={data.isChecked}
                                             />
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <div className="flex py-4">
+                        <div className="text-[18px] mt-2">
+                            <p className="">
+                                <span>Số lượng:</span>
+                                <span
+                                    className="select-none ml-3 px-3 border-[1px] border-[#ccc] cursor-pointer lg:hover:bg-[#e7e7e7]"
+                                    onClick={handleMinusNumber}
+                                >
+                                    -
+                                </span>
+                                <span className="mx-3">{numberProduct}</span>
+                                <span
+                                    className="select-none px-3 border-[1px] border-[#ccc] cursor-pointer lg:hover:bg-[#e7e7e7]"
+                                    onClick={handleAddNumber}
+                                >
+                                    +
+                                </span>
+                            </p>
+                        </div>
+                        <div className="flex pt-4 pb-2">
                             <button
                                 className={`${
                                     isChecked ? 'bg-primary' : 'bg-[#ad83a5]'
@@ -132,6 +210,11 @@ const DetailProduct = () => {
                                     MUA NGAY
                                 </button>
                             </div>
+                        </div>
+                        <div className="pb-4">
+                            <button className="bg-[#d16060] hover:bg-primary cursor-pointer text-white py-2 px-4 text-[17px] font-medium">
+                                XEM GIỎ HÀNG
+                            </button>
                         </div>
                         <div className="border-[1px] border-dashed border-primary p-[15px] mt-3">
                             <p className="text-[18px] font-bold">
@@ -200,7 +283,7 @@ const DetailProduct = () => {
                 </div>
             </div>
             <div className="px-[15px] lg:px-0 pt-[50px]">
-                <ProductHot isProductSame={isProduct}/>
+                <ProductHot isProductSame={isProduct} isReloads={isReload}/>
             </div>
             <Tips />
         </div>

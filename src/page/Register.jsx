@@ -85,7 +85,7 @@ const Register = () => {
                             {isLogin && (
                                 <div
                                     className="absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#b0b2ee] translate-y-[-50%] text-white cursor-pointer hover:text-[#7075f7] hover:bg-[#dfbb06] xl:left-[25px] md:left-[-65px] md:border-white md:text-[#dfbb06] md:hover:bg-white"
-                                    onClick={() => navigate(`/${user.username}`)}
+                                    onClick={() => navigate(`/main/${user.username}`)}
                                 >
                                     <AiOutlineDoubleLeft />
                                 </div>
