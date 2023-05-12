@@ -92,12 +92,14 @@ const CartTippy = ({children,hideTippy}) => {
                             ))}
                         </div>
                         <div className='absolute left-0 bottom-0 right-0 md:static'>
-                            <div className='text-sm md:text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7] bg-[#e2e2e2]'>
-                                <span className='font-bold'>Tổng số phụ: </span><span>{priceCart}<span className='underline'>đ</span></span>
-                            </div>
-                            <div className='grid grid-cols-2 bg-[#383737] text-center py-1 text-sm md:text-base text-[#e4e4e4]'>
-                                    <button className='cursor-pointer'>XEM GIỎ HÀNG</button>
-                                    <button className='border-l-[1px] border-[#ccc] cursor-pointer'>THANH TOÁN</button>
+                            <div>
+                                <div className='text-sm md:text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7] bg-[#e2e2e2]'>
+                                    <span className='font-bold'>Tổng số phụ: </span><span>{priceCart}<span className='underline'>đ</span></span>
+                                </div>
+                                <div className='grid grid-cols-2 bg-[#383737] text-center py-1 text-sm md:text-base text-[#e4e4e4]'>
+                                        <button className='cursor-pointer'>XEM GIỎ HÀNG</button>
+                                        <button className='border-l-[1px] border-[#ccc] cursor-pointer'>THANH TOÁN</button>
+                                </div>
                             </div>
                         </div>
                     </>)
