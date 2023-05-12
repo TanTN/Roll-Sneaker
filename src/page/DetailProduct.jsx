@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router';
 const DetailProduct = () => {
     const user = useSelector((state) => state.store.userCurrent);
     const product = useSelector((state) => state.store.viewProduct);
+    const isReloadClickCart = useSelector(state => state.store.isReloadClickCart)
 
     const [sizes, setSizes] = useState(dataSizes);
     const [selectSize, setSelectSize] = useState(undefined);
@@ -25,7 +26,7 @@ const DetailProduct = () => {
 
     useEffect(() => {
         if (product.size) {
-            const sizeProduct = sizes.map(sizeProd => sizeProd.size === product.size ? {...sizeProd,isChecked: true} : {...sizeProd,isChecked: false})
+            const sizeProduct = sizes.map(sizeProd => sizeProd.size == product.size ? {...sizeProd,isChecked: true} : {...sizeProd,isChecked: false})
             const index = sizes.findIndex(sizeProd => sizeProd.size == product.size)
             setSelectSize(product.size)
             setSizeActive(index)
@@ -33,6 +34,18 @@ const DetailProduct = () => {
             setIsUpdateProduct(false)
         }
     },[])
+
+    useEffect(() => {
+        if (product.size) {
+            const sizeProduct = sizes.map(sizeProd => sizeProd.size == product.size ? {...sizeProd,isChecked: true} : {...sizeProd,isChecked: false})
+            const index = sizes.findIndex(sizeProd => sizeProd.size == product.size)
+            setSelectSize(product.size)
+            setSizeActive(index)
+            setSizes(sizeProduct)
+            setIsUpdateProduct(false)
+        }
+    },[isReloadClickCart])
+
 
     useEffect(() => {
         const isHref = window.location.href.slice(-13);
@@ -43,6 +56,7 @@ const DetailProduct = () => {
         }
         
     }, []);
+
 
     const isReload = () => {
         setChecked(false);
@@ -109,11 +123,13 @@ const DetailProduct = () => {
                 await navigator(`/main/${user.name}`)
                 await window.scrollTo(0,0)
             }
+            
             if (indexUpdateSize !== -1 || 0 && isUpdateProduct) {
                 const newProduct = [...user.products]
                 
                 newProduct[indexUpdateSize] = {
                     ...product,
+                    size: selectSize,
                     numberProducts: numberProduct,
                 }
                 const newUser = {
@@ -126,6 +142,7 @@ const DetailProduct = () => {
                 await navigator(`/main/${user.name}`)
                 await window.scrollTo(0,0)
             }
+
             if (isAdd && isUpdateProduct) {
                 const newUser = {
                     ...user,
@@ -143,6 +160,11 @@ const DetailProduct = () => {
                 await navigator(`/main/${user.name}`)
                 await window.scrollTo(0,0)
 
+            }
+
+            if (!isAdd) {
+                await navigator(`/main/${user.name}`)
+                await window.scrollTo(0,0)
             }
         }
     };

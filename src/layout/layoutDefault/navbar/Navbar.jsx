@@ -22,6 +22,8 @@ const Navbar = ({ setIsOverflow }) => {
     const [isShowPerson, setIsShowPerson] = useState(false);
     const [isScroll,setIsScroll] = useState(false)
     const [isMenu, setIsMenu] = useState(false);
+    const [hideTippy, setHideTippy] = useState(false)
+
     
     const handleClickMenu = () => {
         setIsMenu(!isMenu);
@@ -40,6 +42,13 @@ const Navbar = ({ setIsOverflow }) => {
     const handleSignup = () => {
         navigate('/register')
     }
+    const handleClinkHideCart = () => {
+        if (isMobile) {
+            setHideTippy(!hideTippy)
+            setIsOverflow(!hideTippy)
+        }
+    }
+
     useEffect(() => {
         const handleScroll = () => {
             if (document.documentElement.scrollTop > 86) {
@@ -51,6 +60,7 @@ const Navbar = ({ setIsOverflow }) => {
         window.addEventListener('scroll', handleScroll);
         return () => {window.removeEventListener('scroll', handleScroll)}
     },[document.documentElement.scrollTop])
+
     
     return (
         <>
@@ -65,11 +75,11 @@ const Navbar = ({ setIsOverflow }) => {
                     </div>
                     <div className="flex justify-end">
                         
-                            <CartTippy>
-                                <div className="relative cursor-pointer px-[12px] md:px-[20px] select-none">
+                            <CartTippy hideTippy={hideTippy}>
+                                <div className="relative cursor-pointer px-[12px] md:px-[20px] select-none" onClick={handleClinkHideCart}>
                                     <BsCartDash size={'30px'} className="text-slate-400" />
                                     <div className='absolute top-[-8px] right-[2px] px-[5px] h-[17px] text-[13px] md:right-[10px] md:leading-[19px] leading-[17px] rounded-[25px] bg-primary text-white font-medium text-center'>
-                                        {userCurrent.products.length > 0 ? userCurrent.products?.length : 0}
+                                        {userCurrent.products.length > 0 ? userCurrent.products.length : 0}
                                     </div>
                                 </div>
                             </CartTippy>
@@ -86,7 +96,7 @@ const Navbar = ({ setIsOverflow }) => {
                                     <div className="box w-[100%]" tabIndex="-1" {...attrs}>
                                         <div className="bg-white py-4 border-[1px] border-[#e4e4e4] text-c1 leading-[30px] px-[14px] rounded-xm drop-shadow-lg md:px-0">
                                             <div className="flex justify-center items-center pb-1 md:px-[14px] md:mb-2 md:mx-2 md:py-1 border-b-[1px] border-[#d3d3d3]">
-                                                <IoPersonSharp className='text-[18px]'/>
+                                                <IoPersonSharp className='text-[18px] text-[#222fe2]'/>
                                                 <p className='pl-2 font-medium md:text-[23px] leading-[25px] select-none'>{userCurrent.username}</p>
                                             </div>
                                             <div className="flex items-center pb-1 cursor-pointer md:px-[14px] md:mb-2 md:mx-2 md:py-1 md:hover:bg-[#ebeaea] md:rounded-sm" onClick={handleSignout}>
