@@ -238,7 +238,6 @@ const Buy = () => {
                                     <textarea placeholder='Ghi chú thêm về đơn hàng.' className='w-[100%] h-[60px] outline-none border-[1px] border-[#6e6d6d] caret-[#ac3d3d]'/>
                                 </div>
                             </div>
-    
                             <div className='border-[1px] border-primary border-dashed p-[15px]'>
                                 {user.products.length > 0 ? <Order /> : <p className='text-center py-10 text-lg'>Chưa có sản phẩm nào để đặt. Xin vui lòng quay lại cửa hàng!</p>}
                                 <div className="flex justify-end mt-3">

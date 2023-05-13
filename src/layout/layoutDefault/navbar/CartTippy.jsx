@@ -15,7 +15,7 @@ const CartTippy = ({children,hideTippy,clickHideCart}) => {
     const [tippyPc, setTippyPc] = useState(false)
 
     const dispatch = useDispatch()
-    const navigator = useNavigate()
+    const navigate = useNavigate()
 
     useEffect(() => {
         let allPrices;
@@ -56,13 +56,19 @@ const CartTippy = ({children,hideTippy,clickHideCart}) => {
         await clickHideCart()
         await dispatch(setReloadClickCart(Math.random() * 100))
         await setTippyPc(true)
-        await navigator('/detailProduct')
+        await navigate('/detailProduct')
         await window.scrollTo(0,0)
         
     }
 
     const isTippy = isMobile ? {visible: hideTippy,offset:[0,20]} : {offset:[0,30],trigger:'mouseenter' }
     const isTippyPc = !isMobile && tippyPc && {visible:false}
+    const handleBuy = async() => {
+        await setTippyPc(true)
+        await clickHideCart()
+        await navigate('/buy')
+        await window.scrollTo(0,0)
+    }
   return (
     <div>
         <Tippy
@@ -104,9 +110,8 @@ const CartTippy = ({children,hideTippy,clickHideCart}) => {
                                 <div className='text-sm md:text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7] bg-[#e2e2e2]'>
                                     <span className='font-bold'>Tổng số phụ: </span><span>{priceCart}<span className='underline'>đ</span></span>
                                 </div>
-                                <div className='bg-[#383737] text-center py-[6px] lg:py-2 text-sm md:text-base text-[#e4e4e4] lg:hover:bg-[#252525]'>
-                                        
-                                        <button className='cursor-pointer'>THANH TOÁN</button>
+                                <div className='bg-[#383737] text-center py-[6px] lg:py-2 text-sm md:text-base text-[#e4e4e4] lg:hover:bg-[#252525] cursor-pointer' onClick={handleBuy}>
+                                        <button>THANH TOÁN</button>
                                 </div>
                             </div>
                         </div>
