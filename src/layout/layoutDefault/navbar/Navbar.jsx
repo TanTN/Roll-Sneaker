@@ -75,7 +75,7 @@ const Navbar = ({ setIsOverflow }) => {
                     </div>
                     <div className="flex justify-end">
                         
-                            <CartTippy hideTippy={hideTippy}>
+                            <CartTippy hideTippy={hideTippy} clickHideCart={handleClinkHideCart}>
                                 <div className="relative cursor-pointer px-[12px] md:px-[20px] select-none" onClick={handleClinkHideCart}>
                                     <BsCartDash size={'30px'} className="text-slate-400" />
                                     <div className='absolute top-[-8px] right-[2px] px-[5px] h-[17px] text-[13px] md:right-[10px] md:leading-[19px] leading-[17px] rounded-[25px] bg-primary text-white font-medium text-center'>

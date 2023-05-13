@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { dataAdidas } from '../../../data/dataSneaker'
+import { dataAdidas } from '../../../../component/data/dataSneaker'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { setProduct } from '../../../../redux/reducer'

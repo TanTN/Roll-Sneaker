@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { dataMlb } from '../../../data/dataSneaker'
+import { dataMlb } from '../../../../component/data/dataSneaker'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { setProduct } from '../../../../redux/reducer'

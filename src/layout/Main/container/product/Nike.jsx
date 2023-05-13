@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import { dataNike } from '../../../data/dataSneaker'
+import { dataNike } from '../../../../component/data/dataSneaker'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { setProduct } from '../../../../redux/reducer'

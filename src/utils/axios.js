@@ -1,9 +1,16 @@
 import axios from "axios";
-import { setIsLogin, setUserCurrent } from "../redux/reducer";
+import { setDistrict, setIsLogin, setProvince, setUserCurrent, setWard } from "../redux/reducer";
 const baseURL = import.meta.env.VITE_BASE_URL
+const baseUrlProvinces = import.meta.env.VITE_PROVINCES
+
 const httpRequest = axios.create({
     baseURL: baseURL
 })
+
+const requestProvinces = axios.create({
+    baseUrl: baseUrlProvinces
+}
+)
 
 const postUser = async (value) => {
     const res = await httpRequest.post('users',value)
@@ -27,4 +34,18 @@ const updateUser = async (value) => {
     const res = await httpRequest.put(`users/${value.id}`,value)
 }
 
-export {postUser,validateRegister,validateLogin,updateUser}
+const getProvince = async () => {
+    const res = await axios.get('https://provinces.open-api.vn/api/p?depth=2')
+    return res.data
+}
+const getDistrict = async(code) => {
+    const res = await axios.get(`https://provinces.open-api.vn/api/p/${code}?depth=2`)
+    return res.data
+}
+const getWard = async (code) => {
+    const res = await axios.get(`https://provinces.open-api.vn/api/d/${code}?depth=2`)
+    return res.data
+
+}
+
+export {postUser,validateRegister,validateLogin,updateUser,getProvince,getDistrict,getWard}

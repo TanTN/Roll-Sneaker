@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Tippy from '@tippyjs/react/headless';
 import { AiOutlineDoubleLeft } from 'react-icons/ai';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -55,7 +55,7 @@ const Register = () => {
             onSubmit={async (values) => {
                 const { isEmail, isUsername } = await validateRegister(values);
                 if (isEmail && isUsername) {
-                    await postUser({...values,products:[]});
+                    await postUser({...values,products:[],information:{}});
                     await navigate('/');
                 }
                 if (!isEmail) {

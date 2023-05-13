@@ -2,7 +2,8 @@ import Slider from 'react-slick'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import dataTips from '../../../data/dataTips'
+import dataTips from '../../../../component/data/dataTips'
+
 
 const Tips = () => {
     const isMobile = useSelector(state => state.store.isMobile)

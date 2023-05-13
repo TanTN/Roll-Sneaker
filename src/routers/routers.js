@@ -2,14 +2,14 @@ import DetailProduct from "../page/DetailProduct"
 import Login from "../page/Login"
 import Main from "../page/Main"
 import Register from "../page/Register"
-import Cart from "../page/Cart"
+import Buy from "../page/Buy"
 
 const routes = {
     detailProduct:'/detailProduct',
     login:'/',
     register:'/register',
     user:'main/:user',
-    cart:'/cart',
+    buy:'buy',
 }
 
 const pluginRouters = [
@@ -17,7 +17,7 @@ const pluginRouters = [
     {path: routes.login , component: Login ,layout: null},
     {path: routes.register , component: Register, layout: null},
     {path: routes.user , component: Main },
-    {path: routes.cart , component: Cart },
+    {path: routes.buy , component: Buy },
 ]
 
 export default pluginRouters

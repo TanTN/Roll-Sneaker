@@ -1,11 +1,11 @@
 
 
 import React from 'react'
-import { dataSneaker } from '../../../data/dataSneaker'
-import { useDispatch, useSelector } from 'react-redux'
+import { dataSneaker } from '../../../../component/data/dataSneaker'
+import { dataProductSame } from '../../../../component/data/dataProductSame'
+import { useDispatch } from 'react-redux'
 import { setProduct } from '../../../../redux/reducer'
 import { useNavigate } from 'react-router'
-import { dataProductSame } from '../../../data/dataProductSame'
 
 const ProductHot = ({isProductSame ,isReloads}) => {
     const dispatch = useDispatch()

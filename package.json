@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@tippyjs/react": "^4.2.6",
     "axios": "^1.4.0",
@@ -17,10 +20,12 @@
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
     "react-router": "^6.11.1",
     "react-router-dom": "^6.11.1",
+    "react-select": "^5.7.3",
     "react-slick": "^0.29.0",
     "redux-persist": "^6.0.0",
     "require": "^2.4.20",
