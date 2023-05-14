@@ -1,26 +1,38 @@
 import Slider from 'react-slick'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import {HiOutlineChevronRight,HiOutlineChevronLeft} from 'react-icons/hi'
+import {FaSearch} from 'react-icons/fa'
 
 import dataTips from '../../../../component/data/dataTips'
 
 
 const Tips = () => {
     const isMobile = useSelector(state => state.store.isMobile)
-    const optionsPc = !isMobile && {
-        autoplaySpeed:4000,
-        slidesToShow: 3,
-    }
-    
+
+    const SampleNextArrow = ({onClick}) => 
+        (
+            <div className='nextTip' onClick={onClick}>
+                <HiOutlineChevronRight class='icon'/>
+            </div>
+        )
+    const SamplePrevArrow = ({onClick}) => 
+        (
+            <div className='prevTip' onClick={onClick}>
+                <HiOutlineChevronLeft class='icon'/>
+            </div>
+        )
     const options = {
         infinite: true,
         speed: 700,
-        slidesToShow: 1,
+        slidesToShow:isMobile ? 1 : 3,
         adaptiveHeight: true,
         autoplay:true,
-        autoplaySpeed:3000,
-        arrows:true,
-        ...optionsPc
+        autoplaySpeed:isMobile ? 3000 : 4000,
+        arrows:!isMobile && true,
+        prevArrow:<SamplePrevArrow />,
+        nextArrow:<SampleNextArrow />,
+        
     }
 
   return (
@@ -29,8 +41,12 @@ const Tips = () => {
         <Slider {...options}>
             {dataTips.map((data,index) => 
                 <div key={index} className='relative text-center mb-[180px] px-[15px]'>
-                    <a href={data.href}>
+                    
+                    <a href={data.href} className='group/item relative lg:hover:opacity-[.5] '>
                         <img className='no-underline w-[100%] h-[100%]' src={data.img} alt="photo" />
+                        <div className='group/edit absolute invisible top-[50%] left-[-7%] translate-y-[-35%] group-hover/item:animate-fadeInTips lg:group-hover/item:visible'>
+                            <FaSearch className='text-[45px] text-white'/>
+                        </div>
                     </a>
                     <div className='tips tips-md absolute left-0 right-0 px-[15px]'>
                         <a href={data.href} className='no-underline text-lg text-[#353535] font-medium mb-3 md:text-[24px] md:font-normal'>{data.content}</a>

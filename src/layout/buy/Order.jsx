@@ -4,13 +4,9 @@ import {AiFillCloseSquare} from 'react-icons/ai'
 import { updateUser } from '../../utils/axios';
 import { setUserCurrent } from '../../redux/reducer';
 
-const Order = () => {
+const Order = ({setPriceCart,setAllPrice}) => {
     const dispatch = useDispatch()
     const userCurrent = useSelector((state) => state.store.userCurrent);
-
-    const [priceCart,setPriceCart] = useState(undefined)
-    const [allPrice,setAllPrice] = useState(null)
-
 
     useEffect(() => {
         let allPrices;
@@ -60,10 +56,10 @@ const Order = () => {
                 {userCurrent.products.map((product, index) => (
                     <div key={index} className="relative">
                         <div
-                            className="grid grid-cols-3 py-1 border-b-[1px] border-[#bebebe] cursor-pointer hover:border-primary pr-3 text-sm md:text-lg lg:text-base"
+                            className="grid grid-cols-3 py-1 border-b-[1px] border-[#bebebe] hover:border-primary pr-3 text-sm md:px-[40px] md:text-lg lg:text-base"
                         >
                             <div>
-                                <img src={product.img} alt="photo" />
+                                <img src={product.img} alt="photo" className='md:w-[130px] md:h-[100px] mx-auto'/>
                             </div>
                             <div className="col-span-2 my-auto">
                                 <p>{product.name}</p>
@@ -84,7 +80,7 @@ const Order = () => {
                             </div>
                         </div>
                         <div
-                            className="absolute top-0 left-0 cursor-pointer select-none"
+                            className="absolute top-0 left-0 cursor-pointer select-none md:left-[60px]"
                             onClick={() => handleDeleteProduct(product)}
                         >
                             <AiFillCloseSquare className="text-[25px] lg:hover:text-primary" />
@@ -92,20 +88,7 @@ const Order = () => {
                     </div>
                 ))}
             </div>
-            <div className='mt-3'>
-                <div className='flex justify-between pb-1'>
-                    <p>Tạm tính:</p>
-                    <p>{priceCart} <span className='underline'>đ</span></p>
-                </div>
-                <div className='flex justify-between pb-1'>
-                    <p>Giao hàng:</p>
-                    <p className='font-bold'>30.000 <span className='underline'>đ</span></p>
-                </div>
-                <div className='pb-2'>
-                    <p className='font-semibold text-lg'>Tổng:</p>
-                    <p className='flex justify-end font-bold text-lg'>{allPrice}<span className='underline'> đ</span></p>
-                </div>
-            </div>
+            
         </div>
     );
 };

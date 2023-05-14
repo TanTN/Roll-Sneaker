@@ -27,7 +27,7 @@ function App() {
     }, [widthDisplay]);
     
     return (
-        <div className="">
+        <div className="scroll-smooth">
             <Routes>
                 {pluginRouters.map((route, index) => {
                     let Layout = LayoutDefault;

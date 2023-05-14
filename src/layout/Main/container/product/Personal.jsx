@@ -12,7 +12,7 @@ const Personal = () => {
           <p className='text-gray-700 font-medium pb-5 md:text-[#7c7c7c]'>Bạn không đủ hầu bao để mua 1 đôi Chính Hãng? Hay bạn order quá lâu cũng như size của mình đã Sold Out? Bạn đang cần tìm các mẫu Sneaker với mong muốn chất lượng, detail chuẩn hàng Auth? Shopgiayreplica.com sẽ giải quyết hết thắc mắc của bạn với chất lượng cực kỳ khác biệt, đa dạng mẫu mã, có sẵn hàng. Liên tục cập nhật, update, fix các phiên bản tiệm cận hàng Auth nhất. Các bạn có thể yên tâm lựa chọn trong một thị trường rất hỗn loạn về chất lượng, cũng như định nghĩa chuẩn về Giày Replica - Like Auth.</p>
         </div>
         <div>
-            <img src="https://shopgiayreplica.com/wp-content/uploads/2022/09/nhan-vien-shopgiay.jpg" alt="store" />
+            <img className='mx-auto' src="https://shopgiayreplica.com/wp-content/uploads/2022/09/nhan-vien-shopgiay.jpg" alt="store" />
         </div>
     </div>
   )
