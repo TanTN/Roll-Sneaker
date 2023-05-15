@@ -4,15 +4,15 @@ import Tips from '../layout/Main/container/product/Tips';
 import dataSizes from '../component/data/dataSizes';
 import { FcOk } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../utils/axios';
+import { updateUser } from '../axios/axios';
 import { setUserCurrent } from '../redux/reducer';
 import { useNavigate } from 'react-router';
-import { AiOutlineHome } from 'react-icons/ai'
+import { AiOutlineHome } from 'react-icons/ai';
 
 const DetailProduct = () => {
     const user = useSelector((state) => state.store.userCurrent);
     const product = useSelector((state) => state.store.viewProduct);
-    const isReloadClickCart = useSelector(state => state.store.isReloadClickCart)
+    const isReloadClickCart = useSelector((state) => state.store.isReloadClickCart);
 
     const [sizes, setSizes] = useState(dataSizes);
     const [selectSize, setSelectSize] = useState(undefined);
@@ -20,23 +20,24 @@ const DetailProduct = () => {
     const [isChecked, setChecked] = useState(product.size ? true : false);
     const [isProduct, setIsProduct] = useState(false);
     const [numberProduct, setNumberProduct] = useState(product.numberProducts || 1);
-    const [isUpdateProduct, setIsUpdateProduct] = useState(true)
+    const [isUpdateProduct, setIsUpdateProduct] = useState(true);
 
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (product.size) {
-            const sizeProduct = sizes.map(sizeProd => sizeProd.size == product.size ? {...sizeProd,isChecked: true} : {...sizeProd,isChecked: false})
-            const index = sizes.findIndex(sizeProd => sizeProd.size == product.size)
-            setSelectSize(product.size)
-            setSizeActive(index)
-            setSizes(sizeProduct)
-            setChecked(true)
-            setIsUpdateProduct(false)
+            const sizeProduct = sizes.map((sizeProd) =>
+                sizeProd.size == product.size ? { ...sizeProd, isChecked: true } : { ...sizeProd, isChecked: false },
+            );
+            const index = sizes.findIndex((sizeProd) => sizeProd.size == product.size);
+            setSelectSize(product.size);
+            setSizeActive(index);
+            setSizes(sizeProduct);
+            setChecked(true);
+            setIsUpdateProduct(false);
         }
-    },[isReloadClickCart])
-
+    }, [isReloadClickCart]);
 
     useEffect(() => {
         const isHref = window.location.href.slice(-13);
@@ -45,15 +46,13 @@ const DetailProduct = () => {
         } else {
             setIsProduct(false);
         }
-        
     }, []);
-
 
     const isReload = () => {
         setChecked(false);
         setSizeActive(undefined);
-        setSizes(dataSizes)
-    }
+        setSizes(dataSizes);
+    };
 
     const handelSelectSize = (e, index) => {
         const { value } = e.target;
@@ -61,7 +60,7 @@ const DetailProduct = () => {
         setSizeActive(index);
         setChecked(true);
         const newSizes = sizes.map((size) =>
-                size.size == value ? { ...size, isChecked: true } : { ...size, isChecked: false },
+            size.size == value ? { ...size, isChecked: true } : { ...size, isChecked: false },
         );
         setSizes(newSizes);
     };
@@ -83,7 +82,7 @@ const DetailProduct = () => {
         setNumberProduct((number) => number + 1);
     };
 
-    const handleBuy = async() => {
+    const handleBuy = async () => {
         const isAdd = user.products.every((prod) => {
             return prod.name !== product.name || prod.size !== selectSize;
         });
@@ -91,47 +90,48 @@ const DetailProduct = () => {
             (prod) => prod.name === product.name && prod.size === selectSize && prod.numberProducts !== numberProduct,
         );
         const indexUpdateProduct = user.products.findIndex(
-            (prod) => prod.name == product.name && prod.size == product.size && prod.numberProduct == product.numberProduct,
-        )
-        
+            (prod) =>
+                prod.name == product.name && prod.size == product.size && prod.numberProduct == product.numberProduct,
+        );
+
         if (isChecked) {
             if (indexUpdateProduct !== -1 || 0) {
-                const newProduct = [...user.products]
-                
+                const newProduct = [...user.products];
+
                 newProduct[indexUpdateProduct] = {
                     ...product,
                     size: selectSize,
                     numberProducts: numberProduct,
-                }
+                };
                 const newUser = {
                     ...user,
-                    products:newProduct
-                }
-           
+                    products: newProduct,
+                };
+
                 await updateUser(newUser);
                 await dispatch(setUserCurrent(newUser));
-                await navigate(`/buy`)
-                await window.scrollTo(0,0)
-                console.log('aa')
+                await navigate(`/buy`);
+                await window.scrollTo(0, 0);
+                console.log('aa');
             }
 
-            if (indexUpdateSize !== -1 || 0 && isUpdateProduct) {
-                const newProduct = [...user.products]
-                
+            if (indexUpdateSize !== -1 || (0 && isUpdateProduct)) {
+                const newProduct = [...user.products];
+
                 newProduct[indexUpdateSize] = {
                     ...product,
                     size: selectSize,
                     numberProducts: numberProduct,
-                }
+                };
                 const newUser = {
                     ...user,
-                    products:newProduct
-                }
-           
+                    products: newProduct,
+                };
+
                 await updateUser(newUser);
                 await dispatch(setUserCurrent(newUser));
-                await navigate(`/buy`)
-                await window.scrollTo(0,0)
+                await navigate(`/buy`);
+                await window.scrollTo(0, 0);
             }
 
             if (isAdd && isUpdateProduct) {
@@ -148,20 +148,17 @@ const DetailProduct = () => {
                 };
                 await updateUser(newUser);
                 await dispatch(setUserCurrent(newUser));
-                await navigate(`/buy`)
-                await window.scrollTo(0,0)
-
+                await navigate(`/buy`);
+                await window.scrollTo(0, 0);
             }
         }
 
         if (!isChecked) {
-           
-            alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.')
+            alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
         }
-    }
+    };
 
     const handleAddProduct = async () => {
-
         const isAdd = user.products.every((prod) => {
             return prod.name !== product.name || prod.size !== selectSize;
         });
@@ -169,47 +166,48 @@ const DetailProduct = () => {
             (prod) => prod.name === product.name && prod.size === selectSize && prod.numberProducts !== numberProduct,
         );
         const indexUpdateProduct = user.products.findIndex(
-            (prod) => prod.name == product.name && prod.size == product.size && prod.numberProduct == product.numberProduct,
-        )
-        
+            (prod) =>
+                prod.name == product.name && prod.size == product.size && prod.numberProduct == product.numberProduct,
+        );
+
         if (isChecked) {
             if (indexUpdateProduct !== -1 || 0) {
-                const newProduct = [...user.products]
-                
+                const newProduct = [...user.products];
+
                 newProduct[indexUpdateProduct] = {
                     ...product,
                     size: selectSize,
                     numberProducts: numberProduct,
-                }
+                };
                 const newUser = {
                     ...user,
-                    products:newProduct
-                }
-           
+                    products: newProduct,
+                };
+
                 await updateUser(newUser);
                 await dispatch(setUserCurrent(newUser));
-                await navigate(`/main/${user.name}`)
-                await window.scrollTo(0,0)
-                console.log('aa')
+                await navigate(`/main/${user.name}`);
+                await window.scrollTo(0, 0);
+                console.log('aa');
             }
 
-            if (indexUpdateSize !== -1 || 0 && isUpdateProduct) {
-                const newProduct = [...user.products]
-                
+            if (indexUpdateSize !== -1 || (0 && isUpdateProduct)) {
+                const newProduct = [...user.products];
+
                 newProduct[indexUpdateSize] = {
                     ...product,
                     size: selectSize,
                     numberProducts: numberProduct,
-                }
+                };
                 const newUser = {
                     ...user,
-                    products:newProduct
-                }
-           
+                    products: newProduct,
+                };
+
                 await updateUser(newUser);
                 await dispatch(setUserCurrent(newUser));
-                await navigate(`/main/${user.name}`)
-                await window.scrollTo(0,0)
+                await navigate(`/main/${user.name}`);
+                await window.scrollTo(0, 0);
             }
 
             if (isAdd && isUpdateProduct) {
@@ -226,35 +224,35 @@ const DetailProduct = () => {
                 };
                 await updateUser(newUser);
                 await dispatch(setUserCurrent(newUser));
-                await navigate(`/main/${user.name}`)
-                await window.scrollTo(0,0)
-
+                await navigate(`/main/${user.name}`);
+                await window.scrollTo(0, 0);
             }
 
             if (!isAdd) {
-                await navigate(`/main/${user.name}`)
-                await window.scrollTo(0,0)
+                await navigate(`/main/${user.name}`);
+                await window.scrollTo(0, 0);
             }
         } else {
-
-            alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.')
+            alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
         }
     };
 
     const handleClickHome = () => {
-        navigate(`/main/${user.username}`)
-    }
+        navigate(`/main/${user.username}`);
+    };
 
     return (
-        
         <div className="mt-[66px] max-w-[1140px] mx-auto lg:mt-[10px]">
-            <div className='flex items-center bg-[#eeeeee] pl-4 py-2 mb-[10px] cursor-pointer ' onClick={handleClickHome}>
-                <AiOutlineHome className='hover:text-[#030303]'/>
-                <p className='pl-2 text-[#585858] hover:text-[#000000]'>Trang chủ</p>
+            <div
+                className="flex items-center bg-[#eeeeee] pl-4 py-2 mb-[10px] cursor-pointer "
+                onClick={handleClickHome}
+            >
+                <AiOutlineHome className="hover:text-[#030303]" />
+                <p className="pl-2 text-[#585858] hover:text-[#000000]">Trang chủ</p>
             </div>
             <div className="px-[15px] lg:px-0">
                 <div className="lg:grid lg:grid-cols-11">
-                    <div className='col-span-5'>
+                    <div className="col-span-5">
                         <img src={product.img} alt="img" />
                     </div>
                     <div className=" col-span-6">
@@ -336,12 +334,15 @@ const DetailProduct = () => {
                                 THÊM VÀO GIỎ HÀNG
                             </button>
                             <div className="pl-1">
-                                <button className="bg-[#414141] text-white py-2 px-4 text-[17px] font-medium lg:hover:bg-[#00d1b7]" onClick={handleBuy}>
+                                <button
+                                    className="bg-[#414141] text-white py-2 px-4 text-[17px] font-medium lg:hover:bg-[#00d1b7]"
+                                    onClick={handleBuy}
+                                >
                                     MUA NGAY
                                 </button>
                             </div>
                         </div>
-                        
+
                         <div className="border-[1px] border-dashed border-primary p-[15px] mt-3">
                             <p className="text-[18px] font-bold">
                                 Sôi Động Khuyến Mãi Dịp Tết 2023 <span className="text-primary">Siêu Sale 35%</span>
@@ -409,7 +410,7 @@ const DetailProduct = () => {
                 </div>
             </div>
             <div className="px-[15px] lg:px-0 pt-[50px]">
-                <ProductHot isProductSame={isProduct} isReloads={isReload}/>
+                <ProductHot isProductSame={isProduct} isReloads={isReload} />
             </div>
             <Tips />
         </div>

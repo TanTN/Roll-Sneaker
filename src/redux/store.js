@@ -3,6 +3,8 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 
 import reducers from './reducer'
 
+import reducersData from './reducerData'
+
 import {
     persistStore,
     persistReducer,
@@ -21,7 +23,8 @@ const persistConfig = {
     storage,
 }
 const rootReducer = combineReducers({
-    store:reducers
+    store:reducers,
+    data:reducersData
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

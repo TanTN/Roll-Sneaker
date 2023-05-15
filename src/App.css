@@ -1,9 +1,8 @@
-@import "slick-carousel/slick/slick.css";
-@import "slick-carousel/slick/slick-theme.css";
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
 
 @tailwind base;
 @tailwind components;
-
 
 @layer base {
     :root {
@@ -13,131 +12,98 @@
         --width-deal: calc(var(--width-box-deal) * 1.4142);
     }
     body {
-        @apply p-0 m-0 box-border
+        @apply p-0 m-0 box-border scroll-smooth;
     }
     h1 {
-        @apply text-[25px] font-IBM font-bold
+        @apply text-[25px] font-IBM font-bold;
     }
     h2 {
-        @apply text-[24px] font-IBM 
+        @apply text-[24px] font-IBM;
     }
     a {
-        @apply no-underline
+        @apply no-underline;
     }
     li {
-        @apply list-none
+        @apply list-none;
     }
 }
 @layer components {
     .input-style {
-        @apply block rounded-sm text-[18px] font-normal border-[1px] border-slate-400 shadow-sm w-[100%] leading-9 focus:outline-[#f3d64380] focus:drop-shadow-[0_0_6px_#f3d64380]
+        @apply block rounded-sm text-[18px] font-normal border-[1px] border-slate-400 shadow-sm w-[100%] leading-9 focus:outline-[#f3d64380] focus:drop-shadow-[0_0_6px_#f3d64380];
     }
-
-    
 }
-.custom {
+
+/* CSS Tips */
+.customTip {
     overflow: hidden;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 .tips {
-    top: calc(100% + 15px)
+    top: calc(100% + 15px);
 }
 .tips-md {
-    top: calc(100% + 20px)
+    top: calc(100% + 20px);
 }
 
-.slick-prev:before, .slick-next:before {
-    content:''
-}
+/* slick header */
 
-
-.slick-prev {
-    width:50px;
-    height:50px;
-    border-radius: 50%;
-    left:24px;
-    color: #fff;
-    background-color: #9292928f;
-    z-index:0
-}
-.slick-prev:hover {
-    color: #ccc;
-    background-color: #53535391
-
-}
-.slick-next {
-    width:50px;
-    height:50px;
-    border-radius: 50%;
-    right:24px;
-    color: #fff;
-    background-color: #9292928f;
-    z-index:-1
-
-}
-.slick-next:hover {
-    color: #ccc;
-    background-color: #53535391;
-
-}
 .slick-slider:hover .slick-prev {
-    z-index:20
+    z-index: 20;
 }
 .slick-slider:hover .slick-next {
-    z-index:20
+    z-index: 20;
 }
 
 .icon {
-    font-size:24px;
+    font-size: 24px;
     line-height: 32px;
-    margin:0 auto
+    margin: 0 auto;
 }
-
 
 .slick-slider:hover .prevTip {
-    
-    opacity:1;
-
+    display: flex;
 }
 .slick-slider:hover .nextTip {
-    opacity:1;
-    
+    display: flex;
 }
 
-.prevTip {
-    position:absolute;
-    display:flex;
-    justyfy-content:center;
-    align-items:center;
-    width:50px;
-    height:50px;
-    border-radius: 50%;
-    top:25%;
-    background-color:#EBEBEB;
-    color:#49CCCA;
-    left:-1%;
-    cursor:pointer;
-    cursor:pointer;
-    opacity:0;
-    z-index:20
+.slick-slider:hover .blog {
+    display: flex;
+}
 
+/* slick footer */
+
+.prevTip {
+    position: absolute;
+    display: none;
+    justyfy-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 25%;
+    background-color: #ebebeb;
+    color: #49ccca;
+    left: -1%;
+    cursor: pointer;
+    cursor: pointer;
+    z-index: 20;
 }
 
 .nextTip {
-    position:absolute;
-    display:flex;
-    justyfy-content:center;
-    align-items:center;
-    width:50px;
-    height:50px;
+    position: absolute;
+    display: none;
+    justyfy-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    top:25%;
-    background-color:#EBEBEB;
-    color:#49CCCA;
-    right:-1%;
-    cursor:pointer;
-    opacity:0;
-    z-index:20
+    top: 25%;
+    background-color: #ebebeb;
+    color: #49ccca;
+    right: -1%;
+    cursor: pointer;
+    z-index: 20;
 }

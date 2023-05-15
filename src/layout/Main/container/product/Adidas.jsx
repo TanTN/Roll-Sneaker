@@ -1,13 +1,13 @@
 
 import React from 'react'
-import { dataAdidas } from '../../../../component/data/dataSneaker'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { setProduct } from '../../../../redux/reducer'
 
 const Adidas = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const dataAdidas = useSelector(state => state.data.dataAdidas)
     const handleAddProduct = (data) => {
         dispatch(setProduct(data))
         navigate('/detailProduct')

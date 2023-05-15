@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { postUser, validateRegister } from '../utils/axios';
+import { postUser, validateRegister } from '../axios/axios';
 
 const Register = () => {
     const [messageEmail, setMessageEmail] = useState(false);
     const [messageUsername, setMessageUsername] = useState(false);
-    const user = useSelector(state => state.store.userCurrent)
+    const user = useSelector((state) => state.store.userCurrent);
     const isLogin = useSelector((state) => state.store.isLogin);
     const navigate = useNavigate();
     const isMessageAndUsername = () => {
@@ -55,7 +55,7 @@ const Register = () => {
             onSubmit={async (values) => {
                 const { isEmail, isUsername } = await validateRegister(values);
                 if (isEmail && isUsername) {
-                    await postUser({...values,products:[],information:{}});
+                    await postUser({ ...values, products: [], information: {} });
                     await navigate('/');
                 }
                 if (!isEmail) {
@@ -70,15 +70,14 @@ const Register = () => {
         >
             {(formik) => (
                 <div className="md:grid md:grid-cols-3">
-                    
-                        <div className="hidden md:block md:col-span-2 md:h-[100vh]">
-                            <img
-                                className="h-[100%] object-cover"
-                                src="https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg"
-                                alt="store"
-                            />
-                        </div>
-                    
+                    <div className="hidden md:block md:col-span-2 md:h-[100vh]">
+                        <img
+                            className="h-[100%] object-cover"
+                            src="https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg"
+                            alt="store"
+                        />
+                    </div>
+
                     <div className="w-100% text-lg font-semibold">
                         <div className="text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
                             Sign Up

@@ -44,13 +44,13 @@ const Tips = () => {
                     
                     <a href={data.href} className='group/item relative lg:hover:opacity-[.5] '>
                         <img className='no-underline w-[100%] h-[100%]' src={data.img} alt="photo" />
-                        <div className='group/edit absolute invisible top-[50%] left-[-7%] translate-y-[-35%] group-hover/item:animate-fadeInTips lg:group-hover/item:visible'>
+                        <div className='group/edit absolute hidden top-[50%] left-[-7%] translate-y-[-35%] animate-fadeInTips lg:group-hover/item:block'>
                             <FaSearch className='text-[45px] text-white'/>
                         </div>
                     </a>
                     <div className='tips tips-md absolute left-0 right-0 px-[15px]'>
                         <a href={data.href} className='no-underline text-lg text-[#353535] font-medium mb-3 md:text-[24px] md:font-normal'>{data.content}</a>
-                        <p className='custom text-gray-500 font-medium md:pt-2'>{data.sub}</p>
+                        <p className='customTip text-gray-500 font-medium md:pt-2'>{data.sub}</p>
                     </div>
                 </div>
             )}

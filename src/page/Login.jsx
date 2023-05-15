@@ -4,8 +4,8 @@ import { AiOutlineDoubleLeft } from 'react-icons/ai';
 import { useNavigate } from 'react-router';
 
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { validateLogin } from '../utils/axios';
+import { useDispatch } from 'react-redux';
+import { getDataSneaker, validateLogin } from '../axios/axios';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -23,8 +23,9 @@ const Login = () => {
             onSubmit={async (values) => {
                 const isLogin = await validateLogin(values, dispatch);
                 if (isLogin) {
-                    setIsLoginFalse(false);
-                    navigate(`main/${isLogin.username}`);
+                    await getDataSneaker(dispatch);
+                    await setIsLoginFalse(false);
+                    await navigate(`main/${isLogin.username}`);
                 } else {
                     setIsLoginFalse(true);
                 }
@@ -32,7 +33,6 @@ const Login = () => {
         >
             {(formik) => (
                 <div className="md:grid md:grid-cols-3">
-                    
                     <div className="hidden md:block md:col-span-2 md:h-[100vh]">
                         <img
                             className="h-[100%] object-cover"
@@ -40,7 +40,7 @@ const Login = () => {
                             alt="store"
                         />
                     </div>
-                    
+
                     <div className="w-100% text-lg font-semibold">
                         <div className="text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
                             User Login
@@ -60,23 +60,23 @@ const Login = () => {
                                         Tên đăng nhập hoặc mật khẩu không đúng.
                                     </div>
                                 )}
-                                    <div className="flex w-[100%] mt-[30px]">
-                                        <button
-                                            type="submit"
-                                            className="mx-auto border-[2px] border-[#ecc813] min-w-[90%] leading-[40px] text-[#ecc813] text-xl rounded-[20px] hover:bg-[#ecc813] hover:text-white"
-                                        >
-                                            Sign in
-                                        </button>
-                                    </div>
-                                    <div className="flex w-[100%] mt-[10px] md:mt-[18px]">
-                                        <button
-                                            type="submit"
-                                            className="mx-auto border-[2px] border-[#139cec] min-w-[90%] leading-[40px] text-[#139cec] text-xl rounded-[20px] hover:bg-[#139cec] hover:text-white"
-                                            onClick={() => navigate('/register')}
-                                        >
-                                            Sign up
-                                        </button>
-                                    </div>
+                                <div className="flex w-[100%] mt-[30px]">
+                                    <button
+                                        type="submit"
+                                        className="mx-auto border-[2px] border-[#ecc813] min-w-[90%] leading-[40px] text-[#ecc813] text-xl rounded-[20px] hover:bg-[#ecc813] hover:text-white"
+                                    >
+                                        Sign in
+                                    </button>
+                                </div>
+                                <div className="flex w-[100%] mt-[10px] md:mt-[18px]">
+                                    <button
+                                        type="submit"
+                                        className="mx-auto border-[2px] border-[#139cec] min-w-[90%] leading-[40px] text-[#139cec] text-xl rounded-[20px] hover:bg-[#139cec] hover:text-white"
+                                        onClick={() => navigate('/register')}
+                                    >
+                                        Sign up
+                                    </button>
+                                </div>
                             </Form>
                         </div>
                     </div>

@@ -1,15 +1,15 @@
 
-
 import React from 'react'
-import { dataSneaker } from '../../../../component/data/dataSneaker'
 import { dataProductSame } from '../../../../component/data/dataProductSame'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setProduct } from '../../../../redux/reducer'
 import { useNavigate } from 'react-router'
 
 const ProductHot = ({isProductSame ,isReloads}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const dataSneakers = useSelector(state => state.data.dataSneakers)
+
     const handleAddProduct = async (data) => {
         if (isProductSame) {
             await isReloads()
@@ -19,7 +19,7 @@ const ProductHot = ({isProductSame ,isReloads}) => {
         await window.scrollTo(0, 0)
         
     }
-    const dataProductHot = isProductSame ? dataProductSame : dataSneaker
+    const dataProductHot = isProductSame ? dataProductSame : dataSneakers
   return (
     <div className='mb-[50px] overflow-hidden md:mb-[70px]'>
         <h1 className='text-center mb-[20px] md:mb-[40px]'>{isProductSame ? 'SẢN PHẨM TƯƠNG TỰ': 'PHẨM BÁN CHẠY'}</h1>

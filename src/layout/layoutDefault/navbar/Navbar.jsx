@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
-import { BsCartDash,BsFillArrowUpCircleFill } from 'react-icons/bs';
+import {Link} from 'react-scroll'
+import { BsCartDash } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
 import { IoPersonSharp, IoLogOutOutline, IoPersonAddSharp } from 'react-icons/io5';
 import Tippy from '@tippyjs/react/headless';
@@ -61,16 +62,12 @@ const Navbar = ({ setIsOverflow }) => {
         return () => {window.removeEventListener('scroll', handleScroll)}
     },[document.documentElement.scrollTop])
 
-    const handleScroll = () => {
-        document.documentElement.scrollTop = 0
-    }
-
     return (
         <>  
             {isScroll && 
-            <div className='fixed flex justify-center items-center z-[100] bottom-[138px] right-[25px] w-[40px] h-[40px] bg-[#474747ab] rounded-[50%] cursor-pointer md:hover:bg-[#333333c5]' onClick={handleScroll}>
+            <Link to='navbar' smooth={true} duration={500} className='fixed flex justify-center items-center z-[100] bottom-[138px] right-[25px] w-[40px] h-[40px] bg-[#474747ab] rounded-[50%] cursor-pointer md:hover:bg-[#333333c5]'>
                 <BsChevronDoubleUp className='text-[20px] text-[#ccc]'/>
-            </div>
+            </Link>
             }
             <div className='fixed z-[100] bottom-[88px] right-[25px] w-[40px] h-[40px] cursor-pointer'>
                 <img src="../../../../public/Retrieve password Zalo.png" alt="zalo" />
@@ -80,7 +77,7 @@ const Navbar = ({ setIsOverflow }) => {
                 <div className='absolute top-0 left-0 z-10 w-[100%] h-[100%] bg-[#666666] rounded-[50%] animate-fadeInMes1'></div>
                 <div className='absolute top-0 left-0 z-20 w-[100%] h-[100%] bg-[#666666] rounded-[50%] animate-fadeInMes2'></div>
             </div>
-            <div className="fixed h-[70px] top-0 left-0 right-0 pb-[5px] border-b-2 border-[#e4e4e4] z-30 bg-white md:h-[90px] lg:static">
+            <div id='navbar' className="fixed h-[70px] top-0 left-0 right-0 pb-[5px] border-b-2 border-[#e4e4e4] z-30 bg-white md:h-[90px] lg:static">
                 <div className="flex justify-between items-center md:mx-auto md:max-w-[1140px] px-[15px]">
                     <div className="flex justify-center my-2 ml-[10px] md:ml-[50px] cursor-pointer" onClick={() => {navigate(`/main/${userCurrent.username}`); window.scrollTo(0,0)}}>
                         <img

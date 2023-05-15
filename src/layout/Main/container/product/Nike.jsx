@@ -1,14 +1,15 @@
 
 
 import React from 'react'
-import { dataNike } from '../../../../component/data/dataSneaker'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { setProduct } from '../../../../redux/reducer'
 
 const Nike = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const dataNikes = useSelector(state => state.data.dataNikes)
+
     const handleAddProduct = (data) => {
         dispatch(setProduct(data))
         navigate('/detailProduct')
@@ -23,7 +24,7 @@ const Nike = () => {
             <span><span className='px-[8px] text-gray-400'>/</span>AIR JORDAN</span>            
         </div>
         <div className='grid gap-5 grid-cols-2 pt-5 md:grid-cols-4 md:gap-10'>
-            {dataNike.map((data,index) => 
+            {dataNikes.map((data,index) => 
                 <div key={index}>
                     <div className='relative cursor-pointer' onClick={() => handleAddProduct(data)}>
                         <div className='mx-[-13px] md:mx-[-38px]'>

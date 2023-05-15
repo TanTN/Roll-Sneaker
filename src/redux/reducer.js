@@ -36,3 +36,4 @@ const { reducer, actions } = storeSlice;
 
 export const { setMobile, setUserCurrent, setIsLogin, setProduct, setReloadClickCart,setProvince,setDistrict,setWard } = actions;
 export default reducer;
+

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineHome } from 'react-icons/ai';
 
-import { getDistrict, getProvince, getWard, updateUser } from '../utils/axios';
+import { getDistrict, getProvince, getWard, updateUser } from '../axios/axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { Controller, useForm } from 'react-hook-form';
 import Input from '@mui/material/Input';
+import { AiFillCheckCircle } from 'react-icons/ai';
+
 import Order from '../layout/buy/Order';
 import { useNavigate } from 'react-router';
 import { setUserCurrent } from '../redux/reducer';
@@ -20,8 +22,7 @@ const Buy = () => {
     const [isWard, setIsWard] = useState([]);
     const [priceCart, setPriceCart] = useState(null);
     const [allPrice, setAllPrice] = useState(null);
-
-    const [isBack, setIsBack] = useState(false);
+    const [isBuySuccess, setIsBuySuccess] = useState(false);
 
     const initialValues = user.information.name
         ? {
@@ -40,12 +41,13 @@ const Buy = () => {
               ward: '',
               adress: '',
           };
-
+    useEffect(() => {
+        setTimeout(() => setIsBuySuccess(false), 7000);
+    }, [isBuySuccess]);
     const {
         control,
         handleSubmit,
         reset,
-        register,
         formState: { errors },
     } = useForm({
         defaultValues: initialValues,
@@ -60,8 +62,7 @@ const Buy = () => {
             };
             await dispatch(setUserCurrent(newUser));
             await updateUser(newUser);
-            await navigate(`/main/${user.username}`);
-            await window.scrollTo(0, 0);
+            await setIsBuySuccess(true);
         }
     };
 
@@ -120,6 +121,18 @@ const Buy = () => {
 
     return (
         <div className="mt-[66px] max-w-[800px] mx-auto lg:mt-[10px]">
+            {/* Messgae success */}
+            {isBuySuccess && (
+                <div className="fixed max-w-[380px] px-3 py-5 top-[10%] translate-x-[8%] animate-fadeInSuccess right-[4%] drop-shadow-xl bg-[#fff] border-y-[1px] border-r-[1px] border-l-[10px] border-[#13eb0b] z-[100] rounded-md">
+                    <div className="flex items-center">
+                        <AiFillCheckCircle className="text-[#13eb0b] text-[40px]" />
+                        <div className="pl-2 text-[18px] text-[#4b4b4b]">
+                            Bạn đã đặt hàng thành công. Cảm ơn bạn đã ủng hộ cửa hàng.
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="flex items-center lg:bg-[#eeeeee] pl-4 py-2 mb-[10px]">
                 <AiOutlineHome className="hover:text-[#030303]" />
                 <span className="px-2 text-[#585858] hover:text-[#000000] cursor-pointer" onClick={handleBack}>
@@ -265,6 +278,7 @@ const Buy = () => {
                             </div>
                         </div>
                         <div className="border-[1px] border-primary border-dashed p-[15px]">
+                            {/* products oder */}
                             {user.products.length > 0 ? (
                                 <Order setPriceCart={setPriceCart} setAllPrice={setAllPrice} />
                             ) : (
@@ -272,12 +286,14 @@ const Buy = () => {
                                     Chưa có sản phẩm nào để đặt. Xin vui lòng quay lại cửa hàng!
                                 </p>
                             )}
-                            <div className='md:mx-[40px] md:my-[30px] my-[15px] p-[15px] bg-[#ffffffe1] rounded-sm border-[2px] border-[#e9e9e9] drop-shadow-[0px_4px_8px_rgba(0,0,0,0.3)]'>
+
+                            {/* Bảng thanh toán */}
+                            <div className="md:mx-[40px] md:my-[30px] my-[15px] p-[15px] bg-[#ffffffe1] rounded-sm border-[2px] border-[#e9e9e9] drop-shadow-[0px_4px_8px_rgba(0,0,0,0.3)]">
                                 <div className="mt-3">
                                     <div className="flex justify-between pb-1 text-[17px]">
                                         <p>Tạm tính:</p>
                                         <p>
-                                            {priceCart} <span className="underline">đ</span>
+                                            {priceCart ? priceCart : '0'} <span className="underline"> đ</span>
                                         </p>
                                     </div>
                                     <div className="flex justify-between pb-1">
@@ -289,15 +305,16 @@ const Buy = () => {
                                     <div className="pb-2">
                                         <p className="font-semibold text-lg">Tổng:</p>
                                         <p className="flex justify-end font-bold text-lg">
-                                            {allPrice}
-                                            <span className="underline"> đ</span>
+                                            {allPrice ? allPrice : '0'} <span className="underline pl-[3px]"> đ</span>
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex justify-end mt-3">
+
+                                {/* Button */}
+                                <div className="flex md:justify-end mt-3 flex-col md:flex-row">
                                     {user.products.length <= 0 ? (
                                         <button
-                                            className="mr-2 bg-[#414141] text-white py-1 px-3 rounded-sm text-[15px]"
+                                            className="md:mr-2 bg-[#414141] text-white py-1 px-3 rounded-sm text-[15px] -order-1 md:-order-2 my-2 md:my-0"
                                             onClick={handleBack}
                                         >
                                             QUAY TRỞ LẠI CỬA HÀNG
@@ -305,16 +322,16 @@ const Buy = () => {
                                     ) : (
                                         ''
                                     )}
-    
+
                                     <button
                                         type="submit"
-                                        className={`text-white py-1 px-3 rounded-sm text-[15px] ${
+                                        className={`text-white py-1 px-3 rounded-sm text-[15px] -order-2 md:-order-1 ${
                                             user.products.length <= 0 ? 'bg-[#ee8282] cursor-not-allowed' : 'bg-primary'
                                         }`}
                                     >
                                         ĐẶT HÀNG
                                     </button>
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </form>
