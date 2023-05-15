@@ -123,7 +123,7 @@ const Buy = () => {
         <div className="mt-[66px] max-w-[800px] mx-auto lg:mt-[10px]">
             {/* Messgae success */}
             {isBuySuccess && (
-                <div className="fixed max-w-[380px] px-3 py-5 top-[10%] translate-x-[8%] animate-fadeInSuccess right-[4%] drop-shadow-xl bg-[#fff] border-y-[1px] border-r-[1px] border-l-[10px] border-[#13eb0b] z-[100] rounded-md">
+                <div className="fixed max-w-[380px] px-3 py-5 top-[10%] translate-x-[8%] animate-fadeInSuccess md:animate-fadeInSuccessPc right-[4%] drop-shadow-xl bg-[#fff] border-y-[1px] border-r-[1px] border-l-[10px] border-[#13eb0b] z-[100] rounded-md">
                     <div className="flex items-center">
                         <AiFillCheckCircle className="text-[#13eb0b] text-[40px]" />
                         <div className="pl-2 text-[18px] text-[#4b4b4b]">

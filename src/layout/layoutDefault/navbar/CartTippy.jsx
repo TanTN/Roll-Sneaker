@@ -139,7 +139,7 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
                                 </>
                             ) : (
                                 <div className="bg-white flex drop-shadow-ShadowRoot w-[100%] h-[100%]">
-                                    <div className="my-auto">
+                                    <div className="m-auto">
                                         <div className="p-3 pr-8">
                                             <img
                                                 className=" mx-auto"
