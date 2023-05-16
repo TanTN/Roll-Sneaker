@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 const CartTippy = ({ children, hideTippy, clickHideCart }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isMobile = useSelector((state) => state.store.isMobile);
+    const isLogin = useSelector((state) => state.store.isLogin);
 
     const [priceCart, setPriceCart] = useState(undefined);
     const [tippyPc, setTippyPc] = useState(false);
@@ -48,7 +49,9 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
             ...userCurrent,
             products: [...newProducts],
         };
-        await updateUser(newUser);
+        if (isLogin) {
+            await updateUser(newUser);
+        }
         await dispatch(setUserCurrent(newUser));
     };
     const handleFixProduct = async (product) => {
@@ -60,8 +63,8 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
         await window.scrollTo(0, 0);
     };
 
-    const isTippy = isMobile ? { visible: hideTippy, offset: [0, 20] } : { offset: [0, 30], trigger: 'mouseenter' };
-    const isTippyPc = !isMobile && tippyPc && { visible: false };
+    const isTippy = isMobile ? { visible: hideTippy, offset: [0, 20] } : { offset: [0, 30] };
+    const isTippyPc = !isMobile && tippyPc ? { visible: false } : { trigger: 'mouseenter' };
     const handleBuy = async () => {
         await setTippyPc(true);
         await clickHideCart();
@@ -86,11 +89,15 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
                                         {userCurrent.products.map((product, index) => (
                                             <div key={index} className="relative">
                                                 <div
-                                                    className="grid grid-cols-3 py-1 border-b-[1px] border-[#bebebe] cursor-pointer hover:border-primary pr-3 text-sm md:text-lg lg:text-base"
+                                                    className="grid grid-cols-3 md:px-[140px] py-1 border-b-[1px] border-[#bebebe] cursor-pointer hover:border-primary pr-3 text-sm lg:pr-3 lg:pl-0 md:text-lg lg:text-base"
                                                     onClick={() => handleFixProduct(product)}
                                                 >
                                                     <div>
-                                                        <img src={product.img} alt="photo" />
+                                                        <img
+                                                            className="md:w-[130px] md:h-[130px] lg:h-auto lg:w-auto"
+                                                            src={product.img}
+                                                            alt="photo"
+                                                        />
                                                     </div>
                                                     <div className="col-span-2 my-auto">
                                                         <p>{product.name}</p>
@@ -111,7 +118,7 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
                                                     </div>
                                                 </div>
                                                 <div
-                                                    className="absolute top-0 left-0 cursor-pointer select-none"
+                                                    className="absolute top-0 left-0 md:left-[100px] md:top-[10px] lg:top-0 lg:left-0 cursor-pointer select-none"
                                                     onClick={() => handleDeleteProduct(product)}
                                                 >
                                                     <AiFillCloseSquare className="text-[25px] lg:hover:text-primary" />

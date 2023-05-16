@@ -5,6 +5,7 @@ import { AiOutlineDoubleLeft } from 'react-icons/ai';
 import { useNavigate } from 'react-router';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { HiOutlineArrowLeft } from 'react-icons/hi';
 
 import { postUser, validateRegister } from '../axios/axios';
 
@@ -19,6 +20,14 @@ const Register = () => {
             setMessageEmail(false);
             setMessageUsername(false);
         }, 5000);
+    };
+
+    const handleBack = () => {
+        if (isLogin) {
+            navigate(`/user/${user.username}`);
+        } else {
+            navigate('/');
+        }
     };
 
     const initialValues = {
@@ -56,7 +65,7 @@ const Register = () => {
                 const { isEmail, isUsername } = await validateRegister(values);
                 if (isEmail && isUsername) {
                     await postUser({ ...values, products: [], information: {} });
-                    await navigate('/');
+                    await navigate('/login');
                 }
                 if (!isEmail) {
                     setMessageEmail(true);
@@ -79,16 +88,8 @@ const Register = () => {
                     </div>
 
                     <div className="w-100% text-lg font-semibold">
-                        <div className="text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
+                        <div className="text-2xl relative text-white bg-[#139cec] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#139cec] md:text-[35px] md:mt-[30px]">
                             Sign Up
-                            {isLogin && (
-                                <div
-                                    className="absolute top-[50%] left-[10px] p-[7px] rounded-sm border-[1px] border-[#b0b2ee] translate-y-[-50%] text-white cursor-pointer hover:text-[#7075f7] hover:bg-[#dfbb06] xl:left-[25px] md:left-[-65px] md:border-white md:text-[#dfbb06] md:hover:bg-white"
-                                    onClick={() => navigate(`/main/${user.username}`)}
-                                >
-                                    <AiOutlineDoubleLeft />
-                                </div>
-                            )}
                         </div>
                         <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
                             <Form>
@@ -168,22 +169,29 @@ const Register = () => {
                                     />
                                 </div>
 
-                                <div className="flex w-[100%] mt-[30px]">
+                                <div className="flex w-[100%] mt-[50px]">
                                     <button
                                         type="submit"
-                                        className="mx-auto border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#139cec] min-w-[90%] leading-[40px] text-[#139cec] text-xl rounded-[20px] hover:bg-[#139cec] hover:text-white"
+                                        className="mx-auto border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-xl rounded-[4px] hover:bg-[#139cec] hover:text-white"
                                     >
                                         Sign up
                                     </button>
                                 </div>
 
-                                <div className="flex w-[100%] mt-[10px] md:mt-[18px]">
+                                <div className="flex w-[100%] mt-[10px] md:mt-[20px]">
                                     <button
-                                        className="mx-auto border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#ecc813] min-w-[90%] leading-[40px] text-[#ecc813] text-xl rounded-[20px] hover:bg-[#ecc813] hover:text-white"
+                                        className="mx-auto flex justify-center items-center border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#cfcfcf] min-w-[100%] leading-[40px] text-[#868686] text-xl rounded-[4px] hover:bg-[#e0e0e0]"
                                         onClick={() => navigate('/login')}
                                     >
-                                        Sign in
+                                        <HiOutlineArrowLeft />
+                                        <div className="ml-2">Back to Login</div>
                                     </button>
+                                </div>
+                                <div className="text-center pt-[10px]">
+                                    <p className="text-sm font-medium text-[#2c2c2c]">or</p>
+                                    <p className="cursor-pointer" onClick={handleBack}>
+                                        Back
+                                    </p>
                                 </div>
                             </Form>
                         </div>

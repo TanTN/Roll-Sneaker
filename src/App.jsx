@@ -10,8 +10,8 @@ import LayoutDefault from './layout/layoutDefault/LayouDefault';
 function App() {
     const dispatch = useDispatch();
     const isLogin = useSelector((state) => state.store.isLogin);
-    const user = useSelector(state => state.store.userCurrent)
-    
+    const user = useSelector((state) => state.store.userCurrent);
+
     const [widthDisplay, setWidthDisplay] = useState(undefined);
 
     useEffect(() => {
@@ -25,40 +25,23 @@ function App() {
         window.addEventListener('resize', handleWidthDp);
         return () => window.removeEventListener('resize', handleWidthDp);
     }, [widthDisplay]);
-    
+
     return (
         <div className="scroll-smooth">
             <Routes>
                 {pluginRouters.map((route, index) => {
                     let Layout = LayoutDefault;
-                    let Page = isLogin ? <route.component /> : <Navigate replace to='/'/>;
+                    let Page = <route.component />;
                     if (route.layout) {
                         Layout = route.layout;
                     } else if (route.layout === null) {
                         Layout = Fragment;
                     }
-                    if (route.path === '/' && !isLogin) {
-                      Page = <route.component />
-                    } 
-                    if (route.path === '/' && isLogin) {
-
-                      Page = <Navigate replace to={`/main/${user.username}`}/>
-                    } 
-                    
-                    if (route.path === '/register') {
-                      Page = <route.component />
+                    if (route.path === 'user/:user' && !isLogin) {
+                        Page = <Navigate replace to="/" />;
                     }
-                    return (
-                        <Route
-                            key={index}
-                            path={route.path}
-                            element={
-                                <Layout>
-                                    {Page}
-                                </Layout>
-                            }
-                        />
-                    );
+
+                    return <Route key={index} path={route.path} element={<Layout>{Page}</Layout>} />;
                 })}
             </Routes>
         </div>

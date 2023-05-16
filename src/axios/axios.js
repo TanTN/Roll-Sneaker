@@ -38,7 +38,6 @@ const validateLogin = async (value, dispatch) => {
     if (isLogin) {
         dispatch(setUserCurrent(isLogin));
         dispatch(setIsLogin(true));
-        console.log(res);
     }
     return isLogin;
 };

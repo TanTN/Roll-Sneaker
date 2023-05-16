@@ -4,12 +4,14 @@ import { AiOutlineDoubleLeft } from 'react-icons/ai';
 import { useNavigate } from 'react-router';
 
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getDataSneaker, validateLogin } from '../axios/axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { validateLogin } from '../axios/axios';
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const isLogin = useSelector((state) => state.store.isLogin);
+    const user = useSelector((state) => state.store.userCurrent);
 
     const [isLoginFalse, setIsLoginFalse] = useState(false);
 
@@ -17,15 +19,22 @@ const Login = () => {
         username: '',
         password: '',
     };
+    const handleBack = () => {
+        if (isLogin) {
+            navigate(`/user/${user.username}`);
+        } else {
+            navigate('/');
+        }
+    };
+
     return (
         <Formik
             initialValues={initialValues}
             onSubmit={async (values) => {
                 const isLogin = await validateLogin(values, dispatch);
                 if (isLogin) {
-                    await getDataSneaker(dispatch);
                     await setIsLoginFalse(false);
-                    await navigate(`main/${isLogin.username}`);
+                    await navigate(`/user/${isLogin.username}`);
                 } else {
                     setIsLoginFalse(true);
                 }
@@ -42,7 +51,7 @@ const Login = () => {
                     </div>
 
                     <div className="w-100% text-lg font-semibold">
-                        <div className="text-2xl relative text-white bg-[#ecc813] leading-[50px] text-center md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
+                        <div className="text-2xl text-white bg-[#ecc813] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
                             User Login
                         </div>
                         <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
@@ -60,22 +69,28 @@ const Login = () => {
                                         Tên đăng nhập hoặc mật khẩu không đúng.
                                     </div>
                                 )}
-                                <div className="flex w-[100%] mt-[30px]">
+                                <div className="flex w-[100%] mt-[50px]">
                                     <button
                                         type="submit"
-                                        className="mx-auto border-[2px] border-[#ecc813] min-w-[90%] leading-[40px] text-[#ecc813] text-xl rounded-[20px] hover:bg-[#ecc813] hover:text-white"
+                                        className="mx-auto border-[2px] border-[#ecc813] min-w-[100%] leading-[40px] text-[#ecc813] text-xl rounded-[4px] hover:bg-[#ecc813] hover:text-white"
                                     >
                                         Sign in
                                     </button>
                                 </div>
-                                <div className="flex w-[100%] mt-[10px] md:mt-[18px]">
-                                    <button
-                                        type="submit"
-                                        className="mx-auto border-[2px] border-[#139cec] min-w-[90%] leading-[40px] text-[#139cec] text-xl rounded-[20px] hover:bg-[#139cec] hover:text-white"
+                                <div className=" flex justify-center items-end w-[100%] mt-[10px] md:mt-[25px]">
+                                    <span className="text-sm font-medium text-[#696969]">Don't have account?</span>
+                                    <span
+                                        className="font-semibold pl-2 cursor-pointer"
                                         onClick={() => navigate('/register')}
                                     >
                                         Sign up
-                                    </button>
+                                    </span>
+                                </div>
+                                <div className="text-center">
+                                    <p className="text-sm font-medium text-[#2c2c2c]">or</p>
+                                    <p className="cursor-pointer" onClick={handleBack}>
+                                        Back
+                                    </p>
                                 </div>
                             </Form>
                         </div>

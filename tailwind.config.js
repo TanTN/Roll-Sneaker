@@ -48,7 +48,7 @@ export default {
                 },
                 fadeInSuccessIn: {
                     '0%': { opacity: '0', transform: 'translateX(80%)' },
-                    '100%': { opacity: '1', transform: 'translateX(8%)' },
+                    '100%': { opacity: '1', transform: 'translateX(4%)' },
                 },
                 fadeInSuccessOut: {
                     '0%': { opacity: '1' },

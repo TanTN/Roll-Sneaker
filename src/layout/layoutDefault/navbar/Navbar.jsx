@@ -9,14 +9,16 @@ import { BsChevronDoubleUp } from 'react-icons/bs';
 import MenuNavbar from './MenuNavbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setIsLogin } from '../../../redux/reducer';
+import { setIsLogin, setUserCurrent } from '../../../redux/reducer';
 import CartTippy from './CartTippy';
 import messenger from '../../../assets/images/messenger.png';
 import zalo from '../../../assets/images/Zalo.png';
+import { getDataSneaker } from '../../../axios/axios';
 
 const Navbar = ({ setIsOverflow }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isMobile = useSelector((state) => state.store.isMobile);
+    const isLogin = useSelector((state) => state.store.isLogin);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -35,10 +37,19 @@ const Navbar = ({ setIsOverflow }) => {
         setIsShowPerson(!isShowPerson);
     };
 
+    useEffect(() => {
+        getDataSneaker(dispatch);
+    }, []);
+
     const tippy = isMobile && { visible: isShowPerson, offset: [0, 20] };
+
     const handleSignout = () => {
+        dispatch(setUserCurrent({ products: [] }));
         dispatch(setIsLogin(false));
-        navigate('/');
+        navigate('/login');
+    };
+    const handleSignin = () => {
+        navigate('/login');
     };
     const handleSignup = () => {
         navigate('/register');
@@ -47,6 +58,16 @@ const Navbar = ({ setIsOverflow }) => {
         if (isMobile) {
             setHideTippy(!hideTippy);
             setIsOverflow(!hideTippy);
+        }
+    };
+
+    const handleClickLogo = () => {
+        if (isLogin) {
+            navigate(`/user/${userCurrent.username}`);
+            window.scrollTo(0, 0);
+        } else {
+            navigate('/');
+            window.scrollTo(0, 0);
         }
     };
 
@@ -89,10 +110,7 @@ const Navbar = ({ setIsOverflow }) => {
                 <div className="flex justify-between items-center md:mx-auto md:max-w-[1140px] px-[15px]">
                     <div
                         className="flex justify-center my-2 ml-[10px] md:ml-[50px] cursor-pointer"
-                        onClick={() => {
-                            navigate(`/main/${userCurrent.username}`);
-                            window.scrollTo(0, 0);
-                        }}
+                        onClick={handleClickLogo}
                     >
                         <img
                             className="max-h-[50px] w-auto md:min-h-[70px]"
@@ -124,19 +142,31 @@ const Navbar = ({ setIsOverflow }) => {
                                 render={(attrs) => (
                                     <div className="box w-[100%]" tabIndex="-1" {...attrs}>
                                         <div className="bg-white py-4 border-[1px] border-[#e4e4e4] text-c1 leading-[30px] px-[14px] rounded-xm drop-shadow-lg md:px-0">
-                                            <div className="flex justify-center items-center pb-1 md:px-[14px] md:mb-2 md:mx-2 md:py-1 border-b-[1px] border-[#d3d3d3]">
-                                                <IoPersonSharp className="text-[18px] text-[#222fe2]" />
-                                                <p className="pl-2 font-medium md:text-[23px] leading-[25px] select-none">
-                                                    {userCurrent.username}
-                                                </p>
-                                            </div>
-                                            <div
-                                                className="flex items-center pb-1 cursor-pointer md:px-[14px] md:mb-2 md:mx-2 md:py-1 md:hover:bg-[#ebeaea] md:rounded-sm"
-                                                onClick={handleSignout}
-                                            >
-                                                <IoLogOutOutline />
-                                                <p className="pl-2 font-medium md:text-lg">Sign Out</p>
-                                            </div>
+                                            {isLogin && (
+                                                <div className="flex justify-center items-center pb-1 md:px-[14px] md:mb-2 md:mx-2 md:py-1 border-b-[1px] border-[#d3d3d3]">
+                                                    <IoPersonSharp className="text-[18px] text-[#222fe2]" />
+                                                    <p className="pl-2 font-medium md:text-[23px] leading-[25px] select-none">
+                                                        {userCurrent.username}
+                                                    </p>
+                                                </div>
+                                            )}
+                                            {isLogin ? (
+                                                <div
+                                                    className="flex items-center pb-1 cursor-pointer md:px-[14px] md:mb-2 md:mx-2 md:py-1 md:hover:bg-[#ebeaea] md:rounded-sm"
+                                                    onClick={handleSignout}
+                                                >
+                                                    <IoLogOutOutline />
+                                                    <p className="pl-2 font-medium md:text-lg">Sign Out</p>
+                                                </div>
+                                            ) : (
+                                                <div
+                                                    className="flex items-center pb-1 cursor-pointer md:px-[14px] md:mb-2 md:mx-2 md:py-1 md:hover:bg-[#ebeaea] md:rounded-sm"
+                                                    onClick={handleSignin}
+                                                >
+                                                    <IoLogOutOutline />
+                                                    <p className="pl-2 font-medium md:text-lg">Sign In</p>
+                                                </div>
+                                            )}
                                             <div
                                                 className="flex items-center cursor-pointer md:px-[14px] md:mx-2 md:py-1 md:hover:bg-[#ebeaea] md:rounded-sm"
                                                 onClick={handleSignup}
