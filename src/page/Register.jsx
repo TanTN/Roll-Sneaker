@@ -172,7 +172,7 @@ const Register = () => {
                                 <div className="flex w-[100%] mt-[50px]">
                                     <button
                                         type="submit"
-                                        className="mx-auto border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-xl rounded-[4px] hover:bg-[#139cec] hover:text-white"
+                                        className="mx-auto border-[2px] border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-xl rounded-[4px] hover:bg-[#139cec] hover:text-white"
                                     >
                                         Sign up
                                     </button>
@@ -180,7 +180,7 @@ const Register = () => {
 
                                 <div className="flex w-[100%] mt-[10px] md:mt-[20px]">
                                     <button
-                                        className="mx-auto flex justify-center items-center border-[2px] drop-shadow-[0_0_7px_#f3d64380] border-[#cfcfcf] min-w-[100%] leading-[40px] text-[#868686] text-xl rounded-[4px] hover:bg-[#e0e0e0]"
+                                        className="mx-auto flex justify-center items-center border-[2px] border-[#cfcfcf] min-w-[100%] leading-[40px] text-[#868686] text-xl rounded-[4px] hover:bg-[#e0e0e0]"
                                         onClick={() => navigate('/login')}
                                     >
                                         <HiOutlineArrowLeft />
