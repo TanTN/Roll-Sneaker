@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { setIsLogin, setUserCurrent } from '../redux/reducer';
 import { createDataAdidas, createDataMlbs, createDataNikes, createDataSneakers } from '../redux/reducerData';
+
 const baseURL = import.meta.env.VITE_BASE_URL;
 const baseURL1 = import.meta.env.VITE_PROVINCES;
 
@@ -21,17 +22,19 @@ const getDataSneaker = async (dispatch) => {
     await dispatch(createDataMlbs(res.data[0].dataMlbs));
 };
 
-// Handle up date users
+// Handle update users
 
 const postUser = async (value) => {
     const res = await httpRequest.post('users', value);
 };
+
 const validateRegister = async (value) => {
     const res = await httpRequest.get('users');
     const isEmail = await res.data.every((data) => data.email !== value.email);
     const isUsername = await res.data.every((data) => data.username !== value.username);
     return { isEmail, isUsername };
 };
+
 const validateLogin = async (value, dispatch) => {
     const res = await httpRequest.get('users');
     const isLogin = await res.data.find((data) => data.username === value.username && data.password === value.password);
@@ -41,6 +44,7 @@ const validateLogin = async (value, dispatch) => {
     }
     return isLogin;
 };
+
 const updateUser = async (value) => {
     const res = await httpRequest.put(`users/${value.id}`, value);
 };
@@ -51,10 +55,12 @@ const getProvince = async () => {
     const res = await axios.get('https://provinces.open-api.vn/api/p?depth=2');
     return res.data;
 };
+
 const getDistrict = async (code) => {
     const res = await axios.get(`https://provinces.open-api.vn/api/p/${code}?depth=2`);
     return res.data;
 };
+
 const getWard = async (code) => {
     const res = await axios.get(`https://provinces.open-api.vn/api/d/${code}?depth=2`);
     return res.data;

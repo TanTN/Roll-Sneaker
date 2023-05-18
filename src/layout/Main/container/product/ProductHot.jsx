@@ -1,9 +1,10 @@
 
 import React from 'react'
-import { dataProductSame } from '../../../../component/data/dataProductSame'
 import { useDispatch, useSelector } from 'react-redux'
-import { setProduct } from '../../../../redux/reducer'
 import { useNavigate } from 'react-router'
+
+import { setProduct } from '../../../../redux/reducer'
+import { dataProductSame } from '../../../../component/data/dataProductSame'
 
 const ProductHot = ({isProductSame ,isReloads}) => {
     const dispatch = useDispatch()

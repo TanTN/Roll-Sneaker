@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { FcOk } from 'react-icons/fc';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { memo } from 'react';
+
+import { AiOutlineHome } from 'react-icons/ai';
+
+import { updateUser } from '../axios/axios';
+import { setUserCurrent } from '../redux/reducer';
 import ProductHot from '../layout/Main/container/product/ProductHot';
 import Tips from '../layout/Main/container/product/Tips';
 import dataSizes from '../component/data/dataSizes';
-import { FcOk } from 'react-icons/fc';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../axios/axios';
-import { setUserCurrent } from '../redux/reducer';
-import { useNavigate } from 'react-router';
-import { AiOutlineHome } from 'react-icons/ai';
 
 const DetailProduct = () => {
     const user = useSelector((state) => state.store.userCurrent);
@@ -347,4 +350,4 @@ const DetailProduct = () => {
     );
 };
 
-export default DetailProduct;
+export default memo(DetailProduct);

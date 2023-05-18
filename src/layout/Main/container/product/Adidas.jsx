@@ -2,17 +2,21 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+
 import { setProduct } from '../../../../redux/reducer'
 
 const Adidas = () => {
+    const dataAdidas = useSelector(state => state.data.dataAdidas)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const dataAdidas = useSelector(state => state.data.dataAdidas)
+
     const handleAddProduct = (data) => {
         dispatch(setProduct(data))
         navigate('/detailProduct')
         window.scrollTo(0, 0)
     }
+
   return (
     <div className='overflow-hidden mb-[50px] md:mb-[70px]'>
         <h1 className='text-center mb-[8px]  md:mb-[20px] md:text-[30px] '>GIÀY ADIDAS</h1>
@@ -22,6 +26,7 @@ const Adidas = () => {
             <span><span className='px-[8px] text-gray-400'>/</span>YEEZY FOAM RUNNER</span>            
             <span><span className='px-[8px] text-gray-400'>/</span>YEEZY SLIDE</span>            
         </div>
+
         <div className='grid gap-5 grid-cols-2 pt-5 md:grid-cols-4 md:gap-10'>
             {dataAdidas.map((data,index) => 
                 <div key={index}>

@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
+import { useSelector } from 'react-redux';
+import { memo } from 'react';
+
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi';
 
 import ProductHot from './product/ProductHot';
@@ -9,7 +12,6 @@ import Mlb from './product/Mlb';
 import Personal from './product/Personal';
 import Tips from './product/Tips';
 import imagesPoster from '../../../component/data/dataImagesPoster';
-import { useSelector } from 'react-redux';
 
 const Container = () => {
     const isMobile = useSelector((state) => state.store.isMobile);
@@ -20,17 +22,18 @@ const Container = () => {
                 className="blog hidden absolute justify-center items-center rounded-sm w-[40px] h-[40px] bottom-[5%] right-[10%] z-20 text-white bg-[#0808088c] cursor-pointer"
                 onClick={onClick}
             >
-                <HiOutlineChevronLeft class="text-white text-2xl" />
+                <HiOutlineChevronLeft className="text-white text-2xl" />
             </div>
         );
     };
+
     const SampleNextArrow = ({ onClick }) => {
         return (
             <div
                 className="blog hidden absolute justify-center items-center rounded-sm w-[40px] h-[40px] bottom-[5%] right-[5%] z-20 text-white bg-[#0808088c] cursor-pointer"
                 onClick={onClick}
             >
-                <HiOutlineChevronRight class="text-white text-2xl" />
+                <HiOutlineChevronRight className="text-white text-2xl" />
             </div>
         );
     };
@@ -52,11 +55,12 @@ const Container = () => {
                 <div className="slide-slick">
                     <Slider {...options}>
                         {imagesPoster.map((img, index) => (
-                            <img className="w-[100%]" key={index} src={img} alt="shop" />
+                            <img className="" key={index} src={img} alt="shop" />
                         ))}
                     </Slider>
                 </div>
             </div>
+
             <div className="px-[15px] lg:px-0">
                 <ProductHot />
                 <Nike />
@@ -69,4 +73,4 @@ const Container = () => {
     );
 };
 
-export default Container;
+export default memo(Container);

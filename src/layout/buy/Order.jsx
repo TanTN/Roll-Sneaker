@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { AiFillCloseSquare } from 'react-icons/ai';
+
 import { updateUser } from '../../axios/axios';
 import { setUserCurrent } from '../../redux/reducer';
 
@@ -12,6 +14,7 @@ const Order = ({ setPriceCart, setAllPrice }) => {
         let allPrices;
         let allPriceAndShip;
 
+        // price chua co tien ship
         const price = userCurrent.products.reduce((all, product) => {
             all = all + parseInt(product.price.split('.').join('')) * parseInt(product.numberProducts);
             return all;
@@ -28,6 +31,7 @@ const Order = ({ setPriceCart, setAllPrice }) => {
         }
         setPriceCart(allPrices);
 
+        // price khi cong them tien ship
         const allPrice = parseInt(allPrices.split('.').join('')) + 30000;
         const strings = allPrice.toString().split('').reverse().join('');
         if (strings.length < 7) {

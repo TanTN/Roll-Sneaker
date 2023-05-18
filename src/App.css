@@ -3,6 +3,7 @@
 
 @tailwind base;
 @tailwind components;
+@tailwind variants;
 
 @layer base {
     :root {
@@ -33,6 +34,18 @@
     }
 }
 
+.cart {
+    max-height: calc(100vh - 141px);
+}
+
+/* slick header */
+
+.icon {
+    font-size: 24px;
+    line-height: 32px;
+    margin: 0 auto;
+}
+
 /* CSS Tips */
 .customTip {
     overflow: hidden;
@@ -46,22 +59,6 @@
 .tips-md {
     top: calc(100% + 20px);
 }
-
-/* slick header */
-
-.slick-slider:hover .slick-prev {
-    z-index: 20;
-}
-.slick-slider:hover .slick-next {
-    z-index: 20;
-}
-
-.icon {
-    font-size: 24px;
-    line-height: 32px;
-    margin: 0 auto;
-}
-
 .slick-slider:hover .prevTip {
     display: flex;
 }
@@ -72,8 +69,6 @@
 .slick-slider:hover .blog {
     display: flex;
 }
-
-/* slick footer */
 
 .prevTip {
     position: absolute;

@@ -3,12 +3,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+
 import { setProduct } from '../../../../redux/reducer'
 
 const Nike = () => {
+    const dataNikes = useSelector(state => state.data.dataNikes)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const dataNikes = useSelector(state => state.data.dataNikes)
 
     const handleAddProduct = (data) => {
         dispatch(setProduct(data))

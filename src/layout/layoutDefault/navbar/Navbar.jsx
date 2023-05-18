@@ -1,14 +1,15 @@
 import React, { memo, useEffect, useState } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
+import Tippy from '@tippyjs/react/headless';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { BsCartDash } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
 import { IoPersonSharp, IoLogOutOutline, IoPersonAddSharp } from 'react-icons/io5';
-import Tippy from '@tippyjs/react/headless';
 import { BsChevronDoubleUp } from 'react-icons/bs';
 
 import MenuNavbar from './MenuNavbar';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { setIsLogin, setUserCurrent } from '../../../redux/reducer';
 import CartTippy from './CartTippy';
 import messenger from '../../../assets/images/messenger.png';
@@ -28,6 +29,21 @@ const Navbar = ({ setIsOverflow }) => {
     const [isMenu, setIsMenu] = useState(false);
     const [hideTippy, setHideTippy] = useState(false);
 
+    
+    useEffect(() => {
+        const handleScroll = () => {
+            if (document.documentElement.scrollTop > 86) {
+                setIsScroll(true);
+            } else {
+                setIsScroll(false);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [document.documentElement.scrollTop]);
+
     const handleClickMenu = () => {
         setIsMenu(!isMenu);
         setIsOverflow(!isMenu);
@@ -41,19 +57,20 @@ const Navbar = ({ setIsOverflow }) => {
         getDataSneaker(dispatch);
     }, []);
 
-    const tippy = isMobile && { visible: isShowPerson, offset: [0, 20] };
-
     const handleSignout = () => {
         dispatch(setUserCurrent({ products: [] }));
         dispatch(setIsLogin(false));
         navigate('/login');
     };
+
     const handleSignin = () => {
         navigate('/login');
     };
+
     const handleSignup = () => {
         navigate('/register');
     };
+
     const handleClinkHideCart = () => {
         if (isMobile) {
             setHideTippy(!hideTippy);
@@ -69,21 +86,10 @@ const Navbar = ({ setIsOverflow }) => {
             navigate('/');
             window.scrollTo(0, 0);
         }
-    };
+    }
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (document.documentElement.scrollTop > 86) {
-                setIsScroll(true);
-            } else {
-                setIsScroll(false);
-            }
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [document.documentElement.scrollTop]);
+    const tippy = isMobile ? { visible: isShowPerson, offset: [0, 20] } : { trigger: 'mouseenter', offset: [0, 30] };
+
 
     return (
         <>
@@ -99,7 +105,11 @@ const Navbar = ({ setIsOverflow }) => {
                 <img src={zalo} alt="zalo" />
             </div>
             <div className="fixed z-[100] bottom-4 right-4 w-[56px] h-[56px] cursor-pointer">
-                <img className="absolute top-0 left-0 z-50" src={messenger} alt="messenger" />
+                <img
+                    className="absolute top-0 left-0 z-50 border-[1px] border-[#fff] rounded-[50%]"
+                    src={messenger}
+                    alt="messenger"
+                />
                 <div className="absolute top-0 left-0 z-10 w-[100%] h-[100%] bg-[#666666] rounded-[50%] animate-fadeInMes1"></div>
                 <div className="absolute top-0 left-0 z-20 w-[100%] h-[100%] bg-[#666666] rounded-[50%] animate-fadeInMes2"></div>
             </div>
@@ -130,9 +140,9 @@ const Navbar = ({ setIsOverflow }) => {
                                 </div>
                             </div>
                         </CartTippy>
+
                         <div>
                             <Tippy
-                                offset={[0, 30]}
                                 delay={[200, 300]}
                                 onClickOutside={handleShowPerson}
                                 placement="bottom"
@@ -186,6 +196,7 @@ const Navbar = ({ setIsOverflow }) => {
                                 </div>
                             </Tippy>
                         </div>
+
                         <div
                             className="pl-[12px] pr-[10px] lg:hidden md:pr-[50px] cursor-pointer select-none"
                             onClick={handleClickMenu}
@@ -195,6 +206,7 @@ const Navbar = ({ setIsOverflow }) => {
                     </div>
                 </div>
             </div>
+
             {!isMobile && <MenuNavbar isMenu={isMenu} isScroll={isScroll} clickMenu={handleClickMenu} />}
             {isMenu && isMobile && <MenuNavbar isMenu={isMenu} isScroll={isScroll} clickMenu={handleClickMenu} />}
         </>

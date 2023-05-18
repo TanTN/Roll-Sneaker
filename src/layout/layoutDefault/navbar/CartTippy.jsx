@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiFillCloseSquare } from 'react-icons/ai';
+import { useNavigate } from 'react-router';
 import Tippy from '@tippyjs/react/headless';
+
+import { AiFillCloseSquare } from 'react-icons/ai';
+
 import { updateUser } from '../../../axios/axios';
 import { setProduct, setReloadClickCart, setUserCurrent } from '../../../redux/reducer';
-import { useNavigate } from 'react-router';
 
 const CartTippy = ({ children, hideTippy, clickHideCart }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isMobile = useSelector((state) => state.store.isMobile);
     const isLogin = useSelector((state) => state.store.isLogin);
 
-    const [priceCart, setPriceCart] = useState(undefined);
-    const [tippyPc, setTippyPc] = useState(false);
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const [priceCart, setPriceCart] = useState(undefined);
+    const [tippyPc, setTippyPc] = useState(false);
+
     useEffect(() => {
+        // all price products
         let allPrices;
         const allPrice = userCurrent.products.reduce((all, product) => {
             all = all + parseInt(product.price.split('.').join('')) * parseInt(product.numberProducts);
@@ -54,6 +57,7 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
         }
         await dispatch(setUserCurrent(newUser));
     };
+
     const handleFixProduct = async (product) => {
         await dispatch(setProduct(product));
         await clickHideCart();
@@ -71,6 +75,7 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
         await navigate('/buy');
         await window.scrollTo(0, 0);
     };
+
     return (
         <div>
             <Tippy
@@ -85,7 +90,7 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
                         <div className="relative h-[100vh] w-[100vw] border-[1px] border-[#ccc] bg-white drop-shadow-ShadowRoot lg:h-auto lg:max-w-[450px]">
                             {userCurrent.products.length > 0 ? (
                                 <>
-                                    <div className="h-[100vh] mb-[67px] lg:mb-0 lg:max-h-[33vh] lg:h-auto overflow-y-auto">
+                                    <div className="cart lg:mb-0 lg:max-h-[33vh] overflow-y-auto">
                                         {userCurrent.products.map((product, index) => (
                                             <div key={index} className="relative">
                                                 <div
@@ -126,21 +131,20 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
                                             </div>
                                         ))}
                                     </div>
-                                    <div className="absolute left-0 bottom-[67px] right-0 lg:static">
-                                        <div>
-                                            <div className="text-sm md:text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7] bg-[#e2e2e2]">
-                                                <span className="font-bold">Tổng số phụ: </span>
-                                                <span>
-                                                    {priceCart}
-                                                    <span className="underline">đ</span>
-                                                </span>
-                                            </div>
-                                            <div
-                                                className="bg-[#383737] text-center py-[6px] lg:py-2 text-sm md:text-base text-[#e4e4e4] lg:hover:bg-[#252525] cursor-pointer"
-                                                onClick={handleBuy}
-                                            >
-                                                <button>THANH TOÁN</button>
-                                            </div>
+
+                                    <div>
+                                        <div className="text-sm md:text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7] bg-[#e2e2e2]">
+                                            <span className="font-bold">Tổng số phụ: </span>
+                                            <span>
+                                                {priceCart}
+                                                <span className="underline">đ</span>
+                                            </span>
+                                        </div>
+                                        <div
+                                            className="bg-[#383737] text-center py-[8px] lg:py-2 text-sm md:text-base text-[#e4e4e4] lg:hover:bg-[#252525] cursor-pointer"
+                                            onClick={handleBuy}
+                                        >
+                                            <button>THANH TOÁN</button>
                                         </div>
                                     </div>
                                 </>

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { AiOutlineHome } from 'react-icons/ai';
+import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { Controller, useForm } from 'react-hook-form';
+import Select from 'react-select';
+import Input from '@mui/material/Input';
+import { memo } from 'react';
+
+import { AiOutlineHome,AiFillCheckCircle } from 'react-icons/ai';
 
 import { getDistrict, getProvince, getWard, updateUser } from '../axios/axios';
-import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
-import { Controller, useForm } from 'react-hook-form';
-import Input from '@mui/material/Input';
-import { AiFillCheckCircle } from 'react-icons/ai';
-
 import Order from '../layout/buy/Order';
-import { useNavigate } from 'react-router';
 import { setUserCurrent } from '../redux/reducer';
 
 const Buy = () => {
@@ -350,4 +350,4 @@ const Buy = () => {
     );
 };
 
-export default Buy;
+export default memo(Buy);

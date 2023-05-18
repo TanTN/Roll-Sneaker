@@ -16,7 +16,7 @@ export default {
                 c2: '#adadad',
             },
             animation: {
-                fadeIn: 'fadeIn 1s linear',
+                fadeIn: 'fadeIn 0.5s linear',
                 fadeInMes1: 'fadeInMes1 2s ease-in-out infinite',
                 fadeInMes2: 'fadeInMes2 2s ease-in-out infinite',
                 fadeInTips: 'fadeInTips 0.6s linear',
@@ -30,13 +30,13 @@ export default {
                 },
                 fadeInMes1: {
                     '0%': { opacity: '1', transform: 'scale(0)' },
-                    '50%': { opacity: '.8', transform: 'scale(0.9)' },
+                    '50%': { opacity: '1', transform: 'scale(0.9)' },
                     '100%': { opacity: '.1', transform: 'scale(1.3)' },
                 },
                 fadeInMes2: {
                     '0%': { opacity: '1', transform: 'scale(0)' },
-                    '50%': { opacity: '.7', transform: 'scale(0)' },
-                    '100%': { opacity: '.3', transform: 'scale(1.3)' },
+                    '50%': { opacity: '1', transform: 'scale(0)' },
+                    '100%': { opacity: '.2', transform: 'scale(1.3)' },
                 },
                 fadeInTips: {
                     '0%': { opacity: '0.6', transform: 'translateY(10%)' },
