@@ -45,6 +45,7 @@ const Buy = () => {
     useEffect(() => {
         setTimeout(() => setIsBuySuccess(false), 7000);
     }, [isBuySuccess]);
+
     const {
         control,
         handleSubmit,
@@ -53,6 +54,7 @@ const Buy = () => {
     } = useForm({
         defaultValues: initialValues,
     });
+    
     const onSubmit = async (values) => {
         if (user.products.length > 0) {
             const newUser = {

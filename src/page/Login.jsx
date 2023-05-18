@@ -1,15 +1,14 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { AiOutlineDoubleLeft } from 'react-icons/ai';
+import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router';
-
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { validateLogin } from '../axios/axios';
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
     const isLogin = useSelector((state) => state.store.isLogin);
     const user = useSelector((state) => state.store.userCurrent);
 

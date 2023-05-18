@@ -32,9 +32,11 @@ const DetailProduct = () => {
     useEffect(() => {
         if (productView.size) {
             const sizeProduct = sizes.map((sizeProd) =>
-                sizeProd.size == productView.size
+                {   
+                    return sizeProd.size == productView.size
                     ? { ...sizeProd, isChecked: true }
-                    : { ...sizeProd, isChecked: false },
+                    : { ...sizeProd, isChecked: false }
+                }
             );
             const index = sizes.findIndex((sizeProd) => sizeProd.size == productView.size);
             setSelectSize(productView.size);

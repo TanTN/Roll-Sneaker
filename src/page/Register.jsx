@@ -1,20 +1,23 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Tippy from '@tippyjs/react/headless';
-import { AiOutlineDoubleLeft } from 'react-icons/ai';
 import { useNavigate } from 'react-router';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 
 import { postUser, validateRegister } from '../axios/axios';
 
 const Register = () => {
-    const [messageEmail, setMessageEmail] = useState(false);
-    const [messageUsername, setMessageUsername] = useState(false);
+    const navigate = useNavigate();
+    
     const user = useSelector((state) => state.store.userCurrent);
     const isLogin = useSelector((state) => state.store.isLogin);
-    const navigate = useNavigate();
+
+    const [messageEmail, setMessageEmail] = useState(false);
+    const [messageUsername, setMessageUsername] = useState(false);
+
     const isMessageAndUsername = () => {
         setTimeout(() => {
             setMessageEmail(false);
@@ -37,6 +40,7 @@ const Register = () => {
         password: '',
         confirmPassword: '',
     };
+
     const validationSchema = Yup.object().shape({
         username: Yup.string()
             .trim()
@@ -57,6 +61,7 @@ const Register = () => {
             .required('Confirm password field is required')
             .oneOf([Yup.ref('password')], 'Password must match'),
     });
+
     return (
         <Formik
             initialValues={initialValues}
@@ -92,6 +97,7 @@ const Register = () => {
                             Sign Up
                         </div>
                         <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
+                            
                             <Form>
                                 <Tippy
                                     placement="bottom"
