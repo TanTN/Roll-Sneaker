@@ -287,6 +287,7 @@ const Buy = () => {
                             </div>
                         </div>
                         <div className="border-[1px] border-primary border-dashed p-[15px]">
+                            
                             {/* products oder */}
                             {user.products.length > 0 ? (
                                 <Order setPriceCart={setPriceCart} setAllPrice={setAllPrice} />

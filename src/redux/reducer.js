@@ -23,6 +23,7 @@ const storeSlice = createSlice({
         setReloadClickCart: (state, option) => {
             state.isReloadClickCart = option.payload;
         },
+        
     },
 });
 

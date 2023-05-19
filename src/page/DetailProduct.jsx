@@ -88,7 +88,7 @@ const DetailProduct = () => {
         }
     };
 
-    const handleAddNumber = () => {
+    const handleIncreaseNumber = () => {
         setNumberProduct((number) => number + 1);
     };
 
@@ -145,12 +145,12 @@ const DetailProduct = () => {
             if (isLogin) {
                 await updateUser(newUser);
             }
+        
             await dispatch(setUserCurrent(newUser));
             await window.scrollTo(0, 0);
         }
     };
     const handleBuy = () => {
-        handleBuyOrAddProduct();
         handleBuyOrAddProduct();
         navigate(`/buy`);
         if (!isChecked) {
@@ -158,7 +158,6 @@ const DetailProduct = () => {
         }
     };
     const handleAddProduct = () => {
-        handleBuyOrAddProduct();
         handleBuyOrAddProduct();
         handleBackHome();
         if (!isChecked) {
@@ -253,7 +252,7 @@ const DetailProduct = () => {
                                 <span className="mx-3">{numberProduct}</span>
                                 <span
                                     className="select-none px-3 border-[1px] border-[#ccc] cursor-pointer lg:hover:bg-[#e7e7e7]"
-                                    onClick={handleAddNumber}
+                                    onClick={handleIncreaseNumber}
                                 >
                                     +
                                 </span>

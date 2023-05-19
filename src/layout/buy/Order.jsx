@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AiFillCloseSquare } from 'react-icons/ai';
@@ -7,14 +7,14 @@ import { updateUser } from '../../axios/axios';
 import { setUserCurrent } from '../../redux/reducer';
 
 const Order = ({ setPriceCart, setAllPrice }) => {
-    const dispatch = useDispatch();
     const userCurrent = useSelector((state) => state.store.userCurrent);
+    const isLogin = useSelector((state) => state.store.isLogin)
+    const dispatch = useDispatch();
 
-    useEffect(() => {
+    // price chua co tien ship
+    const allPriceCart = useMemo(() => {
         let allPrices;
-        let allPriceAndShip;
 
-        // price chua co tien ship
         const price = userCurrent.products.reduce((all, product) => {
             all = all + parseInt(product.price.split('.').join('')) * parseInt(product.numberProducts);
             return all;
@@ -29,10 +29,14 @@ const Order = ({ setPriceCart, setAllPrice }) => {
                 .reverse()
                 .join('');
         }
-        setPriceCart(allPrices);
+        return allPrices;
+    }, [userCurrent.products.length]);
 
-        // price khi cong them tien ship
-        const allPrice = parseInt(allPrices.split('.').join('')) + 30000;
+    // price khi cong them tien ship
+    const allPriceAndShip = useMemo(() => {
+        let allPriceAndShip;
+
+        const allPrice = parseInt(allPriceCart.split('.').join('')) + 30000;
         const strings = allPrice.toString().split('').reverse().join('');
         if (strings.length < 7) {
             allPriceAndShip = (strings.slice(0, 3) + '.' + strings.slice(3)).split('').reverse().join('');
@@ -43,8 +47,13 @@ const Order = ({ setPriceCart, setAllPrice }) => {
                 .reverse()
                 .join('');
         }
-        setAllPrice(allPriceAndShip);
-    });
+        return allPriceAndShip;
+    }, [userCurrent.products.length]);
+
+    useEffect(() => {
+        setPriceCart(allPriceCart)
+        setAllPrice(allPriceAndShip)
+    },[userCurrent.products.length])
 
     const handleDeleteProduct = async (value) => {
         const newProducts = userCurrent.products.filter(
@@ -55,7 +64,9 @@ const Order = ({ setPriceCart, setAllPrice }) => {
             ...userCurrent,
             products: [...newProducts],
         };
-        await updateUser(newUser);
+        if (isLogin) {
+            await updateUser(newUser);
+        }
         await dispatch(setUserCurrent(newUser));
     };
     return (

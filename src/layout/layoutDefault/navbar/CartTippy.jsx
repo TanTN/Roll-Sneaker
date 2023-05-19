@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Tippy from '@tippyjs/react/headless';
@@ -16,10 +16,11 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [priceCart, setPriceCart] = useState(undefined);
     const [tippyPc, setTippyPc] = useState(false);
 
-    useEffect(() => {
+    const numberProduct = userCurrent.products.map(product => product.numberProducts)
+
+    const allPrices = useMemo(() => {
         // all price products
         let allPrices;
         const allPrice = userCurrent.products.reduce((all, product) => {
@@ -36,8 +37,8 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
                 .reverse()
                 .join('');
         }
-        setPriceCart(allPrices);
-    });
+        return allPrices
+    },[numberProduct || userCurrent.products.length]);
 
     useEffect(() => {
         setTippyPc(false);
@@ -136,7 +137,7 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
                                         <div className="text-sm md:text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7] bg-[#e2e2e2]">
                                             <span className="font-bold">Tổng số phụ: </span>
                                             <span>
-                                                {priceCart}
+                                                {allPrices}
                                                 <span className="underline">đ</span>
                                             </span>
                                         </div>
