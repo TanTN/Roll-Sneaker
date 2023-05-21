@@ -24,18 +24,22 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
         // all price products
         let allPrices;
         const allPrice = userCurrent.products.reduce((all, product) => {
-            all = all + parseInt(product.price.split('.').join('')) * parseInt(product.numberProducts);
+            all = all + parseInt(product.price.replace(/\./g,'')) * product.numberProducts;
+
             return all;
         }, 0);
-        const string = allPrice.toString().split('').reverse().join('');
-        if (string.length < 7) {
-            allPrices = (string.slice(0, 3) + '.' + string.slice(3)).split('').reverse().join('');
+        if (allPrice.toString().length < 7) {
+            allPrices = allPrice.toString().split('')
+            allPrices.splice(3,0,'.')
+            allPrices.join('')
+            console.log(allPrices)
         }
-        if (7 <= string.length) {
-            allPrices = (string.slice(0, 3) + '.' + string.slice(3, 6) + '.' + string.slice(6))
-                .split('')
-                .reverse()
-                .join('');
+        if (7 <= allPrice.toString().length) {
+            allPrices = allPrice.toString().split('')
+            allPrices.splice(-3,0,'.')
+            allPrices.splice(-7,0,'.')
+            allPrices.join('')
+
         }
         return allPrices
     },[numberProduct || userCurrent.products.length]);
