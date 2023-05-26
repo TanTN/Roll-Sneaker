@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setMobile } from './redux/reducer';
-import pluginRouters from './routers/routers';
+import pluginRouters from './routers/routers';  
 import LayoutDefault from './layout/layoutDefault/LayouDefault';
 import DetailProduct from './page/DetailProduct';
 import Main from './page/Main';
@@ -33,7 +33,7 @@ function App() {
         <div className="scroll-smooth">
             <Routes>
                 <Route path='detailProduct' element={<DetailProduct />} />
-                <Route path='/' element={<Main />} />
+                <Route path='/' element={<Main />}/>
                 <Route path='buy' element={<Buy />} />
 
                 {/* {pluginRouters.map((route, index) => {
