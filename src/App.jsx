@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMobile } from './redux/reducer';
 import pluginRouters from './routers/routers';
 import LayoutDefault from './layout/layoutDefault/LayouDefault';
+import DetailProduct from './page/DetailProduct';
+import Main from './page/Main';
+import Buy from './page/Buy';
 
 function App() {
     const dispatch = useDispatch();
@@ -29,7 +32,11 @@ function App() {
     return (
         <div className="scroll-smooth">
             <Routes>
-                {pluginRouters.map((route, index) => {
+                <Route path='detailProduct' element={<DetailProduct />} />
+                <Route path='/' element={<Main />} />
+                <Route path='buy' element={<Buy />} />
+
+                {/* {pluginRouters.map((route, index) => {
                     let Layout = LayoutDefault;
                     let Page = <route.component />;
                     if (route.layout) {
@@ -42,7 +49,7 @@ function App() {
                     }
 
                     return <Route key={index} path={route.path} element={<Layout>{Page}</Layout>} />;
-                })}
+                })} */}
             </Routes>
         </div>
     );
