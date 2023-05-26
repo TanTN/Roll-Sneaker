@@ -10,11 +10,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
     <Router>
       <Provider store={store}>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
-          <Routes>
-            <Route path='/*' element={<App />} />
-          </Routes>
-        {/* </PersistGate> */}
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </Router>
   // </React.StrictMode>,
