@@ -326,7 +326,7 @@ const Buy = () => {
                                 <div className="flex md:justify-end mt-3 flex-col md:flex-row">
                                     {user.products.length == 0 ? (
                                         <button
-                                            className="md:mr-2 bg-[#414141] text-white py-1 px-3 rounded-sm text-[15px] -order-1 md:-order-2 my-2 md:my-0"
+                                            className="md:mr-2 bg-[#414141] text-white py-1 px-3 rounded-sm text-[15px] -order-1 md:-order-2 my-2 md:my-0 hover:transition hover:duration-[0.7s] lg:hover:bg-[#00d1b7]"
                                             onClick={handleBackHome}
                                         >
                                             QUAY TRỞ LẠI CỬA HÀNG
@@ -338,7 +338,7 @@ const Buy = () => {
                                     <button
                                         type="submit"
                                         className={`text-white py-1 px-3 rounded-sm text-[15px] -order-2 md:-order-1 ${
-                                            user.products.length == 0 ? 'bg-[#ee8282] cursor-not-allowed' : 'bg-primary'
+                                            user.products.length == 0 ? 'bg-[#ee8282] cursor-not-allowed' : 'bg-primary hover:bg-[#e24e4e] hover:transition hover:duration-[0.7s]'
                                         }`}
                                     >
                                         ĐẶT HÀNG
