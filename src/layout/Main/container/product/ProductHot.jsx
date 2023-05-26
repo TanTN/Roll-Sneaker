@@ -2,6 +2,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { setProduct } from '../../../../redux/reducer'
 import { dataProductSame } from '../../../../component/data/dataProductSame'
@@ -27,7 +28,7 @@ const ProductHot = ({isProductSame ,isReloads}) => {
         <div className='grid gap-5 grid-cols-2 md:grid-cols-4 md:gap-10'>
             {dataProductHot.map((data,index) => 
                 <div key={index}>
-                    <div className='group/item relative overflow-hidden cursor-pointer' onClick={() => handleAddProduct(data)}>
+                    <Link to='/detailProduct' className='group/item relative overflow-hidden cursor-pointer'>
                         <div className='md:py-4'>
                             <div className='group/edit mx-[-13px] md:mx-[-38px] md:visible md:group-hover/item:invisible'>
                                 <img src={data.img} alt="product1" />
@@ -47,7 +48,7 @@ const ProductHot = ({isProductSame ,isReloads}) => {
                             )}
                         </div>
                         <p className='text-center font-semibold text-[#505050] md:text-[18px] hover:text-[#23527c] cursor-pointer'>{data.name}</p>
-                    </div>
+                    </Link>
                     <div className='pt-2 text-center'>
                         <span className='text-[15px] font-bold text-[#ce1111] md:text-[18px]'>{data.price}<span className='underline'>đ</span></span>
                         <span className='text-[14px] pl-2 font-semibold line-through text-[#adadad] md:text-[16px] md:pl-5'>{data.priceDropped}<span className='underline'>đ</span></span>
