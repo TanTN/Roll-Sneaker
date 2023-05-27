@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi';
 import { FaSearch } from 'react-icons/fa';
 
-import dataTips from '../../../../component/data/dataTips';
+import dataTips from '@/component/data/dataTips';
 
 const Tips = () => {
     const isMobile = useSelector((state) => state.store.isMobile);

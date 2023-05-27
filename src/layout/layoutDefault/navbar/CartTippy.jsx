@@ -28,12 +28,14 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
 
             return all;
         }, 0);
+
         if (allPrice.toString().length < 7) {
             allPrices = allPrice.toString().split('')
             allPrices.splice(3,0,'.')
             allPrices.join('')
-            console.log(allPrices)
+
         }
+        
         if (7 <= allPrice.toString().length) {
             allPrices = allPrice.toString().split('')
             allPrices.splice(-3,0,'.')

@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AiFillCloseSquare } from 'react-icons/ai';
 
-import { updateUser } from '../../axios/axios';
-import { setUserCurrent } from '../../redux/reducer';
+import { updateUser } from '../../../axios/axios';
+import { setUserCurrent } from '../../../redux/reducer';
 
-const Order = ({ setPriceCart, setAllPrice }) => {
+const ProductBuy = ({ setPriceCart, setAllPrice }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
-    const isLogin = useSelector((state) => state.store.isLogin)
+    const isLogin = useSelector((state) => state.store.isLogin);
     const dispatch = useDispatch();
 
     // price chua co tien ship
@@ -51,9 +51,9 @@ const Order = ({ setPriceCart, setAllPrice }) => {
     }, [userCurrent.products.length]);
 
     useEffect(() => {
-        setPriceCart(allPriceCart)
-        setAllPrice(allPriceAndShip)
-    },[userCurrent.products.length])
+        setPriceCart(allPriceCart);
+        setAllPrice(allPriceAndShip);
+    }, [userCurrent.products.length]);
 
     const handleDeleteProduct = async (value) => {
         const newProducts = userCurrent.products.filter(
@@ -110,4 +110,4 @@ const Order = ({ setPriceCart, setAllPrice }) => {
     );
 };
 
-export default Order;
+export default ProductBuy;

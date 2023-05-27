@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Controller, useForm } from 'react-hook-form';
-import Select from 'react-select';
-import Input from '@mui/material/Input';
+import { useForm } from 'react-hook-form';
+
 import { memo } from 'react';
 
-import { AiOutlineHome,AiFillCheckCircle } from 'react-icons/ai';
+import { AiOutlineHome, AiFillCheckCircle } from 'react-icons/ai';
 
-import { getDistrict, getProvince, getWard, updateUser } from '../axios/axios';
-import Order from '../layout/buy/Order';
-import { setUserCurrent } from '../redux/reducer';
+import { getDistrict, getProvince, getWard, updateUser } from '../../axios/axios';
+import ProductBuy from './itemBuy/ProductBuy';
+import { setUserCurrent } from '../../redux/reducer';
+import FormAdress from './itemBuy/FormAdress';
 
 const Buy = () => {
     const user = useSelector((state) => state.store.userCurrent);
@@ -54,7 +54,7 @@ const Buy = () => {
     } = useForm({
         defaultValues: initialValues,
     });
-    
+
     const onSubmit = async (values) => {
         if (user.products.length > 0) {
             const newUser = {
@@ -155,127 +155,17 @@ const Buy = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className=" p-[15px]">
                             <p className="font-bold text-[20px] text-center py-3">Thánh toán và giao hàng</p>
-                            <div className="md:grid grid-cols-2 gap-y-2 gap-x-[30px]">
-                                <div className="pb-2">
-                                    <label htmlFor="name" className={`${errors.name ? 'text-primary' : ''}`}>
-                                        Họ và tên:
-                                    </label>
-                                    <Controller
-                                        name="name"
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field }) => (
-                                            <Input
-                                                {...field}
-                                                placeholder="Họ và tên của bạn"
-                                                id="name"
-                                                className="block w-[100%]"
-                                            />
-                                        )}
-                                    />
-                                </div>
-
-                                <div className="pb-2">
-                                    <label
-                                        htmlFor="phone"
-                                        className={`${errors.phone ? 'text-primary' : ''}`}
-                                    >{`Số điện thoại (*):`}</label>
-                                    <Controller
-                                        name="phone"
-                                        control={control}
-                                        rules={{ required: true, pattern: /^0\d{8,9}$/ }}
-                                        render={({ field }) => (
-                                            <Input
-                                                {...field}
-                                                placeholder="Số điện thoại của bạn"
-                                                id="phone"
-                                                className="block w-[100%]"
-                                            />
-                                        )}
-                                    />
-                                </div>
-
-                                <div className="pb-2">
-                                    <label htmlFor="province" className={`${errors.province ? 'text-primary' : ''}`}>
-                                        Tỉnh/Thành phố
-                                    </label>
-                                    <Controller
-                                        name="province"
-                                        rules={{ required: true }}
-                                        control={control}
-                                        render={({ field }) => {
-                                            return (
-                                                <Select
-                                                    {...field}
-                                                    options={isProvince}
-                                                    value={field.value}
-                                                    onChange={(e) => {
-                                                        field.onChange(e);
-                                                        handleProvinceChange(e);
-                                                    }}
-                                                    placeholder="Chọn tỉnh/thành phố"
-                                                />
-                                            );
-                                        }}
-                                    />
-                                </div>
-
-                                <div className="pb-2">
-                                    <label htmlFor="district" className={`${errors.district ? 'text-primary' : ''}`}>
-                                        Quận/Huyện
-                                    </label>
-                                    <Controller
-                                        name="district"
-                                        control={control}
-                                        rules={{ required: true }}
-                                        render={({ field }) => (
-                                            <Select
-                                                {...field}
-                                                options={isDistrict}
-                                                onChange={(e) => {
-                                                    field.onChange(e);
-                                                    handleDistrictChange(e);
-                                                }}
-                                                placeholder="Chọn quận huyện"
-                                            />
-                                        )}
-                                    />
-                                </div>
-
-                                <div className="pb-2">
-                                    <label htmlFor="ward" className={`${errors.ward ? 'text-primary' : ''}`}>
-                                        Xã/Phường
-                                    </label>
-                                    <Controller
-                                        rules={{ required: true }}
-                                        name="ward"
-                                        control={control}
-                                        render={({ field }) => (
-                                            <Select {...field} options={isWard} placeholder="Chọn xã/phường" />
-                                        )}
-                                    />
-                                </div>
-
-                                <div className="pb-2">
-                                    <label
-                                        htmlFor="adress"
-                                        className={`${errors.adress ? 'text-primary' : ''}`}
-                                    >{`Địa chỉ (*):`}</label>
-                                    <Controller
-                                        rules={{ required: true }}
-                                        name="adress"
-                                        control={control}
-                                        render={({ field }) => (
-                                            <Input
-                                                {...field}
-                                                placeholder="Địa chỉ của bạn"
-                                                id="adress"
-                                                className="block w-[100%]"
-                                            />
-                                        )}
-                                    />
-                                </div>
-                            </div>
+                            
+                            <FormAdress 
+                             isProvince={isProvince}
+                             isDistrict={isDistrict}
+                             isWard={isWard}
+                             handleProvinceChange={handleProvinceChange}
+                             handleDistrictChange={handleDistrictChange}
+                             errors={errors}
+                             control={control}
+                             user={user}
+                            />
 
                             <div className="py-3">
                                 <p className="font-bold text-[18px]">Thông tin bổ sung</p>
@@ -287,10 +177,9 @@ const Buy = () => {
                             </div>
                         </div>
                         <div className="border-[1px] border-primary border-dashed p-[15px]">
-                            
                             {/* products oder */}
                             {user.products.length > 0 ? (
-                                <Order setPriceCart={setPriceCart} setAllPrice={setAllPrice} />
+                                <ProductBuy setPriceCart={setPriceCart} setAllPrice={setAllPrice} />
                             ) : (
                                 <p className="text-center py-10 text-lg">
                                     Chưa có sản phẩm nào để đặt. Xin vui lòng quay lại cửa hàng!
@@ -338,7 +227,9 @@ const Buy = () => {
                                     <button
                                         type="submit"
                                         className={`text-white py-1 px-3 rounded-sm text-[15px] -order-2 md:-order-1 ${
-                                            user.products.length == 0 ? 'bg-[#ee8282] cursor-not-allowed' : 'bg-primary hover:bg-[#e24e4e] hover:transition hover:duration-[0.7s]'
+                                            user.products.length == 0
+                                                ? 'bg-[#ee8282] cursor-not-allowed'
+                                                : 'bg-primary hover:bg-[#e24e4e] hover:transition hover:duration-[0.7s]'
                                         }`}
                                     >
                                         ĐẶT HÀNG

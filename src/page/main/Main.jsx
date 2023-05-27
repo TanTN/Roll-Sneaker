@@ -11,9 +11,9 @@ import Adidas from './product/Adidas';
 import Mlb from './product/Mlb';
 import Personal from './product/Personal';
 import Tips from './product/Tips';
-import imagesPoster from '../../../component/data/dataImagesPoster';
+import imagesPoster from '../../component/data/dataImagesPoster';
 
-const Container = () => {
+const Main = () => {
     const isMobile = useSelector((state) => state.store.isMobile);
 
     const SamplePrevArrow = ({ onClick }) => {
@@ -73,4 +73,4 @@ const Container = () => {
     );
 };
 
-export default memo(Container);
+export default memo(Main);
