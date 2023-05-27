@@ -96,7 +96,8 @@ const Buy = () => {
                 ...e,
                 district: '',
                 ward: '',
-            },setIsWard([])));
+            }));
+            await setIsWard([])
         };
         fetchApi();
     };
