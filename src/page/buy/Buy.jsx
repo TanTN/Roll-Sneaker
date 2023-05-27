@@ -96,7 +96,7 @@ const Buy = () => {
                 ...e,
                 district: '',
                 ward: '',
-            }));
+            },setIsWard([])));
         };
         fetchApi();
     };
