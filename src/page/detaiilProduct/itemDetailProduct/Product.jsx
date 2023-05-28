@@ -49,7 +49,7 @@ const Product = ({
                             </span>
                         </div>
                         <div className="flex py-3 md:items-center">
-                            <div className='relative md:leading-[30px] leading-[33px]'>
+                            <div className='relative md:leading-0 leading-[33px]'>
                                 <p className="font-semibold pb-2">SIZE:</p>
                                 {isChecked && (
                                     <p className="text-c1 cursor-pointer absolute left-0 top-[35px] md:top-[26px]" onClick={handleClearSize}>
