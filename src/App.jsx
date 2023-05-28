@@ -33,7 +33,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<LayoutDefault />}>
                         <Route path='/detailProduct' element={<DetailProduct />} />
-                        <Route path='/detailProduct' element={<Main />} />
+                        <Route index element={<Main />} />
                     </Route>
                     {/* {pluginRouters.map((route, index) => {
                         let Layout = LayoutDefault;
