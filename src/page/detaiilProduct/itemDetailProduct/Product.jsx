@@ -48,11 +48,11 @@ const Product = ({
                                 <span className="underline">đ</span>
                             </span>
                         </div>
-                        <div className="flex pt-3">
-                            <div>
+                        <div className="flex py-3 lg:items-center">
+                            <div className='relative'>
                                 <p className="font-semibold pb-2">SIZE:</p>
                                 {isChecked && (
-                                    <p className="text-c1 cursor-pointer" onClick={handleClearSize}>
+                                    <p className="text-c1 cursor-pointer absolute left-0 top-[29px]" onClick={handleClearSize}>
                                         Xóa
                                     </p>
                                 )}
@@ -63,22 +63,22 @@ const Product = ({
                                         <div
                                             className={`flex grow cursor-pointer justify-center w-[40px] border-[1px] border-[#ccc] ${
                                                 sizeActive === index
-                                                    ? 'border-[1px] border-primary drop-shadow-ShadowRoot'
+                                                    ? 'border-[1px] border-primary'
                                                     : ''
                                             }`}
                                         >
                                             <label
                                                 htmlFor={data.size}
-                                                className="text-[18px] select-none w-[100%] leading-[40px] text-center text-c1 cursor-pointer lg:hover:bg-[#e7e7e7]"
+                                                className="text-[18px] select-none w-[100%] leading-[40px] text-center text-c1 cursor-pointer md:hover:bg-[#e7e7e7d8]"
                                             >
                                                 {data.size}
                                             </label>
                                             <input
                                                 hidden
-                                                type="radio"
+                                                type="checkbox"
                                                 id={data.size}
                                                 value={data.size}
-                                                name="size"
+                                                name={data.size}
                                                 onChange={(e) => handelSelectSize(e, index)}
                                                 checked={data.isChecked}
                                             />
@@ -87,6 +87,7 @@ const Product = ({
                                 ))}
                             </div>
                         </div>
+                        
                         <div className="text-[18px] mt-2">
                             <p className="">
                                 <span>Số lượng:</span>

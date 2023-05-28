@@ -62,21 +62,25 @@ const DetailProduct = () => {
     };
 
     const handelSelectSize = (e, index) => {
-        const { value } = e.target;
-        setSelectSize(value);
-        setSizeActive(index);
-        setIsChecked(true);
-        const newSizes = sizes.map((size) =>
-            size.size == value ? { ...size, isChecked: true } : { ...size, isChecked: false },
-        );
-        setSizes(newSizes);
+        const { value, checked } = e.target;
+            console.log(value,checked)
+            setSelectSize(value);
+            setSizeActive(index);
+            setIsChecked(true);
+            const newSizes = sizes.map((size) =>
+                size.size == value ? { ...size, isChecked: checked } : { ...size, isChecked: false },
+            );
+            setSizes(newSizes);
+            if (!checked) {
+                handleClearSize()
+            }
+       
     };
 
     const handleClearSize = () => {
         setIsChecked(false);
-        const newSizes = sizes.map((size) => ({ ...size, isChecked: false }));
         setSizeActive(undefined);
-        setSizes(newSizes);
+        setSizes(dataSizes);
     };
 
     const handleMinusNumber = () => {
