@@ -48,20 +48,20 @@ const Product = ({
                                 <span className="underline">đ</span>
                             </span>
                         </div>
-                        <div className="flex py-3 lg:items-center">
-                            <div className='relative'>
+                        <div className="flex py-3 md:items-center">
+                            <div className='relative md:leading-[30px] leading-[33px]'>
                                 <p className="font-semibold pb-2">SIZE:</p>
                                 {isChecked && (
-                                    <p className="text-c1 cursor-pointer absolute left-0 top-[29px]" onClick={handleClearSize}>
+                                    <p className="text-c1 cursor-pointer absolute left-0 top-[35px] md:top-[26px]" onClick={handleClearSize}>
                                         Xóa
                                     </p>
                                 )}
                             </div>
                             <div className="flex pl-6 flex-wrap">
                                 {sizes.map((data, index) => (
-                                    <div key={index} className={`pl-2 pb-2`}>
+                                    <div key={index} className='pl-2 pb-2'>
                                         <div
-                                            className={`flex grow cursor-pointer justify-center w-[40px] border-[1px] border-[#ccc] ${
+                                            className={`flex cursor-pointer w-[40px] border-[1px] border-[#ccc] ${
                                                 sizeActive === index
                                                     ? 'border-[1px] border-primary'
                                                     : ''
@@ -69,7 +69,7 @@ const Product = ({
                                         >
                                             <label
                                                 htmlFor={data.size}
-                                                className="text-[18px] select-none w-[100%] leading-[40px] text-center text-c1 cursor-pointer md:hover:bg-[#e7e7e7d8]"
+                                                className="text-[18px] m-y-auto select-none w-[100%] leading-[30px] text-center text-c1 cursor-pointer md:hover:bg-[#e7e7e7d8]"
                                             >
                                                 {data.size}
                                             </label>
