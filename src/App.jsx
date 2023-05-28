@@ -31,11 +31,8 @@ function App() {
     return (
         <div className="scroll-smooth">
                 <Routes>
-                    <Route path='/' element={<LayoutDefault />}>
-                        <Route path='/detailProduct' element={<DetailProduct />} />
-                        <Route index element={<Main />} />
-                    </Route>
-                    {/* {pluginRouters.map((route, index) => {
+                   
+                    {pluginRouters.map((route, index) => {
                         let Layout = LayoutDefault;
                         let Page = <route.component />;
                         if (route.layout) {
@@ -48,7 +45,7 @@ function App() {
                         }
     
                         return <Route key={index} path={route.path} element={<Layout>{Page}</Layout>} />;
-                    })} */}
+                    })}
                 </Routes>
         </div>
     );
