@@ -16,7 +16,9 @@ const ProductHot = ({isProductSame ,isReloads}) => {
             await isReloads()
         }
         await dispatch(setProduct(data))
-        await navigate(`/detailProduct`)
+        await navigate(`/detailProduct`,{
+            state: 'asasasassas'
+        })
         await window.scrollTo(0, 0)
         
     }

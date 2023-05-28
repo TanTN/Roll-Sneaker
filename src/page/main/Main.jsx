@@ -14,6 +14,7 @@ import Tips from './product/Tips';
 import imagesPoster from '../../component/data/dataImagesPoster';
 
 const Main = () => {
+    
     const isMobile = useSelector((state) => state.store.isMobile);
 
     const SamplePrevArrow = ({ onClick }) => {

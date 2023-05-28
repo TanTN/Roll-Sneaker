@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate,useLocation } from 'react-router';
 import { memo } from 'react';
 
 import { updateUser } from '../../axios/axios';
@@ -11,6 +11,8 @@ import dataSizes from '../../component/data/dataSizes';
 import Product from './itemDetailProduct/Product';
 
 const DetailProduct = () => {
+    const {pathname} = useLocation()
+    
     const user = useSelector((state) => state.store.userCurrent);
     const productView = useSelector((state) => state.store.viewProduct);
     const isLogin = useSelector((state) => state.store.isLogin);
@@ -44,13 +46,12 @@ const DetailProduct = () => {
     }, [isReloadClickCart]);
 
     useEffect(() => {
-        const isHref = window.location.href.slice(-13);
-        if (isHref === 'detailProduct') {
+        if (pathname === '/detailProduct') {
             setIsProduct(true);
         } else {
             setIsProduct(false);
         }
-    }, []);
+    }, [pathname]);
 
     const isReload = () => {
         setIsChecked(false);
@@ -147,17 +148,19 @@ const DetailProduct = () => {
         }
     };
     const handleBuy = () => {
-        handleBuyOrAddProduct();
-        navigate(`/buy`);
         if (!isChecked) {
             alert('Chọn các tùy chọn cho sản phẩm trước khi bạn thanh toán.');
+        } else {
+            handleBuyOrAddProduct();
+            navigate(`/buy`);
         }
     };
     const handleAddProduct = () => {
-        handleBuyOrAddProduct();
-        handleBackHome();
         if (!isChecked) {
             alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
+        } else {
+            handleBuyOrAddProduct();
+            handleBackHome();
         }
     };
 
