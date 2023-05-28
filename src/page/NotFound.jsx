@@ -1,9 +1,8 @@
-
-import React from 'react'
+import { Navigate } from "react-router"
 
 const NotFound = () => {
   return (
-    <div>NotFound</div>
+    <Navigate to='/' />
   )
 }
 
