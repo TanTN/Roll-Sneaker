@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMobile } from './redux/reducer';
 import pluginRouters from './routers/routers';  
 import LayoutDefault from './layout/layoutDefault/LayouDefault';
+import Main from './page/main/Main';
+import DetailProduct from './page/detaiilProduct/DetailProduct';
 
 
 function App() {
@@ -28,22 +30,27 @@ function App() {
 
     return (
         <div className="scroll-smooth">
-            <Routes>
-                {pluginRouters.map((route, index) => {
-                    let Layout = LayoutDefault;
-                    let Page = <route.component />;
-                    if (route.layout) {
-                        Layout = route.layout;
-                    } else if (route.layout === null) {
-                        Layout = Fragment;
-                    }
-                    if (route.path === 'user/:user' && !isLogin) {
-                        Page = <Navigate replace to="/" />;
-                    }
-
-                    return <Route key={index} path={route.path} element={<Layout>{Page}</Layout>} />;
-                })}
-            </Routes>
+            <LayoutDefault>
+                <Routes>
+                    <Route path='/' element={<Main />}>
+                        <Route path='/detailProduct' element={<DetailProduct />} />
+                    </Route>
+                    {/* {pluginRouters.map((route, index) => {
+                        let Layout = LayoutDefault;
+                        let Page = <route.component />;
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
+                        if (route.path === 'user/:user' && !isLogin) {
+                            Page = <Navigate replace to="/" />;
+                        }
+    
+                        return <Route key={index} path={route.path} element={<Layout>{Page}</Layout>} />;
+                    })} */}
+                </Routes>
+            </LayoutDefault>
         </div>
     );
 }
