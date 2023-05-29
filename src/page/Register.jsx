@@ -126,7 +126,7 @@ const Register = () => {
                             Sign Up
                         </div>
                         <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
-                            <div className='fixed top-[5%] right-[4%] overflow-hidden' ref={root}>
+                            <div className='fixed top-[5%] right-[2%]' ref={root}>
 
                             </div>
                             

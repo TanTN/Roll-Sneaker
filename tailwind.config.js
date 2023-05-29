@@ -43,11 +43,11 @@ export default {
                     '100%': { opacity: '1', transform: 'translateY(-35%)' },
                 },
                 fadeInSuccessInPc: {
-                    '0%': { opacity: '0.5', transform: 'translateX(80%)' },
+                    '0%': { opacity: '0', transform: 'translateX(80%)' },
                     '100%': { opacity: '1', transform: 'translateX(8%)' },
                 },
                 fadeInSuccessIn: {
-                    '0%': { opacity: '0.5', transform: 'translateX(80%)' },
+                    '0%': { opacity: '0', transform: 'translateX(80%)' },
                     '100%': { opacity: '1', transform: 'translateX(4%)' },
                 },
                 fadeInSuccessOut: {
