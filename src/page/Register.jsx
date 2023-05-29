@@ -37,7 +37,7 @@ const Register = () => {
             </div>
             <div>
                 <p class='text-primary font-medium'>Error</p>
-                <p>${content}</p>
+                <p class='text-sm font-normal'>${content}</p>
             </div>
             <div class='close absolute top-1 right-2'>
                 <i class="fa-solid fa-xmark text-gray-400"></i>

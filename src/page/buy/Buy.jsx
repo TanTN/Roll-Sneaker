@@ -10,7 +10,7 @@ import { AiOutlineHome, AiFillCheckCircle } from 'react-icons/ai';
 import { getDistrict, getProvince, getWard, updateUser } from '../../axios/axios';
 import ProductBuy from './itemBuy/ProductBuy';
 import { setUserCurrent } from '../../redux/reducer';
-import FormAdress from './itemBuy/FormAdress';
+import FormAddress from './itemBuy/FormAddress';
 
 const Buy = () => {
     const user = useSelector((state) => state.store.userCurrent);
@@ -157,7 +157,7 @@ const Buy = () => {
                         <div className=" p-[15px]">
                             <p className="font-bold text-[20px] text-center py-3">Thánh toán và giao hàng</p>
                             
-                            <FormAdress 
+                            <FormAddress 
                              isProvince={isProvince}
                              isDistrict={isDistrict}
                              isWard={isWard}
