@@ -1,11 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Tippy from '@tippyjs/react/headless';
 import { useNavigate } from 'react-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { HiOutlineArrowLeft } from 'react-icons/hi';
+import {AiFillCloseCircle} from 'react-icons/ai'
 
 import { postUser, validateRegister } from '../axios/axios';
 
@@ -17,13 +17,15 @@ const Register = () => {
 
     const [messageEmail, setMessageEmail] = useState(false);
     const [messageUsername, setMessageUsername] = useState(false);
+    const [isMessageAndUsername, setIsMessageAndUsername] = useState(false);
 
-    const isMessageAndUsername = () => {
+    useEffect(() => {
         setTimeout(() => {
+            setIsMessageAndUsername(false)
             setMessageEmail(false);
             setMessageUsername(false);
-        }, 5000);
-    };
+        }, 6000);
+    },[messageEmail | messageUsername | isMessageAndUsername]);
 
     const handleBack = () => {
         if (isLogin) {
@@ -72,13 +74,15 @@ const Register = () => {
                     await postUser({ ...values, products: [], information: {} });
                     await navigate('/login');
                 }
-                if (!isEmail) {
-                    setMessageEmail(true);
-                    isMessageAndUsername();
-                }
-                if (!isUsername) {
-                    setMessageUsername(true);
-                    isMessageAndUsername();
+                if (!isEmail && !isUsername) {
+                    setIsMessageAndUsername(true)
+                } else {
+                    if (!isEmail) {
+                        setMessageEmail(true);
+                    }
+                    if (!isUsername) {
+                        setMessageUsername(true);
+                    }
                 }
             }}
         >
@@ -92,58 +96,56 @@ const Register = () => {
                         />
                     </div>
 
-                    <div className="w-100% text-lg font-semibold">
-                        <div className="text-2xl relative text-white bg-[#139cec] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#139cec] md:text-[35px] md:mt-[30px]">
+                    <div className="w-100% font-semibold">
+                        <div className="text-xl relative text-white bg-[#139cec] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#139cec] md:text-[35px] md:mt-[30px]">
                             Sign Up
                         </div>
                         <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
-                            
+                        
+                            {  isMessageAndUsername && (
+                                <div className="bg-[#ffffff] flex items-center fixed top-[5%] right-[4%] translate-x-[4%] animate-fadeInSuccess md:animate-fadeInSuccessPc text-[#797979] py-[10px] px-[12px] rounded-[4px] border-[1px] border-l-[4px] border-primary">
+                                    Username và Email đã tồn tại
+                                    <AiFillCloseCircle className='text-primary ml-2' onClick={() => setIsMessageAndUsername(false)}/>
+                                </div>
+                                
+                                )
+                            }
+                            {  messageUsername && (
+                                <div className="bg-[#ffffff] flex items-center fixed top-[5%] right-[4%] translate-x-[4%] animate-fadeInSuccess md:animate-fadeInSuccessPc text-[#797979] py-[10px] px-[12px] rounded-[4px] border-[1px] border-l-[4px] border-primary">
+                                    Username đã tồn tại
+                                    <AiFillCloseCircle className='text-primary ml-2' onClick={() => setMessageUsername(false)}/>
+                                </div>
+                                
+                                )
+                            }
+                            {   messageEmail && (
+                                <div className="bg-[#ffffff] flex items-center fixed top-[5%] right-[4%] translate-x-[4%] animate-fadeInSuccess md:animate-fadeInSuccessPc text-[#797979] py-[10px] px-[12px] rounded-[4px] border-[1px] border-l-[4px] border-primary">
+                                    Email đã tồn tại
+                                    <AiFillCloseCircle className='text-primary ml-2' onClick={() => setMessageEmail(false)}/>
+                                </div>
+                                )
+                            }
                             <Form>
-                                <Tippy
-                                    placement="bottom"
-                                    offset={[0, 3]}
-                                    visible={messageUsername}
-                                    render={(attrs) => (
-                                        <div className="box w-[100%]" tabIndex="-1" {...attrs}>
-                                            <div className="bg-[#6586D2] text-white leading-[30px] px-[50px] rounded-2xl">
-                                                Username đã tồn tại
-                                            </div>
-                                        </div>
-                                    )}
-                                >
-                                    <div className="mb-[10px] text-sm">
-                                        <label htmlFor="username">Username</label>
-                                        <Field type="text" name="username" className="input-style" />
-                                        <ErrorMessage
-                                            name="username"
-                                            component="span"
-                                            className="text-primary font-normal text-[15px]"
-                                        />
-                                    </div>
-                                </Tippy>
 
-                                <Tippy
-                                    placement="bottom"
-                                    offset={[0, 3]}
-                                    visible={messageEmail}
-                                    render={(attrs) => (
-                                        <div className="box w-[100%]" tabIndex="-1" {...attrs}>
-                                            <div className="bg-[#6586D2] text-white leading-[30px] px-[50px] rounded-2xl">
-                                                Email đã tồn tại
-                                            </div>
-                                        </div>
-                                    )}
-                                >
-                                    <div className="mb-[10px] text-sm">
-                                        <label htmlFor="email">Email address</label>
-                                        <Field type="email" name="email" className="input-style" />
-                                        <ErrorMessage
-                                            name="email"
-                                            component="span"
-                                            className="text-primary font-normal text-[15px]"
-                                        />
-                                    </div>
-                                </Tippy>
+                                <div className="mb-[10px] text-sm">
+                                    <label htmlFor="username">Username</label>
+                                    <Field type="text" name="username" className="input-style" />
+                                    <ErrorMessage
+                                        name="username"
+                                        component="span"
+                                        className="text-primary font-normal text-[15px]"
+                                    />
+                                </div>
+                                
+                                <div className="mb-[10px] text-sm">
+                                    <label htmlFor="email">Email address</label>
+                                    <Field type="email" name="email" className="input-style" />
+                                    <ErrorMessage
+                                        name="email"
+                                        component="span"
+                                        className="text-primary font-normal text-[15px]"
+                                    />
+                                </div>
 
                                 <div className="mb-[10px] text-sm">
                                     <label htmlFor="phone">Phone number</label>

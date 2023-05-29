@@ -49,7 +49,7 @@ const Login = () => {
                         />
                     </div>
 
-                    <div className="w-100% text-lg font-semibold">
+                    <div className="w-100% font-semibold">
                         <div className="text-xl text-white bg-[#ecc813] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
                             User Login
                         </div>

@@ -20,7 +20,7 @@ export default {
                 fadeInMes1: 'fadeInMes1 2s ease-in-out infinite',
                 fadeInMes2: 'fadeInMes2 2s ease-in-out infinite',
                 fadeInTips: 'fadeInTips 0.6s linear',
-                fadeInSuccessPc: 'fadeInSuccessInPc .6s linear, fadeInSuccessOut 0.6s linear 5s forwards',
+                fadeInSuccessPc: 'fadeInSuccessInPc .5s linear, fadeInSuccessOut 0.5s linear 5s forwards',
                 fadeInSuccess: 'fadeInSuccessIn .6s linear, fadeInSuccessOut 0.6s linear 5s forwards',
             },
             keyframes: {
