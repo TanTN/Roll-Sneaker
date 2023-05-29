@@ -50,34 +50,35 @@ const Login = () => {
                     </div>
 
                     <div className="w-100% text-lg font-semibold">
-                        <div className="text-2xl text-white bg-[#ecc813] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
+                        <div className="text-xl text-white bg-[#ecc813] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
                             User Login
                         </div>
-                        <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
+                        <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px] ">
                             <Form>
-                                <div className="mb-[10px]">
-                                    <label htmlFor="username">Username</label>
+                                <div className="mb-[10px] text-sm">
+                                    <label htmlFor="username" className=''>Username</label>
                                     <Field type="text" name="username" className="input-style" />
                                 </div>
-                                <div className="mb-[10px]">
-                                    <label htmlFor="password">Password</label>
+                                <div className="mb-[10px] text-sm">
+                                    <label htmlFor="password" className=''>Password</label>
                                     <Field type="password" name="password" className="input-style" />
                                 </div>
-                                {isLoginFalse && (
-                                    <div className="text-primary text-center font-normal text-[15px]">
-                                        Tên đăng nhập hoặc mật khẩu không đúng.
-                                    </div>
-                                )}
-                                <div className="flex w-[100%] mt-[50px]">
+                                
+                                <div className="flex w-[100%] mt-[50px] relative">
+                                    {isLoginFalse && (
+                                        <div className="absolute top-[-80%] w-[100%] text-primary text-center font-normal text-[14px]">
+                                            Tên đăng nhập hoặc mật khẩu không đúng.
+                                        </div>
+                                    )}
                                     <button
                                         type="submit"
-                                        className="mx-auto border-[2px] border-[#ecc813] min-w-[100%] leading-[40px] text-[#ecc813] text-xl rounded-[4px] hover:bg-[#ecc813] hover:text-white"
+                                        className="mx-auto border-[2px] border-[#ecc813] min-w-[100%] leading-[40px] text-[#ecc813] text-lg rounded-[4px] hover:bg-[#ecc813] hover:text-white"
                                     >
                                         Sign in
                                     </button>
                                 </div>
-                                <div className=" flex justify-center items-end w-[100%] mt-[10px] md:mt-[25px]">
-                                    <span className="text-sm font-medium text-[#696969]">Don't have account?</span>
+                                <div className=" flex justify-center items-end w-[100%] mt-[10px] md:mt-[25px] text-sm">
+                                    <span className=" font-medium text-[#696969]">Don't have account?</span>
                                     <span
                                         className="font-semibold pl-2 cursor-pointer"
                                         onClick={() => navigate('/register')}
@@ -85,9 +86,9 @@ const Login = () => {
                                         Sign up
                                     </span>
                                 </div>
-                                <div className="text-center">
-                                    <p className="text-sm font-medium text-[#2c2c2c]">or</p>
-                                    <p className="cursor-pointer" onClick={handleBack}>
+                                <div className="text-center text-sm">
+                                    <p className="font-medium text-[#2c2c2c]">or</p>
+                                    <p className="cursor-pointer " onClick={handleBack}>
                                         Back
                                     </p>
                                 </div>

@@ -111,7 +111,7 @@ const Register = () => {
                                         </div>
                                     )}
                                 >
-                                    <div className="mb-[10px]">
+                                    <div className="mb-[10px] text-sm">
                                         <label htmlFor="username">Username</label>
                                         <Field type="text" name="username" className="input-style" />
                                         <ErrorMessage
@@ -134,7 +134,7 @@ const Register = () => {
                                         </div>
                                     )}
                                 >
-                                    <div className="mb-[10px]">
+                                    <div className="mb-[10px] text-sm">
                                         <label htmlFor="email">Email address</label>
                                         <Field type="email" name="email" className="input-style" />
                                         <ErrorMessage
@@ -145,7 +145,7 @@ const Register = () => {
                                     </div>
                                 </Tippy>
 
-                                <div className="mb-[10px]">
+                                <div className="mb-[10px] text-sm">
                                     <label htmlFor="phone">Phone number</label>
                                     <Field type="text" name="phone" className="input-style" placeholder="+84:" />
                                     <ErrorMessage
@@ -155,7 +155,7 @@ const Register = () => {
                                     />
                                 </div>
 
-                                <div className="mb-[10px]">
+                                <div className="mb-[10px] text-sm">
                                     <label htmlFor="password">Password</label>
                                     <Field type="password" name="password" className="input-style" />
                                     <ErrorMessage
@@ -165,7 +165,7 @@ const Register = () => {
                                     />
                                 </div>
 
-                                <div className="mb-[10px]">
+                                <div className="mb-[10px] text-sm">
                                     <label htmlFor="confirmPassword">Confirm Password</label>
                                     <Field type="password" name="confirmPassword" className="input-style" />
                                     <ErrorMessage
@@ -178,7 +178,7 @@ const Register = () => {
                                 <div className="flex w-[100%] mt-[50px]">
                                     <button
                                         type="submit"
-                                        className="mx-auto border-[2px] border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-xl rounded-[4px] hover:bg-[#139cec] hover:text-white"
+                                        className="mx-auto border-[2px] border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-lg rounded-[4px] hover:bg-[#139cec] hover:text-white"
                                     >
                                         Sign up
                                     </button>
@@ -186,15 +186,15 @@ const Register = () => {
 
                                 <div className="flex w-[100%] mt-[10px] md:mt-[20px]">
                                     <button
-                                        className="mx-auto flex justify-center items-center border-[2px] border-[#cfcfcf] min-w-[100%] leading-[40px] text-[#868686] text-xl rounded-[4px] hover:bg-[#e0e0e0]"
+                                        className="mx-auto flex justify-center items-center border-[2px] border-[#cfcfcf] min-w-[100%] leading-[40px] text-[#868686] text-lg rounded-[4px] hover:bg-[#e0e0e0]"
                                         onClick={() => navigate('/login')}
                                     >
                                         <HiOutlineArrowLeft />
                                         <div className="ml-2">Back to Login</div>
                                     </button>
                                 </div>
-                                <div className="text-center pt-[10px]">
-                                    <p className="text-sm font-medium text-[#2c2c2c]">or</p>
+                                <div className="text-center pt-[10px] text-sm">
+                                    <p className="font-medium text-[#2c2c2c]">or</p>
                                     <p className="cursor-pointer" onClick={handleBack}>
                                         Back
                                     </p>
