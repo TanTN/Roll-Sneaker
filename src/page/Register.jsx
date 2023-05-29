@@ -1,31 +1,54 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router';
-import React, { useEffect, useState } from 'react';
+import React, {useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import { HiOutlineArrowLeft } from 'react-icons/hi';
-import {AiFillCloseCircle} from 'react-icons/ai'
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 import { postUser, validateRegister } from '../axios/axios';
 
 const Register = () => {
     const navigate = useNavigate();
-    
+    const root = useRef()
+
     const user = useSelector((state) => state.store.userCurrent);
     const isLogin = useSelector((state) => state.store.isLogin);
 
-    const [messageEmail, setMessageEmail] = useState(false);
-    const [messageUsername, setMessageUsername] = useState(false);
-    const [isMessageAndUsername, setIsMessageAndUsername] = useState(false);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsMessageAndUsername(false)
-            setMessageEmail(false);
-            setMessageUsername(false);
-        }, 6000);
-    },[messageEmail | messageUsername | isMessageAndUsername]);
+    const handleAddMessage = (content) => {
+        const main = root.current
+        if (main) {
+
+            const toast = document.createElement('div')
+            
+            const clearSetTimeout = setTimeout(() => main.removeChild(toast),3600)
+
+            toast.onclick = (e) => {
+                if (e.target.closest('.close')) {
+                    main.removeChild(toast)
+                    clearTimeout(clearSetTimeout)
+                }
+            }
+            toast.innerHTML = `
+            <div class='text-primary pr-3'>
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <div>
+                <p class='text-primary font-medium'>Error</p>
+                <p>${content}</p>
+            </div>
+            <div class='close absolute top-1 right-2'>
+                <i class="fa-solid fa-xmark text-gray-400"></i>
+            </div>
+            `
+            toast.classList.add('toast-messgae')
+            main.appendChild(toast)
+            
+            
+        }
+    }
 
     const handleBack = () => {
         if (isLogin) {
@@ -70,18 +93,20 @@ const Register = () => {
             validationSchema={validationSchema}
             onSubmit={async (values) => {
                 const { isEmail, isUsername } = await validateRegister(values);
+
                 if (isEmail && isUsername) {
                     await postUser({ ...values, products: [], information: {} });
                     await navigate('/login');
                 }
+
                 if (!isEmail && !isUsername) {
-                    setIsMessageAndUsername(true)
+                    handleAddMessage('Username đã tồn tại');
                 } else {
                     if (!isEmail) {
-                        setMessageEmail(true);
+                        handleAddMessage('Email đã được đăng kí');
                     }
-                    if (!isUsername) {
-                        setMessageUsername(true);
+                    else {
+                        handleAddMessage('Username đã tồn tại');
                     }
                 }
             }}
@@ -97,36 +122,15 @@ const Register = () => {
                     </div>
 
                     <div className="w-100% font-semibold">
-                        <div className="text-xl relative text-white bg-[#139cec] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#139cec] md:text-[35px] md:mt-[30px]">
+                        <div className="text-xl text-white bg-[#139cec] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#139cec] md:text-[35px] md:mt-[30px]">
                             Sign Up
                         </div>
                         <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
-                        
-                            {  isMessageAndUsername && (
-                                <div className="bg-[#ffffff] flex items-center fixed top-[5%] right-[4%] translate-x-[4%] animate-fadeInSuccess md:animate-fadeInSuccessPc text-[#797979] py-[10px] px-[12px] rounded-[4px] border-[1px] border-l-[4px] border-primary">
-                                    Username và Email đã tồn tại
-                                    <AiFillCloseCircle className='text-primary ml-2' onClick={() => setIsMessageAndUsername(false)}/>
-                                </div>
-                                
-                                )
-                            }
-                            {  messageUsername && (
-                                <div className="bg-[#ffffff] flex items-center fixed top-[5%] right-[4%] translate-x-[4%] animate-fadeInSuccess md:animate-fadeInSuccessPc text-[#797979] py-[10px] px-[12px] rounded-[4px] border-[1px] border-l-[4px] border-primary">
-                                    Username đã tồn tại
-                                    <AiFillCloseCircle className='text-primary ml-2' onClick={() => setMessageUsername(false)}/>
-                                </div>
-                                
-                                )
-                            }
-                            {   messageEmail && (
-                                <div className="bg-[#ffffff] flex items-center fixed top-[5%] right-[4%] translate-x-[4%] animate-fadeInSuccess md:animate-fadeInSuccessPc text-[#797979] py-[10px] px-[12px] rounded-[4px] border-[1px] border-l-[4px] border-primary">
-                                    Email đã tồn tại
-                                    <AiFillCloseCircle className='text-primary ml-2' onClick={() => setMessageEmail(false)}/>
-                                </div>
-                                )
-                            }
-                            <Form>
+                            <div className='fixed top-[5%] right-[4%] overflow-hidden' ref={root}>
 
+                            </div>
+                            
+                            <Form>
                                 <div className="mb-[10px] text-sm">
                                     <label htmlFor="username">Username</label>
                                     <Field type="text" name="username" className="input-style" />
@@ -136,7 +140,7 @@ const Register = () => {
                                         className="text-primary font-normal text-[15px]"
                                     />
                                 </div>
-                                
+
                                 <div className="mb-[10px] text-sm">
                                     <label htmlFor="email">Email address</label>
                                     <Field type="email" name="email" className="input-style" />
@@ -182,18 +186,21 @@ const Register = () => {
                                         type="submit"
                                         className="mx-auto border-[2px] border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-lg rounded-[4px] hover:bg-[#139cec] hover:text-white"
                                     >
+                                        {/* {formik.isSubmitting && <div>Loading</div>} */}
                                         Sign up
                                     </button>
                                 </div>
 
                                 <div className="flex w-[100%] mt-[10px] md:mt-[20px]">
                                     <button
-                                        className="mx-auto flex justify-center items-center border-[2px] border-[#cfcfcf] min-w-[100%] leading-[40px] text-[#868686] text-lg rounded-[4px] hover:bg-[#e0e0e0]"
+                                        className="mx-auto flex justify-center items-center border-[2px] border-[#cfcfcf] min-w-[100%] h-[44px] leading-[40px] text-[#868686] text-lg rounded-[4px] hover:bg-[#e0e0e0]"
                                         onClick={() => navigate('/login')}
                                     >
                                         <HiOutlineArrowLeft />
-                                        <div className="ml-2">Back to Login</div>
+                                        <div className="ml-2 text-sm">Back to Login</div>
                                     </button>
+
+                                    {/* Same as */}
                                 </div>
                                 <div className="text-center pt-[10px] text-sm">
                                     <p className="font-medium text-[#2c2c2c]">or</p>

@@ -20,8 +20,8 @@ export default {
                 fadeInMes1: 'fadeInMes1 2s ease-in-out infinite',
                 fadeInMes2: 'fadeInMes2 2s ease-in-out infinite',
                 fadeInTips: 'fadeInTips 0.6s linear',
-                fadeInSuccessPc: 'fadeInSuccessInPc .5s linear, fadeInSuccessOut 0.5s linear 5s forwards',
-                fadeInSuccess: 'fadeInSuccessIn .6s linear, fadeInSuccessOut 0.6s linear 5s forwards',
+                fadeInSuccessPc: 'fadeInSuccessInPc .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
+                fadeInSuccess: 'fadeInSuccessIn .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
             },
             keyframes: {
                 fadeIn: {
@@ -43,11 +43,11 @@ export default {
                     '100%': { opacity: '1', transform: 'translateY(-35%)' },
                 },
                 fadeInSuccessInPc: {
-                    '0%': { opacity: '0', transform: 'translateX(80%)' },
+                    '0%': { opacity: '0.5', transform: 'translateX(80%)' },
                     '100%': { opacity: '1', transform: 'translateX(8%)' },
                 },
                 fadeInSuccessIn: {
-                    '0%': { opacity: '0', transform: 'translateX(80%)' },
+                    '0%': { opacity: '0.5', transform: 'translateX(80%)' },
                     '100%': { opacity: '1', transform: 'translateX(4%)' },
                 },
                 fadeInSuccessOut: {
