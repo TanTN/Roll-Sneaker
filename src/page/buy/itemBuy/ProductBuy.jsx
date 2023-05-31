@@ -5,50 +5,14 @@ import { AiFillCloseSquare } from 'react-icons/ai';
 
 import { updateUser } from '@/services/userService';
 import { setUserCurrent } from '@/store/reducer';
+import allPriceUtils from '@/utils/allPriceUtils';
 
 const ProductBuy = ({ setPriceCart, setAllPrice }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isLogin = useSelector((state) => state.store.isLogin);
     const dispatch = useDispatch();
 
-    // price chua co tien ship
-    const allPriceCart = useMemo(() => {
-        let allPrices;
-
-        const price = userCurrent.products.reduce((all, product) => {
-            all = all + parseInt(product.price.split('.').join('')) * parseInt(product.numberProducts);
-            return all;
-        }, 0);
-        const string = price.toString().split('').reverse().join('');
-        if (string.length < 7) {
-            allPrices = (string.slice(0, 3) + '.' + string.slice(3)).split('').reverse().join('');
-        }
-        if (7 <= string.length) {
-            allPrices = (string.slice(0, 3) + '.' + string.slice(3, 6) + '.' + string.slice(6))
-                .split('')
-                .reverse()
-                .join('');
-        }
-        return allPrices;
-    }, [userCurrent.products.length]);
-
-    // price khi cong them tien ship
-    const allPriceAndShip = useMemo(() => {
-        let allPriceAndShip;
-
-        const allPrice = parseInt(allPriceCart.split('.').join('')) + 30000;
-        const strings = allPrice.toString().split('').reverse().join('');
-        if (strings.length < 7) {
-            allPriceAndShip = (strings.slice(0, 3) + '.' + strings.slice(3)).split('').reverse().join('');
-        }
-        if (7 <= strings.length) {
-            allPriceAndShip = (strings.slice(0, 3) + '.' + strings.slice(3, 6) + '.' + strings.slice(6))
-                .split('')
-                .reverse()
-                .join('');
-        }
-        return allPriceAndShip;
-    }, [userCurrent.products.length]);
+    const {allPriceAndShip,allPriceCart} = allPriceUtils(userCurrent)
 
     useEffect(() => {
         setPriceCart(allPriceCart);

@@ -15,6 +15,7 @@ import CartTippy from './CartTippy';
 import messenger from '@/assets/images/messenger.png';
 import zalo from '@/assets/images/Zalo.png';
 import getDataSneaker from '@/services/dataService';
+import { setIsAddProductSuccess } from '@/store/reducer';
 
 const Navbar = ({ setIsOverflow }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -86,6 +87,8 @@ const Navbar = ({ setIsOverflow }) => {
             navigate('/');
             window.scrollTo(0, 0);
         }
+        dispatch(setIsAddProductSuccess(false));
+
     }
 
     const tippy = isMobile ? { visible: isShowPerson, offset: [0, 20] } : { trigger: 'mouseenter', offset: [0, 30] };

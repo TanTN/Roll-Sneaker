@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Tippy from '@tippyjs/react/headless';
@@ -7,6 +7,7 @@ import { AiFillCloseSquare } from 'react-icons/ai';
 
 import { updateUser } from '@/services/userService';
 import { setProduct, setReloadClickCart, setUserCurrent, setIsAddProductSuccess } from '@/store/reducer';
+import priceUtil from '@/utils/priceUtil';
 
 const CartTippy = ({ children, hideTippy, clickHideCart }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -18,34 +19,8 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
 
     const [tippyPc, setTippyPc] = useState(false);
 
-    const numberProduct = userCurrent.products.map(product => product.numberProducts)
-
-    const allPrices = useMemo(() => {
-        // all price products
-        let allPrices;
-        const allPrice = userCurrent.products.reduce((all, product) => {
-            all = all + parseInt(product.price.replace(/\./g,'')) * product.numberProducts;
-
-            return all;
-        }, 0);
-
-        if (allPrice.toString().length < 7) {
-            allPrices = allPrice.toString().split('')
-            allPrices.splice(3,0,'.')
-            allPrices.join('')
-
-        }
-        
-        if (7 <= allPrice.toString().length) {
-            allPrices = allPrice.toString().split('')
-            allPrices.splice(-3,0,'.')
-            allPrices.splice(-7,0,'.')
-            allPrices.join('')
-
-        }
-        return allPrices
-    },[numberProduct || userCurrent.products.length]);
-
+    const price = priceUtil(userCurrent)
+    
     useEffect(() => {
         setTippyPc(false);
     }, [tippyPc]);
@@ -144,7 +119,7 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
                                         <div className="text-sm md:text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7] bg-[#e2e2e2]">
                                             <span className="font-bold">Tổng số phụ: </span>
                                             <span>
-                                                {allPrices}
+                                                {price}
                                                 <span className="underline">đ</span>
                                             </span>
                                         </div>

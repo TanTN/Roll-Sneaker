@@ -162,6 +162,7 @@ const DetailProduct = () => {
         } else {
             handleBuyOrAddProduct();
             navigate(`/buy`);
+            dispatch(setIsAddProductSuccess(false));
         }
     };
     const handleAddProduct = () => {
@@ -186,8 +187,8 @@ const DetailProduct = () => {
         } else {
             navigate('/');
             window.scrollTo(0, 0);
-            dispatch(setIsAddProductSuccess(false));
         }
+        dispatch(setIsAddProductSuccess(false));
     };
 
     return (
