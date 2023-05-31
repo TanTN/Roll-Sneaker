@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AiFillCloseSquare } from 'react-icons/ai';
 
-import { updateUser } from '../../../axios/axios';
-import { setUserCurrent } from '../../../redux/reducer';
+import { updateUser } from '@/services/userService';
+import { setUserCurrent } from '@/store/reducer';
 
 const ProductBuy = ({ setPriceCart, setAllPrice }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);

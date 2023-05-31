@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-
 import { memo } from 'react';
 
 import { AiOutlineHome, AiFillCheckCircle } from 'react-icons/ai';
 
-import { getDistrict, getProvince, getWard, updateUser } from '../../axios/axios';
+import { getDistrict, getProvince, getWard} from '@/services/provinceService';
+import { updateUser } from '@/services/userService';
 import ProductBuy from './itemBuy/ProductBuy';
-import { setUserCurrent } from '../../redux/reducer';
+import { setUserCurrent } from '@/store/reducer';
 import FormAddress from './itemBuy/FormAddress';
 
 const Buy = () => {
@@ -97,7 +97,7 @@ const Buy = () => {
                 district: '',
                 ward: '',
             }));
-            await setIsWard([])
+            await setIsWard([]);
         };
         fetchApi();
     };
@@ -156,16 +156,16 @@ const Buy = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className=" p-[15px]">
                             <p className="font-bold text-[20px] text-center py-3">Thánh toán và giao hàng</p>
-                            
-                            <FormAddress 
-                             isProvince={isProvince}
-                             isDistrict={isDistrict}
-                             isWard={isWard}
-                             handleProvinceChange={handleProvinceChange}
-                             handleDistrictChange={handleDistrictChange}
-                             errors={errors}
-                             control={control}
-                             user={user}
+
+                            <FormAddress
+                                isProvince={isProvince}
+                                isDistrict={isDistrict}
+                                isWard={isWard}
+                                handleProvinceChange={handleProvinceChange}
+                                handleDistrictChange={handleDistrictChange}
+                                errors={errors}
+                                control={control}
+                                user={user}
                             />
 
                             <div className="py-3">

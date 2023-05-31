@@ -1,36 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate,useLocation } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { memo } from 'react';
 
-import { updateUser } from '../../axios/axios';
-import { setUserCurrent } from '../../redux/reducer';
+import { updateUser } from '@/services/userService';
+import { setUserCurrent } from '@/store/reducer';
 import ProductHot from '@/page/main/product/ProductHot';
 import Tips from '@/page/main/product/Tips';
-import dataSizes from '../../component/data/dataSizes';
+import dataSizes from '@/data/dataSizes';
 import Product from './itemDetailProduct/Product';
+import { setIsAddProductSuccess } from '../../store/reducer';
 
 const DetailProduct = () => {
-    const {pathname} = useLocation()
-    
+    const { pathname } = useLocation();
+
     const user = useSelector((state) => state.store.userCurrent);
     const productView = useSelector((state) => state.store.viewProduct);
     const isLogin = useSelector((state) => state.store.isLogin);
     const isReloadClickCart = useSelector((state) => state.store.isReloadClickCart);
+    const isAddSuccess = useSelector((state) => state.store.isAddProductSuccess);
 
     const [sizes, setSizes] = useState(dataSizes);
     const [selectSize, setSelectSize] = useState(undefined);
     const [sizeActive, setSizeActive] = useState(undefined);
-    const [isChecked, setIsChecked] = useState(productView.size ? true : false);
+    const [isChecked, setIsChecked] = useState(false);
     const [isProduct, setIsProduct] = useState(false);
-    const [numberProduct, setNumberProduct] = useState(productView.numberProducts || 1);
+    const [numberProduct, setNumberProduct] = useState(1);
     const [isUpdateProduct, setIsUpdateProduct] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (productView.size) {
+    useLayoutEffect(() => {
+        if (productView.size && !isAddSuccess) {
             const sizeProduct = sizes.map((sizeProd) => {
                 return sizeProd.size == productView.size
                     ? { ...sizeProd, isChecked: true }
@@ -42,9 +44,11 @@ const DetailProduct = () => {
             setSizes(sizeProduct);
             setIsChecked(true);
             setIsUpdateProduct(true);
+            setNumberProduct(productView.numberProducts)
         }
+        
     }, [isReloadClickCart]);
-
+    
     useEffect(() => {
         if (pathname === '/detailProduct') {
             setIsProduct(true);
@@ -59,11 +63,18 @@ const DetailProduct = () => {
         setSizes(dataSizes);
         setNumberProduct(1);
         setIsUpdateProduct(false);
+        dispatch(setIsAddProductSuccess(false));
+    };
+
+    const handleClearSize = () => {
+        setIsChecked(false);
+        setSizeActive(undefined);
+        setSizes(dataSizes);
     };
 
     const handelSelectSize = (e, index) => {
-        const { value, checked } = e.target;
-            console.log(value,checked)
+        if (!isAddSuccess) {
+            const { value, checked } = e.target;
             setSelectSize(value);
             setSizeActive(index);
             setIsChecked(true);
@@ -72,15 +83,9 @@ const DetailProduct = () => {
             );
             setSizes(newSizes);
             if (!checked) {
-                handleClearSize()
+                handleClearSize();
             }
-       
-    };
-
-    const handleClearSize = () => {
-        setIsChecked(false);
-        setSizeActive(undefined);
-        setSizes(dataSizes);
+        }
     };
 
     const handleMinusNumber = () => {
@@ -95,11 +100,12 @@ const DetailProduct = () => {
 
     const handleBuyOrAddProduct = async () => {
         const indexUpdateSize = user.products.findIndex(
-            (prod) => prod.name === productView.name && prod.size === selectSize,
+            (prod) => prod.name == productView.name && prod.size == selectSize,
         );
         const indexUpdateProduct = user.products.findIndex(
             (prod) => prod.name == productView.name && prod.size == productView.size,
         );
+        
         if (isChecked) {
             let newUser;
             if (indexUpdateProduct !== -1 || 0) {
@@ -116,7 +122,7 @@ const DetailProduct = () => {
                 };
             }
 
-            if (indexUpdateSize !== -1 || 0) {
+            if ((indexUpdateSize !== -1 || 0) && !isUpdateProduct) {
                 if (!isUpdateProduct) {
                     const newProduct = [...user.products];
 
@@ -146,7 +152,6 @@ const DetailProduct = () => {
             if (isLogin) {
                 await updateUser(newUser);
             }
-
             await dispatch(setUserCurrent(newUser));
             await window.scrollTo(0, 0);
         }
@@ -163,8 +168,14 @@ const DetailProduct = () => {
         if (!isChecked) {
             alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
         } else {
+
             handleBuyOrAddProduct();
-            handleBackHome();
+            dispatch(setIsAddProductSuccess(true));
+
+            setIsChecked(false);
+            setSizeActive(undefined);
+            setSizes(dataSizes);
+            setNumberProduct(1);
         }
     };
 
@@ -175,26 +186,29 @@ const DetailProduct = () => {
         } else {
             navigate('/');
             window.scrollTo(0, 0);
+            dispatch(setIsAddProductSuccess(false));
         }
     };
 
     return (
         <div className="mt-[66px] max-w-[1140px] mx-auto md:mt-[86px] lg:mt-[10px]">
-            <Product 
-                handleBackHome = {handleBackHome}
-                handleClearSize = {handleClearSize}
-                handleMinusNumber = {handleMinusNumber}
-                handleIncreaseNumber = {handleIncreaseNumber}
-                handleAddProduct = {handleAddProduct}
-                handleBuy = {handleBuy}
-                handelSelectSize = {handelSelectSize}
+            <Product
+                handleBackHome={handleBackHome}
+                handleClearSize={handleClearSize}
+                handleMinusNumber={handleMinusNumber}
+                handleIncreaseNumber={handleIncreaseNumber}
+                handleAddProduct={handleAddProduct}
+                handleBuy={handleBuy}
+                handelSelectSize={handelSelectSize}
                 isChecked={isChecked}
                 sizes={sizes}
                 sizeActive={sizeActive}
                 numberProduct={numberProduct}
+                isAddSuccess={isAddSuccess}
+                isUpdateProduct={isUpdateProduct}
             />
             <div className="px-[15px] lg:px-0 pt-[50px]">
-                <ProductHot isProductSame={isProduct} isReloads={isReload} />
+                <ProductHot isProductSame={isProduct} isReload={isReload} />
             </div>
             <Tips />
         </div>

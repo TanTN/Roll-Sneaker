@@ -3,22 +3,20 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 
-import { dataProductSame } from '@/component/data/dataProductSame'
-import { setProduct } from '../../../redux/reducer'
+import { dataProductSame } from '@/data/dataProductSame'
+import { setProduct } from '@/store/reducer'
 
-const ProductHot = ({isProductSame ,isReloads}) => {
+const ProductHot = ({isProductSame ,isReload}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const dataSneakers = useSelector(state => state.data.dataSneakers)
 
     const handleAddProduct = async (data) => {
         if (isProductSame) {
-            await isReloads()
+            await isReload()
         }
         await dispatch(setProduct(data))
-        await navigate(`/detailProduct`,{
-            state: 'asasasassas'
-        })
+        await navigate(`/detailProduct`)
         await window.scrollTo(0, 0)
         
     }

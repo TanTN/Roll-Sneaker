@@ -1,8 +1,8 @@
-import DetailProduct from '../page/detaiilProduct/DetailProduct';
+import DetailProduct from '../page/detaiilProduct';
 import Login from '../page/Login';
-import Main from '../page/main/Main';
+import Main from '../page/main';
 import Register from '../page/Register';
-import Buy from '../page/buy/Buy';
+import Buy from '../page/buy';
 import NotFound from '../page/NotFound';
 
 const routes = {

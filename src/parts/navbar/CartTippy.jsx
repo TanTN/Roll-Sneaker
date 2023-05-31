@@ -5,8 +5,8 @@ import Tippy from '@tippyjs/react/headless';
 
 import { AiFillCloseSquare } from 'react-icons/ai';
 
-import { updateUser } from '../../../axios/axios';
-import { setProduct, setReloadClickCart, setUserCurrent } from '../../../redux/reducer';
+import { updateUser } from '@/services/userService';
+import { setProduct, setReloadClickCart, setUserCurrent, setIsAddProductSuccess } from '@/store/reducer';
 
 const CartTippy = ({ children, hideTippy, clickHideCart }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -50,7 +50,7 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
         setTippyPc(false);
     }, [tippyPc]);
 
-    const handleDeleteProduct = async (value) => {
+    const handleDeleteProduct = (value) => {
         const newProducts = userCurrent.products.filter(
             (product) => product.name !== value.name || product.size !== value.size,
         );
@@ -60,27 +60,28 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
             products: [...newProducts],
         };
         if (isLogin) {
-            await updateUser(newUser);
+            updateUser(newUser);
         }
-        await dispatch(setUserCurrent(newUser));
+        dispatch(setUserCurrent(newUser));
     };
 
-    const handleFixProduct = async (product) => {
-        await dispatch(setProduct(product));
-        await clickHideCart();
-        await dispatch(setReloadClickCart(Math.random() * 100));
-        await setTippyPc(true);
-        await navigate('/detailProduct');
-        await window.scrollTo(0, 0);
+    const handleFixProduct = (product) => {
+        dispatch(setProduct(product));
+        clickHideCart();
+        dispatch(setReloadClickCart(Math.random() * 100));
+        dispatch(setIsAddProductSuccess(false))
+        setTippyPc(true);
+        navigate('/detailProduct');
+        window.scrollTo(0, 0);
     };
 
     const isTippy = isMobile ? { visible: hideTippy, offset: [0, 20] } : { offset: [0, 30] };
     const isTippyPc = !isMobile && tippyPc ? { visible: false } : { trigger: 'mouseenter' };
-    const handleBuy = async () => {
-        await setTippyPc(true);
-        await clickHideCart();
-        await navigate('/buy');
-        await window.scrollTo(0, 0);
+    const handleBuy = () => {
+        setTippyPc(true);
+        clickHideCart();
+        navigate('/buy');
+        window.scrollTo(0, 0);
     };
 
     return (

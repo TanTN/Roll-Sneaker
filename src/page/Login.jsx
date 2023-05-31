@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { validateLogin } from '../axios/axios';
+import { validateLogin } from '@/services/validateFormService';
 
 const Login = () => {
     const navigate = useNavigate();

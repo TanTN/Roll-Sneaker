@@ -3,7 +3,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 
-import { setProduct } from '../../../redux/reducer'
+import { setProduct } from '@/store/reducer'
 
 
 const Adidas = () => {

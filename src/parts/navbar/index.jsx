@@ -10,11 +10,11 @@ import { IoPersonSharp, IoLogOutOutline, IoPersonAddSharp } from 'react-icons/io
 import { BsChevronDoubleUp } from 'react-icons/bs';
 
 import MenuNavbar from './MenuNavbar';
-import { setIsLogin, setUserCurrent } from '../../../redux/reducer';
+import { setIsLogin, setUserCurrent } from '@/store/reducer';
 import CartTippy from './CartTippy';
-import messenger from '../../../assets/images/messenger.png';
-import zalo from '../../../assets/images/Zalo.png';
-import { getDataSneaker } from '../../../axios/axios';
+import messenger from '@/assets/images/messenger.png';
+import zalo from '@/assets/images/Zalo.png';
+import getDataSneaker from '@/services/dataService';
 
 const Navbar = ({ setIsOverflow }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);

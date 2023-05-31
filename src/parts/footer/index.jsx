@@ -2,14 +2,14 @@ import React, { memo } from 'react';
 
 import { AiFillFacebook, AiFillYoutube } from 'react-icons/ai';
 import { IoMdShareAlt } from 'react-icons/io';
-import { CgPin,CgMail } from 'react-icons/cg';
+import { CgPin, CgMail } from 'react-icons/cg';
 import { FiPhoneCall } from 'react-icons/fi';
 import { ImFacebook } from 'react-icons/im';
 import { BsInstagram, BsTwitter, BsPinterest } from 'react-icons/bs';
 
-import { contact, otherSneaker, sneaker } from '../../../component/data/dataFooter';
-import imgAvatar from '../../../assets/images/avatar.jpg';
-import imgBlog from '../../../assets/images/blog.jpg';
+import { contact, otherSneaker, sneaker } from '../../data/dataFooter';
+import imgAvatar from '@/assets/images/avatar.jpg';
+import imgBlog from '@/assets/images/blog.jpg';
 
 const Footer = () => {
     return (

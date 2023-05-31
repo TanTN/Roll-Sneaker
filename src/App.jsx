@@ -3,11 +3,9 @@ import { Routes, Route, Navigate } from 'react-router';
 import { Fragment, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setMobile } from './redux/reducer';
-import pluginRouters from './routers/routers';  
-import LayoutDefault from './layout/layoutDefault/LayouDefault';
-import Main from './page/main/Main';
-import DetailProduct from './page/detaiilProduct/DetailProduct';
+import { setMobile } from '@/store/reducer';
+import pluginRouters from './routers';  
+import LayoutDefault from './layout/layoutDefault';
 
 
 function App() {

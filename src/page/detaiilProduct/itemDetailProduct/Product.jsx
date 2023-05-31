@@ -17,6 +17,8 @@ const Product = ({
     sizes,
     sizeActive,
     numberProduct,
+    isAddSuccess,
+    isUpdateProduct
 
 }) => {
 
@@ -108,18 +110,20 @@ const Product = ({
                         </div>
                         <div className="flex pt-4 pb-2">
                             <button
-                                className={`text-white py-2 px-4 text-[17px] font-medium ${
+                                className={`text-white py-[6px] px-3 text-[14px] font-medium ${
                                     isChecked
                                         ? 'bg-primary hover:bg-[#e24e4e] hover:transition hover:duration-[0.7s]'
                                         : 'bg-[#ad83a5] cursor-not-allowed'
                                 }`}
                                 onClick={handleAddProduct}
                             >
-                                THÊM VÀO GIỎ HÀNG
+                                {!isUpdateProduct && (isAddSuccess ? 'ĐÃ THÊM VÀO GIỎ HÀNG' : 'THÊM VÀO GIỎ HÀNG')}
+                                {isUpdateProduct && (isAddSuccess ? 'ĐÃ SỬA LAI SẢN PHẨM' : 'SỬA LAI SẢN PHẨM')}
+                            
                             </button>
                             <div className="pl-1">
                                 <button
-                                    className="bg-[#414141] text-white py-2 px-4 text-[17px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
+                                    className="bg-[#414141] text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
                                     onClick={handleBuy}
                                 >
                                     MUA NGAY

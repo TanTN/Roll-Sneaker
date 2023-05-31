@@ -5,9 +5,9 @@ import React, {useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import { HiOutlineArrowLeft } from 'react-icons/hi';
-import { AiFillCloseCircle } from 'react-icons/ai';
 
-import { postUser, validateRegister } from '../axios/axios';
+import { validateRegister } from '@/services/validateFormService';
+import { postUser } from '@/services/userService';
 
 const Register = () => {
     const navigate = useNavigate();
