@@ -22,12 +22,17 @@ export default {
                 fadeInTips: 'fadeInTips 0.6s linear',
                 fadeInSuccessPc: 'fadeInSuccessInPc .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
                 fadeInSuccess: 'fadeInSuccessIn .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
+                fadeInLoading: 'fadeInLoading .5s linear infinite'
             },
             keyframes: {
+                
+
+                // product hot
                 fadeIn: {
                     '0%': { opacity: '.5', transform: 'scale(1.2)' },
                     '100%': { opacity: '1', transform: 'scale(1)' },
                 },
+                // messenger fixed
                 fadeInMes1: {
                     '0%': { opacity: '1', transform: 'scale(0)' },
                     '50%': { opacity: '1', transform: 'scale(0.9)' },
@@ -38,6 +43,8 @@ export default {
                     '50%': { opacity: '1', transform: 'scale(0)' },
                     '100%': { opacity: '.2', transform: 'scale(1.3)' },
                 },
+
+                // icon search tips
                 fadeInTips: {
                     '0%': { opacity: '0.6', transform: 'translateY(10%)' },
                     '100%': { opacity: '1', transform: 'translateY(-35%)' },
@@ -46,6 +53,8 @@ export default {
                     '0%': { opacity: '0', transform: 'translateX(80%)' },
                     '100%': { opacity: '1', transform: 'translateX(8%)' },
                 },
+
+                // all messages
                 fadeInSuccessIn: {
                     '0%': { opacity: '0', transform: 'translateX(80%)' },
                     '100%': { opacity: '1', transform: 'translateX(4%)' },
@@ -53,6 +62,11 @@ export default {
                 fadeInSuccessOut: {
                     '0%': { opacity: '1' },
                     '100%': { opacity: '0' },
+                },
+                // Loading
+                fadeInLoading: {
+                    '0%' : { transform: 'translateX(0)' },
+                    '100%' : { transform: 'translateX(1400%)' },
                 },
             },
             dropShadow: {

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AiFillCloseSquare } from 'react-icons/ai';
 
 import { updateUser } from '@/services/userService';
-import { setUserCurrent } from '@/store/reducer';
+import { setUserCurrent } from '@/store/reducerStore';
 import allPriceUtils from '@/utils/allPriceUtils';
 
 const ProductBuy = ({ setPriceCart, setAllPrice }) => {

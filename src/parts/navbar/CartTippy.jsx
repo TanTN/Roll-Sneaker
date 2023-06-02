@@ -6,7 +6,7 @@ import Tippy from '@tippyjs/react/headless';
 import { AiFillCloseSquare } from 'react-icons/ai';
 
 import { updateUser } from '@/services/userService';
-import { setProduct, setReloadClickCart, setUserCurrent, setIsAddProductSuccess } from '@/store/reducer';
+import { setProduct, setReloadClickCart, setUserCurrent, setIsAddProductSuccess } from '@/store/reducerStore';
 import priceUtil from '@/utils/priceUtil';
 
 const CartTippy = ({ children, hideTippy, clickHideCart }) => {

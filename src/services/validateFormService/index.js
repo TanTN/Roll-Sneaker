@@ -1,4 +1,4 @@
-import { setIsLogin, setUserCurrent } from '@/store/reducer';
+import { setIsLogin, setUserCurrent } from '@/store/reducerStore';
 import axios from 'axios';
 
 const baseURL = import.meta.env.VITE_BASE_URL;

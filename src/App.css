@@ -35,6 +35,9 @@
     .toast-messgae {
         @apply bg-[#ffffff] mb-[10px] relative flex items-center text-[#797979] py-[10px] pl-[18px] pr-[34px] rounded-[4px] border-[1px] border-l-[4px] border-primary animate-fadeInSuccessPc
     }
+    .loading {
+        @apply relative w-[100%] h-[170px] md:h-[255px] border-[1px] rounded-md overflow-hidden bg-[#f0f0f0] border-[#f1f1f1] before:content-[''] before:h-[400px] before:w-[20px] before:top-[-10%] before:bg-[#ffffff] before:blur-[2px] before:absolute before:drop-shadow-[-15px_0_8px_white] before:animate-fadeInLoading
+    }
     
 }
 

@@ -3,10 +3,12 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 
-import { setProduct } from '@/store/reducer'
+import { setProduct } from '@/store/reducerStore'
+import Loading from '../../../components/loading'
 
 const Mlb = () => {
     const dataMlbs = useSelector(state => state.data.dataMlbs)
+    const isLoading = useSelector(state => state.data.dataPending)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -18,13 +20,15 @@ const Mlb = () => {
     }
   return (
     <div className='overflow-hidden mb-[50px] md:mb-[70px]'>
-        <h1 className='text-center mb-[8px] md:mb-[20px] md:text-[30px]'>GIÀY MLB</h1>
+        <h1 className='text-center mb-[8px] md:mb-[20px]'>GIÀY MLB</h1>
         <div className='text-center font-semibold text-base md:pb-[15px] md:text-xl'>
             <span className='border-b-[1px] pb-u border-[#ce1111] text-[#ce1111]'>GIÀY MLB</span>
             
         </div>
         <div className='grid gap-5 grid-cols-2 pt-5 md:grid-cols-4 md:gap-10'>
-            {dataMlbs.map((data,index) => 
+
+            {isLoading ? <Loading />
+            : dataMlbs.map((data,index) => 
                 <div key={index}>
                     <div className='relative cursor-pointer' onClick={() => handleAddProduct(data)}>
                         <div className='mx-[-13px] md:mx-[-38px]'>

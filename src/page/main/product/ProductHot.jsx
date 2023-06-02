@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 
 import { dataProductSame } from '@/data/dataProductSame'
-import { setProduct } from '@/store/reducer'
+import { setProduct } from '@/store/reducerStore'
+import Loading from '../../../components/loading'
 
 const ProductHot = ({isProductSame ,isReload}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const dataSneakers = useSelector(state => state.data.dataSneakers)
+    const isLoading = useSelector(state => state.data.dataPending)
 
     const handleAddProduct = async (data) => {
         if (isProductSame) {
@@ -25,7 +27,9 @@ const ProductHot = ({isProductSame ,isReload}) => {
     <div className='mb-[50px] overflow-hidden md:mb-[70px]'>
         <h1 className='text-center mb-[20px] md:mb-[40px]'>{isProductSame ? 'SẢN PHẨM TƯƠNG TỰ': 'PHẨM BÁN CHẠY'}</h1>
         <div className='grid gap-5 grid-cols-2 md:grid-cols-4 md:gap-10'>
-            {dataProductHot.map((data,index) => 
+            
+            {isLoading ? <Loading />
+            : dataProductHot.map((data,index) => 
                 <div key={index}>
                     <div className='group/item relative overflow-hidden cursor-pointer' onClick={() => handleAddProduct(data)}>
                         <div className='md:py-4'>
@@ -53,8 +57,10 @@ const ProductHot = ({isProductSame ,isReload}) => {
                         <span className='text-[14px] pl-2 font-semibold line-through text-[#adadad] md:text-[16px] md:pl-5'>{data.priceDropped}<span className='underline'>đ</span></span>
                     </div>
                 </div>
-            )}
+                )
+            }
         </div>
+        
     </div>
   )
 }

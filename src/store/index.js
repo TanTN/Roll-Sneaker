@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 
 
-import reducers from './reducer'
+import reducers from './reducerStore'
 
 import reducersData from './reducerData'
 

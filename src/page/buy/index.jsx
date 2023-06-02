@@ -9,7 +9,7 @@ import { AiOutlineHome, AiFillCheckCircle } from 'react-icons/ai';
 import { getDistrict, getProvince, getWard} from '@/services/provinceService';
 import { updateUser } from '@/services/userService';
 import ProductBuy from './itemBuy/ProductBuy';
-import { setUserCurrent } from '@/store/reducer';
+import { setUserCurrent } from '@/store/reducerStore';
 import FormAddress from './itemBuy/FormAddress';
 
 const Buy = () => {

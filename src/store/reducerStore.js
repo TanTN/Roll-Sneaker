@@ -11,21 +11,21 @@ const storeSlice = createSlice({
         isAddProductSuccess:false
     },
     reducers: {
-        setMobile: (state, option) => ({ ...state, isMobile: option.payload }),
-        setUserCurrent: (state, option) => {
-            state.userCurrent = option.payload;
+        setMobile: (state, action) => ({ ...state, isMobile: action.payload }),
+        setUserCurrent: (state, action) => {
+            state.userCurrent = action.payload;
         },
-        setIsLogin: (state, option) => {
-            state.isLogin = option.payload;
+        setIsLogin: (state, action) => {
+            state.isLogin = action.payload;
         },
-        setProduct: (state, option) => {
-            state.viewProduct = option.payload;
+        setProduct: (state, action) => {
+            state.viewProduct = action.payload;
         },
-        setReloadClickCart: (state, option) => {
-            state.isReloadClickCart = option.payload;
+        setReloadClickCart: (state, action) => {
+            state.isReloadClickCart = action.payload;
         },
-        setIsAddProductSuccess: (state, option) => {
-            state.isAddProductSuccess = option.payload;
+        setIsAddProductSuccess: (state, action) => {
+            state.isAddProductSuccess = action.payload;
         }
     },
 });

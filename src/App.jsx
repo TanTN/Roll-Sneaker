@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router';
 import { Fragment, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setMobile } from '@/store/reducer';
+import { setMobile } from '@/store/reducerStore';
 import pluginRouters from './routers';  
 import LayoutDefault from './layout/layoutDefault';
 

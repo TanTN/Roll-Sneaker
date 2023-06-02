@@ -10,12 +10,11 @@ import { IoPersonSharp, IoLogOutOutline, IoPersonAddSharp } from 'react-icons/io
 import { BsChevronDoubleUp } from 'react-icons/bs';
 
 import MenuNavbar from './MenuNavbar';
-import { setIsLogin, setUserCurrent } from '@/store/reducer';
+import { setIsLogin, setUserCurrent,setIsAddProductSuccess } from '@/store/reducerStore';
 import CartTippy from './CartTippy';
 import messenger from '@/assets/images/messenger.png';
 import zalo from '@/assets/images/Zalo.png';
-import getDataSneaker from '@/services/dataService';
-import { setIsAddProductSuccess } from '@/store/reducer';
+import { fetchApiData } from '@/store/reducerData';
 
 const Navbar = ({ setIsOverflow }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -29,8 +28,7 @@ const Navbar = ({ setIsOverflow }) => {
     const [isScroll, setIsScroll] = useState(false);
     const [isMenu, setIsMenu] = useState(false);
     const [hideTippy, setHideTippy] = useState(false);
-
-    
+   
     useEffect(() => {
         const handleScroll = () => {
             if (document.documentElement.scrollTop > 86) {
@@ -55,7 +53,7 @@ const Navbar = ({ setIsOverflow }) => {
     };
 
     useEffect(() => {
-        getDataSneaker(dispatch);
+    dispatch(fetchApiData());
     }, []);
 
     const handleSignout = () => {

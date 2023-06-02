@@ -4,12 +4,11 @@ import { useNavigate, useLocation } from 'react-router';
 import { memo } from 'react';
 
 import { updateUser } from '@/services/userService';
-import { setUserCurrent } from '@/store/reducer';
 import ProductHot from '@/page/main/product/ProductHot';
 import Tips from '@/page/main/product/Tips';
 import dataSizes from '@/data/dataSizes';
 import Product from './itemDetailProduct/Product';
-import { setIsAddProductSuccess } from '../../store/reducer';
+import { setIsAddProductSuccess, setUserCurrent } from '@/store/reducerStore';
 
 const DetailProduct = () => {
     const { pathname } = useLocation();

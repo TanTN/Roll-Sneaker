@@ -88,7 +88,8 @@ const MenuNavbar = ({ isMenu, clickMenu, isScroll }) => {
                                     {data.subs?.map((sub, index) => (
                                         <li
                                             key={index}
-                                            className={`pl-3 leading-[50px] grow text-[16px] font-semibold border-b-[1px] cursor-pointer border-[#4d4c4c9f] bg-[#2e2e2e9f] ${
+                                            className={`pl-3 leading-[50px] grow text-[16px] font-semibold border-b-[1px] cursor-pointer border-[#4d4c4c9f] bg-[#2e2e2e9f] 
+                                            ${
                                                 index === 0 ? 'lg:border-t-[1px]' : ''
                                             } lg:px-3 lg:border-[#d6d6d6] lg:leading-[40px] lg:w-[100%] lg:text-[14px] lg:bg-white`}
                                         >
