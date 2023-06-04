@@ -25,7 +25,7 @@ const dataSlice = createSlice({
         dataRejected: false,
         
     },
-
+    
     extraReducers: (builder) => {
         builder.addCase(fetchApiData.pending, (state) => {
             state.dataPending = true
@@ -40,10 +40,11 @@ const dataSlice = createSlice({
 
         }
         )
-        builder.addCase(fetchApiData.rejected, (state,action) => {
+        builder.addCase(fetchApiData.rejected, (state) => {
             state.dataRejected = true
         })
     }
 })
+
 
 export default dataSlice.reducer

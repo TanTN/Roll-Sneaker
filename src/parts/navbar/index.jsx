@@ -10,11 +10,11 @@ import { IoPersonSharp, IoLogOutOutline, IoPersonAddSharp } from 'react-icons/io
 import { BsChevronDoubleUp } from 'react-icons/bs';
 
 import MenuNavbar from './MenuNavbar';
-import { setIsLogin, setUserCurrent,setIsAddProductSuccess } from '@/store/reducerStore';
+import { setIsLogin, setUserCurrent } from '@/store/reducerStore';
 import CartTippy from './CartTippy';
 import messenger from '@/assets/images/messenger.png';
 import zalo from '@/assets/images/Zalo.png';
-import { fetchApiData } from '@/store/reducerData';
+import { setIsAddProductSuccess } from '@/store/reducerStore';
 
 const Navbar = ({ setIsOverflow }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -52,9 +52,6 @@ const Navbar = ({ setIsOverflow }) => {
         setIsShowPerson(!isShowPerson);
     };
 
-    useEffect(() => {
-    dispatch(fetchApiData());
-    }, []);
 
     const handleSignout = () => {
         dispatch(setUserCurrent({ products: [] }));
@@ -85,8 +82,6 @@ const Navbar = ({ setIsOverflow }) => {
             navigate('/');
             window.scrollTo(0, 0);
         }
-        dispatch(setIsAddProductSuccess(false));
-
     }
 
     const tippy = isMobile ? { visible: isShowPerson, offset: [0, 20] } : { trigger: 'mouseenter', offset: [0, 30] };

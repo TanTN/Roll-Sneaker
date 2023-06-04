@@ -9,9 +9,8 @@ const priceUtil = (userCurrent) => {
         // all price products
         let allPrices;
         const allPrice = userCurrent.products.reduce((all, product) => {
-            all = all + parseInt(product.price.replace(/\./g,'')) * product.numberProducts;
+            return all + parseInt(product.price.replace(/\./g,'')) * product.numberProducts;
 
-            return all;
         }, 0);
 
         if (allPrice.toString().length < 7) {

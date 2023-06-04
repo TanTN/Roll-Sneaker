@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from 'react-slick';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { memo } from 'react';
 
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi';
@@ -12,9 +12,18 @@ import Mlb from './product/Mlb';
 import Personal from './product/Personal';
 import Tips from './product/Tips';
 import imagesPoster from '../../data/dataImagesPoster';
+import { fetchApiData} from '@/store/reducerData';
+import { setIsAddProductSuccess } from '../../store/reducerStore';
 
 const Main = () => {
     const isMobile = useSelector((state) => state.store.isMobile);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchApiData());
+        dispatch(setIsAddProductSuccess(false));
+
+    },[]);
 
     const SamplePrevArrow = ({ onClick }) => {
         return (

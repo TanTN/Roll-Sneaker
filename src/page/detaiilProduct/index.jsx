@@ -8,7 +8,7 @@ import ProductHot from '@/page/main/product/ProductHot';
 import Tips from '@/page/main/product/Tips';
 import dataSizes from '@/data/dataSizes';
 import Product from './itemDetailProduct/Product';
-import { setIsAddProductSuccess, setUserCurrent } from '@/store/reducerStore';
+import { setUserCurrent,setIsAddProductSuccess } from '@/store/reducerStore';
 
 const DetailProduct = () => {
     const { pathname } = useLocation();
@@ -55,6 +55,7 @@ const DetailProduct = () => {
             setIsProduct(false);
         }
     }, [pathname]);
+
 
     const isReload = () => {
         setIsChecked(false);
@@ -156,12 +157,14 @@ const DetailProduct = () => {
         }
     };
     const handleBuy = () => {
+        if (!isChecked && isAddSuccess) {
+            return navigate(`/buy`);
+        }
         if (!isChecked) {
             alert('Chọn các tùy chọn cho sản phẩm trước khi bạn thanh toán.');
         } else {
             handleBuyOrAddProduct();
-            navigate(`/buy`);
-            dispatch(setIsAddProductSuccess(false));
+            return navigate(`/buy`);
         }
     };
     const handleAddProduct = () => {
@@ -187,7 +190,6 @@ const DetailProduct = () => {
             navigate('/');
             window.scrollTo(0, 0);
         }
-        dispatch(setIsAddProductSuccess(false));
     };
 
     return (

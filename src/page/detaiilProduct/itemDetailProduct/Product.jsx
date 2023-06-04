@@ -121,15 +121,25 @@ const Product = ({
                                 {isUpdateProduct && (isAddSuccess ? 'ĐÃ SỬA LAI SẢN PHẨM' : 'SỬA LAI SẢN PHẨM')}
                             
                             </button>
-                            <div className="pl-1">
-                                <button
-                                    className="bg-[#414141] text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
-                                    onClick={handleBuy}
-                                >
-                                    MUA NGAY
-                                </button>
-                            </div>
+                            
+                            <button
+                                className="bg-[#414141] ml-1 text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
+                                onClick={handleBuy}
+                            >
+                                MUA NGAY
+                            </button>
                         </div>
+                            {isAddSuccess && 
+                                <div>
+                                    <button
+                                        className="bg-[#52b4cc] text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
+                                        onClick={handleBackHome}
+                                    >
+                                        QUAY TRỞ LẠI CỬA HÀNG
+                                    </button>
+                                </div>
+                            }
+
 
                         <div className="border-[1px] border-dashed border-primary p-[15px] mt-3">
                             <p className="text-[18px] font-bold">

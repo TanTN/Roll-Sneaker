@@ -11,6 +11,7 @@ import { updateUser } from '@/services/userService';
 import ProductBuy from './itemBuy/ProductBuy';
 import { setUserCurrent } from '@/store/reducerStore';
 import FormAddress from './itemBuy/FormAddress';
+import { setIsAddProductSuccess } from '@/store/reducerStore';
 
 const Buy = () => {
     const user = useSelector((state) => state.store.userCurrent);
@@ -45,6 +46,11 @@ const Buy = () => {
     useEffect(() => {
         setTimeout(() => setIsBuySuccess(false), 7000);
     }, [isBuySuccess]);
+
+    useEffect(() => {
+        dispatch(setIsAddProductSuccess(false));
+
+    },[])
 
     const {
         control,
