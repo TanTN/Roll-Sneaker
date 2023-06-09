@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { validateLogin } from '@/services/validateFormService';
 
+import { AiOutlineLoading } from 'react-icons/ai';
+
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -72,8 +74,14 @@ const Login = () => {
                                     )}
                                     <button
                                         type="submit"
-                                        className="mx-auto border-[2px] border-[#ecc813] min-w-[100%] leading-[40px] text-[#ecc813] text-lg rounded-[4px] hover:bg-[#ecc813] hover:text-white"
+                                        className="mx-auto flex justify-center items-center border-[2px] border-[#ecc813] min-w-[100%] leading-[40px] text-[#ecc813] text-lg rounded-[4px] hover:bg-[#ecc813] hover:text-white"
                                     >
+                                        {formik.isSubmitting &&
+                                        <div className='pr-2'>
+                                            <AiOutlineLoading className="animate-fadeInLoadingLoginAndRegister"/>
+                                        </div>
+                                        
+                                        }
                                         Sign in
                                     </button>
                                 </div>
@@ -82,7 +90,8 @@ const Login = () => {
                                     <span
                                         className="font-semibold pl-2 cursor-pointer"
                                         onClick={() => navigate('/register')}
-                                    >
+                                    >   
+                                        
                                         Sign up
                                     </span>
                                 </div>

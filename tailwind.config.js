@@ -22,7 +22,8 @@ export default {
                 fadeInTips: 'fadeInTips 0.6s linear',
                 fadeInSuccessPc: 'fadeInSuccessInPc .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
                 fadeInSuccess: 'fadeInSuccessIn .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
-                fadeInLoading: 'fadeInLoading .5s linear infinite'
+                fadeInLoading: 'fadeInLoading .5s linear infinite',
+                fadeInLoadingLoginAndRegister:'fadeInLoadingLoginAndRegister .5s linear infinite'
             },
             keyframes: {
                 
@@ -63,10 +64,15 @@ export default {
                     '0%': { opacity: '1' },
                     '100%': { opacity: '0' },
                 },
-                // Loading
+                // Loading data
                 fadeInLoading: {
                     '0%' : { transform: 'translateX(0)' },
                     '100%' : { transform: 'translateX(1400%)' },
+                },
+                // Loading login and register
+                fadeInLoadingLoginAndRegister: {
+                    '0%' : { transform: 'rotate(0deg)' },
+                    '100%' : { transform: 'rotate(360deg)' },
                 },
             },
             dropShadow: {

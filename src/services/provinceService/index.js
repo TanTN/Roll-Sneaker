@@ -16,4 +16,6 @@ const getWard = async (code) => {
     const res = await axios.get(`https://provinces.open-api.vn/api/d/${code}?depth=2`);
     return res.data;
 };
+
 export { getProvince, getDistrict, getWard }
+

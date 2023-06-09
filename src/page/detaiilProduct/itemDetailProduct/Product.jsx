@@ -18,10 +18,8 @@ const Product = ({
     sizeActive,
     numberProduct,
     isAddSuccess,
-    isUpdateProduct
-
+    isUpdateProduct,
 }) => {
-
     const productView = useSelector((state) => state.store.viewProduct);
 
     return (
@@ -51,22 +49,23 @@ const Product = ({
                             </span>
                         </div>
                         <div className="flex py-3 md:items-center">
-                            <div className='relative md:leading-0 leading-[33px]'>
+                            <div className="relative md:leading-0 leading-[33px]">
                                 <p className="font-semibold pb-2">SIZE:</p>
                                 {isChecked && (
-                                    <p className="text-c1 cursor-pointer absolute left-0 top-[35px] md:top-[26px]" onClick={handleClearSize}>
+                                    <p
+                                        className="text-c1 cursor-pointer absolute left-0 top-[35px] md:top-[26px]"
+                                        onClick={handleClearSize}
+                                    >
                                         Xóa
                                     </p>
                                 )}
                             </div>
                             <div className="flex pl-6 flex-wrap">
                                 {sizes.map((data, index) => (
-                                    <div key={index} className='pl-2 pb-2'>
+                                    <div key={index} className="pl-2 pb-2">
                                         <div
                                             className={`flex cursor-pointer w-[40px] border-[1px] border-[#ccc] ${
-                                                sizeActive === index
-                                                    ? 'border-[1px] border-primary'
-                                                    : ''
+                                                sizeActive === index ? 'border-[1px] border-primary' : ''
                                             }`}
                                         >
                                             <label
@@ -89,7 +88,7 @@ const Product = ({
                                 ))}
                             </div>
                         </div>
-                        
+
                         <div className="text-[18px] mt-2">
                             <p className="">
                                 <span>Số lượng:</span>
@@ -119,27 +118,25 @@ const Product = ({
                             >
                                 {!isUpdateProduct && (isAddSuccess ? 'ĐÃ THÊM VÀO GIỎ HÀNG' : 'THÊM VÀO GIỎ HÀNG')}
                                 {isUpdateProduct && (isAddSuccess ? 'ĐÃ SỬA LAI SẢN PHẨM' : 'SỬA LAI SẢN PHẨM')}
-                            
                             </button>
-                            
+
                             <button
                                 className="bg-[#414141] ml-1 text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
                                 onClick={handleBuy}
                             >
-                                MUA NGAY
+                                {isAddSuccess ? 'THANH TOÁN' : 'MUA NGAY'}
                             </button>
                         </div>
-                            {isAddSuccess && 
-                                <div>
-                                    <button
-                                        className="bg-[#52b4cc] text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
-                                        onClick={handleBackHome}
-                                    >
-                                        QUAY TRỞ LẠI CỬA HÀNG
-                                    </button>
-                                </div>
-                            }
-
+                        {isAddSuccess && (
+                            <div>
+                                <button
+                                    className="bg-[#52b4cc] text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
+                                    onClick={handleBackHome}
+                                >
+                                    QUAY TRỞ LẠI CỬA HÀNG
+                                </button>
+                            </div>
+                        )}
 
                         <div className="border-[1px] border-dashed border-primary p-[15px] mt-3">
                             <p className="text-[18px] font-bold">

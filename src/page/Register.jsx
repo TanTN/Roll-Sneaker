@@ -1,54 +1,54 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router';
-import React, {useRef } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { HiOutlineArrowLeft } from 'react-icons/hi';
+import { AiOutlineLoading } from 'react-icons/ai';
 
 import { validateRegister } from '@/services/validateFormService';
 import { postUser } from '@/services/userService';
+import { validateLogin } from '@/services/validateFormService';
 
 const Register = () => {
     const navigate = useNavigate();
-    const root = useRef()
+    const dispatch = useDispatch()
+    const root = useRef();
 
     const user = useSelector((state) => state.store.userCurrent);
     const isLogin = useSelector((state) => state.store.isLogin);
 
-
-    const handleAddMessage = (content) => {
-        const main = root.current
+    const handleAddMessage = (content,isRegisterSuccess) => {
+        const main = root.current;
         if (main) {
+            const toast = document.createElement('div');
 
-            const toast = document.createElement('div')
-            
-            const clearSetTimeout = setTimeout(() => main.removeChild(toast),3600)
+            const clearSetTimeout = setTimeout(() => main.removeChild(toast), 3600);
 
             toast.onclick = (e) => {
                 if (e.target.closest('.close')) {
-                    main.removeChild(toast)
-                    clearTimeout(clearSetTimeout)
+                    main.removeChild(toast);
+                    clearTimeout(clearSetTimeout);
                 }
-            }
+            };
             toast.innerHTML = `
-            <div class='text-primary pr-3'>
+            <div class=${isRegisterSuccess ? 'text-[#3DDC84]' : 'text-primary'}>
                 <i class="fa-solid fa-circle-xmark"></i>
             </div>
-            <div>
-                <p class='text-primary font-medium'>Error</p>
+            <div class='ml-3'>
+                <p class=${isRegisterSuccess ? 'text-[#3DDC84] font-medium' : 'text-primary font-medium'}>Error</p>
                 <p class='text-sm font-normal'>${content}</p>
             </div>
             <div class='close absolute top-1 right-2'>
                 <i class="fa-solid fa-xmark text-gray-400"></i>
             </div>
-            `
-            toast.classList.add('toast-messgae')
-            main.appendChild(toast)
-            
-            
+            `;
+            toast.classList.add('toast-messgae');
+            toast.classList.add(`${isRegisterSuccess && 'border-[#3DDC84]'}`);
+            main.appendChild(toast);
         }
-    }
+    };
 
     const handleBack = () => {
         if (isLogin) {
@@ -96,16 +96,21 @@ const Register = () => {
 
                 if (isEmail && isUsername) {
                     await postUser({ ...values, products: [], information: {} });
-                    await navigate('/login');
+                    const isLogin = await validateLogin({ ...values},dispatch)
+                    if(isLogin) {
+                        handleAddMessage('Bạn đã đăng kí tài khoản thành công',true);
+                        setTimeout(() => navigate(`/user/${user.username}`),3000)
+                    }
+                    
                 }
+                console.log('email:',isEmail, 'name' ,isUsername)
 
                 if (!isEmail && !isUsername) {
                     handleAddMessage('Username đã tồn tại');
                 } else {
                     if (!isEmail) {
                         handleAddMessage('Email đã được đăng kí');
-                    }
-                    else {
+                    } else if (!isUsername) {
                         handleAddMessage('Username đã tồn tại');
                     }
                 }
@@ -126,10 +131,8 @@ const Register = () => {
                             Sign Up
                         </div>
                         <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
-                            <div className='fixed top-[5%] right-[2%]' ref={root}>
+                            <div className="fixed top-[5%] right-[2%]" ref={root}></div>
 
-                            </div>
-                            
                             <Form>
                                 <div className="mb-[10px] text-sm">
                                     <label htmlFor="username">Username</label>
@@ -184,9 +187,14 @@ const Register = () => {
                                 <div className="flex w-[100%] mt-[50px]">
                                     <button
                                         type="submit"
-                                        className="mx-auto border-[2px] border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-lg rounded-[4px] hover:bg-[#139cec] hover:text-white"
+                                        className="mx-auto flex justify-center items-center border-[2px] relative border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-lg rounded-[4px] hover:bg-[#139cec] hover:text-white"
                                     >
-                                        {/* {formik.isSubmitting && <div>Loading</div>} */}
+                                        {formik.isSubmitting &&
+                                        <div className='pr-2'>
+                                            <AiOutlineLoading className="animate-fadeInLoadingLoginAndRegister"/>
+                                        </div>
+                                        
+                                        }
                                         Sign up
                                     </button>
                                 </div>
