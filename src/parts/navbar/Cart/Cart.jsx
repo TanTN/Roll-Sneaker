@@ -9,7 +9,7 @@ import { updateUser } from '@/services/userService';
 import { setProduct, setReloadClickCart, setUserCurrent, setIsAddProductSuccess } from '@/store/reducerStore';
 import priceUtil from '@/utils/priceUtil';
 
-const CartTippy = ({ children, hideTippy, clickHideCart }) => {
+const Cart = ({ children, hideTippy, clickHideCart }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isMobile = useSelector((state) => state.store.isMobile);
     const isLogin = useSelector((state) => state.store.isLogin);
@@ -19,8 +19,8 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
 
     const [tippyPc, setTippyPc] = useState(false);
 
-    const price = priceUtil(userCurrent)
-    
+    const price = priceUtil(userCurrent);
+
     useEffect(() => {
         setTippyPc(false);
     }, [tippyPc]);
@@ -44,7 +44,7 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
         dispatch(setProduct(product));
         clickHideCart();
         dispatch(setReloadClickCart(Math.random() * 100));
-        dispatch(setIsAddProductSuccess(false))
+        dispatch(setIsAddProductSuccess(false));
         setTippyPc(true);
         navigate('/detailProduct');
         window.scrollTo(0, 0);
@@ -157,4 +157,4 @@ const CartTippy = ({ children, hideTippy, clickHideCart }) => {
     );
 };
 
-export default CartTippy;
+export default Cart;

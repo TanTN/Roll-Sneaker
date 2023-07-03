@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { BsXLg, BsChevronDown } from 'react-icons/bs';
 import { FaAngleDown } from 'react-icons/fa';
 
-import dataMenuNavbars from '../../data/dataMenuNavbar';
+import dataMenuNavbars from '../../../data/dataMenuNavbar';
 
 const MenuNavbar = ({ isMenu, clickMenu, isScroll }) => {
     const isMobile = useSelector((state) => state.store.isMobile);

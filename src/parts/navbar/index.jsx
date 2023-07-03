@@ -1,5 +1,4 @@
 import React, { memo, useEffect, useState } from 'react';
-import { animateScroll as scroll } from 'react-scroll';
 import Tippy from '@tippyjs/react/headless';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -7,14 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { BsCartDash } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
 import { IoPersonSharp, IoLogOutOutline, IoPersonAddSharp } from 'react-icons/io5';
-import { BsChevronDoubleUp } from 'react-icons/bs';
 
-import MenuNavbar from './MenuNavbar';
+import MenuNavbar from './MenuNavbar/MenuNavbar';
 import { setIsLogin, setUserCurrent } from '@/store/reducerStore';
-import CartTippy from './CartTippy';
-import messenger from '@/assets/images/messenger.png';
-import zalo from '@/assets/images/Zalo.png';
-import { setIsAddProductSuccess } from '@/store/reducerStore';
+import Cart from './Cart/Cart';
+
+import CSKH from './CSKH/CSKH';
 
 const Navbar = ({ setIsOverflow }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -28,7 +25,7 @@ const Navbar = ({ setIsOverflow }) => {
     const [isScroll, setIsScroll] = useState(false);
     const [isMenu, setIsMenu] = useState(false);
     const [hideTippy, setHideTippy] = useState(false);
-   
+
     useEffect(() => {
         const handleScroll = () => {
             if (document.documentElement.scrollTop > 86) {
@@ -51,7 +48,6 @@ const Navbar = ({ setIsOverflow }) => {
     const handleShowPerson = () => {
         setIsShowPerson(!isShowPerson);
     };
-
 
     const handleSignout = () => {
         dispatch(setUserCurrent({ products: [] }));
@@ -82,33 +78,14 @@ const Navbar = ({ setIsOverflow }) => {
             navigate('/');
             window.scrollTo(0, 0);
         }
-    }
+    };
 
     const tippy = isMobile ? { visible: isShowPerson, offset: [0, 20] } : { trigger: 'mouseenter', offset: [0, 30] };
 
-
     return (
         <>
-            {isScroll && (
-                <div
-                    className="fixed flex justify-center items-center z-[100] bottom-[138px] right-[25px] w-[40px] h-[40px] bg-[#474747ab] rounded-[50%] cursor-pointer md:hover:bg-[#333333c5]"
-                    onClick={() => scroll.scrollToTop(0)}
-                >
-                    <BsChevronDoubleUp className="text-[20px] text-[#ccc]" />
-                </div>
-            )}
-            <div className="fixed z-[100] bottom-[88px] right-[25px] w-[40px] h-[40px] cursor-pointer">
-                <img src={zalo} alt="zalo" />
-            </div>
-            <div className="fixed z-[100] bottom-4 right-4 w-[56px] h-[56px] cursor-pointer">
-                <img
-                    className="absolute top-0 left-0 z-50 border-[1px] border-[#fff] rounded-[50%]"
-                    src={messenger}
-                    alt="messenger"
-                />
-                <div className="absolute top-0 left-0 z-10 w-[100%] h-[100%] bg-[#666666] rounded-[50%] animate-fadeInMes1"></div>
-                <div className="absolute top-0 left-0 z-20 w-[100%] h-[100%] bg-[#666666] rounded-[50%] animate-fadeInMes2"></div>
-            </div>
+            <CSKH isScroll={isScroll} />
+
             <div
                 id="navbar"
                 className="fixed h-[70px] top-0 left-0 right-0 pb-[5px] border-b-2 border-[#e4e4e4] z-30 bg-white md:h-[90px] lg:static"
@@ -125,7 +102,7 @@ const Navbar = ({ setIsOverflow }) => {
                         />
                     </div>
                     <div className="flex justify-end">
-                        <CartTippy hideTippy={hideTippy} clickHideCart={handleClinkHideCart}>
+                        <Cart hideTippy={hideTippy} clickHideCart={handleClinkHideCart}>
                             <div
                                 className="relative cursor-pointer px-[12px] md:px-[20px] select-none"
                                 onClick={handleClinkHideCart}
@@ -135,7 +112,7 @@ const Navbar = ({ setIsOverflow }) => {
                                     {userCurrent.products.length > 0 ? userCurrent.products.length : 0}
                                 </div>
                             </div>
-                        </CartTippy>
+                        </Cart>
 
                         <div>
                             <Tippy

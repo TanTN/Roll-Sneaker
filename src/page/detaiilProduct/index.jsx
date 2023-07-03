@@ -8,7 +8,7 @@ import ProductHot from '@/page/main/product/ProductHot';
 import Tips from '@/page/main/product/Tips';
 import dataSizes from '@/data/dataSizes';
 import Product from './itemDetailProduct/Product';
-import { setUserCurrent,setIsAddProductSuccess } from '@/store/reducerStore';
+import { setUserCurrent,setIsAddProductSuccess,setProduct } from '@/store/reducerStore';
 
 const DetailProduct = () => {
     const { pathname } = useLocation();
@@ -18,7 +18,7 @@ const DetailProduct = () => {
     const isLogin = useSelector((state) => state.store.isLogin);
     const isReloadClickCart = useSelector((state) => state.store.isReloadClickCart);
     const isAddSuccess = useSelector((state) => state.store.isAddProductSuccess);
-
+    
     const [sizes, setSizes] = useState(dataSizes);
     const [selectSize, setSelectSize] = useState(undefined);
     const [sizeActive, setSizeActive] = useState(undefined);
@@ -149,11 +149,18 @@ const DetailProduct = () => {
                     ],
                 };
             }
-            if (isLogin) {
+            if (newUser) {
+                if (isLogin) {
                 await updateUser(newUser);
+                }
+                await dispatch(setProduct({
+                    ...productView,
+                    size: selectSize,
+                    numberProducts: numberProduct,
+                }))
+                await dispatch(setUserCurrent(newUser));
+                await window.scrollTo(0, 0);
             }
-            await dispatch(setUserCurrent(newUser));
-            await window.scrollTo(0, 0);
         }
     };
     const handleBuy = () => {
