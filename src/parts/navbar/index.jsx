@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { BsCartDash } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
-import { IoPersonSharp, IoLogOutOutline, IoPersonAddSharp } from 'react-icons/io5';
+import { IoPersonSharp, IoLogOutOutline } from 'react-icons/io5';
 
 import MenuNavbar from './MenuNavbar/MenuNavbar';
 import { setIsLogin, setUserCurrent } from '@/store/reducerStore';
@@ -150,13 +150,6 @@ const Navbar = ({ setIsOverflow }) => {
                                                     <p className="pl-2 font-medium md:text-lg">Sign In</p>
                                                 </div>
                                             )}
-                                            <div
-                                                className="flex items-center cursor-pointer md:px-[14px] md:mx-2 md:py-1 md:hover:bg-[#ebeaea] md:rounded-sm"
-                                                onClick={handleSignup}
-                                            >
-                                                <IoPersonAddSharp />
-                                                <p className="pl-2 font-medium md:text-lg">Sign Up</p>
-                                            </div>
                                         </div>
                                     </div>
                                 )}
