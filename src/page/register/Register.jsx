@@ -13,13 +13,13 @@ import { validateLogin } from '@/services/validateFormService';
 
 const Register = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const root = useRef();
 
     const user = useSelector((state) => state.store.userCurrent);
     const isLogin = useSelector((state) => state.store.isLogin);
 
-    const handleAddMessage = (content,isRegisterSuccess) => {
+    const handleAddMessage = (content, isRegisterSuccess) => {
         const main = root.current;
         if (main) {
             const toast = document.createElement('div');
@@ -61,7 +61,6 @@ const Register = () => {
     const initialValues = {
         username: '',
         email: '',
-        phone: '',
         password: '',
         confirmPassword: '',
     };
@@ -76,10 +75,6 @@ const Register = () => {
             .trim()
             .required('Email field is required')
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email'),
-        phone: Yup.string()
-            .trim()
-            .required('Phone number field is required')
-            .matches(/^0\d{8,9}$/, 'Please enter a valid phone number'),
         password: Yup.string().trim().required('Password field is required').min(4, 'Must be 4 characters be more'),
         confirmPassword: Yup.string()
             .trim()
@@ -96,14 +91,13 @@ const Register = () => {
 
                 if (isEmail && isUsername) {
                     await postUser({ ...values, products: [], information: {} });
-                    const isLogin = await validateLogin({ ...values},dispatch)
-                    if(isLogin) {
-                        handleAddMessage('Bạn đã đăng kí tài khoản thành công',true);
-                        setTimeout(() => navigate(`/user/${user.username}`),3000)
+                    const isLogin = await validateLogin({ ...values }, dispatch);
+                    if (isLogin) {
+                        handleAddMessage('Bạn đã đăng kí tài khoản thành công', true);
+                        setTimeout(() => navigate(`/user/${user.username}`), 3000);
                     }
-                    
                 }
-                console.log('email:',isEmail, 'name' ,isUsername)
+                console.log('email:', isEmail, 'name', isUsername);
 
                 if (!isEmail && !isUsername) {
                     handleAddMessage('Username đã tồn tại');
@@ -155,16 +149,6 @@ const Register = () => {
                                 </div>
 
                                 <div className="mb-[10px] text-sm">
-                                    <label htmlFor="phone">Phone number</label>
-                                    <Field type="text" name="phone" className="input-style" placeholder="+84:" />
-                                    <ErrorMessage
-                                        name="phone"
-                                        component="span"
-                                        className="text-primary font-normal text-[15px]"
-                                    />
-                                </div>
-
-                                <div className="mb-[10px] text-sm">
                                     <label htmlFor="password">Password</label>
                                     <Field type="password" name="password" className="input-style" />
                                     <ErrorMessage
@@ -189,12 +173,11 @@ const Register = () => {
                                         type="submit"
                                         className="mx-auto flex justify-center items-center border-[2px] relative border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-lg rounded-[4px] hover:bg-[#139cec] hover:text-white"
                                     >
-                                        {formik.isSubmitting &&
-                                        <div className='pr-2'>
-                                            <AiOutlineLoading className="animate-fadeInLoadingLoginAndRegister"/>
-                                        </div>
-                                        
-                                        }
+                                        {formik.isSubmitting && (
+                                            <div className="pr-2">
+                                                <AiOutlineLoading className="animate-fadeInLoadingLoginAndRegister" />
+                                            </div>
+                                        )}
                                         Sign up
                                     </button>
                                 </div>

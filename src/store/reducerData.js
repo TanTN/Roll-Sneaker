@@ -14,6 +14,7 @@ export const fetchApiData = createAsyncThunk('data/fetchApiData', async () => {
 const dataSlice = createSlice({
     name: 'data',
     initialState: {
+        allDataSneaker: [],
         dataSneakers: [],
         dataNikes: [],
         dataAdidas: [],
@@ -28,6 +29,13 @@ const dataSlice = createSlice({
         });
         builder.addCase(fetchApiData.fulfilled, (state, action) => {
             state.dataPending = false;
+            const data = [
+                ...action.payload[0].dataSneakers,
+                ...action.payload[0].dataNikes,
+                ...action.payload[0].dataAdidas,
+                ...action.payload[0].dataMlbs,
+            ];
+            state.allDataSneaker = data;
 
             state.dataSneakers = action.payload[0].dataSneakers;
             state.dataNikes = action.payload[0].dataNikes;

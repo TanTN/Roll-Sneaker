@@ -12,18 +12,17 @@ import Mlb from './product/Mlb';
 import Personal from './product/Personal';
 import Tips from './product/Tips';
 import imagesPoster from '../../data/dataImagesPoster';
-import { fetchApiData} from '@/store/reducerData';
+import { fetchApiData } from '@/store/reducerData';
 import { setIsAddProductSuccess } from '../../store/reducerStore';
 
 const Main = () => {
     const isMobile = useSelector((state) => state.store.isMobile);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchApiData());
         dispatch(setIsAddProductSuccess(false));
-
-    },[]);
+    }, []);
 
     const SamplePrevArrow = ({ onClick }) => {
         return (
@@ -59,7 +58,7 @@ const Main = () => {
         nextArrow: <SampleNextArrow />,
     };
     return (
-        <div className="mt-[70px] max-w-[1140px] mx-auto md:mt-[90px] lg:mt-0">
+        <div className="mt-[100px] max-w-[1140px] mx-auto md:mt-[90px] lg:mt-0">
             <div className="pb-[30px] px-[15px] lg:px-0 md:pb-[40px]">
                 <div className="slide-slick">
                     <Slider {...options}>

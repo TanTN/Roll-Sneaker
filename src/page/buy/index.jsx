@@ -6,7 +6,7 @@ import { memo } from 'react';
 
 import { AiOutlineHome, AiFillCheckCircle } from 'react-icons/ai';
 
-import { getDistrict, getProvince, getWard} from '@/services/provinceService';
+import { getDistrict, getProvince, getWard } from '@/services/provinceService';
 import { updateUser } from '@/services/userService';
 import ProductBuy from './itemBuy/ProductBuy';
 import { setUserCurrent } from '@/store/reducerStore';
@@ -49,8 +49,7 @@ const Buy = () => {
 
     useEffect(() => {
         dispatch(setIsAddProductSuccess(false));
-
-    },[])
+    }, []);
 
     const {
         control,
@@ -136,7 +135,7 @@ const Buy = () => {
     };
 
     return (
-        <div className="mt-[66px] max-w-[800px] mx-auto lg:mt-[10px]">
+        <div className="mt-[100px] max-w-[800px] mx-auto lg:mt-[10px]">
             {/* Messgae success */}
             {isBuySuccess && (
                 <div className="fixed max-w-[380px] px-3 py-5 top-[10%] animate-fadeInSuccess md:animate-fadeInSuccessPc right-[4%] drop-shadow-xl bg-[#fff] border-y-[1px] border-r-[1px] border-l-[10px] border-[#13eb0b] z-[100] rounded-md">

@@ -8,7 +8,7 @@ import ProductHot from '@/page/main/product/ProductHot';
 import Tips from '@/page/main/product/Tips';
 import dataSizes from '@/data/dataSizes';
 import Product from './itemDetailProduct/Product';
-import { setUserCurrent,setIsAddProductSuccess,setProduct } from '@/store/reducerStore';
+import { setUserCurrent, setIsAddProductSuccess, setProduct } from '@/store/reducerStore';
 
 const DetailProduct = () => {
     const { pathname } = useLocation();
@@ -18,7 +18,7 @@ const DetailProduct = () => {
     const isLogin = useSelector((state) => state.store.isLogin);
     const isReloadClickCart = useSelector((state) => state.store.isReloadClickCart);
     const isAddSuccess = useSelector((state) => state.store.isAddProductSuccess);
-    
+
     const [sizes, setSizes] = useState(dataSizes);
     const [selectSize, setSelectSize] = useState(undefined);
     const [sizeActive, setSizeActive] = useState(undefined);
@@ -29,6 +29,10 @@ const DetailProduct = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useLayoutEffect(() => {
         if (productView.size && !isAddSuccess) {
@@ -43,11 +47,10 @@ const DetailProduct = () => {
             setSizes(sizeProduct);
             setIsChecked(true);
             setIsUpdateProduct(true);
-            setNumberProduct(productView.numberProducts)
+            setNumberProduct(productView.numberProducts);
         }
-        
     }, [isReloadClickCart]);
-    
+
     useEffect(() => {
         if (pathname === '/detailProduct') {
             setIsProduct(true);
@@ -55,7 +58,6 @@ const DetailProduct = () => {
             setIsProduct(false);
         }
     }, [pathname]);
-
 
     const isReload = () => {
         setIsChecked(false);
@@ -105,7 +107,7 @@ const DetailProduct = () => {
         const indexUpdateProduct = user.products.findIndex(
             (prod) => prod.name == productView.name && prod.size == productView.size,
         );
-        
+
         if (isChecked) {
             let newUser;
             if (indexUpdateProduct !== -1 || 0) {
@@ -151,13 +153,15 @@ const DetailProduct = () => {
             }
             if (newUser) {
                 if (isLogin) {
-                await updateUser(newUser);
+                    await updateUser(newUser);
                 }
-                await dispatch(setProduct({
-                    ...productView,
-                    size: selectSize,
-                    numberProducts: numberProduct,
-                }))
+                await dispatch(
+                    setProduct({
+                        ...productView,
+                        size: selectSize,
+                        numberProducts: numberProduct,
+                    }),
+                );
                 await dispatch(setUserCurrent(newUser));
                 await window.scrollTo(0, 0);
             }
@@ -178,7 +182,6 @@ const DetailProduct = () => {
         if (!isChecked) {
             alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
         } else {
-
             handleBuyOrAddProduct();
             dispatch(setIsAddProductSuccess(true));
 
@@ -200,7 +203,7 @@ const DetailProduct = () => {
     };
 
     return (
-        <div className="mt-[66px] max-w-[1140px] mx-auto md:mt-[86px] lg:mt-[10px]">
+        <div className="mt-[100px] max-w-[1140px] mx-auto md:mt-[100px] lg:mt-[10px]">
             <Product
                 handleBackHome={handleBackHome}
                 handleClearSize={handleClearSize}

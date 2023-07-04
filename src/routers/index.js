@@ -1,9 +1,9 @@
 import DetailProduct from '../page/detaiilProduct';
-import Login from '../page/Login';
+import Login from '../page/login/Login';
 import Main from '../page/main';
-import Register from '../page/Register';
+import Register from '../page/register/Register';
 import Buy from '../page/buy';
-import NotFound from '../page/NotFound';
+import NotFound from '../page/notfound/NotFound';
 
 const routes = {
     detailProduct: '/detailProduct',
@@ -12,7 +12,7 @@ const routes = {
     user: 'user/:user',
     buy: '/buy',
     main: '/',
-    notFound:'*'
+    notFound: '*',
 };
 
 const pluginRouters = [

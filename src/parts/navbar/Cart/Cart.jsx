@@ -50,7 +50,7 @@ const Cart = ({ children, hideTippy, clickHideCart }) => {
         window.scrollTo(0, 0);
     };
 
-    const isTippy = isMobile ? { visible: hideTippy, offset: [0, 20] } : { offset: [0, 30] };
+    const isTippy = isMobile ? { visible: hideTippy, offset: [0, 8] } : { offset: [0, 30] };
     const isTippyPc = !isMobile && tippyPc ? { visible: false } : { trigger: 'mouseenter' };
     const handleBuy = () => {
         setTippyPc(true);
@@ -69,8 +69,12 @@ const Cart = ({ children, hideTippy, clickHideCart }) => {
                 {...isTippyPc}
                 {...isTippy}
                 render={(attrs) => (
-                    <div className="overflow-hidden ml-[-5px] lg:ml-0" tabIndex="-1" {...attrs}>
-                        <div className="relative h-[100vh] w-[100vw] border-[1px] border-[#ccc] bg-white drop-shadow-ShadowRoot lg:h-auto lg:max-w-[450px]">
+                    <div
+                        className="overflow-hidden shadow-[2px_4px_5px_#ececec9e] rounded-xl border-[1px] border-[#ccc] ml-[-5px] lg:ml-0"
+                        tabIndex="-1"
+                        {...attrs}
+                    >
+                        <div className="relative h-[100vh] w-[100vw] bg-white drop-shadow-ShadowRoot lg:h-auto lg:max-w-[450px]">
                             {userCurrent.products.length > 0 ? (
                                 <>
                                     <div className="cart lg:mb-0 lg:max-h-[33vh] overflow-y-auto">
@@ -82,7 +86,7 @@ const Cart = ({ children, hideTippy, clickHideCart }) => {
                                                 >
                                                     <div>
                                                         <img
-                                                            className="md:w-[130px] md:h-[130px] lg:h-auto lg:w-auto"
+                                                            className="md:w-[90px] md:h-[90px] lg:h-auto lg:w-auto"
                                                             src={product.img}
                                                             alt="photo"
                                                         />

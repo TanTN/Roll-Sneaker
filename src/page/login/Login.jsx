@@ -10,7 +10,7 @@ import { AiOutlineLoading } from 'react-icons/ai';
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+
     const isLogin = useSelector((state) => state.store.isLogin);
     const user = useSelector((state) => state.store.userCurrent);
 
@@ -58,14 +58,18 @@ const Login = () => {
                         <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px] ">
                             <Form>
                                 <div className="mb-[10px] text-sm">
-                                    <label htmlFor="username" className=''>Username</label>
+                                    <label htmlFor="username" className="">
+                                        Username
+                                    </label>
                                     <Field type="text" name="username" className="input-style" />
                                 </div>
                                 <div className="mb-[10px] text-sm">
-                                    <label htmlFor="password" className=''>Password</label>
+                                    <label htmlFor="password" className="">
+                                        Password
+                                    </label>
                                     <Field type="password" name="password" className="input-style" />
                                 </div>
-                                
+
                                 <div className="flex w-[100%] mt-[50px] relative">
                                     {isLoginFalse && (
                                         <div className="absolute top-[-80%] w-[100%] text-primary text-center font-normal text-[14px]">
@@ -76,22 +80,20 @@ const Login = () => {
                                         type="submit"
                                         className="mx-auto flex justify-center items-center border-[2px] border-[#ecc813] min-w-[100%] leading-[40px] text-[#ecc813] text-lg rounded-[4px] hover:bg-[#ecc813] hover:text-white"
                                     >
-                                        {formik.isSubmitting &&
-                                        <div className='pr-2'>
-                                            <AiOutlineLoading className="animate-fadeInLoadingLoginAndRegister"/>
-                                        </div>
-                                        
-                                        }
+                                        {formik.isSubmitting && (
+                                            <div className="pr-2">
+                                                <AiOutlineLoading className="animate-fadeInLoadingLoginAndRegister" />
+                                            </div>
+                                        )}
                                         Sign in
                                     </button>
                                 </div>
-                                <div className=" flex justify-center items-end w-[100%] mt-[10px] md:mt-[25px] text-sm">
+                                <div className=" flex justify-center md:flex-col md:items-center xl:flex-row xl:justify-center w-[100%] mt-[10px] md:mt-[25px] text-sm">
                                     <span className=" font-medium text-[#696969]">Don't have account?</span>
                                     <span
                                         className="font-semibold pl-2 cursor-pointer"
                                         onClick={() => navigate('/register')}
-                                    >   
-                                        
+                                    >
                                         Sign up
                                     </span>
                                 </div>
