@@ -76,7 +76,7 @@ const Navbar = ({ setIsOverflow }) => {
         }
     };
 
-    const tippy = isMobile ? { offset: [0, 20] } : { offset: [0, 30] };
+    const tippy = isMobile ? { offset: [0, 15] } : { offset: [0, 26] };
     const nameUser = isLogin && { content: userCurrent?.username };
     return (
         <>
@@ -146,7 +146,7 @@ const Navbar = ({ setIsOverflow }) => {
                                 placement="bottom"
                                 interactive
                                 zIndex="20"
-                                offset={[0, 30]}
+                                offset={[0, 15]}
                             >
                                 {isLogin ? (
                                     <div

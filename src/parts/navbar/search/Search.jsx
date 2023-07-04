@@ -17,7 +17,7 @@ const Search = () => {
 
     useEffect(() => {
         if (valueInput.length > 0) {
-            const newData = dataAllSneaker.filter((data) => data.name.toLowerCase().includes(valueInput));
+            const newData = dataAllSneaker.filter((data) => data.name.toLowerCase().includes(valueInput.toLowerCase()));
             setDataSearch(newData);
         }
     }, [valueInput]);
