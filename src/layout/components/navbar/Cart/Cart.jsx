@@ -5,11 +5,13 @@ import Tippy from '@tippyjs/react/headless';
 
 import { AiFillCloseSquare } from 'react-icons/ai';
 
-import { updateUser } from '@/services/userService';
-import { setProduct, setReloadClickCart, setUserCurrent, setIsAddProductSuccess } from '@/store/reducerStore';
+import { setProduct, setReloadClickCart } from '@/store/reducerStore';
 import priceUtil from '@/utils/priceUtil';
+import Wrapper from '@/components/popper/Wrapper';
+import { handleDeleteProduct } from '@/utils/deleteProductUtil';
+import { Link } from 'react-router-dom';
 
-const Cart = ({ children, hideTippy, clickHideCart }) => {
+const Cart = ({ children }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isMobile = useSelector((state) => state.store.isMobile);
     const isLogin = useSelector((state) => state.store.isLogin);
@@ -25,37 +27,18 @@ const Cart = ({ children, hideTippy, clickHideCart }) => {
         setTippyPc(false);
     }, [tippyPc]);
 
-    const handleDeleteProduct = (value) => {
-        const newProducts = userCurrent.products.filter(
-            (product) => product.name !== value.name || product.size !== value.size,
-        );
-
-        const newUser = {
-            ...userCurrent,
-            products: [...newProducts],
-        };
-        if (isLogin) {
-            updateUser(newUser);
-        }
-        dispatch(setUserCurrent(newUser));
-    };
-
     const handleFixProduct = (product) => {
         dispatch(setProduct(product));
-        clickHideCart();
         dispatch(setReloadClickCart(Math.random() * 100));
-        dispatch(setIsAddProductSuccess(false));
         setTippyPc(true);
         navigate('/detailProduct');
         window.scrollTo(0, 0);
     };
 
-    const isTippy = isMobile ? { visible: hideTippy, offset: [0, 8] } : { offset: [0, 30] };
+    const isTippy = isMobile ? { offset: [0, 8] } : { offset: [-184, 22] };
     const isTippyPc = !isMobile && tippyPc ? { visible: false } : { trigger: 'mouseenter' };
-    const handleBuy = () => {
+    const hiddenCart = () => {
         setTippyPc(true);
-        clickHideCart();
-        navigate('/buy');
         window.scrollTo(0, 0);
     };
 
@@ -69,11 +52,7 @@ const Cart = ({ children, hideTippy, clickHideCart }) => {
                 {...isTippyPc}
                 {...isTippy}
                 render={(attrs) => (
-                    <div
-                        className="overflow-hidden shadow-[2px_4px_5px_#ececec9e] rounded-xl border-[1px] border-[#ccc] ml-[-5px] lg:ml-0"
-                        tabIndex="-1"
-                        {...attrs}
-                    >
+                    <Wrapper className="overflow-hidden ml-[-5px] lg:ml-0" tabIndex="-1" {...attrs}>
                         <div className="relative h-[100vh] w-[100vw] bg-white drop-shadow-ShadowRoot lg:h-auto lg:max-w-[450px]">
                             {userCurrent.products.length > 0 ? (
                                 <>
@@ -111,7 +90,9 @@ const Cart = ({ children, hideTippy, clickHideCart }) => {
                                                 </div>
                                                 <div
                                                     className="absolute top-0 left-0 md:left-[100px] md:top-[10px] lg:top-0 lg:left-0 cursor-pointer select-none"
-                                                    onClick={() => handleDeleteProduct(product)}
+                                                    onClick={() =>
+                                                        handleDeleteProduct(product, dispatch, userCurrent, isLogin)
+                                                    }
                                                 >
                                                     <AiFillCloseSquare className="text-[25px] lg:hover:text-primary" />
                                                 </div>
@@ -127,21 +108,31 @@ const Cart = ({ children, hideTippy, clickHideCart }) => {
                                                 <span className="underline">đ</span>
                                             </span>
                                         </div>
-                                        <div
-                                            className="bg-[#383737] text-center py-[8px] lg:py-2 text-sm md:text-base text-[#e4e4e4] lg:hover:bg-[#252525] cursor-pointer"
-                                            onClick={handleBuy}
-                                        >
-                                            <button>THANH TOÁN</button>
+                                        <div className="bg-[#383737] grid grid-cols-2 text-sm md:text-base text-[#e4e4e4]">
+                                            <Link
+                                                to="/cart"
+                                                className="text-center border-r-[1px] border-r-[#d3d3d3] hover:text-white h-[100%] lg:hover:bg-[#000000] py-[6px]"
+                                                onClick={hiddenCart}
+                                            >
+                                                XEM GIỎ HÀNG
+                                            </Link>
+                                            <Link
+                                                to="/buy"
+                                                className="text-center h-[100%] lg:hover:bg-[#000000] hover:text-white py-[6px]"
+                                                onClick={hiddenCart}
+                                            >
+                                                THANH TOÁN
+                                            </Link>
                                         </div>
                                     </div>
                                 </>
                             ) : (
                                 <div className="bg-white flex drop-shadow-ShadowRoot w-[100%] h-[100%]">
                                     <div className="m-auto">
-                                        <div className="p-3 pr-8">
+                                        <div className="p-3 md:pr-0">
                                             <img
-                                                className=" mx-auto"
-                                                src="https://th.bing.com/th/id/OIP.wMEWMvtcH9ITnHSDg2vqswHaDm?pid=ImgDet&rs=1"
+                                                className="mx-auto"
+                                                src="https://theme.hstatic.net/1000285106/1000912959/14/cart_empty_background.png?v=120"
                                                 alt="cart"
                                             />
                                         </div>
@@ -152,7 +143,7 @@ const Cart = ({ children, hideTippy, clickHideCart }) => {
                                 </div>
                             )}
                         </div>
-                    </div>
+                    </Wrapper>
                 )}
             >
                 {children}

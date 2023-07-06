@@ -11,7 +11,8 @@ import { updateUser } from '@/services/userService';
 import ProductBuy from './itemBuy/ProductBuy';
 import { setUserCurrent } from '@/store/reducerStore';
 import FormAddress from './itemBuy/FormAddress';
-import { setIsAddProductSuccess } from '@/store/reducerStore';
+import WrapperBill from '@/components/popper/WrapperBill';
+import allPriceUtils from '@/utils/allPriceUtils';
 
 const Buy = () => {
     const user = useSelector((state) => state.store.userCurrent);
@@ -22,9 +23,17 @@ const Buy = () => {
     const [isProvince, setIsProvince] = useState([]);
     const [isDistrict, setIsDistrict] = useState([]);
     const [isWard, setIsWard] = useState([]);
-    const [priceCart, setPriceCart] = useState(null);
-    const [allPrice, setAllPrice] = useState(null);
     const [isBuySuccess, setIsBuySuccess] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const allNumberProduct = user.products.reduce((init, product) => {
+        return init + product.numberProducts;
+    }, 0);
+
+    const { allPriceAndShip, allPriceCart } = allPriceUtils(user);
 
     const initialValues = user.information?.name
         ? {
@@ -46,10 +55,6 @@ const Buy = () => {
     useEffect(() => {
         setTimeout(() => setIsBuySuccess(false), 7000);
     }, [isBuySuccess]);
-
-    useEffect(() => {
-        dispatch(setIsAddProductSuccess(false));
-    }, []);
 
     const {
         control,
@@ -125,13 +130,8 @@ const Buy = () => {
     };
 
     const handleBackHome = () => {
-        if (isLogin) {
-            navigate(`/user/${user.username}`);
-            window.scrollTo(0, 0);
-        } else {
-            navigate('/');
-            window.scrollTo(0, 0);
-        }
+        navigate('/');
+        window.scrollTo(0, 0);
     };
 
     return (
@@ -185,7 +185,7 @@ const Buy = () => {
                         <div className="border-[1px] border-primary border-dashed p-[15px]">
                             {/* products oder */}
                             {user.products.length > 0 ? (
-                                <ProductBuy setPriceCart={setPriceCart} setAllPrice={setAllPrice} />
+                                <ProductBuy />
                             ) : (
                                 <p className="text-center py-10 text-lg">
                                     Chưa có sản phẩm nào để đặt. Xin vui lòng quay lại cửa hàng!
@@ -193,25 +193,29 @@ const Buy = () => {
                             )}
 
                             {/* Bảng thanh toán */}
-                            <div className="md:mx-[40px] md:my-[30px] my-[15px] p-[15px] bg-[#ffffffe1] rounded-sm border-[2px] border-[#e9e9e9] drop-shadow-[0px_4px_8px_rgba(0,0,0,0.3)]">
+                            <WrapperBill>
                                 <div className="mt-3">
                                     <div className="flex justify-between pb-1 text-[17px]">
                                         <p>Tạm tính:</p>
                                         <p>
-                                            {user.products.length == 0 ? '0' : priceCart}
+                                            {user.products.length == 0 ? '0' : allPriceCart}
                                             <span className="underline"> đ</span>
                                         </p>
                                     </div>
                                     <div className="flex justify-between pb-1">
                                         <p>Giao hàng:</p>
-                                        <p className="font-bold">
-                                            30.000 <span className="underline">đ</span>
-                                        </p>
+                                        {allNumberProduct <= 1 ? (
+                                            <p>Miễn phí ship</p>
+                                        ) : (
+                                            <p className="font-bold">
+                                                30.000 <span className="underline">đ</span>
+                                            </p>
+                                        )}
                                     </div>
                                     <div className="pb-2">
                                         <p className="font-semibold text-lg">Tổng:</p>
                                         <p className="flex justify-end font-bold text-lg">
-                                            {user.products.length == 0 ? '0' : allPrice}{' '}
+                                            {allNumberProduct <= 1 ? allPriceCart : allPriceAndShip}
                                             <span className="underline pl-[3px]"> đ</span>
                                         </p>
                                     </div>
@@ -241,7 +245,7 @@ const Buy = () => {
                                         ĐẶT HÀNG
                                     </button>
                                 </div>
-                            </div>
+                            </WrapperBill>
                         </div>
                     </form>
                 </div>

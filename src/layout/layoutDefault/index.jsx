@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navbar from '../../parts/navbar';
-import Footer from '../../parts/footer';
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 
 const LayoutDefault = ({ children }) => {
     const [isOverflow, setIsOverflow] = useState(false);

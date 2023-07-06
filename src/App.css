@@ -11,6 +11,7 @@
         --width-deal-md: calc(var(--width-box-deal-md) * 1.4142);
         --width-box-deal: 80px;
         --width-deal: calc(var(--width-box-deal) * 1.4142);
+        --offset-box-person: calc(50% - 10px);
     }
     body {
         @apply p-0 m-0 box-border scroll-smooth;

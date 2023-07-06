@@ -6,26 +6,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { validateLogin } from '@/services/validateFormService';
 
 import { AiOutlineLoading } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const isLogin = useSelector((state) => state.store.isLogin);
-    const user = useSelector((state) => state.store.userCurrent);
 
     const [isLoginFalse, setIsLoginFalse] = useState(false);
 
     const initialValues = {
         username: '',
         password: '',
-    };
-    const handleBack = () => {
-        if (isLogin) {
-            navigate(`/user/${user.username}`);
-        } else {
-            navigate('/');
-        }
     };
 
     return (
@@ -35,7 +26,7 @@ const Login = () => {
                 const isLogin = await validateLogin(values, dispatch);
                 if (isLogin) {
                     await setIsLoginFalse(false);
-                    await navigate(`/user/${isLogin.username}`);
+                    await navigate('/');
                 } else {
                     setIsLoginFalse(true);
                 }
@@ -99,9 +90,9 @@ const Login = () => {
                                 </div>
                                 <div className="text-center text-sm">
                                     <p className="font-medium text-[#2c2c2c]">or</p>
-                                    <p className="cursor-pointer " onClick={handleBack}>
+                                    <Link to="/" className="cursor-pointer ">
                                         Back
-                                    </p>
+                                    </Link>
                                 </div>
                             </Form>
                         </div>

@@ -3,8 +3,9 @@ import Tippy from '@tippyjs/react/headless';
 import { useEffect, useState } from 'react';
 import { TbSearch } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
-import { setProduct } from '../../../store/reducerStore';
+import { setProduct } from '@/store/reducerStore';
 import { useNavigate } from 'react-router';
+import Wrapper from '../../../../components/popper/Wrapper';
 
 const Search = () => {
     const dataAllSneaker = useSelector((state) => state.data.allDataSneaker);
@@ -29,7 +30,7 @@ const Search = () => {
     };
 
     return (
-        <div className="group/item relative mx-[12px] xl:after:content-[''] after:absolute after:top-[100%] xl:after:w-[420px] after:right-[-60px] after:h-[34px] after:bg-transparent">
+        <div className="group/item relative mx-[12px] ">
             <label htmlFor="search" className="group-hover/edit group-hover/item:invisible text-[#797979] text-[26px]">
                 <TbSearch />
             </label>
@@ -46,7 +47,7 @@ const Search = () => {
                 />
             </div>
             {showResult && valueInput.length > 0 && dataSearch.length > 0 && (
-                <div className="absolute top-[140%] xl:top-[200%] w-[380px] left-[-190px] md:left-[-325px] md:w-[420px] z-50 bg-white px-[10px] py-[14px] shadow-[2px_4px_5px_#ececec9e] rounded-xl border-[1px] border-[#ccc]">
+                <Wrapper className="absolute bg-white top-[140%] xl:top-[180%] w-[380px] left-[-190px] md:left-[-336px] md:w-[420px] z-50 px-[10px] py-[14px] xl:after:content-[''] after:absolute after:top-[-20px] xl:after:w-[300px] after:left-[60px] after:h-[20px] after:bg-transparent">
                     {dataSearch.map((data, index) => {
                         if (index < 6) {
                             return (
@@ -62,7 +63,7 @@ const Search = () => {
                             );
                         }
                     })}
-                </div>
+                </Wrapper>
             )}
         </div>
     );

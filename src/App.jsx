@@ -4,9 +4,8 @@ import { Fragment, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setMobile } from '@/store/reducerStore';
-import pluginRouters from './routers';  
+import pluginRouters from './routers';
 import LayoutDefault from './layout/layoutDefault';
-
 
 function App() {
     const dispatch = useDispatch();
@@ -28,23 +27,19 @@ function App() {
 
     return (
         <div className="scroll-smooth">
-                <Routes>
-                   
-                    {pluginRouters.map((route, index) => {
-                        let Layout = LayoutDefault;
-                        let Page = <route.component />;
-                        if (route.layout) {
-                            Layout = route.layout;
-                        } else if (route.layout === null) {
-                            Layout = Fragment;
-                        }
-                        if (route.path === 'user/:user' && !isLogin) {
-                            Page = <Navigate replace to="/" />;
-                        }
-    
-                        return <Route key={index} path={route.path} element={<Layout>{Page}</Layout>} />;
-                    })}
-                </Routes>
+            <Routes>
+                {pluginRouters.map((route, index) => {
+                    let Layout = LayoutDefault;
+                    let Page = <route.component />;
+                    if (route.layout) {
+                        Layout = route.layout;
+                    } else if (route.layout === null) {
+                        Layout = Fragment;
+                    }
+
+                    return <Route key={index} path={route.path} element={<Layout>{Page}</Layout>} />;
+                })}
+            </Routes>
         </div>
     );
 }

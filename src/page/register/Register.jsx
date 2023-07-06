@@ -10,6 +10,7 @@ import { AiOutlineLoading } from 'react-icons/ai';
 import { validateRegister } from '@/services/validateFormService';
 import { postUser } from '@/services/userService';
 import { validateLogin } from '@/services/validateFormService';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -50,17 +51,10 @@ const Register = () => {
         }
     };
 
-    const handleBack = () => {
-        if (isLogin) {
-            navigate(`/user/${user.username}`);
-        } else {
-            navigate('/');
-        }
-    };
-
     const initialValues = {
         username: '',
         email: '',
+        phone: '',
         password: '',
         confirmPassword: '',
     };
@@ -75,6 +69,7 @@ const Register = () => {
             .trim()
             .required('Email field is required')
             .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email'),
+        phone: Yup.string().trim().required('Email field is required'),
         password: Yup.string().trim().required('Password field is required').min(4, 'Must be 4 characters be more'),
         confirmPassword: Yup.string()
             .trim()
@@ -94,7 +89,7 @@ const Register = () => {
                     const isLogin = await validateLogin({ ...values }, dispatch);
                     if (isLogin) {
                         handleAddMessage('Bạn đã đăng kí tài khoản thành công', true);
-                        setTimeout(() => navigate(`/user/${user.username}`), 3000);
+                        setTimeout(() => navigate('/'), 3000);
                     }
                 }
                 console.log('email:', isEmail, 'name', isUsername);
@@ -149,6 +144,16 @@ const Register = () => {
                                 </div>
 
                                 <div className="mb-[10px] text-sm">
+                                    <label htmlFor="email">Phone number</label>
+                                    <Field type="phone" name="phone" className="input-style" />
+                                    <ErrorMessage
+                                        name="phone"
+                                        component="span"
+                                        className="text-primary font-normal text-[15px]"
+                                    />
+                                </div>
+
+                                <div className="mb-[10px] text-sm">
                                     <label htmlFor="password">Password</label>
                                     <Field type="password" name="password" className="input-style" />
                                     <ErrorMessage
@@ -195,9 +200,9 @@ const Register = () => {
                                 </div>
                                 <div className="text-center pt-[10px] text-sm">
                                     <p className="font-medium text-[#2c2c2c]">or</p>
-                                    <p className="cursor-pointer" onClick={handleBack}>
+                                    <Link to="/" className="cursor-pointer">
                                         Back
-                                    </p>
+                                    </Link>
                                 </div>
                             </Form>
                         </div>

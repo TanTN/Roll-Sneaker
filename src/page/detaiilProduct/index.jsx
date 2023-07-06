@@ -2,13 +2,16 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router';
 import { memo } from 'react';
+import { AiOutlineHome } from 'react-icons/ai';
+import { RiInformationFill } from 'react-icons/ri';
 
 import { updateUser } from '@/services/userService';
 import ProductHot from '@/page/main/product/ProductHot';
 import Tips from '@/page/main/product/Tips';
 import dataSizes from '@/data/dataSizes';
 import Product from './itemDetailProduct/Product';
-import { setUserCurrent, setIsAddProductSuccess, setProduct } from '@/store/reducerStore';
+import { setUserCurrent, setProduct } from '@/store/reducerStore';
+import { Link } from 'react-router-dom';
 
 const DetailProduct = () => {
     const { pathname } = useLocation();
@@ -17,7 +20,6 @@ const DetailProduct = () => {
     const productView = useSelector((state) => state.store.viewProduct);
     const isLogin = useSelector((state) => state.store.isLogin);
     const isReloadClickCart = useSelector((state) => state.store.isReloadClickCart);
-    const isAddSuccess = useSelector((state) => state.store.isAddProductSuccess);
 
     const [sizes, setSizes] = useState(dataSizes);
     const [selectSize, setSelectSize] = useState(undefined);
@@ -26,6 +28,8 @@ const DetailProduct = () => {
     const [isProduct, setIsProduct] = useState(false);
     const [numberProduct, setNumberProduct] = useState(1);
     const [isUpdateProduct, setIsUpdateProduct] = useState(false);
+    const [isMessage, setIsMessage] = useState(false);
+    const [sizeError, setSizeError] = useState(1);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -35,7 +39,7 @@ const DetailProduct = () => {
     }, []);
 
     useLayoutEffect(() => {
-        if (productView.size && !isAddSuccess) {
+        if (productView.size) {
             const sizeProduct = sizes.map((sizeProd) => {
                 return sizeProd.size == productView.size
                     ? { ...sizeProd, isChecked: true }
@@ -65,7 +69,6 @@ const DetailProduct = () => {
         setSizes(dataSizes);
         setNumberProduct(1);
         setIsUpdateProduct(false);
-        dispatch(setIsAddProductSuccess(false));
     };
 
     const handleClearSize = () => {
@@ -75,18 +78,16 @@ const DetailProduct = () => {
     };
 
     const handelSelectSize = (e, index) => {
-        if (!isAddSuccess) {
-            const { value, checked } = e.target;
-            setSelectSize(value);
-            setSizeActive(index);
-            setIsChecked(true);
-            const newSizes = sizes.map((size) =>
-                size.size == value ? { ...size, isChecked: checked } : { ...size, isChecked: false },
-            );
-            setSizes(newSizes);
-            if (!checked) {
-                handleClearSize();
-            }
+        const { value, checked } = e.target;
+        setSelectSize(value);
+        setSizeActive(index);
+        setIsChecked(true);
+        const newSizes = sizes.map((size) =>
+            size.size == value ? { ...size, isChecked: checked } : { ...size, isChecked: false },
+        );
+        setSizes(newSizes);
+        if (!checked) {
+            handleClearSize();
         }
     };
 
@@ -163,14 +164,10 @@ const DetailProduct = () => {
                     }),
                 );
                 await dispatch(setUserCurrent(newUser));
-                await window.scrollTo(0, 0);
             }
         }
     };
     const handleBuy = () => {
-        if (!isChecked && isAddSuccess) {
-            return navigate(`/buy`);
-        }
         if (!isChecked) {
             alert('Chọn các tùy chọn cho sản phẩm trước khi bạn thanh toán.');
         } else {
@@ -178,34 +175,51 @@ const DetailProduct = () => {
             return navigate(`/buy`);
         }
     };
+
     const handleAddProduct = () => {
-        if (!isChecked) {
-            alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
-        } else {
-            handleBuyOrAddProduct();
-            dispatch(setIsAddProductSuccess(true));
+        const isAdd = user.products.every(
+            (product) =>
+                productView.name != product.name ||
+                product.size != selectSize ||
+                product.numberProducts != numberProduct,
+        );
 
-            setIsChecked(false);
-            setSizeActive(undefined);
-            setSizes(dataSizes);
-            setNumberProduct(1);
-        }
-    };
-
-    const handleBackHome = () => {
-        if (isLogin) {
-            navigate(`/user/${user.username}`);
-            window.scrollTo(0, 0);
+        setIsMessage(!isAdd);
+        if (isAdd) {
+            if (!isChecked) {
+                alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
+            } else {
+                handleBuyOrAddProduct();
+                navigate('/cart');
+            }
         } else {
-            navigate('/');
-            window.scrollTo(0, 0);
+            setSizeError(selectSize);
         }
     };
 
     return (
         <div className="mt-[100px] max-w-[1140px] mx-auto md:mt-[100px] lg:mt-[10px]">
+            <div className="flex items-center bg-[#eeeeee] pl-4 py-2 mb-[10px]">
+                <AiOutlineHome className="hover:text-[#030303]" />
+                <Link to="/" className="pl-2 text-[#585858] hover:text-[#000000]">
+                    Trang chủ{' '}
+                </Link>{' '}
+                <p>&nbsp; /</p> <p>&nbsp; Chi tiết sản phẩm</p>
+            </div>
+            {isMessage && (
+                <div className="flex justify-between items-center bg-[#f7f5f5] py-2 px-4 border-t-[2px] border-primary my-[25px]">
+                    <div className="flex items-center break-all">
+                        <RiInformationFill size={18} className="text-primary" />
+                        <p>
+                            &nbsp;Bạn không thể thêm "{productView.name} - {sizeError}" khác vào giỏ hàng của bạn.
+                        </p>
+                    </div>
+                    <button className="bg-black text-white" onClick={() => navigate('/cart')}>
+                        XEM GIỎ HÀNG
+                    </button>
+                </div>
+            )}
             <Product
-                handleBackHome={handleBackHome}
                 handleClearSize={handleClearSize}
                 handleMinusNumber={handleMinusNumber}
                 handleIncreaseNumber={handleIncreaseNumber}
@@ -216,7 +230,6 @@ const DetailProduct = () => {
                 sizes={sizes}
                 sizeActive={sizeActive}
                 numberProduct={numberProduct}
-                isAddSuccess={isAddSuccess}
                 isUpdateProduct={isUpdateProduct}
             />
             <div className="px-[15px] lg:px-0 pt-[50px]">

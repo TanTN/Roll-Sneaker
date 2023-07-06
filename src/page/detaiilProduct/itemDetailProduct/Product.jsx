@@ -1,12 +1,11 @@
 import React from 'react';
 import { FcOk } from 'react-icons/fc';
-import { AiOutlineHome } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 
 import HowToSelect from './HowToSelect';
+import { useNavigate } from 'react-router';
 
 const Product = ({
-    handleBackHome,
     handleClearSize,
     handleMinusNumber,
     handleIncreaseNumber,
@@ -17,20 +16,12 @@ const Product = ({
     sizes,
     sizeActive,
     numberProduct,
-    isAddSuccess,
-    isUpdateProduct,
 }) => {
     const productView = useSelector((state) => state.store.viewProduct);
+    const navigate = useNavigate();
 
     return (
         <>
-            <div
-                className="flex items-center bg-[#eeeeee] pl-4 py-2 mb-[10px] cursor-pointer "
-                onClick={handleBackHome}
-            >
-                <AiOutlineHome className="hover:text-[#030303]" />
-                <p className="pl-2 text-[#585858] hover:text-[#000000]">Trang chủ</p>
-            </div>
             <div className="px-[15px] lg:px-0">
                 <div className="lg:grid lg:grid-cols-11">
                     <div className="col-span-5">
@@ -116,27 +107,16 @@ const Product = ({
                                 }`}
                                 onClick={handleAddProduct}
                             >
-                                {!isUpdateProduct && (isAddSuccess ? 'ĐÃ THÊM VÀO GIỎ HÀNG' : 'THÊM VÀO GIỎ HÀNG')}
-                                {isUpdateProduct && (isAddSuccess ? 'ĐÃ SỬA LAI SẢN PHẨM' : 'SỬA LAI SẢN PHẨM')}
+                                THÊM VÀO GIỎ HÀNG
                             </button>
 
                             <button
                                 className="bg-[#414141] ml-1 text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
                                 onClick={handleBuy}
                             >
-                                {isAddSuccess ? 'THANH TOÁN' : 'MUA NGAY'}
+                                MUA NGAY
                             </button>
                         </div>
-                        {isAddSuccess && (
-                            <div>
-                                <button
-                                    className="bg-[#52b4cc] text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
-                                    onClick={handleBackHome}
-                                >
-                                    QUAY TRỞ LẠI CỬA HÀNG
-                                </button>
-                            </div>
-                        )}
 
                         <div className="border-[1px] border-dashed border-primary p-[15px] mt-3">
                             <p className="text-[18px] font-bold">

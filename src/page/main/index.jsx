@@ -11,9 +11,8 @@ import Adidas from './product/Adidas';
 import Mlb from './product/Mlb';
 import Personal from './product/Personal';
 import Tips from './product/Tips';
-import imagesPoster from '../../data/dataImagesPoster';
+import imagesPoster from '@/data/dataImagesPoster';
 import { fetchApiData } from '@/store/reducerData';
-import { setIsAddProductSuccess } from '../../store/reducerStore';
 
 const Main = () => {
     const isMobile = useSelector((state) => state.store.isMobile);
@@ -21,7 +20,6 @@ const Main = () => {
 
     useEffect(() => {
         dispatch(fetchApiData());
-        dispatch(setIsAddProductSuccess(false));
     }, []);
 
     const SamplePrevArrow = ({ onClick }) => {

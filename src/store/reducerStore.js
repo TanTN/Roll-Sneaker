@@ -8,7 +8,7 @@ const storeSlice = createSlice({
         userCurrent: { products: [] },
         viewProduct: {},
         isReloadClickCart: 1,
-        isAddProductSuccess:false
+      
     },
     reducers: {
         setMobile: (state, action) => ({ ...state, isMobile: action.payload }),
@@ -24,14 +24,12 @@ const storeSlice = createSlice({
         setReloadClickCart: (state, action) => {
             state.isReloadClickCart = action.payload;
         },
-        setIsAddProductSuccess: (state, action) => {
-            state.isAddProductSuccess = action.payload;
-        }
+        
     },
 });
 
 
 const { reducer, actions } = storeSlice;
 
-export const { setMobile, setUserCurrent, setIsLogin, setProduct, setReloadClickCart,setIsAddProductSuccess } = actions;
+export const { setMobile, setUserCurrent, setIsLogin, setProduct, setReloadClickCart } = actions;
 export default reducer;
