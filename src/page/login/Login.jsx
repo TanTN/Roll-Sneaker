@@ -63,7 +63,7 @@ const Login = () => {
 
                                 <div className="flex w-[100%] mt-[50px] relative">
                                     {isLoginFalse && (
-                                        <div className="absolute top-[-80%] w-[100%] text-primary text-center font-normal text-[14px]">
+                                        <div className="absolute top-[-100%] w-[100%] text-primary text-center font-normal text-[14px]">
                                             Tên đăng nhập hoặc mật khẩu không đúng.
                                         </div>
                                     )}

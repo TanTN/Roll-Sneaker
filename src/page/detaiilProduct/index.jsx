@@ -12,6 +12,7 @@ import dataSizes from '@/data/dataSizes';
 import Product from './itemDetailProduct/Product';
 import { setUserCurrent, setProduct } from '@/store/reducerStore';
 import { Link } from 'react-router-dom';
+import Button from '../../components/button';
 
 const DetailProduct = () => {
     const { pathname } = useLocation();
@@ -183,17 +184,21 @@ const DetailProduct = () => {
                 product.size != selectSize ||
                 product.numberProducts != numberProduct,
         );
+        if (!isChecked) {
+            alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
+        }
 
-        setIsMessage(!isAdd);
         if (isAdd) {
-            if (!isChecked) {
-                alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
-            } else {
+            if (isChecked) {
                 handleBuyOrAddProduct();
                 navigate('/cart');
             }
         } else {
-            setSizeError(selectSize);
+            if (isChecked) {
+                setIsMessage(!isAdd);
+
+                setSizeError(selectSize);
+            }
         }
     };
 
@@ -201,22 +206,24 @@ const DetailProduct = () => {
         <div className="mt-[100px] max-w-[1140px] mx-auto md:mt-[100px] lg:mt-[10px]">
             <div className="flex items-center bg-[#eeeeee] pl-4 py-2 mb-[10px]">
                 <AiOutlineHome className="hover:text-[#030303]" />
-                <Link to="/" className="pl-2 text-[#585858] hover:text-[#000000]">
+                <Link to="/" className="pl-2 text-[#585858] hover:text-[#000000] text-sm md:text-base">
                     Trang chủ{' '}
                 </Link>{' '}
                 <p>&nbsp; /</p> <p>&nbsp; Chi tiết sản phẩm</p>
             </div>
             {isMessage && (
-                <div className="flex justify-between items-center bg-[#f7f5f5] py-2 px-4 border-t-[2px] border-primary my-[25px]">
+                <div className="flex flex-col md:flex-row justify-between md:items-center bg-[#f7f5f5] py-2 px-4 border-t-[2px] border-primary my-[25px]">
                     <div className="flex items-center break-all">
-                        <RiInformationFill size={18} className="text-primary" />
-                        <p>
+                        <RiInformationFill size={18} className="text-primary hidden md:inline-block" />
+                        <p className="break-words text-[14px] ml-1">
                             &nbsp;Bạn không thể thêm "{productView.name} - {sizeError}" khác vào giỏ hàng của bạn.
                         </p>
                     </div>
-                    <button className="bg-black text-white" onClick={() => navigate('/cart')}>
-                        XEM GIỎ HÀNG
-                    </button>
+                    <div className="mt-2 md:grow md:min-w-[126px] md:ml-[15px] md:mt-0">
+                        <Button className="bg-black text-white hover-cyan " onClick={() => navigate('/cart')}>
+                            XEM GIỎ HÀNG
+                        </Button>
+                    </div>
                 </div>
             )}
             <Product

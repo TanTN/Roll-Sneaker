@@ -11,7 +11,6 @@ export const requestProvinces = axios.create({
     baseUrl: baseURL1,
 });
 
-
 const validateRegister = async (value) => {
     const res = await httpRequest.get('users');
     const isEmail = await res.data.every((data) => data.email !== value.email);
@@ -28,6 +27,5 @@ const validateLogin = async (value, dispatch) => {
     }
     return isLogin;
 };
-
 
 export { validateRegister, validateLogin };

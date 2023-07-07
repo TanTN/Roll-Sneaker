@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import HowToSelect from './HowToSelect';
 import { useNavigate } from 'react-router';
+import Button from '@/components/button';
 
 const Product = ({
     handleClearSize,
@@ -18,7 +19,6 @@ const Product = ({
     numberProduct,
 }) => {
     const productView = useSelector((state) => state.store.viewProduct);
-    const navigate = useNavigate();
 
     return (
         <>
@@ -99,23 +99,18 @@ const Product = ({
                             </p>
                         </div>
                         <div className="flex pt-4 pb-2">
-                            <button
-                                className={`text-white py-[6px] px-3 text-[14px] font-medium ${
-                                    isChecked
-                                        ? 'bg-primary hover:bg-[#e24e4e] hover:transition hover:duration-[0.7s]'
-                                        : 'bg-[#ad83a5] cursor-not-allowed'
+                            <Button
+                                className={`text-white ${
+                                    isChecked ? 'bg-primary hover-primary' : 'bg-[#ee8282] cursor-not-allowed'
                                 }`}
                                 onClick={handleAddProduct}
                             >
                                 THÊM VÀO GIỎ HÀNG
-                            </button>
+                            </Button>
 
-                            <button
-                                className="bg-[#414141] ml-1 text-white py-[6px] px-3 text-[14px] hover:transition hover:duration-[0.7s] font-medium lg:hover:bg-[#00d1b7]"
-                                onClick={handleBuy}
-                            >
+                            <Button className="bg-[#414141] ml-1 text-white lg:hover-cyan" onClick={handleBuy}>
                                 MUA NGAY
-                            </button>
+                            </Button>
                         </div>
 
                         <div className="border-[1px] border-dashed border-primary p-[15px] mt-3">

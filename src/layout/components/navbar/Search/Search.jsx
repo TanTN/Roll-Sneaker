@@ -45,26 +45,26 @@ const Search = () => {
                     onFocus={() => setShowResult(true)}
                     onBlur={() => setShowResult(false)}
                 />
+                {showResult && valueInput.length > 0 && dataSearch.length > 0 && (
+                    <Wrapper className="fixed md:absolute bg-white top-[100px] w-[90%] left-[5%] md:top-[140%] md:left-[-60px] md:w-[420px] z-50 px-[10px] py-[14px] xl:top-[180%] xl:after:content-[''] after:absolute after:top-[-25px] xl:after:w-[300px] after:left-[60px] after:h-[25px] after:bg-transparent">
+                        {dataSearch.map((data, index) => {
+                            if (index < 6) {
+                                return (
+                                    <div
+                                        key={index}
+                                        className="flex border-[1px] items-center cursor-pointer hover:border-y-[1px] hover:border-y-[#eb4949]"
+                                        onMouseDown={(e) => e.preventDefault()}
+                                        onClick={() => handleAddProduct(data)}
+                                    >
+                                        <img src={data.img} alt="sneaker" className="w-[60px] h-[60px]" />
+                                        <p>{data.name}</p>
+                                    </div>
+                                );
+                            }
+                        })}
+                    </Wrapper>
+                )}
             </div>
-            {showResult && valueInput.length > 0 && dataSearch.length > 0 && (
-                <Wrapper className="absolute bg-white top-[140%] xl:top-[180%] w-[380px] left-[-190px] md:left-[-336px] md:w-[420px] z-50 px-[10px] py-[14px] xl:after:content-[''] after:absolute after:top-[-20px] xl:after:w-[300px] after:left-[60px] after:h-[20px] after:bg-transparent">
-                    {dataSearch.map((data, index) => {
-                        if (index < 6) {
-                            return (
-                                <div
-                                    key={index}
-                                    className="flex border-[1px] items-center cursor-pointer hover:border-y-[1px] hover:border-y-[#eb4949]"
-                                    onMouseDown={(e) => e.preventDefault()}
-                                    onClick={() => handleAddProduct(data)}
-                                >
-                                    <img src={data.img} alt="sneaker" className="w-[60px] h-[60px]" />
-                                    <p>{data.name}</p>
-                                </div>
-                            );
-                        }
-                    })}
-                </Wrapper>
-            )}
         </div>
     );
 };

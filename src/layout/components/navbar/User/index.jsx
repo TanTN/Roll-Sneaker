@@ -29,24 +29,27 @@ const User = () => {
                 offset={[0, 18]}
                 render={(attrs) => (
                     <div tabIndex="-1" {...attrs}>
-                        <Wrapper className="px-3 py-2 z-40 font-semibold text-[#d4d4d4] bg-black before:content-[''] before:z-[-1] before:absolute before:left-[var(--offset-box-person)] before:top-[-5px] before:w-[20px] before:h-[20px] before:rotate-[45deg] before:bg-black">
+                        <Wrapper className="px-3 py-2 z-40 font-medium text-[12px] text-[#d4d4d4] bg-black before:content-[''] before:z-[-1] before:absolute before:left-[var(--offset-box-person)] before:top-[-5px] before:w-[20px] before:h-[20px] before:rotate-[45deg] before:bg-black">
                             {isLogin ? (
                                 <div>
-                                    <Link to="/user" className="hover:text-[#ffffff] cursor-pointer mb-1">
+                                    <Link to="/user" className="hover:text-[#ffffff] cursor-pointer">
                                         Tài khoản
                                     </Link>
-                                    <div className="hover:text-[#ffffff] cursor-pointer" onClick={handleSignOut}>
+                                    <div
+                                        className="hover:text-[#ffffff] cursor-pointer mt-[6px]"
+                                        onClick={handleSignOut}
+                                    >
                                         Đăng xuất
                                     </div>
                                 </div>
                             ) : (
                                 <div>
                                     <div>
-                                        <Link to="/login" className="hover:text-[#ffffff] cursor-pointer mb-1">
+                                        <Link to="/login" className="hover:text-[#ffffff] cursor-pointer">
                                             Đăng nhập
                                         </Link>
                                     </div>
-                                    <Link to="/register" className="hover:text-[#ffffff] cursor-pointer">
+                                    <Link to="/register" className="hover:text-[#ffffff] cursor-pointer mt-[6px]">
                                         Đăng kí
                                     </Link>
                                 </div>
@@ -61,11 +64,14 @@ const User = () => {
                             src={userCurrent.linkAvt}
                             alt={userCurrent.username}
                             className="border-[1px] border-[#a02222]"
+                            sx={{ height: 30, width: 30 }}
                         />
                     ) : (
-                        <img
+                        <Avatar
                             src="https://secureservercdn.net/160.153.137.14/7nh.661.myftpupload.com/wp-content/uploads/2019/11/Untitled-1-24-1536x1415.png"
                             alt="avt"
+                            sx={{ height: 30, width: 30 }}
+                            className="border-[1px] border-[#a02222]"
                         />
                     )}
                 </div>

@@ -13,6 +13,7 @@ import { setUserCurrent } from '@/store/reducerStore';
 import FormAddress from './itemBuy/FormAddress';
 import WrapperBill from '@/components/popper/WrapperBill';
 import allPriceUtils from '@/utils/allPriceUtils';
+import Button from '../../components/button';
 
 const Buy = () => {
     const user = useSelector((state) => state.store.userCurrent);
@@ -150,7 +151,10 @@ const Buy = () => {
 
             <div className="flex items-center lg:bg-[#eeeeee] pl-4 py-2 mb-[10px]">
                 <AiOutlineHome className="hover:text-[#030303]" />
-                <span className="px-2 text-[#585858] hover:text-[#000000] cursor-pointer" onClick={handleBackHome}>
+                <span
+                    className="px-2 text-[#585858] hover:text-[#000000] text-sm md:text-base cursor-pointer"
+                    onClick={handleBackHome}
+                >
                     Trang chủ
                 </span>
                 <span>/</span>
@@ -224,26 +228,26 @@ const Buy = () => {
                                 {/* Button */}
                                 <div className="flex md:justify-end mt-3 flex-col md:flex-row">
                                     {user.products.length == 0 ? (
-                                        <button
-                                            className="md:mr-2 bg-[#414141] text-white py-1 px-3 rounded-sm text-[15px] -order-1 md:-order-2 my-2 md:my-0 hover:transition hover:duration-[0.7s] lg:hover:bg-[#00d1b7]"
+                                        <Button
+                                            className="md:mr-2 bg-[#414141] text-white -order-1 md:-order-2 my-2 md:my-0 hover-cyan"
                                             onClick={handleBackHome}
                                         >
                                             QUAY TRỞ LẠI CỬA HÀNG
-                                        </button>
+                                        </Button>
                                     ) : (
                                         ''
                                     )}
 
-                                    <button
+                                    <Button
                                         type="submit"
-                                        className={`text-white py-1 px-3 rounded-sm text-[15px] -order-2 md:-order-1 ${
+                                        className={`text-white -order-2 md:-order-1 ${
                                             user.products.length == 0
                                                 ? 'bg-[#ee8282] cursor-not-allowed'
-                                                : 'bg-primary hover:bg-[#e24e4e] hover:transition hover:duration-[0.7s]'
+                                                : 'bg-primary hover-primary'
                                         }`}
                                     >
                                         ĐẶT HÀNG
-                                    </button>
+                                    </Button>
                                 </div>
                             </WrapperBill>
                         </div>

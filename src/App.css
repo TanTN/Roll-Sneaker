@@ -39,6 +39,12 @@
     .loading {
         @apply relative w-[100%] h-[170px] md:h-[255px] border-[1px] rounded-md overflow-hidden bg-[#f0f0f0] border-[#f1f1f1] before:content-[''] before:h-[400px] before:w-[20px] before:top-[-10%] before:bg-[#ffffff] before:blur-[2px] before:absolute before:drop-shadow-[-15px_0_8px_white] before:animate-fadeInLoading;
     }
+    .hover-primary {
+        @apply hover:bg-[#e24e4e];
+    }
+    .hover-cyan {
+        @apply hover:bg-[#00d1b7];
+    }
 }
 
 .cart {

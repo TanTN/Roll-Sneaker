@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setUserCurrent } from '@/store/reducerStore';
 import { Avatar } from '@mui/material';
-import { updateUser } from '../../services/userService';
+import { updateUser } from '@/services/userService';
+import { AiFillCloseSquare } from 'react-icons/ai';
 
 const User = () => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -18,6 +19,10 @@ const User = () => {
         file: null,
         link: userCurrent.linkAvt,
     });
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         return () => URL.revokeObjectURL(avatar.link);
@@ -56,55 +61,75 @@ const User = () => {
             {isRoomAvatar && (
                 <div className="fixed z-[200] top-0 left-0 bottom-0 right-0 bg-[#4b4b4b81]">
                     <div className="w-[100%] h-[100%] bg-[#141414ad]" onClick={() => setIsRoomAvatar(false)}></div>
-                    <img
-                        src={avatar.link}
-                        className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[800px]"
-                    />
+                    <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] xl:max-w-[800px]">
+                        <img src={avatar.link} />
+                        <div className="absolute top-[2%] right-[2%] bg-white text-[15px] md:text-[25px] lg:hover:text-primary lg:hover:cursor-pointer">
+                            <AiFillCloseSquare onClick={() => setIsRoomAvatar(false)} />
+                        </div>
+                    </div>
                 </div>
             )}
-            <div className="mx-auto max-w-[1140px]">
+            <div className="mx-auto max-w-[1140px] mt-[94px] lg:mt-0">
                 <div className="flex items-center bg-[#eeeeee] pl-4 py-2 mb-[10px]">
                     <AiOutlineHome className="hover:text-[#030303]" />
-                    <Link to="/" className="pl-2 text-[#585858] hover:text-[#000000] cursor-pointer">
+                    <Link
+                        to="/"
+                        className="pl-2 text-[#585858] hover:text-[#000000] cursor-pointer text-sm md:text-base"
+                    >
                         Trang chủ
                     </Link>
                     <span>&nbsp; / &nbsp;</span>
                     <span> Giỏ hàng</span>
                 </div>
-                <div className="grid grid-cols-6 mx-auto my-[70px] max-w-[1140px]">
-                    <div className="col-span-2 border-r-[1px] border-[#ddd]">
+                <section className="grid grid-cols-6 md:mx-[20px] lg:mx-0 my-[30px] lg:my-[70px] max-w-[1140px]">
+                    <div className="hidden md:block col-span-2 border-r-[1px] border-[#ddd]">
                         <h2>TRANG TÀI KHOẢN</h2>
                         <p className="my-2 text-lg">Xin chào, {userCurrent.username}!</p>
                     </div>
-                    <div className="col-span-4 pl-[40px]">
+                    <div className="col-span-6 px-[10px] md:col-span-4 md:pl-[40px]">
                         <h2>TÀI KHOẢN</h2>
 
                         <Avatar
                             alt={userCurrent.username}
                             src={avatar.link}
                             className="cursor-pointer border-[1px] border-[#a02222]"
+                            sx={{ height: 55, width: 55 }}
                             onClick={() => setIsRoomAvatar(true)}
                         />
-                        <div className="flex">
-                            <input type="file" onChange={handleViewAvatar} />
-                            <button className="border-[1px] border-[#d83030]" onClick={handleChangeAvatar}>
-                                Luu anh
+
+                        <div className="flex mt-3">
+                            <label
+                                htmlFor="inputAvt"
+                                className="px-[8px] py-[2px] text-[14px] border-[1px] border-black text-black rounded-[5px] cursor-pointer hover:bg-black hover:text-white transition mr-2"
+                            >
+                                Thay Avatar
+                            </label>
+                            <input type="file" id="inputAvt" onChange={handleViewAvatar} hidden />
+                            <button
+                                className="px-[8px] py-[2px] text-[14px] bg-primary border-[1px] border-primary hover:hover-primary text-white rounded-[5px] transition"
+                                onClick={handleChangeAvatar}
+                            >
+                                Lưu ảnh
                             </button>
                         </div>
+
                         <p className="my-4 text-[18px]">
                             Tên tài khoản: <span className="font-medium">{userCurrent.username}</span>!
                         </p>
+
                         <div className="flex items-center my-4">
                             <AiFillHome />
-                            <p className="px-1 text-[18px]">Địa chỉ: , Vietnam</p>
+                            <p className="px-1 text-[18px]">Địa chỉ: Vietnam</p>
                         </div>
+
                         <div className="flex items-center my-4">
                             <RiSmartphoneFill />
                             <p className="px-1 text-[18px]">Điện thoại: {userCurrent.phone}</p>
                         </div>
-                        <h2>ĐƠN HÀNG CỦA BẠN</h2>
+
+                        <h2>ĐƠN HÀNG CỦA BẠN:</h2>
                     </div>
-                </div>
+                </section>
             </div>
         </>
     );

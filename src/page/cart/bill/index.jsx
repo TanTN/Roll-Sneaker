@@ -5,8 +5,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import allPriceUtils from '@/utils/allPriceUtils';
-import { Button } from '@mui/base';
 import { useNavigate } from 'react-router';
+import Button from '../../../components/button';
 
 const Bill = ({ userCurrent }) => {
     const navigate = useNavigate();
@@ -68,7 +68,10 @@ const Bill = ({ userCurrent }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button className="w-[100%] bg-primary text-white p-2 text-[18px]" onClick={() => navigate('/buy')}>
+            <Button
+                className="w-[100%] bg-primary text-white p-2 text-[18px] hover:hover-primary"
+                onClick={() => navigate('/buy')}
+            >
                 TIẾN HÀNH THANH TOÁN
             </Button>
         </>

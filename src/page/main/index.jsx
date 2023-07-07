@@ -20,6 +20,7 @@ const Main = () => {
 
     useEffect(() => {
         dispatch(fetchApiData());
+        window.scrollTo(0, 0);
     }, []);
 
     const SamplePrevArrow = ({ onClick }) => {
@@ -56,12 +57,12 @@ const Main = () => {
         nextArrow: <SampleNextArrow />,
     };
     return (
-        <div className="mt-[100px] max-w-[1140px] mx-auto md:mt-[90px] lg:mt-0">
+        <div className="mt-[94px] max-w-[1140px] mx-auto md:mt-[90px] lg:mt-0">
             <div className="pb-[30px] px-[15px] lg:px-0 md:pb-[40px]">
                 <div className="slide-slick">
                     <Slider {...options}>
                         {imagesPoster.map((img, index) => (
-                            <img className="" key={index} src={img} alt="shop" />
+                            <img key={index} src={img} alt="shop" />
                         ))}
                     </Slider>
                 </div>

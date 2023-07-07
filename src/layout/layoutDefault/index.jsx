@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 
 const LayoutDefault = ({ children }) => {
-    const [isOverflow, setIsOverflow] = useState(false);
-
     return (
-        <div
-            className={`overflow-x-hidden relative  lg:overflow-y-auto lg:h-auto ${
-                isOverflow ? 'overflow-hidden h-[100vh]' : ''
-            }`}
-        >
-            <Navbar setIsOverflow={setIsOverflow} />
+        <div className="overflow-x-hidden relative  lg:overflow-y-auto lg:h-auto">
+            <Navbar />
             {children}
             <Footer />
         </div>

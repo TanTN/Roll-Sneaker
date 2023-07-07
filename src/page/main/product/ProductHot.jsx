@@ -18,6 +18,7 @@ const ProductHot = ({ isProductSame, isReload }) => {
         }
         await dispatch(setProduct(data));
         await navigate(`/detailProduct`);
+        await window.scrollTo(0, 0);
     };
     const dataProductHot = isProductSame ? dataProductSame : dataSneakers;
     return (
