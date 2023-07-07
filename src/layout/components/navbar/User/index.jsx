@@ -29,7 +29,7 @@ const User = () => {
                 offset={[0, 18]}
                 render={(attrs) => (
                     <div tabIndex="-1" {...attrs}>
-                        <Wrapper className="px-3 py-2 z-40 font-medium text-[25px] lg:text-[14px] text-[#d4d4d4] bg-black before:content-[''] before:z-[-1] before:absolute before:left-[var(--offset-box-person)] before:top-[-5px] before:w-[20px] before:h-[20px] before:rotate-[45deg] before:bg-black">
+                        <Wrapper className="px-3 py-2 z-40 font-medium text-[16px] lg:text-[14px] text-[#d4d4d4] bg-black before:content-[''] before:z-[-1] before:absolute before:left-[var(--offset-box-person)] before:top-[-5px] before:w-[20px] before:h-[20px] before:rotate-[45deg] before:bg-black">
                             {isLogin ? (
                                 <div>
                                     <Link to="/user" className="hover:text-[#ffffff] cursor-pointer">

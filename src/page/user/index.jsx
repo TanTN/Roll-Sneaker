@@ -7,7 +7,7 @@ import axios from 'axios';
 import { setUserCurrent } from '@/store/reducerStore';
 import { Avatar } from '@mui/material';
 import { updateUser } from '@/services/userService';
-import { AiFillCloseSquare } from 'react-icons/ai';
+import { AiFillCloseSquare, AiOutlineLoading } from 'react-icons/ai';
 
 const User = () => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -54,7 +54,8 @@ const User = () => {
                 const newUser = { ...userCurrent, linkAvt: res.data.url };
                 dispatch(setUserCurrent(newUser));
                 updateUser(newUser);
-            });
+            })
+            .catch((err) => console.log(err));
     };
     return (
         <>
@@ -92,7 +93,7 @@ const User = () => {
                         <Avatar
                             alt={userCurrent.username}
                             src={avatar.link}
-                            className="cursor-pointer border-[1px] border-[#a02222]"
+                            className="cursor-pointer relative border-[1px] border-[#a02222]"
                             sx={{ height: 55, width: 55 }}
                             onClick={() => setIsRoomAvatar(true)}
                         />
