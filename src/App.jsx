@@ -36,6 +36,9 @@ function App() {
                     } else if (route.layout === null) {
                         Layout = Fragment;
                     }
+                    if (!isLogin && route.path == '/user') {
+                        Page = <Navigate to="/" replace={true} />;
+                    }
 
                     return <Route key={index} path={route.path} element={<Layout>{Page}</Layout>} />;
                 })}

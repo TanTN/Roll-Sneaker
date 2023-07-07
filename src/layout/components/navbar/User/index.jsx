@@ -36,7 +36,7 @@ const User = () => {
                                         Tài khoản
                                     </Link>
                                     <div
-                                        className="hover:text-[#ffffff] cursor-pointer mt-[8px] lg:mt-[6px]"
+                                        className="hover:text-[#ffffff] cursor-pointer mt-[10px] lg:mt-[6px]"
                                         onClick={handleSignOut}
                                     >
                                         Đăng xuất
@@ -51,7 +51,7 @@ const User = () => {
                                     </div>
                                     <Link
                                         to="/register"
-                                        className="hover:text-[#ffffff] cursor-pointer mt-[8px] lg:mt-[6px]"
+                                        className="hover:text-[#ffffff] cursor-pointer mt-[10px] lg:mt-[6px]"
                                     >
                                         Đăng kí
                                     </Link>
