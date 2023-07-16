@@ -5,7 +5,6 @@ import { memo } from 'react';
 
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from 'react-icons/hi';
 
-import ProductHot from './product/ProductHot';
 import Nike from './product/Nike';
 import Adidas from './product/Adidas';
 import Mlb from './product/Mlb';
@@ -13,6 +12,7 @@ import Personal from './product/Personal';
 import Tips from './product/Tips';
 import imagesPoster from '@/data/dataImagesPoster';
 import { fetchApiData } from '@/store/reducerData';
+import ProductHotInMain from './product/ProductHotInMain';
 
 const Main = () => {
     const isMobile = useSelector((state) => state.store.isMobile);
@@ -69,7 +69,7 @@ const Main = () => {
             </div>
 
             <div className="px-[15px] lg:px-0">
-                <ProductHot />
+                <ProductHotInMain />
                 <Nike />
                 <Adidas />
                 <Mlb />

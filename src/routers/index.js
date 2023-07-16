@@ -1,14 +1,18 @@
-import DetailProduct from '../page/detaiilProduct';
-import Login from '../page/login/Login';
-import Main from '../page/main';
-import Register from '../page/register/Register';
-import Buy from '../page/buy';
-import NotFound from '../page/notfound/NotFound';
-import Cart from '../page/cart';
-import User from '../page/user';
+import { lazy } from 'react';
+
+import NotFound from '../pages/notfound/NotFound';
+
+const Main = lazy(() => import('../pages/main'));
+const DetailProduct = lazy(() => import('../pages/detaiilProduct'));
+const Buy = lazy(() => import('../pages/buy'));
+const Login = lazy(() => import('../pages/login/Login'));
+const Register = lazy(() => import('../pages/register/Register'));
+const Cart = lazy(() => import('../pages/cart'));
+const User = lazy(() => import('../pages/user'));
 
 const routes = {
-    detailProduct: '/detailProduct',
+    detailProduct: '/detailProduct/:productId',
+    detailProductUser: '/detailProduct/:productInCart/:id',
     login: '/login',
     register: '/register',
     cart: '/cart',
@@ -20,6 +24,7 @@ const routes = {
 
 const pluginRouters = [
     { path: routes.detailProduct, component: DetailProduct },
+    { path: routes.detailProductUser, component: DetailProduct },
     { path: routes.login, component: Login, layout: null },
     { path: routes.register, component: Register, layout: null },
     { path: routes.user, component: User },

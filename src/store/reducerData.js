@@ -1,24 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_BASE_URL;
+const baseURL = import.meta.env.VITE_DATA_PRODUCT;
 const httpRequest = axios.create({
     baseURL: baseURL,
 });
 
 export const fetchApiData = createAsyncThunk('data/fetchApiData', async () => {
-    const res = await httpRequest.get('dbsneakers');
+    const res = await httpRequest.get('data');
     return res.data;
 });
 
 const dataSlice = createSlice({
     name: 'data',
     initialState: {
-        allDataSneaker: [],
-        dataSneakers: [],
-        dataNikes: [],
-        dataAdidas: [],
-        dataMlbs: [],
+        dataSneaker: [],
         dataPending: false,
         dataRejected: false,
     },
@@ -29,18 +25,8 @@ const dataSlice = createSlice({
         });
         builder.addCase(fetchApiData.fulfilled, (state, action) => {
             state.dataPending = false;
-            const data = [
-                ...action.payload[0].dataSneakers,
-                ...action.payload[0].dataNikes,
-                ...action.payload[0].dataAdidas,
-                ...action.payload[0].dataMlbs,
-            ];
-            state.allDataSneaker = data;
 
-            state.dataSneakers = action.payload[0].dataSneakers;
-            state.dataNikes = action.payload[0].dataNikes;
-            state.dataAdidas = action.payload[0].dataAdidas;
-            state.dataMlbs = action.payload[0].dataMlbs;
+            state.dataSneaker = action.payload;
 
             state.dataRejected = false;
         });

@@ -5,10 +5,10 @@ import { TbSearch } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProduct } from '@/store/reducerStore';
 import { useNavigate } from 'react-router';
-import Wrapper from '../../../../components/popper/Wrapper';
+import Wrapper from '@/components/popper/Wrapper';
 
 const Search = () => {
-    const dataAllSneaker = useSelector((state) => state.data.allDataSneaker);
+    const dataAllSneaker = useSelector((state) => state.data.dataSneaker);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

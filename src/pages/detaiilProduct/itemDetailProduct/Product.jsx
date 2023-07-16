@@ -3,7 +3,6 @@ import { FcOk } from 'react-icons/fc';
 import { useSelector } from 'react-redux';
 
 import HowToSelect from './HowToSelect';
-import { useNavigate } from 'react-router';
 import Button from '@/components/button';
 
 const Product = ({
@@ -17,8 +16,8 @@ const Product = ({
     sizes,
     sizeActive,
     numberProduct,
+    productView
 }) => {
-    const productView = useSelector((state) => state.store.viewProduct);
 
     return (
         <>

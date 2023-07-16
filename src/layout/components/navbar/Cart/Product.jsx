@@ -16,7 +16,7 @@ const Product = ({ userCurrent, setTippyPc }) => {
         dispatch(setProduct(product));
         dispatch(setReloadClickCart(Math.random() * 100));
         if (!isMobile) setTippyPc(true);
-        navigate('/detailProduct');
+        navigate(`/detailProduct/productInCart/${product.id}`);
         window.scrollTo(0, 0);
     };
 

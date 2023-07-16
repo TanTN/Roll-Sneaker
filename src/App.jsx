@@ -1,11 +1,12 @@
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router';
-import { Fragment, useEffect, useState } from 'react';
-
+import { Fragment, Suspense, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { setMobile } from '@/store/reducerStore';
 import pluginRouters from './routers';
 import LayoutDefault from './layout/layoutDefault';
+import LoadingPage from './components/loading/loadingPage';
 
 function App() {
     const dispatch = useDispatch();
@@ -26,24 +27,32 @@ function App() {
     }, [widthDisplay]);
 
     return (
-        <div className="scroll-smooth">
-            <Routes>
-                {pluginRouters.map((route, index) => {
-                    let Layout = LayoutDefault;
-                    let Page = <route.component />;
-                    if (route.layout) {
-                        Layout = route.layout;
-                    } else if (route.layout === null) {
-                        Layout = Fragment;
-                    }
-                    if (!isLogin && route.path == '/user') {
-                        Page = <Navigate to="/" replace={true} />;
-                    }
+        <Routes>
+            {pluginRouters.map((route, index) => {
+                let Layout = LayoutDefault;
+                let Page = <route.component />;
+                if (route.layout) {
+                    Layout = route.layout;
+                } else if (route.layout === null) {
+                    Layout = Fragment;
+                }
+                if (!isLogin && route.path == '/user') {
+                    Page = <Navigate to="/" replace={true} />;
+                }
 
-                    return <Route key={index} path={route.path} element={<Layout>{Page}</Layout>} />;
-                })}
-            </Routes>
-        </div>
+                return (
+                    <Route
+                        key={index}
+                        path={route.path}
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <Layout>{Page}</Layout>
+                            </Suspense>
+                        }
+                    />
+                );
+            })}
+        </Routes>
     );
 }
 

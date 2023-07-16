@@ -15,7 +15,6 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isMobile = useSelector((state) => state.store.isMobile);
-
     const [isScroll, setIsScroll] = useState(false);
     const [isMenu, setIsMenu] = useState(false);
 

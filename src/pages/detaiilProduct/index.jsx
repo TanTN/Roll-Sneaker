@@ -1,32 +1,43 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { memo } from 'react';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
+
 import { AiOutlineHome } from 'react-icons/ai';
 import { RiInformationFill } from 'react-icons/ri';
 
 import { updateUser } from '@/services/userService';
-import ProductHot from '@/page/main/product/ProductHot';
-import Tips from '@/page/main/product/Tips';
 import dataSizes from '@/data/dataSizes';
 import Product from './itemDetailProduct/Product';
 import { setUserCurrent, setProduct } from '@/store/reducerStore';
 import { Link } from 'react-router-dom';
-import Button from '../../components/button';
+import Button from '@/components/button';
+import ProductHot from '@/components/productRender/productHot';
+import Tips from '../main/product/Tips';
+
+const baseURL = import.meta.env.VITE_DATA_PRODUCT;
+const httpRequest = axios.create({
+    baseURL: baseURL,
+});
 
 const DetailProduct = () => {
-    const { pathname } = useLocation();
-
+    const { productId, id, productInCart } = useParams();
+    // console.log(productId, id, productInCart)
     const user = useSelector((state) => state.store.userCurrent);
-    const productView = useSelector((state) => state.store.viewProduct);
+    const productViewInStore = useSelector((state) => state.store.viewProduct);
     const isLogin = useSelector((state) => state.store.isLogin);
     const isReloadClickCart = useSelector((state) => state.store.isReloadClickCart);
+    const dataSneaker = useSelector((state) => state.data.dataSneaker);
 
+    const [productView, setProductView] = useState({});
+    const [dataProductBestseller, setDataProductBestseller] = useState([]);
     const [sizes, setSizes] = useState(dataSizes);
+
     const [selectSize, setSelectSize] = useState(undefined);
     const [sizeActive, setSizeActive] = useState(undefined);
     const [isChecked, setIsChecked] = useState(false);
-    const [isProduct, setIsProduct] = useState(false);
     const [numberProduct, setNumberProduct] = useState(1);
     const [isUpdateProduct, setIsUpdateProduct] = useState(false);
     const [isMessage, setIsMessage] = useState(false);
@@ -39,8 +50,27 @@ const DetailProduct = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
+        const productBestSeller = dataSneaker.filter((product) => product.category === 'Bestseller');
+        setDataProductBestseller(productBestSeller);
+    }, []);
+
+    useEffect(() => {
+        const getDataProductView = async () => {
+            if (productId) {
+                const dataProductView = await httpRequest.get(`data/${productId}`);
+                setProductView(dataProductView.data);
+            } else {
+                setProductView(productViewInStore);
+            }
+        };
+        getDataProductView();
+
+    }, [productId]);
+
+    useEffect(() => {
         if (productView.size) {
+            console.log('sasa')
             const sizeProduct = sizes.map((sizeProd) => {
                 return sizeProd.size == productView.size
                     ? { ...sizeProd, isChecked: true }
@@ -54,23 +84,7 @@ const DetailProduct = () => {
             setIsUpdateProduct(true);
             setNumberProduct(productView.numberProducts);
         }
-    }, [isReloadClickCart]);
-
-    useEffect(() => {
-        if (pathname === '/detailProduct') {
-            setIsProduct(true);
-        } else {
-            setIsProduct(false);
-        }
-    }, [pathname]);
-
-    const isReload = () => {
-        setIsChecked(false);
-        setSizeActive(undefined);
-        setSizes(dataSizes);
-        setNumberProduct(1);
-        setIsUpdateProduct(false);
-    };
+    }, [productView]);
 
     const handleClearSize = () => {
         setIsChecked(false);
@@ -103,6 +117,11 @@ const DetailProduct = () => {
     };
 
     const handleBuyOrAddProduct = async () => {
+        const productChange = {
+            ...productView,
+            size: selectSize,
+            numberProducts: numberProduct,
+        }
         const indexUpdateSize = user.products.findIndex(
             (prod) => prod.name == productView.name && prod.size == selectSize,
         );
@@ -112,47 +131,42 @@ const DetailProduct = () => {
 
         if (isChecked) {
             let newUser;
+            // update product in cart
             if (indexUpdateProduct !== -1 || 0) {
                 const newProduct = [...user.products];
 
-                newProduct[indexUpdateProduct] = {
-                    ...productView,
-                    size: selectSize,
-                    numberProducts: numberProduct,
-                };
+                newProduct[indexUpdateProduct] = productChange;
                 newUser = {
                     ...user,
                     products: newProduct,
                 };
             }
-
+            // update size product in cart
             if ((indexUpdateSize !== -1 || 0) && !isUpdateProduct) {
                 if (!isUpdateProduct) {
                     const newProduct = [...user.products];
 
-                    newProduct[indexUpdateSize] = {
-                        ...productView,
-                        size: selectSize,
-                        numberProducts: numberProduct,
-                    };
+                    newProduct[indexUpdateSize] = productChange;
                     newUser = {
                         ...user,
                         products: newProduct,
                     };
                 }
-            } else if (indexUpdateSize == -1 && !isUpdateProduct) {
+            }
+            // add product
+            if (indexUpdateSize == -1 && !isUpdateProduct) {
                 newUser = {
                     ...user,
                     products: [
                         ...user.products,
                         {
-                            ...productView,
-                            size: selectSize,
-                            numberProducts: numberProduct,
+                            ...productChange,
+                            id:uuidv4(),
                         },
                     ],
                 };
             }
+            // start updating
             if (newUser) {
                 if (isLogin) {
                     await updateUser(newUser);
@@ -213,13 +227,13 @@ const DetailProduct = () => {
             </div>
             {isMessage && (
                 <div className="flex flex-col md:flex-row justify-between md:items-center bg-[#f7f5f5] py-2 px-4 border-t-[2px] border-primary my-[25px]">
-                    <div className="flex items-center break-all">
+                    <div className="flex items-center break-all md:grow-[5]">
                         <RiInformationFill size={18} className="text-primary hidden md:inline-block" />
                         <p className="break-words text-[14px] ml-1">
                             &nbsp;Bạn không thể thêm "{productView.name} - {sizeError}" khác vào giỏ hàng của bạn.
                         </p>
                     </div>
-                    <div className="mt-2 md:grow md:min-w-[126px] md:ml-[15px] md:mt-0">
+                    <div className="mt-2 md:grow-[1] md:ml-[15px] md:mt-0">
                         <Button className="bg-black text-white hover-cyan " onClick={() => navigate('/cart')}>
                             XEM GIỎ HÀNG
                         </Button>
@@ -238,9 +252,10 @@ const DetailProduct = () => {
                 sizeActive={sizeActive}
                 numberProduct={numberProduct}
                 isUpdateProduct={isUpdateProduct}
+                productView={productView}
             />
             <div className="px-[15px] lg:px-0 pt-[50px]">
-                <ProductHot isProductSame={isProduct} isReload={isReload} />
+                <ProductHot dataSneaker={dataProductBestseller} title={'SẢN PHẨM TƯƠNG TỰ'} isReload/>
             </div>
             <Tips />
         </div>

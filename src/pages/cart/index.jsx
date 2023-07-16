@@ -29,26 +29,22 @@ const Cart = () => {
                 <span> Giỏ hàng</span>
             </div>
             {allNumberProduct == 0 ? (
-                <div className="my-[40px] mx-[10px] md:my-[80px]">
-                    <div className="flex justify-center">
-                        <img
-                            src="https://theme.hstatic.net/1000285106/1000912959/14/cart_empty_background.png?v=120"
-                            alt="noProduct"
-                            className="w-[350px] h-[350px]"
-                        />
-                    </div>
-                    <p className="text-center text-[26px] text-[#575757] my-3">“Hổng” có gì trong giỏ hết</p>
+                <div className="flex flex-col items-center gap-2 md:gap-3 my-[40px] mx-[10px] md:my-[80px]">
+                    <img
+                        src="https://theme.hstatic.net/1000285106/1000912959/14/cart_empty_background.png?v=120"
+                        alt="noProduct"
+                        className="md:w-[350px] md:h-[350px]"
+                    />
+                    <p className="text-[26px] text-[#575757]">“Hổng” có gì trong giỏ hết</p>
                     <p className="text-center text-[17px]">Về trang cửa hàng để chọn mua sản phẩm bạn nhé!!</p>
-                    <div className="flex mx-auto justify-center my-4">
-                        <Link to="/">
-                            <button
-                                variant="outlined"
-                                className="px-[20px] py-[10px] text-[17px] hover: transition hover:bg-gray-800 hover:text-white border-[1px] border-[#303030]  rounded-[6px]"
-                            >
-                                Mua sắm ngay
-                            </button>
-                        </Link>
-                    </div>
+                    <Link to="/">
+                        <button
+                            variant="outlined"
+                            className="px-[15px] py-[5px] text-[14px] md:px-[20px] md:py-[10px] md:text-[17px] hover: transition hover:bg-gray-800 hover:text-white border-[1px] border-[#303030]  rounded-[6px]"
+                        >
+                            Mua sắm ngay
+                        </button>
+                    </Link>
                 </div>
             ) : (
                 <>

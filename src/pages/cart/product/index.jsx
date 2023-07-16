@@ -22,7 +22,7 @@ const Products = ({ userCurrent }) => {
 
     const handleFixProduct = (product) => {
         dispatch(setProduct(product));
-        navigate('/detailProduct');
+        navigate(`/detailProduct/productInCart/${product.id}`);
     };
     return (
         <TableContainer component={Paper}>

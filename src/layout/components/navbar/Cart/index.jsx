@@ -22,8 +22,6 @@ const Cart = ({ children }) => {
         setTippyPc(false);
     }, [tippyPc]);
 
-    const isTippy = tippyPc || isMobile ? { visible: false } : { trigger: 'mouseenter' };
-
     const hiddenCart = () => {
         setTippyPc(true);
         window.scrollTo(0, 0);
@@ -34,7 +32,9 @@ const Cart = ({ children }) => {
             navigate('/cart');
         }
     };
-
+    const lengthProduct = userCurrent.products.length 
+    const isTippy = tippyPc || isMobile ? { visible: false } : { trigger: 'mouseenter' };
+    const offset = lengthProduct < 1 ? {offset: [-102, 22]} : {offset:[-148, 22]}
     return (
         <div onClick={handleCart}>
             <Tippy
@@ -42,45 +42,13 @@ const Cart = ({ children }) => {
                 placement="bottom"
                 interactive
                 zIndex="20"
-                offset={[-148, 22]}
                 {...isTippy}
+                {...offset}
                 render={(attrs) => (
                     <Wrapper className="overflow-hidden ml-[-5px] lg:ml-0" tabIndex="-1" {...attrs}>
-                        <div className="relative bg-white drop-shadow-ShadowRoot lg:h-auto lg:max-w-[450px]">
-                            {userCurrent.products.length > 0 ? (
-                                <>
-                                    <div className="cart lg:mb-0 lg:max-h-[33vh] overflow-y-auto">
-                                        <Product userCurrent={userCurrent} setTippyPc={setTippyPc} />
-                                    </div>
-
-                                    <div>
-                                        <div className="text-sm md:text-[17px] text-center py-2 border-t-[1px] border-[#c7c7c7] bg-[#e2e2e2]">
-                                            <span className="font-bold">Tổng số phụ: </span>
-                                            <span>
-                                                {price}
-                                                <span className="underline">đ</span>
-                                            </span>
-                                        </div>
-                                        <div className="bg-[#383737] grid grid-cols-2 text-sm md:text-base text-[#e4e4e4]">
-                                            <Link
-                                                to="/cart"
-                                                className="text-center border-r-[1px] border-r-[#d3d3d3] hover:text-white h-[100%] lg:hover:bg-[#000000] py-[6px]"
-                                                onClick={hiddenCart}
-                                            >
-                                                XEM GIỎ HÀNG
-                                            </Link>
-                                            <Link
-                                                to="/buy"
-                                                className="text-center h-[100%] lg:hover:bg-[#000000] hover:text-white py-[6px]"
-                                                onClick={hiddenCart}
-                                            >
-                                                THANH TOÁN
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </>
-                            ) : (
-                                <div className="bg-white flex drop-shadow-ShadowRoot w-[100%] h-[100%]">
+                        <div className="relative bg-white drop-shadow-ShadowRoot lg:h-auto lg:max-w-[375px]">
+                            {userCurrent.products.length < 1 ? (
+                                <div className="bg-white flex drop-shadow-ShadowRoot w-[100%] h-[100%] px-6">
                                     <div className="m-auto">
                                         <div className="p-3 md:pr-0">
                                             <img
@@ -94,6 +62,38 @@ const Cart = ({ children }) => {
                                         </div>
                                     </div>
                                 </div>
+                            ) : (
+                                <>
+                                    <div className="cart lg:mb-0 lg:max-h-[33vh] overflow-y-auto">
+                                        <Product userCurrent={userCurrent} setTippyPc={setTippyPc} />
+                                    </div>
+
+                                    <div>
+                                        <div className="text-[15px] text-center border-t-[1px] border-[#c7c7c7] bg-[#e2e2e2] py-[3px]">
+                                            <span className="font-bold">Tổng số phụ: </span>
+                                            <span>
+                                                {price}
+                                                <span className="underline">đ</span>
+                                            </span>
+                                        </div>
+                                        <div className="bg-[#383737] grid grid-cols-2 md:text-sm text-[#e4e4e4]">
+                                            <Link
+                                                to="/cart"
+                                                className="text-center border-r-[1px] border-r-[#d3d3d3] hover:text-white h-[100%] hover:bg-[#000000] py-[3px]"
+                                                onClick={hiddenCart}
+                                            >
+                                                XEM GIỎ HÀNG
+                                            </Link>
+                                            <Link
+                                                to="/buy"
+                                                className="text-center h-[100%] lg:hover:bg-[#000000] hover:text-white py-[3px]"
+                                                onClick={hiddenCart}
+                                            >
+                                                THANH TOÁN
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </>
                             )}
                         </div>
                     </Wrapper>

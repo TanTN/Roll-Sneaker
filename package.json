@@ -33,6 +33,7 @@
     "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
     "tippy": "^0.0.0",
+    "uuid": "^9.0.0",
     "yup": "^1.1.1"
   },
   "devDependencies": {
