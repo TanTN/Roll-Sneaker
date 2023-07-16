@@ -19,7 +19,7 @@ const Main = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // dispatch(fetchApiData());
+        dispatch(fetchApiData());
         window.scrollTo(0, 0);
     }, []);
 

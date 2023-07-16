@@ -52,7 +52,6 @@ const DetailProduct = () => {
         const productBestSeller = dataSneaker.filter((product) => product.category === 'Bestseller');
         setDataProductBestseller(productBestSeller);
     }, []);
-    console.log(productView)
 
     useEffect(() => {
         const getDataProductView = async () => {
