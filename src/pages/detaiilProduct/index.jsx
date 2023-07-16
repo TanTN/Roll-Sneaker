@@ -17,18 +17,16 @@ import Button from '@/components/button';
 import ProductHot from '@/components/productRender/productHot';
 import Tips from '../main/product/Tips';
 
-const baseURL = import.meta.env.VITE_DATA_PRODUCT;
+const baseURL = import.meta.env.VITE_BASE_URL;
 const httpRequest = axios.create({
     baseURL: baseURL,
 });
 
 const DetailProduct = () => {
-    const { productId, id, productInCart } = useParams();
-    // console.log(productId, id, productInCart)
+    const { productId } = useParams();
     const user = useSelector((state) => state.store.userCurrent);
     const productViewInStore = useSelector((state) => state.store.viewProduct);
     const isLogin = useSelector((state) => state.store.isLogin);
-    const isReloadClickCart = useSelector((state) => state.store.isReloadClickCart);
     const dataSneaker = useSelector((state) => state.data.dataSneaker);
 
     const [productView, setProductView] = useState({});
@@ -54,6 +52,7 @@ const DetailProduct = () => {
         const productBestSeller = dataSneaker.filter((product) => product.category === 'Bestseller');
         setDataProductBestseller(productBestSeller);
     }, []);
+    console.log(productView)
 
     useEffect(() => {
         const getDataProductView = async () => {

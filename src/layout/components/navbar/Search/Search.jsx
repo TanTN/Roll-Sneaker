@@ -11,7 +11,6 @@ const Search = () => {
     const dataAllSneaker = useSelector((state) => state.data.dataSneaker);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log(dataAllSneaker)
 
     const [valueInput, setValueInput] = useState('');
     const [dataSearch, setDataSearch] = useState([]);
@@ -71,7 +70,7 @@ const Search = () => {
                     {isLoading ? <AiOutlineLoading className="animate-fadeInLoadingRotate" /> : <AiFillCloseCircle className='cursor-pointer hover:text-primary' onClick={handleClose}/>}
                 </div>
                 {showResult && valueInput.length > 0 && dataSearch.length > 0 && (
-                    <Wrapper className="fixed md:absolute bg-white top-[100px] w-[90%] left-[5%] md:top-[140%] md:left-[-60px] md:w-[420px] z-50 px-[10px] py-[14px] xl:top-[180%] xl:after:content-[''] after:absolute after:top-[-25px] xl:after:w-[300px] after:left-[60px] after:h-[25px] after:bg-transparent">
+                    <Wrapper className="fixed md:absolute bg-white top-[93px] w-[90%] left-[5%] md:top-[140%] md:left-[-60px] md:w-[420px] z-50 px-[10px] py-[14px] xl:top-[180%] xl:after:content-[''] after:absolute after:top-[-25px] xl:after:w-[300px] after:left-[60px] after:h-[25px] after:bg-transparent">
                         {dataSearch.map((data, index) => {
                             if (index < 6) {
                                 return (

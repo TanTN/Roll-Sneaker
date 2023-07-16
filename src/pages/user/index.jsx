@@ -61,14 +61,22 @@ const User = () => {
     return (
         <>
             {isRoomAvatar && avatar.link && (
-                <div className="fixed z-[200] top-0 left-0 bottom-0 right-0 bg-[#4b4b4b81]">
-                    <div className="w-[100%] h-[100%] bg-[#141414ad]" onClick={() => setIsRoomAvatar(false)}></div>
-                    <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] xl:max-w-[800px]">
-                        <img src={avatar.link} />
-                        <div className="absolute top-[2%] right-[2%] bg-white text-[15px] md:text-[25px] lg:hover:text-primary lg:hover:cursor-pointer">
-                            <AiFillCloseSquare onClick={() => setIsRoomAvatar(false)} />
+                <div className="flex justify-center items-center fixed z-[200] top-0 left-0 bottom-0 right-0 m-auto">
+                    <div
+                        className="absolute z-[-1] top-0 left-0 bottom-0 right-0 bg-[#141414e0]"
+                        onClick={() => {
+                            setIsRoomAvatar(false);
+                        }}
+                    />
+                        <div className="relative min-w-[100%] h-[70%] md:min-w-[800px] md:h-[90%]">
+                            <img src={avatar.link} className="w-[100%] h-[100%] object-cover" />
+                            <div
+                                className="absolute top-[2%] right-[2%] bg-white text-[15px] md:text-[25px] lg:hover:text-primary lg:hover:cursor-pointer"
+                                onClick={() => setIsRoomAvatar(false)}
+                            >
+                                <AiFillCloseSquare />
+                            </div>
                         </div>
-                    </div>
                 </div>
             )}
             <div className="mx-auto max-w-[1140px] mt-[94px] lg:mt-0">
@@ -94,12 +102,14 @@ const User = () => {
                         <Avatar
                             src={avatar.link}
                             className="cursor-pointer relative border-[1px] border-[#a02222]"
-                            sx={{ height: 55, width: 55 ,bgcolor: deepOrange[500],fontSize: 26, fontWeight: 'lag'}}
+                            sx={{ height: 55, width: 55, bgcolor: deepOrange[500], fontSize: 26, fontWeight: 'lag' }}
                             alt={userCurrent.username}
                             onClick={() => {
-                                if (avatar.link) setIsRoomAvatar(true)
+                                if (avatar.link) setIsRoomAvatar(true);
                             }}
-                        >{userCurrent.username[0].toUpperCase()}</Avatar>
+                        >
+                            {userCurrent.username[0].toUpperCase()}
+                        </Avatar>
 
                         <div className="flex">
                             <label
