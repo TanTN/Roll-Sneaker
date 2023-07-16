@@ -16,6 +16,8 @@ import ProductHotInMain from './product/ProductHotInMain';
 
 const Main = () => {
     const isMobile = useSelector((state) => state.store.isMobile);
+    const dataSneaker = useSelector((state) => state.data.dataSneaker);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
