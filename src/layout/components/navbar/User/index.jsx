@@ -6,6 +6,7 @@ import { setIsLogin, setUserCurrent } from '@/store/reducerStore';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Avatar } from '@mui/material';
+import { deepOrange } from '@mui/material/colors';
 
 const User = () => {
     const isLogin = useSelector((state) => state.store.isLogin);
@@ -67,8 +68,8 @@ const User = () => {
                             src={userCurrent.linkAvt}
                             alt={userCurrent.username}
                             className="border-[1px] border-[#a02222]"
-                            sx={{ height: 30, width: 30 }}
-                        />
+                            sx={{ height: 30, width: 30, bgcolor: deepOrange[500] }}
+                        > {userCurrent.username[0].toUpperCase()}</Avatar>
                     ) : (
                         <Avatar
                             src="https://secureservercdn.net/160.153.137.14/7nh.661.myftpupload.com/wp-content/uploads/2019/11/Untitled-1-24-1536x1415.png"

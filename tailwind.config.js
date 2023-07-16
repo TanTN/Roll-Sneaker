@@ -23,7 +23,7 @@ export default {
                 fadeInSuccessPc: 'fadeInSuccessInPc .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
                 fadeInSuccess: 'fadeInSuccessIn .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
                 fadeInLoading: 'fadeInLoading .5s linear infinite',
-                fadeInLoadingLoginAndRegister: 'fadeInLoadingLoginAndRegister .5s linear infinite',
+                fadeInLoadingRotate: 'fadeInLoadingRotate .5s linear infinite',
                 fadeInSearch: 'fadeInSearch .5s linear',
                 fadeInSearchMobile: 'fadeInSearchMobile .5s linear',
             },
@@ -44,7 +44,7 @@ export default {
                     '100%': { opacity: '1', width: '200px' },
                 },
 
-                // messenger fixed
+                // icon messenger animate
                 fadeInMes1: {
                     '0%': { opacity: '1', transform: 'scale(0)' },
                     '50%': { opacity: '1', transform: 'scale(0.9)' },
@@ -80,8 +80,8 @@ export default {
                     '0%': { transform: 'translateX(0)' },
                     '100%': { transform: 'translateX(1400%)' },
                 },
-                // Loading login and register
-                fadeInLoadingLoginAndRegister: {
+                // Loading rotate
+                fadeInLoadingRotate: {
                     '0%': { transform: 'rotate(0deg)' },
                     '100%': { transform: 'rotate(360deg)' },
                 },

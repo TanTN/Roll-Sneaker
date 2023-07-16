@@ -7,7 +7,8 @@ import axios from 'axios';
 import { setUserCurrent } from '@/store/reducerStore';
 import { Avatar } from '@mui/material';
 import { updateUser } from '@/services/userService';
-import { AiFillCloseSquare, AiOutlineLoading } from 'react-icons/ai';
+import { AiFillCloseSquare } from 'react-icons/ai';
+import { deepOrange } from '@mui/material/colors';
 
 const User = () => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -59,7 +60,7 @@ const User = () => {
     };
     return (
         <>
-            {isRoomAvatar && (
+            {isRoomAvatar && avatar.link && (
                 <div className="fixed z-[200] top-0 left-0 bottom-0 right-0 bg-[#4b4b4b81]">
                     <div className="w-[100%] h-[100%] bg-[#141414ad]" onClick={() => setIsRoomAvatar(false)}></div>
                     <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] xl:max-w-[800px]">
@@ -87,18 +88,20 @@ const User = () => {
                         <h2>TRANG TÀI KHOẢN</h2>
                         <p className="my-2 text-lg">Xin chào, {userCurrent.username}!</p>
                     </div>
-                    <div className="col-span-6 px-[10px] md:col-span-4 md:pl-[40px]">
+                    <div className="flex flex-col gap-[20px] col-span-6 px-[10px] md:col-span-4 md:pl-[40px]">
                         <h2>TÀI KHOẢN</h2>
 
                         <Avatar
-                            alt={userCurrent.username}
                             src={avatar.link}
                             className="cursor-pointer relative border-[1px] border-[#a02222]"
-                            sx={{ height: 55, width: 55 }}
-                            onClick={() => setIsRoomAvatar(true)}
-                        />
+                            sx={{ height: 55, width: 55 ,bgcolor: deepOrange[500],fontSize: 26, fontWeight: 'lag'}}
+                            alt={userCurrent.username}
+                            onClick={() => {
+                                if (avatar.link) setIsRoomAvatar(true)
+                            }}
+                        >{userCurrent.username[0].toUpperCase()}</Avatar>
 
-                        <div className="flex mt-3">
+                        <div className="flex">
                             <label
                                 htmlFor="inputAvt"
                                 className="px-[8px] py-[2px] text-[14px] border-[1px] border-black text-black rounded-[5px] cursor-pointer hover:bg-black hover:text-white transition mr-2"
@@ -114,16 +117,16 @@ const User = () => {
                             </button>
                         </div>
 
-                        <p className="my-4 text-[18px]">
+                        <p className="text-[18px]">
                             Tên tài khoản: <span className="font-medium">{userCurrent.username}</span>!
                         </p>
 
-                        <div className="flex items-center my-4">
+                        <div className="flex items-center">
                             <AiFillHome />
                             <p className="px-1 text-[18px]">Địa chỉ: Vietnam</p>
                         </div>
 
-                        <div className="flex items-center my-4">
+                        <div className="flex items-center">
                             <RiSmartphoneFill />
                             <p className="px-1 text-[18px]">Điện thoại: {userCurrent.phone}</p>
                         </div>

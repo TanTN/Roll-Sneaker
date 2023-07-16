@@ -1,50 +1,75 @@
-import Tippy from '@tippyjs/react/headless';
-
 import { useEffect, useState } from 'react';
 import { TbSearch } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProduct } from '@/store/reducerStore';
 import { useNavigate } from 'react-router';
 import Wrapper from '@/components/popper/Wrapper';
+import useDebounce from '../../../../hooks/useDebounce';
+import { AiFillCloseCircle, AiOutlineLoading } from 'react-icons/ai';
 
 const Search = () => {
     const dataAllSneaker = useSelector((state) => state.data.dataSneaker);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    console.log(dataAllSneaker)
 
     const [valueInput, setValueInput] = useState('');
     const [dataSearch, setDataSearch] = useState([]);
     const [showResult, setShowResult] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isShowInput, setIsShowInput] = useState(false);
 
+    const debounceValue = useDebounce(valueInput, 0);
     useEffect(() => {
-        if (valueInput.length > 0) {
-            const newData = dataAllSneaker.filter((data) => data.name.toLowerCase().includes(valueInput.toLowerCase()));
+        setIsLoading(false);
+        if (!valueInput.trim()) return setDataSearch([]);
+        setIsLoading(true);
+        const fetchApi = setTimeout(() => {
+            const newData = dataAllSneaker.filter((data) =>
+                data.name.toLowerCase().includes(debounceValue.toLowerCase()),
+            );
             setDataSearch(newData);
-        }
-    }, [valueInput]);
+            setIsLoading(false);
+        }, 500);
+        return () => clearTimeout(fetchApi);
+    }, [debounceValue]);
 
     const handleAddProduct = (data) => {
         dispatch(setProduct(data));
         setShowResult(false);
-        navigate('/detailProduct');
+        navigate(`/detailProduct/${data.id}`);
     };
+    const handleClose = () => {
+        setIsShowInput(false)
+        setValueInput('')
+    }
+    const handleChange = (e) => {
+        if (e.target.value.startsWith(' ')) return setValueInput('')
+        setValueInput(e.target.value)
+    }
 
     return (
-        <div className="group/item relative mx-[12px] ">
-            <label htmlFor="search" className="group-hover/edit group-hover/item:invisible text-[#797979] text-[26px]">
+        <div className="relative mx-[12px]">
+            {isShowInput && <label htmlFor="search" className="text-[#797979] text-[26px] invisible">
                 <TbSearch />
+            </label>}
+            {!isShowInput ? <label htmlFor="search" className="text-[#797979] text-[26px] cursor-pointer">
+                <TbSearch onClick={() => setIsShowInput(true)}/>
             </label>
-
-            <div className="group-hover/edit h-[28px] animate-fadeInSearchMobile md:animate-fadeInSearch border-[1px] border-[#838383] hidden group-hover/item:block absolute right-[0px] top-0 w-[200px] md:w-[300px] xl:h-[30px] rounded-[50px]">
+            :
+            <div className="h-[28px] animate-fadeInSearchMobile md:animate-fadeInSearch border-[1px] border-[#838383] absolute right-0 top-0 bottom-0 w-[200px] md:w-[300px] xl:h-[30px] rounded-[50px]">
                 <input
                     value={valueInput}
-                    onChange={(e) => setValueInput(e.target.value)}
+                    onChange={handleChange}
                     type="text"
                     id="search"
-                    className="w-[86%] h-[100%] mx-[12px] outline-none border-none bg-transparent"
+                    className="w-[77%] ml-[12px] md:w-[84%] h-[100%] md:ml-[12px] md:mr-[14px] outline-none bg-transparent border-r-[1px] border-[#ddd]"
                     onFocus={() => setShowResult(true)}
                     onBlur={() => setShowResult(false)}
                 />
+                <div className="absolute top-[50%] translate-y-[-50%] right-[10px] ">
+                    {isLoading ? <AiOutlineLoading className="animate-fadeInLoadingRotate" /> : <AiFillCloseCircle className='cursor-pointer hover:text-primary' onClick={handleClose}/>}
+                </div>
                 {showResult && valueInput.length > 0 && dataSearch.length > 0 && (
                     <Wrapper className="fixed md:absolute bg-white top-[100px] w-[90%] left-[5%] md:top-[140%] md:left-[-60px] md:w-[420px] z-50 px-[10px] py-[14px] xl:top-[180%] xl:after:content-[''] after:absolute after:top-[-25px] xl:after:w-[300px] after:left-[60px] after:h-[25px] after:bg-transparent">
                         {dataSearch.map((data, index) => {
@@ -64,7 +89,7 @@ const Search = () => {
                         })}
                     </Wrapper>
                 )}
-            </div>
+            </div>}
         </div>
     );
 };

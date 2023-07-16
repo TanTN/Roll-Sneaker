@@ -73,7 +73,7 @@ const Login = () => {
                                     >
                                         {formik.isSubmitting && (
                                             <div className="pr-2">
-                                                <AiOutlineLoading className="animate-fadeInLoadingLoginAndRegister" />
+                                                <AiOutlineLoading className="animate-fadeInLoadingRotate" />
                                             </div>
                                         )}
                                         Sign in

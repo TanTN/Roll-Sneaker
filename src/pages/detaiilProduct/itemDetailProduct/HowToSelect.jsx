@@ -1,6 +1,6 @@
-import React from 'react';
 
 const HowToSelect = () => {
+    
     return (
         <div className="text-[17px] pt-[50px]">
             <p className="text-[25px] text-center font-bold pb-[25px]">Cách chọn size giày</p>

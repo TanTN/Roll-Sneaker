@@ -2,14 +2,12 @@ import { setIsLogin, setUserCurrent } from '@/store/reducerStore';
 import axios from 'axios';
 
 const baseURL = import.meta.env.VITE_BASE_URL;
-const baseURL1 = import.meta.env.VITE_PROVINCES;
+
 
 const httpRequest = axios.create({
     baseURL: baseURL,
 });
-export const requestProvinces = axios.create({
-    baseUrl: baseURL1,
-});
+
 
 const validateRegister = async (value) => {
     const res = await httpRequest.get('users');
