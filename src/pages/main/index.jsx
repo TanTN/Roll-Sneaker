@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { useDispatch, useSelector } from 'react-redux';
 import { memo } from 'react';
@@ -16,12 +16,18 @@ import ProductHotInMain from './product/ProductHotInMain';
 
 const Main = () => {
     const isMobile = useSelector((state) => state.store.isMobile);
-    const dataSneaker = useSelector((state) => state.data.dataSneaker);
+    
+    const [isRerender, setIsRerender] = useState(false)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchApiData());
+        setIsRerender(false)
+        const fetchApi = async () => {
+            await dispatch(fetchApiData());
+            await setIsRerender(true)
+        }
+        fetchApi()
         window.scrollTo(0, 0);
     }, []);
 
