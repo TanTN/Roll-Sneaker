@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_DATA_PRODUCT;
+const baseURL = import.meta.env.VITE_BASE_URL;
 const httpRequest = axios.create({
     baseURL: baseURL,
 });
