@@ -10,7 +10,7 @@ const Adidas = () => {
     useEffect(() => {
         const dataAdidas = allData.filter((product) => product.category === 'Adidas');
         setData(dataAdidas);
-    }, [allData]);
+    }, []);
 
     return (
         <div className="overflow-hidden mb-[50px] md:mb-[70px]">

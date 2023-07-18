@@ -11,7 +11,7 @@ const Mlb = () => {
     useEffect(() => {
         const dataMlb = allData.filter((product) => product.category === 'MLB');
         setData(dataMlb);
-    }, [allData]);
+    }, []);
     return (
         <div className="overflow-hidden mb-[50px] md:mb-[70px]">
             <h1 className="text-center mb-[8px] md:mb-[20px]">GIÀY MLB</h1>

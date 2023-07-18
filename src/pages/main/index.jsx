@@ -25,7 +25,7 @@ const Main = () => {
 
     },[])
     useEffect(() => {
-        dispatch(fetchApiData());
+        dispatch(fetchApiData('data'));
         
     }, [dispatch]);
 
