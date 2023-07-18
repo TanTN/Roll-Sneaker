@@ -11,25 +11,23 @@ import Mlb from './product/Mlb';
 import Personal from './product/Personal';
 import Tips from './product/Tips';
 import imagesPoster from '@/data/dataImagesPoster';
-import { fetchApiData } from '@/store/reducerData';
 import ProductHotInMain from './product/ProductHotInMain';
+import { fetchApiData } from '@/store/reducerData';
+
 
 const Main = () => {
     const isMobile = useSelector((state) => state.store.isMobile);
-    
-    const [isRerender, setIsRerender] = useState(false)
 
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
-        setIsRerender(false)
-        const fetchApi = async () => {
-            await dispatch(fetchApiData());
-            await setIsRerender(true)
-        }
-        fetchApi()
         window.scrollTo(0, 0);
-    }, []);
+
+    },[])
+    useEffect(() => {
+        dispatch(fetchApiData());
+        
+    }, [dispatch]);
 
     const SamplePrevArrow = ({ onClick }) => {
         return (

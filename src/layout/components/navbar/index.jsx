@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import 'tippy.js/dist/tippy.css';
+import { Link } from 'react-router-dom';
 
 import { BsCartDash } from 'react-icons/bs';
 import { FiMenu } from 'react-icons/fi';
@@ -10,7 +11,6 @@ import Cart from './Cart';
 import CSKH from './CSKH/CSKH';
 import Search from './Search/Search';
 import User from './User';
-import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const userCurrent = useSelector((state) => state.store.userCurrent);

@@ -10,9 +10,8 @@ const ProductHotInMain = () => {
     const title = 'SẢN PHẨM BÁN CHẠY';
     useEffect(() => {
         const dataHot = allData.filter((product) => product.category === 'HOT');
-        console.log(dataHot)
         setDataSneaker(dataHot);
-    }, []);
+    }, [allData]);
     return <ProductHot dataSneaker={dataSneaker} title={title} />;
 };
 
