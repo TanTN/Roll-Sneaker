@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProduct } from '@/store/reducerStore';
 import { useNavigate } from 'react-router';
 import Wrapper from '@/components/popper/Wrapper';
-import useDebounce from '../../../../hooks/useDebounce';
+import useDebounce from '@/hooks/useDebounce';
 import { AiFillCloseCircle, AiOutlineLoading } from 'react-icons/ai';
 
 const Search = () => {

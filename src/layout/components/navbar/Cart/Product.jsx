@@ -51,7 +51,7 @@ const Product = ({ userCurrent, setTippyPc }) => {
                 className="absolute top-0 left-[10px] md:left-[70px] md:top-[10px] lg:top-0 lg:left-0 cursor-pointer select-none"
                 onClick={() => handleDeleteProduct(product, dispatch, userCurrent, isLogin)}
             >
-                <AiFillCloseSquare className="text-[25px] lg:hover:text-primary" />
+                <AiFillCloseSquare className="text-[25px] lg:text-[20px] lg:hover:text-primary" />
             </div>
         </div>
     ));

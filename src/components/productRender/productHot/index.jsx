@@ -13,6 +13,8 @@ const ProductHot = ({ dataSneaker, title, isReload }) => {
     const handleAddProduct = async (data) => {
         await navigate(`/detailProduct/${data.id}`);
         if (isReload) await location.reload();
+        window.scrollTo(0, 0);
+
     };
     return (
         <div className="mb-[50px] overflow-hidden md:mb-[70px]">

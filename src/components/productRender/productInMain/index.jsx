@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import Loading from '../../loading/loadingImage'
-import Image from '../../Image';
+import Loading from '@/loading/loadingImage'
+import Image from '@/Image';
 
 const ProductInMain = ({ dataProduct }) => {
     const isLoading = useSelector((state) => state.data.dataPending);

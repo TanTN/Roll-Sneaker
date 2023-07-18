@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import allPriceUtils from '@/utils/allPriceUtils';
 import { useNavigate } from 'react-router';
-import Button from '../../../components/button';
+import Button from '@/components/button';
 
 const Bill = ({ userCurrent }) => {
     const navigate = useNavigate();

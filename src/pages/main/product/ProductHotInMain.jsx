@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import ProductHot from '../../../components/productRender/productHot';
+import ProductHot from '@/components/productRender/productHot';
 
 const ProductHotInMain = () => {
     const allData = useSelector((state) => state.data.dataSneaker);
@@ -11,7 +11,7 @@ const ProductHotInMain = () => {
     useEffect(() => {
         const dataHot = allData.filter((product) => product.category === 'HOT');
         setDataSneaker(dataHot);
-    }, [allData]);
+    }, []);
     return <ProductHot dataSneaker={dataSneaker} title={title} />;
 };
 

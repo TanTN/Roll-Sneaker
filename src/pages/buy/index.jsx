@@ -13,7 +13,7 @@ import { setUserCurrent } from '@/store/reducerStore';
 import FormAddress from './itemBuy/FormAddress';
 import WrapperBill from '@/components/popper/WrapperBill';
 import allPriceUtils from '@/utils/allPriceUtils';
-import Button from '../../components/button';
+import Button from '@/components/button';
 
 const Buy = () => {
     const user = useSelector((state) => state.store.userCurrent);
@@ -209,17 +209,18 @@ const Buy = () => {
                                     <div className="flex justify-between pb-1">
                                         <p>Giao hàng:</p>
                                         {allNumberProduct <= 1 ? (
-                                            <p>Miễn phí ship</p>
-                                        ) : (
+                                            
                                             <p className="font-bold">
                                                 30.000 <span className="underline">đ</span>
                                             </p>
+                                        ) : (
+                                            <p>Miễn phí ship</p>
                                         )}
                                     </div>
                                     <div className="pb-2">
                                         <p className="font-semibold text-lg">Tổng:</p>
                                         <p className="flex justify-end font-bold text-lg">
-                                            {allNumberProduct <= 1 ? allPriceCart : allPriceAndShip}
+                                            {allNumberProduct <= 1 ? allPriceAndShip  : allPriceCart}
                                             <span className="underline pl-[3px]"> đ</span>
                                         </p>
                                     </div>
