@@ -11,13 +11,13 @@ const Cart = lazy(() => import('../pages/cart'));
 const User = lazy(() => import('../pages/user'));
 
 const routes = {
-    detailProduct: '/detailProduct/:productId',
-    detailProductUser: '/detailProduct/:productInCart/:id',
-    login: '/login',
-    register: '/register',
-    cart: '/cart',
-    user: '/user',
-    buy: '/buy',
+    detailProduct: 'detailProduct/:productId',
+    detailProductUser: 'detailProduct/:productInCart/:id',
+    login: 'login',
+    register: 'register',
+    cart: 'cart',
+    user: 'user',
+    buy: 'buy',
     main: '/',
     notFound: '*',
 };
