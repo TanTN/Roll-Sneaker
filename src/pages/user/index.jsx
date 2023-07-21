@@ -8,7 +8,6 @@ import { setUserCurrent } from '@/store/reducerStore';
 import { Avatar } from '@mui/material';
 import { updateUser } from '@/services/userService';
 import { AiFillCloseSquare } from 'react-icons/ai';
-import { deepOrange } from '@mui/material/colors';
 
 const User = () => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -68,15 +67,15 @@ const User = () => {
                             setIsRoomAvatar(false);
                         }}
                     />
-                        <div className="relative min-w-[100%] h-[70%] md:min-w-[800px] md:h-[90%]">
-                            <img src={avatar.link} className="w-[100%] h-[100%] object-cover" />
-                            <div
-                                className="absolute top-[2%] right-[2%] bg-white text-[15px] md:text-[25px] lg:hover:text-primary lg:hover:cursor-pointer"
-                                onClick={() => setIsRoomAvatar(false)}
-                            >
-                                <AiFillCloseSquare />
-                            </div>
+                    <div className="relative min-w-[100%] h-[70%] md:min-w-[800px] md:h-[90%]">
+                        <img src={avatar.link} className="w-[100%] h-[100%] object-cover" />
+                        <div
+                            className="absolute top-[2%] right-[2%] bg-white text-[15px] md:text-[25px] lg:hover:text-primary lg:hover:cursor-pointer"
+                            onClick={() => setIsRoomAvatar(false)}
+                        >
+                            <AiFillCloseSquare />
                         </div>
+                    </div>
                 </div>
             )}
             <div className="mx-auto max-w-[1140px] mt-[94px] lg:mt-0">
@@ -89,7 +88,7 @@ const User = () => {
                         Trang chủ
                     </Link>
                     <span>&nbsp; / &nbsp;</span>
-                    <span> Giỏ hàng</span>
+                    <span>Trang cá nhân</span>
                 </div>
                 <section className="grid grid-cols-6 md:mx-[20px] lg:mx-0 my-[30px] lg:my-[70px] max-w-[1140px]">
                     <div className="hidden md:block col-span-2 border-r-[1px] border-[#ddd]">
@@ -102,7 +101,7 @@ const User = () => {
                         <Avatar
                             src={avatar.link}
                             className="cursor-pointer relative border-[1px] border-[#a02222]"
-                            sx={{ height: 55, width: 55, bgcolor: deepOrange[500], fontSize: 26, fontWeight: 'lag' }}
+                            sx={{ height: 55, width: 55, fontSize: 26, fontWeight: 'lag', fontWeight: 'lag' }}
                             alt={userCurrent.username}
                             onClick={() => {
                                 if (avatar.link) setIsRoomAvatar(true);

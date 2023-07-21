@@ -1,4 +1,4 @@
-const Loading = ({ className }) => {
+const LoadingImage = ({ className }) => {
     return (
         <>
             <div className={`loadingImage ${className}`}></div>
@@ -9,4 +9,4 @@ const Loading = ({ className }) => {
     );
 };
 
-export default Loading;
+export default LoadingImage;

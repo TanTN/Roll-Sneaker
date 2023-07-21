@@ -11,6 +11,7 @@ import LoadingPage from './components/loading/loadingPage';
 function App() {
     const dispatch = useDispatch();
     const isLogin = useSelector((state) => state.store.isLogin);
+    const isAdmin = useSelector((state) => state.store.isAdmin);
 
     const [widthDisplay, setWidthDisplay] = useState(undefined);
 
@@ -37,6 +38,9 @@ function App() {
                     Layout = Fragment;
                 }
                 if (!isLogin && route.path == '/user') {
+                    Page = <Navigate to="/" replace={true} />;
+                }
+                if (!isLogin && !isAdmin && route.path == '/admin') {
                     Page = <Navigate to="/" replace={true} />;
                 }
 

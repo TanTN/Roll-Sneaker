@@ -34,7 +34,7 @@ const Tips = () => {
 
     return (
         <div className="text-center lg:mx-[-15px] md:mb-[60px]">
-            <h1 className="pb-6">KIẾN THỨC & MẸO VẶT</h1>
+            <h2 className="pb-6">KIẾN THỨC & MẸO VẶT</h2>
             <Slider {...options}>
                 {dataTips.map((data, index) => (
                     <div key={index} className="relative text-center mb-[180px] px-[15px]">

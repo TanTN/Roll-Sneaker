@@ -33,12 +33,12 @@ export default {
                     '0%': { opacity: '.5', transform: 'scale(1.2)' },
                     '100%': { opacity: '1', transform: 'scale(1)' },
                 },
-                // search
+                // offset search
                 fadeInSearch: {
                     '0%': { opacity: '.5', width: '20px' },
                     '100%': { opacity: '1', width: '300px' },
                 },
-                // search mobile
+                // offset search mobile
                 fadeInSearchMobile: {
                     '0%': { opacity: '.5', width: '20px' },
                     '100%': { opacity: '1', width: '200px' },
@@ -75,12 +75,12 @@ export default {
                     '0%': { opacity: '1' },
                     '100%': { opacity: '0' },
                 },
-                // Loading data
+                // Loading Image
                 fadeInLoading: {
                     '0%': { transform: 'translateX(0)' },
-                    '100%': { transform: 'translateX(1400%)' },
+                    '100%': { transform: 'translateX(260px)' },
                 },
-                // Loading rotate
+                // Loading icon rotate
                 fadeInLoadingRotate: {
                     '0%': { transform: 'rotate(0deg)' },
                     '100%': { transform: 'rotate(360deg)' },

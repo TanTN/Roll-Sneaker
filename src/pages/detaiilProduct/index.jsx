@@ -63,12 +63,11 @@ const DetailProduct = () => {
             }
         };
         getDataProductView();
-
     }, [productId]);
 
     useEffect(() => {
         if (productView.size) {
-            console.log('sasa')
+            console.log('sasa');
             const sizeProduct = sizes.map((sizeProd) => {
                 return sizeProd.size == productView.size
                     ? { ...sizeProd, isChecked: true }
@@ -119,7 +118,7 @@ const DetailProduct = () => {
             ...productView,
             size: selectSize,
             numberProducts: numberProduct,
-        }
+        };
         const indexUpdateSize = user.products.findIndex(
             (prod) => prod.name == productView.name && prod.size == selectSize,
         );
@@ -159,7 +158,7 @@ const DetailProduct = () => {
                         ...user.products,
                         {
                             ...productChange,
-                            id:uuidv4(),
+                            id: uuidv4(),
                         },
                     ],
                 };
@@ -180,16 +179,16 @@ const DetailProduct = () => {
             }
         }
     };
-    const handleBuy = () => {
+    const handleBuy = async () => {
         if (!isChecked) {
             alert('Chọn các tùy chọn cho sản phẩm trước khi bạn thanh toán.');
         } else {
-            handleBuyOrAddProduct();
-            return navigate(`/buy`);
+            await handleBuyOrAddProduct();
+            await navigate(`/buy`);
         }
     };
 
-    const handleAddProduct = () => {
+    const handleAddProduct = async () => {
         const isAdd = user.products.every(
             (product) =>
                 productView.name != product.name ||
@@ -202,8 +201,8 @@ const DetailProduct = () => {
 
         if (isAdd) {
             if (isChecked) {
-                handleBuyOrAddProduct();
-                navigate('/cart');
+                await handleBuyOrAddProduct();
+                await navigate('/cart');
             }
         } else {
             if (isChecked) {
@@ -253,7 +252,7 @@ const DetailProduct = () => {
                 productView={productView}
             />
             <div className="px-[15px] lg:px-0 pt-[50px]">
-                <ProductHot dataSneaker={dataProductBestseller} title={'SẢN PHẨM TƯƠNG TỰ'} isReload/>
+                <ProductHot dataSneaker={dataProductBestseller} title={'SẢN PHẨM TƯƠNG TỰ'} isReload />
             </div>
             <Tips />
         </div>

@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { handleDeleteProduct } from '@/utils/deleteProductUtil';
 import { setProduct } from '@/store/reducerStore';
 
-const Products = ({ userCurrent }) => {
+const ProductCartPage = ({ userCurrent }) => {
     const isLogin = useSelector((state) => state.store.isLogin);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -78,4 +78,4 @@ const Products = ({ userCurrent }) => {
     );
 };
 
-export default Products;
+export default ProductCartPage;

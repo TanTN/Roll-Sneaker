@@ -5,10 +5,11 @@ const storeSlice = createSlice({
     initialState: {
         isLogin: false,
         isMobile: true,
+        isLoadingUserInAdmin: false,
         userCurrent: { products: [] },
+        allUser: [],
         viewProduct: {},
-        isReloadClickCart: 1,
-      
+        isAdmin: false,
     },
     reducers: {
         setMobile: (state, action) => ({ ...state, isMobile: action.payload }),
@@ -21,15 +22,28 @@ const storeSlice = createSlice({
         setProduct: (state, action) => {
             state.viewProduct = action.payload;
         },
-        setReloadClickCart: (state, action) => {
-            state.isReloadClickCart = action.payload;
+        setIsAdmin: (state, action) => {
+            state.isAdmin = action.payload;
         },
-        
+        setAllUser: (state, action) => {
+            state.allUser = action.payload;
+        },
+        setIsLoadingUserInAdmin: (state, action) => {
+            state.isLoadingUserInAdmin = action.payload;
+        },
     },
 });
 
-
 const { reducer, actions } = storeSlice;
 
-export const { setMobile, setUserCurrent, setIsLogin, setProduct, setReloadClickCart } = actions;
+export const {
+    setMobile,
+    setUserCurrent,
+    setIsLogin,
+    setProduct,
+    setReloadClickCart,
+    setIsAdmin,
+    setAllUser,
+    setIsLoadingUserInAdmin,
+} = actions;
 export default reducer;

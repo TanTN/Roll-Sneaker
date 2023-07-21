@@ -15,7 +15,7 @@ const Nike = () => {
 
     return (
         <div className="overflow-hidden mb-[50px] md:mb-[70px]">
-            <h1 className="text-center mb-[8px] md:mb-[20px]">GIÀY NIKE</h1>
+            <h2 className="text-center mb-[8px] md:mb-[20px]">GIÀY NIKE</h2>
             <div className="text-center font-semibold text-base px-6 md:pb-[15px] md:text-xl">
                 <span className="border-b-[1px] pb-u border-[#ce1111] text-[#ce1111]">AIR FORCE 1</span>
                 <span>

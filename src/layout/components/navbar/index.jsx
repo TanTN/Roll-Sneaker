@@ -12,7 +12,7 @@ import CSKH from './CSKH/CSKH';
 import Search from './Search/Search';
 import User from './User';
 
-const Navbar = () => {
+const Navbar = ({layoutAdmin}) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isMobile = useSelector((state) => state.store.isMobile);
     const [isScroll, setIsScroll] = useState(false);
@@ -40,7 +40,7 @@ const Navbar = () => {
         <>
             <CSKH isScroll={isScroll} />
 
-            <div className="fixed h-[94px] top-0 left-0 right-0 pb-[5px] border-b-2 border-[#e4e4e4] z-30 bg-white xl:h-[76px] lg:static">
+            <div className="fixed h-[94px] top-0 left-0 right-0 pb-[5px] border-b-2 border-[#e4e4e4] z-30 bg-white lg:pb-0 lg:h-[76px] lg:static">
                 <div className="xl:flex justify-between items-center md:mx-auto md:max-w-[1140px] px-[15px]">
                     <div className="flex justify-center items-center my-2 xl:my-2 xl:ml-[50px] cursor-pointer">
                         <Link to="/">
@@ -74,8 +74,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-
-            {!isMobile && <MenuNavbar isMenu={isMenu} isScroll={isScroll} clickMenu={handleClickMenu} />}
+            {!layoutAdmin && !isMobile && <MenuNavbar isMenu={isMenu} isScroll={isScroll} clickMenu={handleClickMenu} />}
             {isMenu && isMobile && <MenuNavbar isMenu={isMenu} isScroll={isScroll} clickMenu={handleClickMenu} />}
         </>
     );

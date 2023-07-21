@@ -11,14 +11,12 @@ import { validateRegister } from '@/services/validateFormService';
 import { postUser } from '@/services/userService';
 import { validateLogin } from '@/services/validateFormService';
 import { Link } from 'react-router-dom';
+import { setIsLogin, setUserCurrent } from '../../store/reducerStore';
 
 const Register = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const root = useRef();
-
-    const user = useSelector((state) => state.store.userCurrent);
-    const isLogin = useSelector((state) => state.store.isLogin);
 
     const handleAddMessage = (content, isRegisterSuccess) => {
         const main = root.current;
@@ -85,14 +83,14 @@ const Register = () => {
                 const { isEmail, isUsername } = await validateRegister(values);
 
                 if (isEmail && isUsername) {
-                    await postUser({ ...values, products: [], information: {} });
-                    const isLogin = await validateLogin({ ...values }, dispatch);
-                    if (isLogin) {
-                        handleAddMessage('Bạn đã đăng kí tài khoản thành công', true);
-                        setTimeout(() => navigate('/'), 3000);
-                    }
+                    const user = { ...values, products: [], information: {}, isAdmin: false };
+                    await postUser(user);
+                    dispatch(setUserCurrent(user));
+                    dispatch(setIsLogin(true));
+
+                    handleAddMessage('Bạn đã đăng kí tài khoản thành công', true);
+                    setTimeout(() => navigate('/'), 3000);
                 }
-                console.log('email:', isEmail, 'name', isUsername);
 
                 if (!isEmail && !isUsername) {
                     handleAddMessage('Username đã tồn tại');
@@ -180,7 +178,7 @@ const Register = () => {
                                     >
                                         {formik.isSubmitting && (
                                             <div className="pr-2">
-                                                <AiOutlineLoading className="animate-fadeInLoadingLoginAndRegister" />
+                                                <AiOutlineLoading className="animate-fadeInLoadingRotate" />
                                             </div>
                                         )}
                                         Sign up

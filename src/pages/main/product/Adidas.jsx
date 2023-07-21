@@ -14,7 +14,7 @@ const Adidas = () => {
 
     return (
         <div className="overflow-hidden mb-[50px] md:mb-[70px]">
-            <h1 className="text-center mb-[8px] md:mb-[20px]">GIÀY ADIDAS</h1>
+            <h2 className="text-center mb-[8px] md:mb-[20px]">GIÀY ADIDAS</h2>
             <div className="text-center font-semibold text-base px-6 md:pb-[15px] md:text-xl">
                 <span className="border-b-[1px] pb-u border-[#ce1111] text-[#ce1111]">ULTRABOOST 22</span>
                 <span>

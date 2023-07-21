@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import Loading from '../../loading/loadingImage'
+import LoadingImage from '../../loading/loadingImage';
 import Image from '@/components/Image';
 
-const ProductInMain = ({ dataProduct }) => {
+const ProductInMain = ({ dataProduct, category }) => {
     const isLoading = useSelector((state) => state.data.dataPending);
     const navigate = useNavigate();
 
@@ -13,30 +13,38 @@ const ProductInMain = ({ dataProduct }) => {
         navigate(`/detailProduct/${data.id}`);
     };
     return isLoading ? (
-        <Loading />
+        <LoadingImage />
     ) : (
         dataProduct?.map((data, index) => (
             <div key={index}>
                 <div className="relative cursor-pointer overflow-hidden" onClick={() => handleAddProduct(data)}>
-                    <div className="lg:h-[268px] flex items-center">
+                    <div
+                        className={`md:h-[154px] flex items-center overflow-hidden ${
+                            category ? 'lg:h-[180px]' : 'lg:h-[268px]'
+                        }`}
+                    >
                         <Image src={data.img} alt="product" className="lg:scale-125 object-cover" />
                     </div>
-                    <div className="absolute top-2 left-2 bg-primary text-white font-bold w-[50px] h-[50px] text-center leading-[50px] rounded-[50%]">
-                        {data.percent}
-                    </div>
+                    {data.percent && (
+                        <div className="absolute top-2 left-2 bg-primary text-white font-bold w-[50px] h-[50px] text-center leading-[50px] rounded-[50%]">
+                            {data.percent}
+                        </div>
+                    )}
                     <p className="text-center font-semibold cursor-pointer text-[#505050] md:text-[18px] hover:text-[#23527c]">
                         {data.name}
                     </p>
                 </div>
-                <div className="pt-2 text-center">
-                    <span className="text-[15px] font-bold text-[#ce1111] md:text-[18px]">
+                <div className="flex flex-wrap gap-2 md:flex md:flex-col md:gap-0 lg:flex lg:flex-row justify-center items-center mt-2 lg:gap-2 text-center">
+                    <div className="text-[15px] font-bold text-[#ce1111] md:text-[18px]">
                         {data.price}
                         <span className="underline">đ</span>
-                    </span>
-                    <span className="text-[14px] pl-2 font-semibold line-through text-[#adadad] md:text-[16px] md:pl-5">
-                        {data.priceDropped}
-                        <span className="underline">đ</span>
-                    </span>
+                    </div>
+                    {data.priceDropped && (
+                        <div className="text-[14px] font-semibold line-through text-[#adadad] md:text-[16px]">
+                            {data.priceDropped}
+                            <span className="underline">đ</span>
+                        </div>
+                    )}
                 </div>
             </div>
         ))

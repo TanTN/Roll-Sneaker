@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { AiOutlineHome } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
-import Products from './product';
+import ProductCartPage from './product';
 import WrapperBill from '@/components/popper/WrapperBill';
 import Bill from './bill';
 import { Link } from 'react-router-dom';
-import Product from '@/layout/components/navbar/Cart/Product';
+import ProductInCartNav from '@/components/productRender/productIncartNav';
 
 const Cart = () => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -50,10 +50,10 @@ const Cart = () => {
                 <>
                     {isMobile ? (
                         // with mobile
-                        <Product userCurrent={userCurrent} />
+                        <ProductInCartNav userCurrent={userCurrent} />
                     ) : (
                         // with PC
-                        <Products userCurrent={userCurrent} />
+                        <ProductCartPage userCurrent={userCurrent} />
                     )}
 
                     <div className="flex justify-end">

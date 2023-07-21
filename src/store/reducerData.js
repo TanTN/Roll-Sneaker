@@ -24,10 +24,8 @@ const dataSlice = createSlice({
             state.dataPending = true;
         });
         builder.addCase(fetchApiData.fulfilled, (state, action) => {
-            
-            state.dataSneaker = action.payload;
-            
             state.dataPending = false;
+            state.dataSneaker = action.payload;
             state.dataRejected = false;
         });
         builder.addCase(fetchApiData.rejected, (state) => {

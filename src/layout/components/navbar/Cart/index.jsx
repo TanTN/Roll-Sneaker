@@ -27,7 +27,7 @@ const Cart = ({ children }) => {
         window.scrollTo(0, 0);
     };
 
-    const handleCart = () => {
+    const handleClickCart = () => {
         if (isMobile) {
             navigate('/cart');
         }
@@ -36,7 +36,7 @@ const Cart = ({ children }) => {
     const isTippy = tippyPc || isMobile ? { visible: false } : { trigger: 'mouseenter' };
     const offset = lengthProduct < 1 ? {offset: [-102, 22]} : {offset:[-148, 22]}
     return (
-        <div onClick={handleCart}>
+        <div onClick={handleClickCart}>
             <Tippy
                 delay={[200, 300]}
                 placement="bottom"

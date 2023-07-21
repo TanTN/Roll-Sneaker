@@ -14,6 +14,7 @@ import FormAddress from './itemBuy/FormAddress';
 import WrapperBill from '@/components/popper/WrapperBill';
 import allPriceUtils from '@/utils/allPriceUtils';
 import Button from '@/components/button';
+import { postHistoryOrder } from '@/services/productService';
 
 const Buy = () => {
     const user = useSelector((state) => state.store.userCurrent);
@@ -68,16 +69,19 @@ const Buy = () => {
 
     const onSubmit = async (values) => {
         if (user.products.length > 0) {
+            await setIsBuySuccess(true);
             const newUser = {
                 ...user,
                 products: [],
                 information: values,
             };
             if (isLogin) {
+                await user.products.map((product) => {
+                    postHistoryOrder({ ...product, userId: user.id });
+                });
                 await updateUser(newUser);
             }
             await dispatch(setUserCurrent(newUser));
-            await setIsBuySuccess(true);
         }
     };
 
@@ -209,7 +213,6 @@ const Buy = () => {
                                     <div className="flex justify-between pb-1">
                                         <p>Giao hàng:</p>
                                         {allNumberProduct <= 1 ? (
-                                            
                                             <p className="font-bold">
                                                 30.000 <span className="underline">đ</span>
                                             </p>
@@ -220,7 +223,11 @@ const Buy = () => {
                                     <div className="pb-2">
                                         <p className="font-semibold text-lg">Tổng:</p>
                                         <p className="flex justify-end font-bold text-lg">
-                                            {allNumberProduct <= 1 ? allPriceAndShip  : allPriceCart}
+                                            {allNumberProduct == 0
+                                                ? 0
+                                                : allNumberProduct == 1
+                                                ? allPriceAndShip
+                                                : allPriceCart}
                                             <span className="underline pl-[3px]"> đ</span>
                                         </p>
                                     </div>

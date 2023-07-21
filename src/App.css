@@ -13,15 +13,19 @@
         --width-box-deal: 80px;
         --width-deal: calc(var(--width-box-deal) * 1.4142);
         --offset-box-person: calc(50% - 10px);
+        --width-leftBar: calc(50vh - 76px);
     }
     body {
         @apply p-0 m-0 box-border scroll-smooth;
     }
     h1 {
-        @apply text-[25px] font-IBM font-bold;
+        @apply text-[26px] font-IBM font-bold;
     }
     h2 {
-        @apply text-[24px] font-IBM;
+        @apply text-[24px] font-IBM font-bold;
+    }
+    h3 {
+        @apply text-[18px] font-IBM font-bold;
     }
     a {
         @apply no-underline;

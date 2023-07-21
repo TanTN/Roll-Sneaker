@@ -1,8 +1,8 @@
 import React from 'react';
 
-const LoadingPage = () => {
+const LoadingPage = ({ loadingUser }) => {
     return (
-        <div className="bg-[#f3efe8] w-screen h-screen">
+        <div className={`bg-[#f3efe8] ${loadingUser ? 'w-[100%] h-[100%]' : 'w-screen h-screen'}`}>
             <div className="loading">
                 <span>Loading</span>
             </div>
