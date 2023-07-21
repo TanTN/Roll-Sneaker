@@ -81,8 +81,8 @@ const CreateProduct = () => {
                 <span>/</span>
                 <span className="pl-2 text-[#585858]">Tạo sản phẩm</span>
             </div>
-            <h3>Tạo sản phẩm :</h3>
-            <WrapperBill className="md:my-[50px]">
+            <h3 className="mt-[30px]">Tạo sản phẩm :</h3>
+            <WrapperBill className="md:mb-[50px] md:mt-[20px]">
                 <form className="flex flex-col gap-10">
                     <div className="flex flex-col">
                         <label htmlFor="nameProduct">Tên sản phẩm :</label>
