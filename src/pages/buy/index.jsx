@@ -190,7 +190,7 @@ const Buy = () => {
                                 />
                             </div>
                         </div>
-                        <div className="border-[1px] border-primary border-dashed p-[15px]">
+                        <div className="border-[1px] border-primary border-dashed p-[15px] bg-[#f7f7f7]">
                             {/* products oder */}
                             {user.products.length > 0 ? (
                                 <ProductBuy />

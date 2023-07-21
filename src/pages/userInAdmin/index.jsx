@@ -7,11 +7,11 @@ import { AiFillHome, AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { IoCaretUpSharp, IoCaretDownSharp } from 'react-icons/io5';
 
-import ProductOfUserInAdmin from '../../components/productRender/productOfUserInAdmin';
 import { deleteHistoryOrder, getHistoryOrder } from '../../services/productService';
 import Button from '../../components/button';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingPage from '../../components/loading/loadingPage';
+import ProductTable from '../../components/productRender/productTable';
 
 const UserInAdmin = () => {
     const { userId } = useParams();
@@ -20,9 +20,9 @@ const UserInAdmin = () => {
     const isLoading = useSelector((state) => state.store.isLoadingUserInAdmin);
 
     const [userCurrent, setUserCurrent] = useState();
+    const [productOrder, setProductOrder] = useState([]);
     const [showProductInCart, setShowProductInCart] = useState(false);
     const [showProductOrder, setShowProductOrder] = useState(false);
-    const [productOrder, setProductOrder] = useState([]);
 
     const productInCartLength = userCurrent?.products.length;
     const productOrderLength = productOrder?.length;
@@ -35,7 +35,8 @@ const UserInAdmin = () => {
             setUserCurrent(user);
             setProductOrder(productOrder);
         };
-
+        setShowProductInCart(false);
+        setShowProductOrder(false);
         fetchApi();
     }, [userId]);
 
@@ -110,7 +111,7 @@ const UserInAdmin = () => {
                 </div>
                 {showProductInCart && (
                     <div>
-                        <ProductOfUserInAdmin products={userCurrent?.products} />
+                        <ProductTable isPageAdmin products={userCurrent.products} />
                     </div>
                 )}
 
@@ -130,7 +131,7 @@ const UserInAdmin = () => {
                 </div>
                 {showProductOrder && (
                     <div>
-                        <ProductOfUserInAdmin products={productOrder} />
+                        <ProductTable isPageAdmin products={productOrder} />
                     </div>
                 )}
             </div>

@@ -83,10 +83,6 @@
     }
 }
 
-.cart {
-    max-height: calc(100vh - 141px);
-}
-
 /* slick header */
 
 .icon {

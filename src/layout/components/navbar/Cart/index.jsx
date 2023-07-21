@@ -6,7 +6,7 @@ import Tippy from '@tippyjs/react/headless';
 import priceUtil from '@/utils/priceUtil';
 import Wrapper from '@/components/popper/Wrapper';
 import { Link } from 'react-router-dom';
-import Product from './Product';
+import ProductInCartNav from '../../../../components/productRender/productIncartNav';
 
 const Cart = ({ children }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -32,9 +32,9 @@ const Cart = ({ children }) => {
             navigate('/cart');
         }
     };
-    const lengthProduct = userCurrent.products.length 
+    const lengthProduct = userCurrent.products.length;
     const isTippy = tippyPc || isMobile ? { visible: false } : { trigger: 'mouseenter' };
-    const offset = lengthProduct < 1 ? {offset: [-102, 22]} : {offset:[-148, 22]}
+    const offset = lengthProduct < 1 ? { offset: [-102, 22] } : { offset: [-148, 22] };
     return (
         <div onClick={handleClickCart}>
             <Tippy
@@ -64,8 +64,8 @@ const Cart = ({ children }) => {
                                 </div>
                             ) : (
                                 <>
-                                    <div className="cart lg:mb-0 lg:max-h-[33vh] overflow-y-auto">
-                                        <Product userCurrent={userCurrent} setTippyPc={setTippyPc} />
+                                    <div className="max-h-[33vh] p-[10px] overflow-y-auto">
+                                        <ProductInCartNav userCurrent={userCurrent} setTippyPc={setTippyPc} />
                                     </div>
 
                                     <div>
