@@ -2,14 +2,14 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router';
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
-import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { AiOutlineLoading } from 'react-icons/ai';
 
 import { validateRegister } from '@/services/validateFormService';
 import { postUser } from '@/services/userService';
-import { validateLogin } from '@/services/validateFormService';
+
 import { Link } from 'react-router-dom';
 import { setIsLogin, setUserCurrent } from '../../store/reducerStore';
 
@@ -83,7 +83,7 @@ const Register = () => {
                 const { isEmail, isUsername } = await validateRegister(values);
 
                 if (isEmail && isUsername) {
-                    const user = { ...values, products: [], information: {}, isAdmin: false };
+                    const user = { ...values, products: [], information: {}, isAdmin: false, id: uuidv4() };
                     await postUser(user);
                     dispatch(setUserCurrent(user));
                     dispatch(setIsLogin(true));
@@ -104,105 +104,135 @@ const Register = () => {
             }}
         >
             {(formik) => (
-                <div className="md:grid md:grid-cols-3">
-                    <div className="hidden md:block md:col-span-2 md:h-[100vh]">
-                        <img
-                            className="h-[100%] object-cover"
-                            src="https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg"
-                            alt="store"
-                        />
-                    </div>
-
-                    <div className="w-100% font-semibold">
-                        <div className="text-xl text-white bg-[#139cec] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#139cec] md:text-[35px] md:mt-[30px]">
-                            Sign Up
+                <div className="flex justify-center items-center w-screen h-screen bg-[rgb(209,178,217)]">
+                    <div className="flex flex-row-reverse w-[50%] min-h-[600px] bg-white rounded-[10px] overflow-hidden">
+                        <div className="flex flex-col gap-10 flex-1 p-[50px] bgRegister text-white">
+                            <span className="text-[100px] leading-[100px] font-semibold font-Crimson">
+                                Roll Sneaker.
+                            </span>
+                            <p className="text-sm text-center">
+                                Tiền nhiệm là Shopgiayreplica.com™ - Shop Uy tín lâu năm chuyên cung cấp giày thể thao
+                                sneaker nam, nữ hàng Replica 1:1 - Like Auth với chất lượng khác biệt so với thị trường
+                                và giá tốt nhất. Shop có sẵn hàng tại 2 cơ sở Hà Nội, tp HCM. Giao hàng nhanh toàn quốc,
+                                đổi trả, bảo hành linh hoạt.
+                                <br /> Bạn không đủ hầu bao để mua 1 đôi Chính Hãng? Hay bạn order quá lâu cũng như size
+                                của mình đã Sold Out? Bạn đang cần tìm các mẫu Sneaker với mong muốn chất lượng, detail
+                                chuẩn hàng Auth? Roll Sneaker sẽ giải quyết hết thắc mắc của bạn với chất lượng cực kỳ
+                                khác biệt, đa dạng mẫu mã, có sẵn hàng. Liên tục cập nhật, update, fix các phiên bản
+                                tiệm cận hàng Auth nhất. Các bạn có thể yên tâm lựa chọn trong một thị trường rất hỗn
+                                loạn về chất lượng, cũng như định nghĩa chuẩn về Giày Replica - Like Auth.
+                            </p>
+                            <div>
+                                <span className=" font-medium">Do you have an account ?</span>
+                            </div>
+                            <div className="flex gap-2 items-center">
+                                <button
+                                    className="w-[50%] p-[5px] bg-white text-black font-medium"
+                                    onClick={() => navigate('/login')}
+                                >
+                                    Login
+                                </button>
+                                <p className="font-bold text-[#1a08b8]">or</p>
+                                <Link
+                                    to="/"
+                                    className="cursor-pointer text-white hover:translate-y-[-2px] hover:text-sh"
+                                >
+                                    Back
+                                </Link>
+                            </div>
                         </div>
-                        <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px]">
-                            <div className="fixed top-[5%] right-[2%]" ref={root}></div>
 
-                            <Form>
-                                <div className="mb-[10px] text-sm">
-                                    <label htmlFor="username">Username</label>
-                                    <Field type="text" name="username" className="input-style" />
-                                    <ErrorMessage
-                                        name="username"
-                                        component="span"
-                                        className="text-primary font-normal text-[15px]"
-                                    />
-                                </div>
+                        <div className="flex flex-col gap-10 flex-1 w-100% font-semibold p-[50px]">
+                            <div className="text-xl text-black font-Crimson lg:text-[35px] leading-[50px]">
+                                Register
+                            </div>
+                            <div className="">
+                                <div className="fixed top-[5%] right-[2%]" ref={root}></div>
 
-                                <div className="mb-[10px] text-sm">
-                                    <label htmlFor="email">Email address</label>
-                                    <Field type="email" name="email" className="input-style" />
-                                    <ErrorMessage
-                                        name="email"
-                                        component="span"
-                                        className="text-primary font-normal text-[15px]"
-                                    />
-                                </div>
+                                <Form className="flex flex-col gap-0">
+                                    <div className="text-sm">
+                                        <Field
+                                            type="text"
+                                            name="username"
+                                            className="input-style"
+                                            placeholder="Username"
+                                        />
+                                        <ErrorMessage
+                                            name="username"
+                                            component="span"
+                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                        />
+                                    </div>
 
-                                <div className="mb-[10px] text-sm">
-                                    <label htmlFor="email">Phone number</label>
-                                    <Field type="phone" name="phone" className="input-style" />
-                                    <ErrorMessage
-                                        name="phone"
-                                        component="span"
-                                        className="text-primary font-normal text-[15px]"
-                                    />
-                                </div>
+                                    <div className="text-sm">
+                                        <Field
+                                            type="email"
+                                            name="email"
+                                            className="input-style"
+                                            placeholder="Email address"
+                                        />
+                                        <ErrorMessage
+                                            name="email"
+                                            component="span"
+                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                        />
+                                    </div>
 
-                                <div className="mb-[10px] text-sm">
-                                    <label htmlFor="password">Password</label>
-                                    <Field type="password" name="password" className="input-style" />
-                                    <ErrorMessage
-                                        name="password"
-                                        component="span"
-                                        className="text-primary font-normal text-[15px]"
-                                    />
-                                </div>
+                                    <div className="text-sm">
+                                        <Field
+                                            type="phone"
+                                            name="phone"
+                                            className="input-style"
+                                            placeholder="Phone number"
+                                        />
+                                        <ErrorMessage
+                                            name="phone"
+                                            component="span"
+                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                        />
+                                    </div>
 
-                                <div className="mb-[10px] text-sm">
-                                    <label htmlFor="confirmPassword">Confirm Password</label>
-                                    <Field type="password" name="confirmPassword" className="input-style" />
-                                    <ErrorMessage
-                                        name="confirmPassword"
-                                        component="span"
-                                        className="text-primary font-normal text-[15px]"
-                                    />
-                                </div>
+                                    <div className="text-sm">
+                                        <Field
+                                            type="password"
+                                            name="password"
+                                            className="input-style"
+                                            placeholder="Password"
+                                        />
+                                        <ErrorMessage
+                                            name="password"
+                                            component="span"
+                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                        />
+                                    </div>
 
-                                <div className="flex w-[100%] mt-[50px]">
-                                    <button
-                                        type="submit"
-                                        className="mx-auto flex justify-center items-center border-[2px] relative border-[#139cec] min-w-[100%] leading-[40px] text-[#139cec] text-lg rounded-[4px] hover:bg-[#139cec] hover:text-white"
-                                    >
-                                        {formik.isSubmitting && (
-                                            <div className="pr-2">
+                                    <div className="text-sm">
+                                        <Field
+                                            type="password"
+                                            name="confirmPassword"
+                                            className="input-style"
+                                            placeholder="Confirm Password"
+                                        />
+                                        <ErrorMessage
+                                            name="confirmPassword"
+                                            component="span"
+                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                        />
+                                    </div>
+
+                                    <div className="mt-[20px]">
+                                        <button
+                                            type="submit"
+                                            className="flex gap-1 justify-center items-center bg-[#e58eef] w-[50%] p-[5px] text-white"
+                                        >
+                                            {formik.isSubmitting && (
                                                 <AiOutlineLoading className="animate-fadeInLoadingRotate" />
-                                            </div>
-                                        )}
-                                        Sign up
-                                    </button>
-                                </div>
-
-                                <div className="flex w-[100%] mt-[10px] md:mt-[20px]">
-                                    <button
-                                        className="mx-auto flex justify-center items-center border-[2px] border-[#cfcfcf] min-w-[100%] h-[44px] leading-[40px] text-[#868686] text-lg rounded-[4px] hover:bg-[#e0e0e0]"
-                                        onClick={() => navigate('/login')}
-                                    >
-                                        <HiOutlineArrowLeft />
-                                        <div className="ml-2 text-sm">Back to Login</div>
-                                    </button>
-
-                                    {/* Same as */}
-                                </div>
-                                <div className="text-center pt-[10px] text-sm">
-                                    <p className="font-medium text-[#2c2c2c]">or</p>
-                                    <Link to="/" className="cursor-pointer">
-                                        Back
-                                    </Link>
-                                </div>
-                            </Form>
+                                            )}
+                                            Register
+                                        </button>
+                                    </div>
+                                </Form>
+                            </div>
                         </div>
                     </div>
                 </div>

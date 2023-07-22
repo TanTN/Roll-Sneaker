@@ -5,6 +5,7 @@ export default {
     theme: {
         fontFamily: {
             IBM: ['"IBM Plex Sans"', 'sans-serif'],
+            Crimson: ['Crimson'],
         },
         extend: {
             corePlugins: {

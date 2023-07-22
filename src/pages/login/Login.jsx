@@ -33,66 +33,74 @@ const Login = () => {
             }}
         >
             {(formik) => (
-                <div className="md:grid md:grid-cols-3">
-                    <div className="hidden md:block md:col-span-2 md:h-[100vh]">
-                        <img
-                            className="h-[100%] object-cover"
-                            src="https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg"
-                            alt="store"
-                        />
-                    </div>
-
-                    <div className="w-100% font-semibold">
-                        <div className="text-xl text-white bg-[#ecc813] leading-[50px] text-center md:mx-[100px] md:bg-white md:text-[#ecc813] md:text-[35px] md:mt-[30px]">
-                            User Login
+                <div className="lg:flex w-screen h-screen justify-center items-center bg-[rgb(209,178,217)]">
+                    <div className="flex w-[50%] min-h-[600px] bg-white rounded-[10px] overflow-hidden">
+                        <div className="flex flex-col gap-10 flex-1 text-white bgLogin p-[50px]">
+                            <span className="text-[100px] leading-[100px] font-semibold font-Crimson">
+                                Roll Sneaker.
+                            </span>
+                            <p className="text-sm text-center">
+                                Tiền nhiệm là Shopgiayreplica.com™ - Shop Uy tín lâu năm chuyên cung cấp giày thể thao
+                                sneaker nam, nữ hàng Replica 1:1 - Like Auth với chất lượng khác biệt so với thị trường
+                                và giá tốt nhất. Shop có sẵn hàng tại 2 cơ sở Hà Nội, tp HCM. Giao hàng nhanh toàn quốc,
+                                đổi trả, bảo hành linh hoạt.
+                                <br /> Bạn không đủ hầu bao để mua 1 đôi Chính Hãng? Hay bạn order quá lâu cũng như size
+                                của mình đã Sold Out? Bạn đang cần tìm các mẫu Sneaker với mong muốn chất lượng, detail
+                                chuẩn hàng Auth? Roll Sneaker sẽ giải quyết hết thắc mắc của bạn với chất lượng cực kỳ
+                                khác biệt, đa dạng mẫu mã, có sẵn hàng. Liên tục cập nhật, update, fix các phiên bản
+                                tiệm cận hàng Auth nhất. Các bạn có thể yên tâm lựa chọn trong một thị trường rất hỗn
+                                loạn về chất lượng, cũng như định nghĩa chuẩn về Giày Replica - Like Auth.
+                            </p>
+                            <div>
+                                <span className=" font-medium text-white">Don't have account ?</span>
+                            </div>
+                            <div className="flex gap-2 items-center">
+                                <button
+                                    className="w-[50%] p-[5px] bg-white text-black font-medium"
+                                    onClick={() => navigate('/register')}
+                                >
+                                    Sign up
+                                </button>
+                                <p className="font-bold text-[#1a08b8]">or</p>
+                                <Link to="/" className="cursor-pointer hover:translate-y-[-2px] hover:text-sh">
+                                    Back
+                                </Link>
+                            </div>
                         </div>
-                        <div className="mx-auto px-[40px] mt-[50px] md:px-[50px] xl:px-[100px] 2xl:px-[140px] ">
-                            <Form>
-                                <div className="mb-[10px] text-sm">
-                                    <label htmlFor="username" className="">
-                                        Username
-                                    </label>
-                                    <Field type="text" name="username" className="input-style" />
+
+                        <div className="flex gap-10 justify-center flex-col flex-1 font-semibold p-[50px]">
+                            <div className="text-xl font-Crimson text-white bg-[#ecc813] leading-[50px] md:bg-white md:text-[#000000] md:text-[35px] md:mt-[30px]">
+                                Login
+                            </div>
+                            <Form className="flex gap-4 flex-col">
+                                <div className="text-sm">
+                                    <Field type="text" name="username" className="input-style" placeholder="Username" />
                                 </div>
-                                <div className="mb-[10px] text-sm">
-                                    <label htmlFor="password" className="">
-                                        Password
-                                    </label>
-                                    <Field type="password" name="password" className="input-style" />
+                                <div className="text-sm">
+                                    <Field
+                                        type="password"
+                                        name="password"
+                                        className="input-style"
+                                        placeholder="Password"
+                                    />
                                 </div>
 
-                                <div className="flex w-[100%] mt-[50px] relative">
-                                    {isLoginFalse && (
-                                        <div className="absolute top-[-100%] w-[100%] text-primary text-center font-normal text-[14px]">
-                                            Tên đăng nhập hoặc mật khẩu không đúng.
-                                        </div>
-                                    )}
+                                {isLoginFalse && (
+                                    <div className=" text-primary font-normal text-[14px]">
+                                        Tên đăng nhập hoặc mật khẩu không đúng.
+                                    </div>
+                                )}
+
+                                <div>
                                     <button
                                         type="submit"
-                                        className="mx-auto flex justify-center items-center border-[2px] border-[#ecc813] min-w-[100%] leading-[40px] text-[#ecc813] text-lg rounded-[4px] hover:bg-[#ecc813] hover:text-white"
+                                        className="flex gap-1 justify-center items-center p-[5px] w-[50%] text-center text-white bg-[#938eef]"
                                     >
                                         {formik.isSubmitting && (
-                                            <div className="pr-2">
-                                                <AiOutlineLoading className="animate-fadeInLoadingRotate" />
-                                            </div>
+                                            <AiOutlineLoading className="animate-fadeInLoadingRotate" />
                                         )}
                                         Sign in
                                     </button>
-                                </div>
-                                <div className=" flex justify-center md:flex-col md:items-center xl:flex-row xl:justify-center w-[100%] mt-[10px] md:mt-[25px] text-sm">
-                                    <span className=" font-medium text-[#696969]">Don't have account?</span>
-                                    <span
-                                        className="font-semibold pl-2 cursor-pointer"
-                                        onClick={() => navigate('/register')}
-                                    >
-                                        Sign up
-                                    </span>
-                                </div>
-                                <div className="text-center text-sm">
-                                    <p className="font-medium text-[#2c2c2c]">or</p>
-                                    <Link to="/" className="cursor-pointer ">
-                                        Back
-                                    </Link>
                                 </div>
                             </Form>
                         </div>

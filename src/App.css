@@ -36,7 +36,7 @@
 }
 @layer components {
     .input-style {
-        @apply block rounded-[4px] text-[18px] font-normal border-[1px] border-slate-400 shadow-sm w-[100%] leading-8 focus:outline-[#f0d65880] focus:drop-shadow-[0_0_3px_#f3d6430] text-sm;
+        @apply block rounded-[4px] px-[10px] py-[20px] text-[18px] font-normal border-b-[1px] focus:border-[#8178d4] border-slate-400 w-[100%] leading-8 outline-none text-sm;
     }
     .toast-messgae {
         @apply bg-[#ffffff] mb-[10px] relative flex items-center text-[#797979] py-[10px] pl-[18px] pr-[34px] rounded-[4px] border-[1px] border-l-[4px] border-primary animate-fadeInSuccessPc;
@@ -49,6 +49,16 @@
     }
     .hover-cyan {
         @apply hover:bg-[#00d1b7];
+    }
+    .bgLogin {
+        background: linear-gradient(rgb(144 108 240 / 68%), rgb(164 40 134 / 58%)),
+            url('https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg') center;
+    }
+    .bgRegister {
+        background: linear-gradient(rgb(144 108 240 / 68%), rgb(164 40 134 / 58%)),
+            url('https://shopgiayreplica.com/wp-content/uploads/2023/07/hinh-anh-rollsneaker-store-hanoi-6.jpg')
+                no-repeat center;
+        background-size: cover;
     }
 
     .prevTip {
