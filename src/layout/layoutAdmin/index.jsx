@@ -26,7 +26,7 @@ const LayoutAdmin = ({ children }) => {
     return (
         <div>
             <Navbar layoutAdmin />
-            <div className="w-[1140px] mx-auto">
+            <div className="max-w-[1140px] mx-auto">
                 <div className="grid grid-cols-4 gap-10">
                     <div className="flex flex-col gap-[20px] col-span-1 p-[20px] min-h-[var(--width-leftBar)] bg-[#f5f5f59d]">
                         <NavLink
