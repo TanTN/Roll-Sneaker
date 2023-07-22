@@ -22,11 +22,11 @@ const Product = ({
     return (
         <>
             <div className="px-[15px] lg:px-0">
-                <div className="lg:grid lg:grid-cols-11">
+                <div className="lg:grid lg:grid-cols-11 lg:gap-x-10">
                     <div className="col-span-5">
                         <img src={productView.img} alt="img" />
                     </div>
-                    <div className=" col-span-6">
+                    <div className="col-span-6">
                         <div className="text-[27px] font-medium pb-4">{productView.name}</div>
                         <div className="flex items-end">
                             <span className="flex items-center text-[28px] font-bold text-primary">

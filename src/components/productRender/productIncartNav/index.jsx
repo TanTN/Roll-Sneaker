@@ -28,7 +28,10 @@ const ProductInCartNav = ({ userCurrent, setTippyPc }) => {
                     <img className="md:w-[90px] md:h-[90px] lg:h-auto lg:w-auto" src={product.img} alt="photo" />
                     <div
                         className="absolute top-[2%] left-[2%] cursor-pointer select-none"
-                        onClick={() => handleDeleteProduct(product, dispatch, userCurrent, isLogin)}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteProduct(product, dispatch, userCurrent, isLogin);
+                        }}
                     >
                         <AiFillCloseSquare className="text-[20px] lg:text-[20px] lg:hover:text-primary" />
                     </div>

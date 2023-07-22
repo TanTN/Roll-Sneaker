@@ -11,8 +11,9 @@ import Cart from './Cart';
 import CSKH from './CSKH/CSKH';
 import Search from './Search/Search';
 import User from './User';
+import Logo from '../../../assets/images/cropped-logo-roll-sneaker.png';
 
-const Navbar = ({layoutAdmin}) => {
+const Navbar = ({ layoutAdmin }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isMobile = useSelector((state) => state.store.isMobile);
     const [isScroll, setIsScroll] = useState(false);
@@ -44,11 +45,7 @@ const Navbar = ({layoutAdmin}) => {
                 <div className="xl:flex justify-between items-center md:mx-auto md:max-w-[1140px] px-[15px]">
                     <div className="flex justify-center items-center my-2 xl:my-2 xl:ml-[50px] cursor-pointer">
                         <Link to="/">
-                            <img
-                                className="max-h-[40px] xl:min-h-[60px]"
-                                src="https://shopgiayreplica.com/wp-content/uploads/2017/01/cropped-cropped-cropped-logo-1-2.png"
-                                alt="logo"
-                            />
+                            <img className="max-h-[40px] xl:min-h-[60px]" src={Logo} alt="logo" />
                         </Link>
                     </div>
                     <div className="flex justify-end items-center">
@@ -74,7 +71,9 @@ const Navbar = ({layoutAdmin}) => {
                     </div>
                 </div>
             </div>
-            {!layoutAdmin && !isMobile && <MenuNavbar isMenu={isMenu} isScroll={isScroll} clickMenu={handleClickMenu} />}
+            {!layoutAdmin && !isMobile && (
+                <MenuNavbar isMenu={isMenu} isScroll={isScroll} clickMenu={handleClickMenu} />
+            )}
             {isMenu && isMobile && <MenuNavbar isMenu={isMenu} isScroll={isScroll} clickMenu={handleClickMenu} />}
         </>
     );

@@ -11,6 +11,9 @@ export const postHistoryOrder = async (product) => {
 export const postProduct = async (product) => {
     const res = await httpRequest.post('data', product);
 };
+export const deleteProduct = async (product) => {
+    const res = await httpRequest.delete(`data/${product.id}`);
+};
 export const getHistoryOrder = async () => {
     const res = await httpRequest.get('historyOrder');
     return res.data;

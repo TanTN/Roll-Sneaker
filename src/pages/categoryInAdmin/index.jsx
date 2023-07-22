@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import ProductInMain from '../../components/productRender/productInMain';
 import { Link } from 'react-router-dom';
 import { AiOutlineHome } from 'react-icons/ai';
 import { CiMenuFries } from 'react-icons/ci';
+import { fetchApiData } from '../../store/reducerData';
 
 const CreateProductInAdmin = () => {
-    const [dataProduct, setDataProduct] = useState([]);
     const { nameCategory } = useParams();
+    const dispatch = useDispatch();
+    const [dataProduct, setDataProduct] = useState([]);
     const allData = useSelector((state) => state.data.dataSneaker);
+    useEffect(() => {
+        const fetchApi = async () => {
+            dispatch(fetchApiData());
+        };
+        fetchApi();
+    }, [nameCategory]);
     useEffect(() => {
         const newDataSneaker = allData.filter((product) => product.category === nameCategory);
         setDataProduct(newDataSneaker);
-    }, [nameCategory]);
+    }, [allData]);
     return (
         <>
             <div className="flex items-center lg:bg-[#eeeeee] pl-4 py-2 mb-[10px]">

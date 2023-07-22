@@ -66,7 +66,7 @@ const UserInAdmin = () => {
             <div className="flex flex-col gap-2 mt-[20px] mb-[50px]">
                 <Avatar
                     src={userCurrent?.linkAvt}
-                    className="cursor-pointer relative border-[1px] border-[#a02222]"
+                    className="relative border-[1px] border-[#a02222]"
                     sx={{ height: 55, width: 55, fontSize: 35, fontWeight: 'normal' }}
                     alt={userCurrent?.username}
                 >

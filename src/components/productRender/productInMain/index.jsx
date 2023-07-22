@@ -1,13 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 import LoadingImage from '../../loading/loadingImage';
 import Image from '@/components/Image';
+import { IoIosClose } from 'react-icons/io';
+import { deleteProduct } from '../../../services/productService';
+import { fetchApiData } from '../../../store/reducerData';
 
 const ProductInMain = ({ dataProduct, category }) => {
     const isLoading = useSelector((state) => state.data.dataPending);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleDeleteProduct = async (e, data) => {
+        e.stopPropagation();
+        await deleteProduct(data);
+        await dispatch(fetchApiData());
+    };
 
     const handleAddProduct = (data) => {
         navigate(`/detailProduct/${data.id}`);
@@ -20,10 +30,18 @@ const ProductInMain = ({ dataProduct, category }) => {
                 <div className="relative cursor-pointer overflow-hidden" onClick={() => handleAddProduct(data)}>
                     <div
                         className={`md:h-[154px] flex items-center overflow-hidden ${
-                            category ? 'lg:h-[180px]' : 'lg:h-[268px]'
+                            category ? 'lg:h-[180px] relative' : 'lg:h-[268px]'
                         }`}
                     >
                         <Image src={data.img} alt="product" className="lg:scale-125 object-cover" />
+                        {category && (
+                            <div
+                                className="absolute flex justify-center items-center top-2 right-2 bg-black hover:bg-primary text-[18px]"
+                                onClick={(e) => handleDeleteProduct(e, data)}
+                            >
+                                <IoIosClose color="white" />
+                            </div>
+                        )}
                     </div>
                     {data.percent && (
                         <div className="absolute top-2 left-2 bg-primary text-white font-bold w-[50px] h-[50px] text-center leading-[50px] rounded-[50%]">

@@ -21,10 +21,9 @@ export default {
                 fadeInMes1: 'fadeInMes1 2s ease-in-out infinite',
                 fadeInMes2: 'fadeInMes2 2s ease-in-out infinite',
                 fadeInTips: 'fadeInTips 0.6s linear',
-                fadeInSuccessPc: 'fadeInSuccessInPc .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
-                fadeInSuccess: 'fadeInSuccessIn .3s linear, fadeInSuccessOut 0.3s linear 3s forwards',
-                fadeInLoading: 'fadeInLoading .5s linear infinite',
-                fadeInLoadingRotate: 'fadeInLoadingRotate .5s linear infinite',
+                fadeInMessagesPc: 'fadeInMessagesPc .3s linear, fadeInMessagesOut 0.3s linear 3s forwards',
+                fadeInLoadingImage: 'fadeInLoadingImage .5s linear infinite',
+                fadeInLoadingIconRotate: 'fadeInLoadingIconRotate .5s linear infinite',
                 fadeInSearch: 'fadeInSearch .5s linear',
                 fadeInSearchMobile: 'fadeInSearchMobile .5s linear',
             },
@@ -34,7 +33,7 @@ export default {
                     '0%': { opacity: '.5', transform: 'scale(1.2)' },
                     '100%': { opacity: '1', transform: 'scale(1)' },
                 },
-                // offset search
+                // offset search Pc
                 fadeInSearch: {
                     '0%': { opacity: '.5', width: '20px' },
                     '100%': { opacity: '1', width: '300px' },
@@ -62,27 +61,25 @@ export default {
                     '0%': { opacity: '0.6', transform: 'translateY(10%)' },
                     '100%': { opacity: '1', transform: 'translateY(-35%)' },
                 },
-                fadeInSuccessInPc: {
-                    '0%': { opacity: '0', transform: 'translateX(80%)' },
-                    '100%': { opacity: '1', transform: 'translateX(8%)' },
+
+                // messages
+                fadeInMessagesPc: {
+                    '0%': { opacity: '0', transform: 'translateX(8%)' },
+                    '100%': { opacity: '1', transform: 'translateX(0)' },
                 },
 
-                // all messages
-                fadeInSuccessIn: {
-                    '0%': { opacity: '0', transform: 'translateX(80%)' },
-                    '100%': { opacity: '1', transform: 'translateX(4%)' },
-                },
-                fadeInSuccessOut: {
+                fadeInMessagesOut: {
                     '0%': { opacity: '1' },
                     '100%': { opacity: '0' },
                 },
+
                 // Loading Image
-                fadeInLoading: {
+                fadeInLoadingImage: {
                     '0%': { transform: 'translateX(0)' },
                     '100%': { transform: 'translateX(260px)' },
                 },
                 // Loading icon rotate
-                fadeInLoadingRotate: {
+                fadeInLoadingIconRotate: {
                     '0%': { transform: 'rotate(0deg)' },
                     '100%': { transform: 'rotate(360deg)' },
                 },

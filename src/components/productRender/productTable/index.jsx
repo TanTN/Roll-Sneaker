@@ -4,12 +4,11 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+
 import { priceString } from '@/utils/priceUtil';
 import { AiFillCloseSquare } from 'react-icons/ai';
 
 const ProductTable = ({ products, handleFixProduct, deleteProduct, isPageAdmin }) => {
-    console.log(products);
     return (
         <TableContainer>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

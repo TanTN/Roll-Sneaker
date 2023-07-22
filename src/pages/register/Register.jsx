@@ -11,7 +11,7 @@ import { validateRegister } from '@/services/validateFormService';
 import { postUser } from '@/services/userService';
 
 import { Link } from 'react-router-dom';
-import { setIsLogin, setUserCurrent } from '../../store/reducerStore';
+import { setIsAdmin, setIsLogin, setUserCurrent } from '@/store/reducerStore';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -87,6 +87,7 @@ const Register = () => {
                     await postUser(user);
                     dispatch(setUserCurrent(user));
                     dispatch(setIsLogin(true));
+                    dispatch(setIsAdmin(false));
 
                     handleAddMessage('Bạn đã đăng kí tài khoản thành công', true);
                     setTimeout(() => navigate('/'), 3000);
@@ -142,12 +143,13 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-10 flex-1 w-100% font-semibold p-[50px]">
+                        <div className="flex relative flex-col gap-10 flex-1 w-100% font-semibold p-[50px]">
                             <div className="text-xl text-black font-Crimson lg:text-[35px] leading-[50px]">
                                 Register
                             </div>
                             <div className="">
-                                <div className="fixed top-[5%] right-[2%]" ref={root}></div>
+                                {/* error message */}
+                                <div className="absolute top-[5%] right-[2%]" ref={root}></div>
 
                                 <Form className="flex flex-col gap-0">
                                     <div className="text-sm">
@@ -226,7 +228,7 @@ const Register = () => {
                                             className="flex gap-1 justify-center items-center bg-[#e58eef] w-[50%] p-[5px] text-white"
                                         >
                                             {formik.isSubmitting && (
-                                                <AiOutlineLoading className="animate-fadeInLoadingRotate" />
+                                                <AiOutlineLoading className="animate-fadeInLoadingIconRotate" />
                                             )}
                                             Register
                                         </button>

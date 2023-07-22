@@ -7,7 +7,7 @@ import axios from 'axios';
 import { setUserCurrent } from '@/store/reducerStore';
 import { Avatar } from '@mui/material';
 import { updateUser } from '@/services/userService';
-import { AiFillCloseSquare } from 'react-icons/ai';
+import { IoIosClose } from 'react-icons/io';
 
 const User = () => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -70,10 +70,10 @@ const User = () => {
                     <div className="relative min-w-[100%] h-[70%] md:min-w-[800px] md:h-[90%]">
                         <img src={avatar.link} className="w-[100%] h-[100%] object-cover" />
                         <div
-                            className="absolute top-[2%] right-[2%] bg-white text-[15px] md:text-[25px] lg:hover:text-primary lg:hover:cursor-pointer"
+                            className="absolute flex justify-center items-center top-[2%] right-[2%] bg-black text-[15px] md:text-[25px] lg:hover:bg-primary lg:hover:cursor-pointer"
                             onClick={() => setIsRoomAvatar(false)}
                         >
-                            <AiFillCloseSquare />
+                            <IoIosClose color="white" />
                         </div>
                     </div>
                 </div>

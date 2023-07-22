@@ -34,7 +34,7 @@ const Login = () => {
         >
             {(formik) => (
                 <div className="lg:flex w-screen h-screen justify-center items-center bg-[rgb(209,178,217)]">
-                    <div className="flex w-[50%] min-h-[600px] bg-white rounded-[10px] overflow-hidden">
+                    <div className="flex w-[50%]  min-h-[600px] bg-white rounded-[10px] overflow-hidden">
                         <div className="flex flex-col gap-10 flex-1 text-white bgLogin p-[50px]">
                             <span className="text-[100px] leading-[100px] font-semibold font-Crimson">
                                 Roll Sneaker.
@@ -97,7 +97,7 @@ const Login = () => {
                                         className="flex gap-1 justify-center items-center p-[5px] w-[50%] text-center text-white bg-[#938eef]"
                                     >
                                         {formik.isSubmitting && (
-                                            <AiOutlineLoading className="animate-fadeInLoadingRotate" />
+                                            <AiOutlineLoading className="animate-fadeInLoadingIconRotate" />
                                         )}
                                         Sign in
                                     </button>

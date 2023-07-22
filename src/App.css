@@ -22,10 +22,10 @@
         @apply text-[26px] font-IBM font-bold;
     }
     h2 {
-        @apply text-[24px] font-IBM font-bold;
+        @apply text-[24px] font-IBM font-bold !important;
     }
     h3 {
-        @apply text-[18px] font-IBM font-bold;
+        @apply text-[18px] font-IBM font-bold !important;
     }
     a {
         @apply no-underline;
@@ -39,10 +39,10 @@
         @apply block rounded-[4px] px-[10px] py-[20px] text-[18px] font-normal border-b-[1px] focus:border-[#8178d4] border-slate-400 w-[100%] leading-8 outline-none text-sm;
     }
     .toast-messgae {
-        @apply bg-[#ffffff] mb-[10px] relative flex items-center text-[#797979] py-[10px] pl-[18px] pr-[34px] rounded-[4px] border-[1px] border-l-[4px] border-primary animate-fadeInSuccessPc;
+        @apply bg-[#ffffff] mb-[10px] relative flex items-center text-[#797979] py-[10px] pl-[18px] pr-[34px] rounded-[4px] border-[1px] border-l-[4px] border-primary animate-fadeInMessagesPc;
     }
     .loadingImage {
-        @apply relative w-[100%] h-[170px] md:h-[255px] border-[1px] rounded-md overflow-hidden bg-[#f0f0f0] border-[#f1f1f1] before:content-[''] before:h-[400px] before:w-[20px] before:top-[-10%] before:bg-[#ffffff] before:blur-[2px] before:absolute before:drop-shadow-[-15px_0_8px_white] before:animate-fadeInLoading;
+        @apply relative w-[100%] h-[170px] md:h-[255px] border-[1px] rounded-md overflow-hidden bg-[#f0f0f0] border-[#f1f1f1] before:content-[''] before:h-[400px] before:w-[20px] before:top-[-10%] before:bg-[#ffffff] before:blur-[2px] before:absolute before:drop-shadow-[-15px_0_8px_white] before:animate-fadeInLoadingImage;
     }
     .hover-primary {
         @apply hover:bg-[#e24e4e];

@@ -6,8 +6,11 @@ import { postProduct } from '../../services/productService';
 import Button from '../../components/button';
 import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { fetchApiData } from '../../store/reducerData';
+import { useDispatch } from 'react-redux';
 
 const CreateProduct = () => {
+
     const [file, setFile] = useState();
     const [urlImage, setUrlImage] = useState();
     const [nameProduct, setNameProduct] = useState('');
