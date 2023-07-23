@@ -8,7 +8,7 @@ import { ImFacebook } from 'react-icons/im';
 import { BsInstagram, BsTwitter, BsPinterest } from 'react-icons/bs';
 
 import { contact, otherSneaker, sneaker } from '@/data/dataFooter';
-import imgAvatar from '@/assets/images/avatar.jpg';
+import imgAvatar from '@/assets/images/cropped-logo-roll-sneaker.png';
 import imgBlog from '@/assets/images/blog.jpg';
 
 const Footer = () => {
@@ -63,7 +63,9 @@ const Footer = () => {
                             className="flex items-center absolute top-[10px] left-[25px]"
                             href="https://www.facebook.com/102066926119211"
                         >
-                            <img width={'54px'} src={imgAvatar} alt="img" />
+                            <div className="bg-white w-[54px] h-[30px] p-[2px]">
+                                <img src={imgAvatar} alt="img" className="w-[100%] h-[100%]" />
+                            </div>
                             <div className="pl-2">
                                 <p className="font-semibold text-lg text-[#e2ff7a]">Shop giày Rep Hà Nội</p>
                                 <p className="font-medium text-sm text-slate-100">189 người theo dõi</p>

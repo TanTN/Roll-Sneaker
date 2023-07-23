@@ -56,7 +56,7 @@ const Navbar = ({ layoutAdmin }) => {
                         <Cart>
                             <div className="relative text-[26px] cursor-pointer px-[5px] mx-[5px] md:px-[12px] md:mx-0 select-none text-[#797979]">
                                 <BsCartDash className="text-slate-400" />
-                                <div className="absolute top-[-8px] right-[2px] px-[5px] h-[17px] text-[13px] md:right-[4px] md:leading-[19px] leading-[17px] rounded-[25px] bg-primary text-white font-medium text-center">
+                                <div className="absolute top-[-8px] right-[1px] px-[5px] h-[17px] text-[13px] md:right-[4px] md:leading-[19px] leading-[17px] rounded-[25px] bg-primary text-white font-medium text-center">
                                     {userCurrent.products.length > 0 ? userCurrent.products.length : 0}
                                 </div>
                             </div>
