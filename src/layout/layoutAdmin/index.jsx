@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { Avatar } from '@mui/material';
 
 import { BiCategoryAlt } from 'react-icons/bi';
 import { IoIosCreate } from 'react-icons/io';
@@ -7,15 +10,12 @@ import { FiUsers } from 'react-icons/fi';
 
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
-import { NavLink } from 'react-router-dom';
-import { Avatar } from '@mui/material';
-
 import { getAllUser } from '@/services/userService';
-import { useDispatch, useSelector } from 'react-redux';
 
 const LayoutAdmin = ({ children }) => {
     const dispatch = useDispatch();
     const allUser = useSelector((state) => state.store.allUser);
+
     const [isShowCategory, setIsShowCategory] = useState(false);
     const [isShowAllUser, setIsShowAllUser] = useState(false);
 
@@ -26,9 +26,14 @@ const LayoutAdmin = ({ children }) => {
     return (
         <div>
             <Navbar layoutAdmin />
+
             <div className="max-w-[1140px] mx-auto">
                 <div className="grid grid-cols-4 gap-10">
+
+                    {/* leftbar */}
                     <div className="flex flex-col gap-[20px] col-span-1 p-[20px] min-h-[var(--width-leftBar)] bg-[#f5f5f59d]">
+
+                        {/* create product */}
                         <NavLink
                             to="/admin/createProduct"
                             className={({ isActive }) =>
@@ -40,6 +45,8 @@ const LayoutAdmin = ({ children }) => {
                             <IoIosCreate />
                             <span>Create product</span>
                         </NavLink>
+
+                        {/* Category */}
                         <div>
                             <div
                                 className="flex justify-between items-center mx-2  cursor-pointer"
@@ -100,7 +107,10 @@ const LayoutAdmin = ({ children }) => {
                                 </div>
                             )}
                         </div>
+
+                        {/* All user */}
                         <div>
+
                             <div
                                 className="flex justify-between items-center mx-2 cursor-pointer"
                                 onClick={() => setIsShowAllUser(!isShowAllUser)}
@@ -111,6 +121,7 @@ const LayoutAdmin = ({ children }) => {
                                 </div>
                                 {!isShowAllUser ? <IoCaretUpSharp /> : <IoCaretDownSharp />}
                             </div>
+
                             {isShowAllUser && (
                                 <div className="flex flex-col gap-2 ml-[20px]">
                                     {allUser?.map((user) => (
@@ -143,6 +154,8 @@ const LayoutAdmin = ({ children }) => {
                             )}
                         </div>
                     </div>
+
+                    {/* content */}
                     <div className="col-span-3">{children}</div>
                 </div>
             </div>

@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import allPriceUtils from '@/utils/allPriceUtils';
-import { useNavigate } from 'react-router';
+
 import Button from '@/components/button';
 
 const Bill = ({ userCurrent }) => {
@@ -24,23 +24,28 @@ const Bill = ({ userCurrent }) => {
     } else {
         price = allPriceCart;
     }
+
     return (
         <>
             <TableContainer>
                 <Table>
                     <TableBody>
+
                         <TableRow>
                             <TableCell component="th" scope="row" align="left" sx={{ width: '130px' }}>
                                 <p className="font-semibold text-[16px]">Tạm tính :</p>
                             </TableCell>
+
                             <TableCell>
                                 {allPriceCart} <span className="underline">đ</span>
                             </TableCell>
                         </TableRow>
+
                         <TableRow>
                             <TableCell align="left">
                                 <p className="font-semibold text-[16px]">Giao hàng :</p>
                             </TableCell>
+
                             <TableCell align="left">
                                 {allNumberProduct <= 1 ? (
                                     <p>
@@ -55,16 +60,19 @@ const Bill = ({ userCurrent }) => {
                                 <p>Tùy chọn giao hàng sẽ được cập nhật trong quá trình thanh toán.</p>
                             </TableCell>
                         </TableRow>
+
                         <TableRow>
                             <TableCell align="left">
                                 <p className="font-semibold text-[16px]">Tổng</p>
                             </TableCell>
+
                             <TableCell align="left">
                                 <p className="font-semibold text-[16px]">
                                     {price} <span className="underline">đ</span>
                                 </p>
                             </TableCell>
                         </TableRow>
+                        
                     </TableBody>
                 </Table>
             </TableContainer>

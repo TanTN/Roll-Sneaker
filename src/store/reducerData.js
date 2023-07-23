@@ -20,14 +20,17 @@ const dataSlice = createSlice({
     },
 
     extraReducers: (builder) => {
+        
         builder.addCase(fetchApiData.pending, (state) => {
             state.dataPending = true;
         });
+
         builder.addCase(fetchApiData.fulfilled, (state, action) => {
             state.dataPending = false;
             state.dataSneaker = action.payload;
             state.dataRejected = false;
         });
+
         builder.addCase(fetchApiData.rejected, (state) => {
             state.dataRejected = true;
         });

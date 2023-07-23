@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router';
-import { deleteUser, getAllUser, getUser } from '../../services/userService';
 import { Avatar } from '@mui/material';
+
 import { RiSmartphoneFill } from 'react-icons/ri';
 import { AiFillHome, AiOutlineHome } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 import { IoCaretUpSharp, IoCaretDownSharp } from 'react-icons/io5';
 
-import { deleteHistoryOrder, getHistoryOrder } from '../../services/productService';
-import Button from '../../components/button';
-import { useDispatch, useSelector } from 'react-redux';
-import LoadingPage from '../../components/loading/loadingPage';
-import ProductTable from '../../components/productRender/productTable';
+import { deleteHistoryOrder, getHistoryOrder } from '@/services/productService';
+import { deleteUser, getAllUser, getUser } from '@/services/userService';
+import Button from '@/components/button';
+import LoadingPage from '@/components/loading/loadingPage';
+import ProductTable from '@/components/productRender/productTable';
 
 const UserInAdmin = () => {
+
     const { userId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -48,8 +50,10 @@ const UserInAdmin = () => {
             await deleteHistoryOrder(product.id);
         });
     };
+
     return (
         <div className="relative">
+
             <div className="flex items-center lg:bg-[#eeeeee] pl-4 py-2 mb-[10px]">
                 <AiOutlineHome className="hover:text-[#030303]" />
                 <Link to="/" className="px-2 text-[#585858] hover:text-[#000000] text-sm md:text-base cursor-pointer">
@@ -64,6 +68,7 @@ const UserInAdmin = () => {
             </div>
 
             <div className="flex flex-col gap-2 mt-[20px] mb-[50px]">
+
                 <Avatar
                     src={userCurrent?.linkAvt}
                     className="relative border-[1px] border-[#a02222]"
@@ -109,6 +114,7 @@ const UserInAdmin = () => {
                         {showProductInCart ? <IoCaretDownSharp className="text-primary" /> : <IoCaretUpSharp />}
                     </div>
                 </div>
+
                 {showProductInCart && (
                     <div>
                         <ProductTable isPageAdmin products={userCurrent.products} />
@@ -129,6 +135,7 @@ const UserInAdmin = () => {
                         {showProductOrder ? <IoCaretDownSharp className="text-primary" /> : <IoCaretUpSharp />}
                     </div>
                 </div>
+                
                 {showProductOrder && (
                     <div>
                         <ProductTable isPageAdmin products={productOrder} />

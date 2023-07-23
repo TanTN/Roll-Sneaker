@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Slider from 'react-slick';
 import { useDispatch, useSelector } from 'react-redux';
 import { memo } from 'react';
@@ -22,13 +22,11 @@ const Main = () => {
     
     useEffect(() => {
         window.scrollTo(0, 0);
-
-    },[])
-    useEffect(() => {
         dispatch(fetchApiData());
-        
-    }, [dispatch]);
 
+    }, [])
+
+    // config style button slider previous
     const SamplePrevArrow = ({ onClick }) => {
         return (
             <div
@@ -40,6 +38,7 @@ const Main = () => {
         );
     };
 
+    // config style button slider next
     const SampleNextArrow = ({ onClick }) => {
         return (
             <div
@@ -51,6 +50,7 @@ const Main = () => {
         );
     };
 
+    // config slider
     const options = {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -64,6 +64,7 @@ const Main = () => {
     };
     return (
         <div className="mt-[94px] max-w-[1140px] mx-auto md:mt-[90px] lg:mt-0">
+            {/* slider picture */}
             <div className="pb-[30px] px-[15px] lg:px-0 md:pb-[40px]">
                 <div className="slide-slick">
                     <Slider {...options}>

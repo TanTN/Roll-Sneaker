@@ -10,14 +10,17 @@ const httpRequest = axios.create({
 const postUser = async (value) => {
     const res = await httpRequest.post('user', value);
 };
+
 const updateUser = async (value) => {
     const res = await httpRequest.put(`user/${value.id}`, value);
 };
+
 const getAllUser = async (dispatch) => {
     const res = await httpRequest.get('user');
     const users = await res.data;
     dispatch(setAllUser(users));
 };
+
 const getUser = async (idUser, dispatch) => {
     dispatch(setIsLoadingUserInAdmin(true));
     const res = await httpRequest.get(`user/${idUser}`);
@@ -29,4 +32,5 @@ const getUser = async (idUser, dispatch) => {
 const deleteUser = async (userId) => {
     await httpRequest.delete(`user/${userId}`);
 };
+
 export { postUser, updateUser, getAllUser, getUser, deleteUser };

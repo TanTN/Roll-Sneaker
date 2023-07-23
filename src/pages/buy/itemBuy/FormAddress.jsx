@@ -1,28 +1,82 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
-import Input from '@mui/material/Input';
 import { Controller } from 'react-hook-form';
 
+import Input from '@mui/material/Input';
+
+import { getDistrict, getProvince, getWard } from '@/services/provinceService';
 
 const FormAdress = ({
-    handleProvinceChange,
-    handleDistrictChange,
-    isProvince,
-    isDistrict,
-    isWard,
     errors,
     control,
     user
 }) => {
-    const isError = useMemo(() => {
+    const [isProvince, setIsProvince] = useState([]);
+    const [isDistrict, setIsDistrict] = useState([]);
+    const [isWard, setIsWard] = useState([]);
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            await getProvince().then((req) => {
+                const option = req.map((province) => ({
+                    value: province.code,
+                    label: province.name,
+                }));
+                setIsProvince(option);
+            });
+        };
+        fetchApi();
+    }, []);
+
+    
+
+    const handleProvinceChange = (e) => {
+        const fetchApi = async () => {
+            await getDistrict(e.value).then((req) => {
+                const option = req.districts.map((district) => ({
+                    value: district.code,
+                    label: district.name,
+                }));
+                setIsDistrict(option);
+            });
+            await reset((e) => ({
+                ...e,
+                district: '',
+                ward: '',
+            }));
+            await setIsWard([]);
+        };
+        fetchApi();
+    };
+
+    const handleDistrictChange = (e) => {
+        const fetchApi = async () => {
+            await getWard(e.value).then((req) => {
+                const option = req.wards.map((ward) => ({
+                    value: ward.code,
+                    label: ward.name,
+                }));
+                setIsWard(option);
+            });
+            await reset((e) => ({
+                ...e,
+                ward: '',
+            }));
+        };
+        fetchApi();
+    };
+
+    const isError = () => {
         if (user.products.length > 0) {
             return true
         } else {
             return false
         }
-    },[user.products.length])
+    }
+    
     return (
         <div className="md:grid grid-cols-2 gap-y-2 gap-x-[30px]">
+
             <div className="pb-2">
                 <label htmlFor="name" className={`${errors.name && isError ? 'text-primary' : ''}`}>
                     Họ và tên:

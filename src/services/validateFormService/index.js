@@ -19,6 +19,7 @@ const validateRegister = async (value) => {
 const validateLogin = async (value, dispatch) => {
     const res = await httpRequest.get('user');
     const isLogin = await res.data.find((data) => data.username === value.username && data.password === value.password);
+    
     if (isLogin) {
         if (isLogin?.isAdmin) {
             dispatch(setIsAdmin(true));

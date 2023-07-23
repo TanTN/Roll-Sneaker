@@ -5,10 +5,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { priceString } from '@/utils/priceUtil';
 import { AiFillCloseSquare } from 'react-icons/ai';
 
+// table product for the cart page on mobile and user admin page
+
 const ProductTable = ({ products, handleFixProduct, deleteProduct, isPageAdmin }) => {
+
     return (
         <TableContainer>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -37,7 +39,7 @@ const ProductTable = ({ products, handleFixProduct, deleteProduct, isPageAdmin }
                 </TableHead>
                 {products?.map((product, index) => {
                     const price = +product.price.replace(/\./g, '') * product.numberProducts;
-                    const newPrice = priceString(price);
+                    const newPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                     return (
                         <TableBody key={index}>
                             <TableRow>

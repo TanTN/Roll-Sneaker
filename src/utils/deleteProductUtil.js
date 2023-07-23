@@ -10,8 +10,10 @@ export const handleDeleteProduct = (product, dispatch, userCurrent, isLogin) => 
         ...userCurrent,
         products: [...newProducts],
     };
+
     if (isLogin) {
         updateUser(newUser);
     }
+    
     dispatch(setUserCurrent(newUser));
 };

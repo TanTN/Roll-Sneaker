@@ -22,12 +22,16 @@ const Product = ({
     return (
         <>
             <div className="px-[15px] lg:px-0">
+
                 <div className="lg:grid lg:grid-cols-11 lg:gap-x-10">
+
                     <div className="col-span-5">
                         <img src={productView.img} alt="img" />
                     </div>
+
                     <div className="col-span-6">
                         <div className="text-[27px] font-medium pb-4">{productView.name}</div>
+
                         <div className="flex items-end">
                             <span className="flex items-center text-[28px] font-bold text-primary">
                                 {productView.price}
@@ -38,6 +42,7 @@ const Product = ({
                                 <span className="underline">đ</span>
                             </span>
                         </div>
+
                         <div className="flex py-3 md:items-center">
                             <div className="relative md:leading-0 leading-[33px]">
                                 <p className="font-semibold pb-2">SIZE:</p>
@@ -50,6 +55,7 @@ const Product = ({
                                     </p>
                                 )}
                             </div>
+
                             <div className="flex pl-6 flex-wrap">
                                 {sizes.map((data, index) => (
                                     <div key={index} className="pl-2 pb-2">
@@ -88,8 +94,10 @@ const Product = ({
                                 >
                                     -
                                 </span>
+
                                 <span className="mx-3">{numberProduct}</span>
                                 <span
+                                    
                                     className="select-none px-3 border-[1px] border-[#ccc] cursor-pointer lg:hover:bg-[#e7e7e7]"
                                     onClick={handleIncreaseNumber}
                                 >
@@ -97,6 +105,7 @@ const Product = ({
                                 </span>
                             </p>
                         </div>
+
                         <div className="flex pt-4 pb-2">
                             <Button
                                 className={`text-white ${

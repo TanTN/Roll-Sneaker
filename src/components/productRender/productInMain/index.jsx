@@ -2,11 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import LoadingImage from '../../loading/loadingImage';
-import Image from '@/components/Image';
 import { IoIosClose } from 'react-icons/io';
-import { deleteProduct } from '../../../services/productService';
-import { fetchApiData } from '../../../store/reducerData';
+
+import LoadingImage from '@/components/loading/loadingImage';
+import Image from '@/components/Image';
+import { deleteProduct } from '@/services/productService';
+import { fetchApiData } from '@/store/reducerData';
 
 const ProductInMain = ({ dataProduct, category }) => {
     const isLoading = useSelector((state) => state.data.dataPending);
@@ -19,7 +20,7 @@ const ProductInMain = ({ dataProduct, category }) => {
         await dispatch(fetchApiData());
     };
 
-    const handleAddProduct = (data) => {
+    const handleNavigateProductDetail = (data) => {
         navigate(`/detailProduct/${data.id}`);
     };
     return isLoading ? (
@@ -27,7 +28,7 @@ const ProductInMain = ({ dataProduct, category }) => {
     ) : (
         dataProduct?.map((data, index) => (
             <div key={index}>
-                <div className="relative cursor-pointer overflow-hidden" onClick={() => handleAddProduct(data)}>
+                <div className="relative cursor-pointer overflow-hidden" onClick={() => handleNavigateProductDetail(data)}>
                     <div
                         className={`md:h-[154px] flex items-center overflow-hidden ${
                             category ? 'lg:h-[180px] relative' : 'lg:h-[268px]'

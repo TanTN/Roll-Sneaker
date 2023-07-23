@@ -9,7 +9,7 @@ import { BsInstagram, BsTwitter, BsPinterest } from 'react-icons/bs';
 
 import { contact, otherSneaker, sneaker } from '@/data/dataFooter';
 import imgAvatar from '@/assets/images/cropped-logo-roll-sneaker.png';
-import imgBlog from '@/assets/images/blog.jpg';
+import imgPoster from '@/assets/images/blog.jpg';
 
 const Footer = () => {
     return (
@@ -56,9 +56,7 @@ const Footer = () => {
                     ))}
 
                     <div className="relative text-white px-[15px] col-span-2 md:col-span-3">
-                        <div className="">
-                            <img width={'100%'} className="h-[180px] object-cover" src={imgBlog} alt="img" />
-                        </div>
+                        <img width={'100%'} className="h-[180px] object-cover" src={imgPoster} alt="img" />
                         <a
                             className="flex items-center absolute top-[10px] left-[25px]"
                             href="https://www.facebook.com/102066926119211"

@@ -1,7 +1,4 @@
 
-
-import React from 'react'
-
 const Personal = () => {
   return (
     <div className='text-center mb-[50px] md:mb-[70px] md:grid md:grid-cols-2 md:gap-x-9'>

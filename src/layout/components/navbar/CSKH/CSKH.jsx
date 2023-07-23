@@ -29,7 +29,7 @@ const CSKH = ({ isScroll }) => {
         <>
             {isScroll && (
                 <div
-                    className="fixed flex justify-center items-center z-[100] bottom-[138px] right-[25px] w-[40px] h-[40px] bg-[#474747ab] rounded-[50%] cursor-pointer md:hover:bg-[#333333c5]"
+                    className="fixed flex justify-center items-center z-[150] bottom-[138px] right-[25px] w-[40px] h-[40px] bg-[#474747ab] rounded-[50%] cursor-pointer md:hover:bg-[#333333c5]"
                     onClick={() => scroll.scrollToTop(0)}
                 >
                     <BsChevronDoubleUp className="text-[20px] text-[#ccc]" />
@@ -37,7 +37,7 @@ const CSKH = ({ isScroll }) => {
             )}
 
             {zaloShow && (
-                <div className="fixed h-screen w-screen text-[#444444] z-[100] transition-all">
+                <div className="fixed h-screen w-screen text-[#444444] z-[200] transition-all">
                     <div className="fixed bg-[#292929cc] h-[100vh] w-[100vw]" onClick={handleHiddenZalo}></div>
 
                     <div className="fixed origin-bottom-right bottom-[138px] right-[25px] w-[150px] px-[15px] py-[12px] rounded-[6px] bg-slate-50">

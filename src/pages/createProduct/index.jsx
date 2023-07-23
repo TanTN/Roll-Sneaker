@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import WrapperBill from '../../components/popper/WrapperBill';
-import { FormControl, Input, InputLabel, MenuItem, Select } from '@mui/material';
-import axios from 'axios';
-import { postProduct } from '../../services/productService';
-import Button from '../../components/button';
-import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { fetchApiData } from '../../store/reducerData';
-import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { FormControl, Input, InputLabel, MenuItem, Select } from '@mui/material';
+
+import { AiOutlineHome } from 'react-icons/ai';
+
+import { postProduct } from '@/services/productService';
+import WrapperBill from '@/components/popper/WrapperBill';
+import Button from '@/components/button';
+
 
 const CreateProduct = () => {
+
     const [file, setFile] = useState();
     const [urlImage, setUrlImage] = useState();
     const [nameProduct, setNameProduct] = useState('');
@@ -26,12 +28,15 @@ const CreateProduct = () => {
         setUrlImage(file);
         setFile(urlImage);
     };
+
     const handleNameProduct = (e) => {
         setNameProduct(e.target.value);
     };
+
     const handlePriceProduct = (e) => {
         setPriceProduct(e.target.value);
     };
+
     const handleChangeCategory = (e) => {
         setCategory(e.target.value);
     };
@@ -48,6 +53,7 @@ const CreateProduct = () => {
         const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
 
         const formData = new FormData();
+        
         formData.append('upload_preset', PRESET_NAME);
         formData.append('folder', FOLDER_NAME);
         formData.append('file', urlImage);

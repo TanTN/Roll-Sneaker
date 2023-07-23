@@ -67,7 +67,6 @@ const DetailProduct = () => {
 
     useEffect(() => {
         if (productView.size) {
-            console.log('sasa');
             const sizeProduct = sizes.map((sizeProd) => {
                 return sizeProd.size == productView.size
                     ? { ...sizeProd, isChecked: true }

@@ -8,6 +8,7 @@ import { FaSearch } from 'react-icons/fa';
 import dataTips from '@/data/dataTips';
 
 const Tips = () => {
+
     const isMobile = useSelector((state) => state.store.isMobile);
 
     const SampleNextArrow = ({ onClick }) => (
@@ -34,7 +35,9 @@ const Tips = () => {
 
     return (
         <div className="text-center lg:mx-[-15px] md:mb-[60px]">
+
             <h2 className="pb-6">KIẾN THỨC & MẸO VẶT</h2>
+
             <Slider {...options}>
                 {dataTips.map((data, index) => (
                     <div key={index} className="relative text-center mb-[180px] px-[15px]">
@@ -56,6 +59,7 @@ const Tips = () => {
                     </div>
                 ))}
             </Slider>
+            
         </div>
     );
 };

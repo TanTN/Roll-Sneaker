@@ -1,12 +1,12 @@
 import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { validateLogin } from '@/services/validateFormService';
 
 import { AiOutlineLoading } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -35,6 +35,8 @@ const Login = () => {
             {(formik) => (
                 <div className="flex w-screen h-screen justify-center items-center bgLogin lg:bg-[rgb(209,178,217)] lg:noBg">
                     <div className="flex w-[90%] md:w-[50%] lg:w-[932px] lg:min-h-[600px] bg-white rounded-[10px] overflow-hidden">
+
+                        {/* content left */}
                         <div className="hidden lg:flex flex-col gap-10 flex-1 text-white bgLogin p-[50px]">
                             <span className="text-[100px] leading-[100px] font-semibold font-Crimson">
                                 Roll Sneaker.
@@ -68,6 +70,7 @@ const Login = () => {
                             </div>
                         </div>
 
+                        {/* content right */}
                         <div className="flex gap-10 w-[100%] justify-center flex-col lg:flex-1 font-semibold p-[30px] md:p-[50px]">
                             <h1 className="font-Crimson leading-[50px] text-black">Login</h1>
                             <Form className="flex gap-4 flex-col">
@@ -98,6 +101,8 @@ const Login = () => {
                                     )}
                                     Sign in
                                 </button>
+                                
+                                {/* mobile */}
                                 <div className="flex gap-2 lg:hidden">
                                     <span className="font-medium text-[#6e6e6e]">Don't have account?</span>
                                     <span
@@ -111,6 +116,7 @@ const Login = () => {
                                         Back
                                     </Link>
                                 </div>
+
                             </Form>
                         </div>
                     </div>

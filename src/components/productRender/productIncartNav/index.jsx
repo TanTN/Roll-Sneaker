@@ -1,23 +1,26 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiFillCloseSquare } from 'react-icons/ai';
 import { useNavigate } from 'react-router';
+
+import { AiFillCloseSquare } from 'react-icons/ai';
 
 import { setProduct } from '@/store/reducerStore';
 import { handleDeleteProduct } from '@/utils/deleteProductUtil';
 
 const ProductInCartNav = ({ userCurrent, setTippyPc }) => {
+
     const isLogin = useSelector((state) => state.store.isLogin);
     const isMobile = useSelector((state) => state.store.isMobile);
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
+
     const handleFixProduct = (product) => {
         dispatch(setProduct(product));
         if (!isMobile) setTippyPc(true);
         navigate(`/detailProduct/productInCart/${product.id}`);
         window.scrollTo(0, 0);
     };
+    
     return userCurrent.products.map((product, index) => (
         <div key={index}>
             <div

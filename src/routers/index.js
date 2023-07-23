@@ -7,7 +7,6 @@ const CategoryInAdmin = lazy(() => import('../pages/categoryInAdmin'));
 const CreateProductInAdmin = lazy(() => import('../pages/createProduct'));
 const UserInAdmin = lazy(() => import('../pages/userInAdmin'));
 const Main = lazy(() => import('../pages/main'));
-const Admin = lazy(() => import('../pages/admin'));
 const DetailProduct = lazy(() => import('../pages/detaiilProduct'));
 const Buy = lazy(() => import('../pages/buy'));
 const Login = lazy(() => import('../pages/login/Login'));
@@ -19,7 +18,6 @@ const routes = {
     detailProduct: '/detailProduct/:productId',
     detailProductUser: '/detailProduct/:productInCart/:id',
     login: '/login',
-    admin: '/admin',
     register: '/register',
     cart: '/cart',
     user: '/user',

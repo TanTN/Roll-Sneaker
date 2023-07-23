@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import 'tippy.js/dist/tippy.css';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { BsCartDash } from 'react-icons/bs';
@@ -11,7 +11,7 @@ import Cart from './Cart';
 import CSKH from './CSKH/CSKH';
 import Search from './Search/Search';
 import User from './User';
-import Logo from '../../../assets/images/cropped-logo-roll-sneaker.png';
+import Logo from '@/assets/images/cropped-logo-roll-sneaker.png';
 
 const Navbar = ({ layoutAdmin }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
@@ -49,6 +49,7 @@ const Navbar = ({ layoutAdmin }) => {
                         </Link>
                     </div>
                     <div className="flex justify-end items-center">
+
                         <Search />
 
                         <User />
@@ -68,9 +69,12 @@ const Navbar = ({ layoutAdmin }) => {
                         >
                             <FiMenu className="text-slate-600" />
                         </div>
+                        
                     </div>
                 </div>
             </div>
+
+            {/* Menu */}
             {!layoutAdmin && !isMobile && (
                 <MenuNavbar isMenu={isMenu} isScroll={isScroll} clickMenu={handleClickMenu} />
             )}

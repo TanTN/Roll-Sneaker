@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react/headless';
 
 import priceUtil from '@/utils/priceUtil';
 import Wrapper from '@/components/popper/Wrapper';
-import { Link } from 'react-router-dom';
-import ProductInCartNav from '../../../../components/productRender/productIncartNav';
+import ProductInCartNav from '@/components/productRender/productIncartNav';
 
 const Cart = ({ children }) => {
     const userCurrent = useSelector((state) => state.store.userCurrent);
     const isMobile = useSelector((state) => state.store.isMobile);
-
     const navigate = useNavigate();
+
 
     const [tippyPc, setTippyPc] = useState(false);
 
@@ -32,7 +32,10 @@ const Cart = ({ children }) => {
             navigate('/cart');
         }
     };
+
     const lengthProduct = userCurrent.products.length;
+
+    // config cart Tippy on Pc
     const isTippy = tippyPc || isMobile ? { visible: false } : { trigger: 'mouseenter' };
     const offset = lengthProduct < 1 ? { offset: [-102, 22] } : { offset: [-148, 22] };
     return (

@@ -4,20 +4,22 @@ import { useNavigate } from 'react-router';
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 import { AiOutlineLoading } from 'react-icons/ai';
 
 import { validateRegister } from '@/services/validateFormService';
 import { postUser } from '@/services/userService';
-
-import { Link } from 'react-router-dom';
 import { setIsAdmin, setIsLogin, setUserCurrent } from '@/store/reducerStore';
 
+
 const Register = () => {
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const root = useRef();
 
+    // create toast message error email and password, register success
     const handleAddMessage = (content, isRegisterSuccess) => {
         const main = root.current;
         if (main) {
@@ -31,6 +33,7 @@ const Register = () => {
                     clearTimeout(clearSetTimeout);
                 }
             };
+
             toast.innerHTML = `
             <div class=${isRegisterSuccess ? 'text-[#3DDC84]' : 'text-primary'}>
                 <i class="fa-solid fa-circle-xmark"></i>
@@ -43,6 +46,7 @@ const Register = () => {
                 <i class="fa-solid fa-xmark text-gray-400"></i>
             </div>
             `;
+
             toast.classList.add('toast-messgae');
             toast.classList.add(`${isRegisterSuccess && 'border-[#3DDC84]'}`);
             main.appendChild(toast);
@@ -57,6 +61,7 @@ const Register = () => {
         confirmPassword: '',
     };
 
+    // Yup validate
     const validationSchema = Yup.object().shape({
         username: Yup.string()
             .trim()
@@ -107,10 +112,14 @@ const Register = () => {
             {(formik) => (
                 <div className="flex justify-center items-center w-screen h-screen bgRegister lg:bg-[rgb(209,178,217)] lg:noBg">
                     <div className="flex flex-row-reverse w-[90%] md:w-[50%] lg:w-[932px] lg:min-h-[600px] bg-white rounded-[10px] overflow-hidden">
+                        
+                        {/* content right */}
                         <div className="hidden lg:flex flex-col gap-10 flex-1 p-[50px] bgRegister text-white">
+
                             <span className="text-[100px] leading-[100px] font-semibold font-Crimson">
                                 Roll Sneaker.
                             </span>
+
                             <p className="text-sm text-center">
                                 Tiền nhiệm là Shopgiayreplica.com™ - Shop Uy tín lâu năm chuyên cung cấp giày thể thao
                                 sneaker nam, nữ hàng Replica 1:1 - Like Auth với chất lượng khác biệt so với thị trường
@@ -123,9 +132,11 @@ const Register = () => {
                                 tiệm cận hàng Auth nhất. Các bạn có thể yên tâm lựa chọn trong một thị trường rất hỗn
                                 loạn về chất lượng, cũng như định nghĩa chuẩn về Giày Replica - Like Auth.
                             </p>
+
                             <div>
                                 <span className=" font-medium">Do you have an account ?</span>
                             </div>
+
                             <div className="flex gap-2 items-center">
                                 <button
                                     className="w-[50%] p-[5px] bg-white text-black font-medium"
@@ -141,11 +152,14 @@ const Register = () => {
                                     Back
                                 </Link>
                             </div>
+
                         </div>
 
                         <div className="flex relative flex-col gap-10 flex-1 w-100% font-semibold p-[30px] md:p-[50px]">
+
                             <h1 className="text-black font-Crimson">Register</h1>
-                            <div className="">
+
+                            <div>
                                 {/* error message */}
                                 <div className="absolute top-[5%] right-[2%]" ref={root}></div>
 
@@ -229,6 +243,8 @@ const Register = () => {
                                         )}
                                         Register
                                     </button>
+
+                                    {/* on mobile */}
                                     <div className="flex gap-2 mt-[20px] lg:hidden">
                                         <span className="font-medium text-[#6e6e6e]">Don't have account?</span>
                                         <span
@@ -242,6 +258,7 @@ const Register = () => {
                                             Back
                                         </Link>
                                     </div>
+
                                 </Form>
                             </div>
                         </div>

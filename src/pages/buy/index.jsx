@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { memo } from 'react';
 
 import { AiOutlineHome, AiFillCheckCircle } from 'react-icons/ai';
 
-import { getDistrict, getProvince, getWard } from '@/services/provinceService';
 import { updateUser } from '@/services/userService';
 import ProductBuy from './itemBuy/ProductBuy';
 import { setUserCurrent } from '@/store/reducerStore';
@@ -22,9 +20,7 @@ const Buy = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [isProvince, setIsProvince] = useState([]);
-    const [isDistrict, setIsDistrict] = useState([]);
-    const [isWard, setIsWard] = useState([]);
+
     const [isBuySuccess, setIsBuySuccess] = useState(false);
 
     useEffect(() => {
@@ -39,25 +35,22 @@ const Buy = () => {
 
     const initialValues = user.information?.name
         ? {
-              name: user.information.name,
-              phone: user.information.phone,
-              province: user.information.province,
-              district: user.information.district,
-              ward: user.information.ward,
-              adress: user.information.adress,
-          }
+            name: user.information.name,
+            phone: user.information.phone,
+            province: user.information.province,
+            district: user.information.district,
+            ward: user.information.ward,
+            adress: user.information.adress,
+        }
         : {
-              name: '',
-              phone: '',
-              province: '',
-              district: '',
-              ward: '',
-              adress: '',
-          };
-    useEffect(() => {
-        setTimeout(() => setIsBuySuccess(false), 7000);
-    }, [isBuySuccess]);
-
+            name: '',
+            phone: '',
+            province: '',
+            district: '',
+            ward: '',
+            adress: '',
+        };
+    
     const {
         control,
         handleSubmit,
@@ -66,6 +59,11 @@ const Buy = () => {
     } = useForm({
         defaultValues: initialValues,
     });
+    
+    useEffect(() => {
+        setTimeout(() => setIsBuySuccess(false), 7000);
+    }, [isBuySuccess]);
+
 
     const onSubmit = async (values) => {
         if (user.products.length > 0) {
@@ -85,54 +83,7 @@ const Buy = () => {
         }
     };
 
-    useEffect(() => {
-        const fetchApi = async () => {
-            await getProvince().then((req) => {
-                const option = req.map((province) => ({
-                    value: province.code,
-                    label: province.name,
-                }));
-                setIsProvince(option);
-            });
-        };
-        fetchApi();
-    }, []);
 
-    const handleProvinceChange = (e) => {
-        const fetchApi = async () => {
-            await getDistrict(e.value).then((req) => {
-                const option = req.districts.map((district) => ({
-                    value: district.code,
-                    label: district.name,
-                }));
-                setIsDistrict(option);
-            });
-            await reset((e) => ({
-                ...e,
-                district: '',
-                ward: '',
-            }));
-            await setIsWard([]);
-        };
-        fetchApi();
-    };
-
-    const handleDistrictChange = (e) => {
-        const fetchApi = async () => {
-            await getWard(e.value).then((req) => {
-                const option = req.wards.map((ward) => ({
-                    value: ward.code,
-                    label: ward.name,
-                }));
-                setIsWard(option);
-            });
-            await reset((e) => ({
-                ...e,
-                ward: '',
-            }));
-        };
-        fetchApi();
-    };
 
     const handleBackHome = () => {
         navigate('/');
@@ -141,6 +92,7 @@ const Buy = () => {
 
     return (
         <div className="mt-[100px] max-w-[800px] mx-auto lg:mt-[10px]">
+
             {/* Messgae success */}
             {isBuySuccess && (
                 <div className="fixed max-w-[380px] px-3 py-5 top-[10%] animate-fadeInBySuccessMobile md:animate-fadeInMessagesPc right-[4%] drop-shadow-xl bg-[#fff] border-y-[1px] border-r-[1px] border-l-[10px] border-[#13eb0b] z-[100] rounded-md">
@@ -171,11 +123,6 @@ const Buy = () => {
                             <p className="font-bold text-[20px] text-center py-3">Thánh toán và giao hàng</p>
 
                             <FormAddress
-                                isProvince={isProvince}
-                                isDistrict={isDistrict}
-                                isWard={isWard}
-                                handleProvinceChange={handleProvinceChange}
-                                handleDistrictChange={handleDistrictChange}
                                 errors={errors}
                                 control={control}
                                 user={user}

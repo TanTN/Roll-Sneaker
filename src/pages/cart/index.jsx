@@ -20,6 +20,7 @@ const Cart = () => {
 
     return (
         <div className="mx-auto max-w-[1140px] mt-[94px] xl:mt-0">
+
             <div className="flex items-center bg-[#eeeeee] pl-4 py-2 mb-[10px]">
                 <AiOutlineHome className="hover:text-[#030303]" />
                 <Link to="/" className="pl-2 text-[#585858] hover:text-[#000000] cursor-pointer text-sm md:text-base">
@@ -28,7 +29,10 @@ const Cart = () => {
                 <span>&nbsp; / &nbsp;</span>
                 <span> Giỏ hàng</span>
             </div>
+
             {allNumberProduct == 0 ? (
+                
+                // no product in cart
                 <div className="flex flex-col items-center gap-2 md:gap-3 my-[40px] mx-[10px] md:my-[80px]">
                     <img
                         src="https://theme.hstatic.net/1000285106/1000912959/14/cart_empty_background.png?v=120"
@@ -49,10 +53,10 @@ const Cart = () => {
             ) : (
                 <>
                     {isMobile ? (
-                        // with mobile
+                        // table product on mobile
                         <ProductInCartNav userCurrent={userCurrent} />
                     ) : (
-                        // with PC
+                        // tab;e product on PC
                         <ProductCartPage userCurrent={userCurrent} />
                     )}
 
