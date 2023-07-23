@@ -105,9 +105,9 @@ const Register = () => {
             }}
         >
             {(formik) => (
-                <div className="flex justify-center items-center w-screen h-screen bg-[rgb(209,178,217)]">
-                    <div className="flex flex-row-reverse w-[50%] min-h-[600px] bg-white rounded-[10px] overflow-hidden">
-                        <div className="flex flex-col gap-10 flex-1 p-[50px] bgRegister text-white">
+                <div className="flex justify-center items-center w-screen h-screen bgRegister lg:bg-[rgb(209,178,217)] lg:noBg">
+                    <div className="flex flex-row-reverse w-[90%] md:w-[50%] lg:w-[932px] lg:min-h-[600px] bg-white rounded-[10px] overflow-hidden">
+                        <div className="hidden lg:flex flex-col gap-10 flex-1 p-[50px] bgRegister text-white">
                             <span className="text-[100px] leading-[100px] font-semibold font-Crimson">
                                 Roll Sneaker.
                             </span>
@@ -144,9 +144,7 @@ const Register = () => {
                         </div>
 
                         <div className="flex relative flex-col gap-10 flex-1 w-100% font-semibold p-[50px]">
-                            <div className="text-xl text-black font-Crimson lg:text-[35px] leading-[50px]">
-                                Register
-                            </div>
+                            <h1 className="text-black font-Crimson">Register</h1>
                             <div className="">
                                 {/* error message */}
                                 <div className="absolute top-[5%] right-[2%]" ref={root}></div>

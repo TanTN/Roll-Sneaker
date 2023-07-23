@@ -33,9 +33,9 @@ const Login = () => {
             }}
         >
             {(formik) => (
-                <div className="lg:flex w-screen h-screen justify-center items-center bg-[rgb(209,178,217)]">
-                    <div className="flex w-[50%]  min-h-[600px] bg-white rounded-[10px] overflow-hidden">
-                        <div className="flex flex-col gap-10 flex-1 text-white bgLogin p-[50px]">
+                <div className="flex w-screen h-screen justify-center items-center bgLogin lg:bg-[rgb(209,178,217)] lg:noBg">
+                    <div className="flex w-[90%] md:w-[50%] lg:w-[932px] lg:min-h-[600px] bg-white rounded-[10px] overflow-hidden">
+                        <div className="hidden lg:flex flex-col gap-10 flex-1 text-white bgLogin p-[50px]">
                             <span className="text-[100px] leading-[100px] font-semibold font-Crimson">
                                 Roll Sneaker.
                             </span>
@@ -68,10 +68,8 @@ const Login = () => {
                             </div>
                         </div>
 
-                        <div className="flex gap-10 justify-center flex-col flex-1 font-semibold p-[50px]">
-                            <div className="text-xl font-Crimson text-white bg-[#ecc813] leading-[50px] md:bg-white md:text-[#000000] md:text-[35px] md:mt-[30px]">
-                                Login
-                            </div>
+                        <div className="flex gap-10 w-[100%] justify-center flex-col lg:flex-1 font-semibold p-[50px]">
+                            <h1 className="font-Crimson leading-[50px] text-black">Login</h1>
                             <Form className="flex gap-4 flex-col">
                                 <div className="text-sm">
                                     <Field type="text" name="username" className="input-style" placeholder="Username" />

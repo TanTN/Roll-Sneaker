@@ -19,7 +19,7 @@
         @apply p-0 m-0 box-border scroll-smooth;
     }
     h1 {
-        @apply text-[26px] font-IBM font-bold;
+        @apply text-[32px] font-IBM font-bold !important;
     }
     h2 {
         @apply text-[24px] font-IBM font-bold !important;
@@ -50,9 +50,13 @@
     .hover-cyan {
         @apply hover:bg-[#00d1b7];
     }
+    .noBg {
+        background: none;
+    }
     .bgLogin {
         background: linear-gradient(rgb(144 108 240 / 68%), rgb(164 40 134 / 58%)),
             url('https://shopgiayreplica.com/wp-content/uploads/2023/04/khai-truong-shopnew-hcm.jpg') center;
+        background-size: cover;
     }
     .bgRegister {
         background: linear-gradient(rgb(144 108 240 / 68%), rgb(164 40 134 / 58%)),

@@ -214,7 +214,7 @@ const DetailProduct = () => {
     };
 
     return (
-        <div className="mt-[100px] max-w-[1140px] mx-auto md:mt-[100px] lg:mt-[10px]">
+        <div className="mt-[94px] max-w-[1140px] mx-auto lg:mt-[10px]">
             <div className="flex items-center bg-[#eeeeee] pl-4 py-2 mb-[10px]">
                 <AiOutlineHome className="hover:text-[#030303]" />
                 <Link to="/" className="pl-2 text-[#585858] hover:text-[#000000] text-sm md:text-base">
