@@ -10,7 +10,6 @@ import { fetchApiData } from '../../store/reducerData';
 import { useDispatch } from 'react-redux';
 
 const CreateProduct = () => {
-
     const [file, setFile] = useState();
     const [urlImage, setUrlImage] = useState();
     const [nameProduct, setNameProduct] = useState('');
@@ -105,7 +104,7 @@ const CreateProduct = () => {
                             <MenuItem value="MLB">MLB</MenuItem>
                         </Select>
                     </FormControl>
-                    <div className="">
+                    <div>
                         <input type="file" id="image" hidden onChange={(e) => handleImage(e)} />
                         <label
                             htmlFor="image"
@@ -119,7 +118,7 @@ const CreateProduct = () => {
                         <Button
                             onClick={handleSubmit}
                             type="submit"
-                            className="inline-block bg-primary text-white font-medium hover-primary"
+                            className="inline-block bg-primary text-white font-medium hover-primary     "
                         >
                             Lưu
                         </Button>

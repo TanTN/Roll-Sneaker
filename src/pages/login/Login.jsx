@@ -68,7 +68,7 @@ const Login = () => {
                             </div>
                         </div>
 
-                        <div className="flex gap-10 w-[100%] justify-center flex-col lg:flex-1 font-semibold p-[50px]">
+                        <div className="flex gap-10 w-[100%] justify-center flex-col lg:flex-1 font-semibold p-[30px] md:p-[50px]">
                             <h1 className="font-Crimson leading-[50px] text-black">Login</h1>
                             <Form className="flex gap-4 flex-col">
                                 <div className="text-sm">
@@ -89,16 +89,27 @@ const Login = () => {
                                     </div>
                                 )}
 
-                                <div>
-                                    <button
-                                        type="submit"
-                                        className="flex gap-1 justify-center items-center p-[5px] w-[50%] text-center text-white bg-[#938eef]"
+                                <button
+                                    type="submit"
+                                    className="flex gap-1 justify-center items-center p-[5px] w-[50%] text-center text-white bg-[#938eef]"
+                                >
+                                    {formik.isSubmitting && (
+                                        <AiOutlineLoading className="animate-fadeInLoadingIconRotate" />
+                                    )}
+                                    Sign in
+                                </button>
+                                <div className="flex gap-2 lg:hidden">
+                                    <span className="font-medium text-[#6e6e6e]">Don't have account?</span>
+                                    <span
+                                        className=" text-black font-bold cursor-pointer"
+                                        onClick={() => navigate('/register')}
                                     >
-                                        {formik.isSubmitting && (
-                                            <AiOutlineLoading className="animate-fadeInLoadingIconRotate" />
-                                        )}
-                                        Sign in
-                                    </button>
+                                        Register
+                                    </span>
+                                    <p className="font-bold text-[#1a08b8]">or</p>
+                                    <Link to="/" className="cursor-pointer font-bold hover:translate-y-[-2px]">
+                                        Back
+                                    </Link>
                                 </div>
                             </Form>
                         </div>

@@ -143,7 +143,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <div className="flex relative flex-col gap-10 flex-1 w-100% font-semibold p-[50px]">
+                        <div className="flex relative flex-col gap-10 flex-1 w-100% font-semibold p-[30px] md:p-[50px]">
                             <h1 className="text-black font-Crimson">Register</h1>
                             <div className="">
                                 {/* error message */}
@@ -220,16 +220,27 @@ const Register = () => {
                                         />
                                     </div>
 
-                                    <div className="mt-[20px]">
-                                        <button
-                                            type="submit"
-                                            className="flex gap-1 justify-center items-center bg-[#e58eef] w-[50%] p-[5px] text-white"
+                                    <button
+                                        type="submit"
+                                        className="flex gap-1 justify-center items-center bg-[#e58eef] w-[50%] p-[5px] mt-[20px] text-white"
+                                    >
+                                        {formik.isSubmitting && (
+                                            <AiOutlineLoading className="animate-fadeInLoadingIconRotate" />
+                                        )}
+                                        Register
+                                    </button>
+                                    <div className="flex gap-2 mt-[20px] lg:hidden">
+                                        <span className="font-medium text-[#6e6e6e]">Don't have account?</span>
+                                        <span
+                                            className=" text-black font-bold cursor-pointer"
+                                            onClick={() => navigate('/login')}
                                         >
-                                            {formik.isSubmitting && (
-                                                <AiOutlineLoading className="animate-fadeInLoadingIconRotate" />
-                                            )}
-                                            Register
-                                        </button>
+                                            Login
+                                        </span>
+                                        <p className="font-bold text-[#1a08b8]">or</p>
+                                        <Link to="/" className="cursor-pointer font-bold hover:translate-y-[-2px]">
+                                            Back
+                                        </Link>
                                     </div>
                                 </Form>
                             </div>
