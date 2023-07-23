@@ -40,7 +40,7 @@ function App() {
                 if (!isLogin && route.path == '/user') {
                     Page = <Navigate to="/" replace={true} />;
                 }
-                if (!isLogin && !isAdmin && route.path == '/admin') {
+                if (!isAdmin && route.path == ('/admin/createProduct' || '/admin/user/:userId' || '/admin/category/:nameCategory')) {
                     Page = <Navigate to="/" replace={true} />;
                 }
 

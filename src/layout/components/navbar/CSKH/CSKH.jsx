@@ -37,7 +37,7 @@ const CSKH = ({ isScroll }) => {
             )}
 
             {zaloShow && (
-                <div className="fixed h-screen w-screen text-[#444444] z-[200] transition-all">
+                <div className="fixed h-screen w-screen text-[#444444] z-[100] transition-all">
                     <div className="fixed bg-[#292929cc] h-[100vh] w-[100vw]" onClick={handleHiddenZalo}></div>
 
                     <div className="fixed origin-bottom-right bottom-[138px] right-[25px] w-[150px] px-[15px] py-[12px] rounded-[6px] bg-slate-50">

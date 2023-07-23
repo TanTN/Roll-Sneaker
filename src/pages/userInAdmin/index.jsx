@@ -89,7 +89,7 @@ const UserInAdmin = () => {
 
                 {!userCurrent?.isAdmin && (
                     <div>
-                        <Button className="bg-primary text-white hover-primary" onClick={handleDeleteUser}>
+                        <Button className="bg-primary leading-[18px] text-white hover-primary" onClick={handleDeleteUser}>
                             Xóa người dùng
                         </Button>
                     </div>

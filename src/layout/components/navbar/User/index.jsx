@@ -37,7 +37,7 @@ const User = () => {
                                         <div>
                                             <Link
                                                 to="/admin/createProduct"
-                                                className="hover:text-[#ffffff] cursor-pointer"
+                                                className="hover:text-[#ffffff] cursor-pointer hidden lg:block"
                                             >
                                                 Admin
                                             </Link>
