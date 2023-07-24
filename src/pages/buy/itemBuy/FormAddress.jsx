@@ -95,7 +95,7 @@ const FormAdress = ({
                 <label
                     htmlFor="phone"
                     className={`${errors.phone && isError ? 'text-primary' : ''}`}
-                >{`Số điện thoại (*):`}</label>
+                >Số điện thoại: <span className='text-primary'>(*)</span>:</label>
                 <Controller
                     name="phone"
                     control={control}
@@ -166,7 +166,7 @@ const FormAdress = ({
             </div>
 
             <div className="pb-2">
-                <label htmlFor="adress" className={`${errors.adress && isError ? 'text-primary' : ''}`}>{`Địa chỉ (*):`}</label>
+                <label htmlFor="adress" className={`${errors.adress && isError ? 'text-primary' : ''}`}>Địa chỉ <span className='text'>(*)</span>:</label>
                 <Controller
                     rules={{ required: true }}
                     name="adress"

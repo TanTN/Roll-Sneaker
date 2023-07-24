@@ -16,7 +16,7 @@ function App() {
     const [widthDisplay, setWidthDisplay] = useState(undefined);
 
     useEffect(() => {
-        // setWidthDisplay(window.innerWidth);
+        setWidthDisplay(window.innerWidth);
         dispatch(setMobile(widthDisplay < 1024));
         const handleWidthDp = () => {
             setWidthDisplay(window.innerWidth);

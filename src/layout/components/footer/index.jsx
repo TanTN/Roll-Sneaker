@@ -61,7 +61,7 @@ const Footer = () => {
                             className="flex items-center absolute top-[10px] left-[25px]"
                             href="https://www.facebook.com/102066926119211"
                         >
-                            <div className="bg-white w-[54px] h-[30px] p-[2px]">
+                            <div className="bg-white w-[54px] h-[50px] px-[2px] py-[15px]">
                                 <img src={imgAvatar} alt="img" className="w-[100%] h-[100%]" />
                             </div>
                             <div className="pl-2">
@@ -74,18 +74,18 @@ const Footer = () => {
                                 className="absolute bottom-3 left-6 md:bottom-[40%]"
                                 href="https://www.facebook.com/102066926119211"
                             >
-                                <div className="flex bg-white text-gray-800 items-center p-[2px] rounded-[2px]">
+                                <div className="flex gap-1 bg-white text-gray-800 items-center px-[4px] py-[2px] rounded-[2px]">
                                     <AiFillFacebook />
-                                    <p className="pl-1">Theo dõi Trang</p>
+                                    <p className="text-sm">Theo dõi Trang</p>
                                 </div>
                             </a>
                             <a
                                 className="absolute bottom-3 right-6 md:bottom-[40%]"
                                 href="https://www.facebook.com/sharer/sharer.php?app_id=776730922422337&u=https%3A%2F%2Fwww.facebook.com%2F102066926119211&display=popup&ref=plugin&src=page"
                             >
-                                <div className="flex bg-white text-gray-800 items-center p-[2px] rounded-[2px]">
+                                <div className="flex gap-1 bg-white text-gray-800 items-center px-[4px] py-[2px] rounded-[2px]">
                                     <IoMdShareAlt />
-                                    <p className="pl-1">Chia sẻ</p>
+                                    <p className="text-sm">Chia sẻ</p>
                                 </div>
                             </a>
                         </div>
