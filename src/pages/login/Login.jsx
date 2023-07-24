@@ -74,7 +74,7 @@ const Login = () => {
                         <div className="flex gap-10 w-[100%] justify-center flex-col lg:flex-1 font-semibold p-[30px] md:p-[50px]">
                             <h1 className="font-Crimson leading-[50px] text-black">Login</h1>
                             <Form className="flex gap-4 flex-col">
-                                
+
                                 <div className="text-sm">
                                     <Field type="text" name="username" className="input-style" placeholder="Username" />
                                 </div>
@@ -88,7 +88,7 @@ const Login = () => {
                                 </div>
 
                                 {isLoginFalse && (
-                                    <div className=" text-primary font-normal text-[14px]">
+                                    <div className=" text-primary font-normal text-sm">
                                         Tên đăng nhập hoặc mật khẩu không đúng.
                                     </div>
                                 )}

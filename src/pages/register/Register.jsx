@@ -174,7 +174,7 @@ const Register = () => {
                                         <ErrorMessage
                                             name="username"
                                             component="span"
-                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                            className="text-primary font-normal text-sm leading-[30px]"
                                         />
                                     </div>
 
@@ -188,7 +188,7 @@ const Register = () => {
                                         <ErrorMessage
                                             name="email"
                                             component="span"
-                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                            className="text-primary font-normal text-sm leading-[30px]"
                                         />
                                     </div>
 
@@ -202,7 +202,7 @@ const Register = () => {
                                         <ErrorMessage
                                             name="phone"
                                             component="span"
-                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                            className="text-primary font-normal text-sm leading-[30px]"
                                         />
                                     </div>
 
@@ -216,7 +216,7 @@ const Register = () => {
                                         <ErrorMessage
                                             name="password"
                                             component="span"
-                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                            className="text-primary font-normal text-sm leading-[30px]"
                                         />
                                     </div>
 
@@ -230,7 +230,7 @@ const Register = () => {
                                         <ErrorMessage
                                             name="confirmPassword"
                                             component="span"
-                                            className="text-primary font-normal text-[15px] leading-[30px]"
+                                            className="text-primary font-normal text-sm leading-[30px]"
                                         />
                                     </div>
 

@@ -16,7 +16,7 @@ const ProductBuy = () => {
             <div>
                 {userCurrent.products.map((product, index) => (
                     <div key={index}>
-                        <div className="grid grid-cols-4 gap-x-1 py-1 border-b-[1px] border-[#bebebe] pr-3 text-sm md:px-[40px] md:text-lg lg:text-base">
+                        <div className="grid grid-cols-4 gap-x-2 py-1 border-b-[1px] border-[#bebebe] pr-3 text-sm md:px-[40px] md:text-lg lg:text-base">
                             <div className="relative md:w-[130px] md:h-[100px]">
                                 <img src={product.img} alt="photo" className="w-[100%] h-[100%]" />
                                 <div
