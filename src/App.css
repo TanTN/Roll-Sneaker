@@ -37,7 +37,7 @@
 
 @layer components {
     .input-style {
-        @apply block rounded-[4px] px-[10px] py-[20px] text-[18px] font-normal border-b-[1px] focus:border-[#8178d4] border-slate-400 w-[100%] leading-8 outline-none text-sm;
+        @apply block rounded-[4px] px-[5px] py-[10px] md:px-[10px] md:py-[20px] text-[18px] font-normal border-b-[1px] focus:border-[#8178d4] border-slate-400 w-[100%] leading-8 outline-none text-sm placeholder:text-[16px];
     }
     .toast-messgae {
         @apply bg-[#ffffff] mb-[10px] relative flex items-center text-[#797979] py-[10px] pl-[18px] pr-[34px] rounded-[4px] border-[1px] border-l-[4px] border-primary animate-fadeInMessagesPc;
