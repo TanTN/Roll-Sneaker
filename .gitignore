@@ -6,7 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+
 .DS_Store
+.env
 .env.test.local
 .env.local
 .env.development
