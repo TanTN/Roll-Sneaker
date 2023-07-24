@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Wrapper from '@/components/popper/Wrapper';
 import Tippy from '@tippyjs/react/headless';
-import { setIsLogin, setUserCurrent } from '@/store/reducerStore';
+import { setIsLogin, setUserCurrent, setAdmin } from '@/store/reducerStore';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Avatar } from '@mui/material';
@@ -17,6 +17,7 @@ const User = () => {
     const handleSignOut = () => {
         dispatch(setUserCurrent({ products: [] }));
         dispatch(setIsLogin(false));
+        dispatch(setAdmin(false))
         navigate('/login');
     };
 
