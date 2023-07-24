@@ -1,30 +1,185 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FcOk } from 'react-icons/fc';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate, useParams } from 'react-router';
 
 import HowToSelect from './HowToSelect';
 import Button from '@/components/button';
+import { updateUser } from '@/services/userService';
+import dataSizes from '@/data/dataSizes';
+import { setUserCurrent, setProduct } from '@/store/reducerStore';
 
-const Product = ({
-    handleClearSize,
-    handleMinusNumber,
-    handleIncreaseNumber,
-    handleAddProduct,
-    handleBuy,
-    handelSelectSize,
-    isChecked,
-    sizes,
-    sizeActive,
-    numberProduct,
-    productView
-}) => {
+const baseURL = import.meta.env.VITE_BASE_URL;
+const httpRequest = axios.create({
+    baseURL: baseURL,
+});
+
+const Product = ({ handleProductView, setIsMessage, setSizeError }) => {
+    const { productId } = useParams();
+    const isLogin = useSelector((state) => state.store.isLogin);
+    const productViewInStore = useSelector((state) => state.store.viewProduct);
+    const user = useSelector((state) => state.store.userCurrent);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [sizes, setSizes] = useState(dataSizes);
+    const [sizeActive, setSizeActive] = useState(undefined);
+
+    const [numberProduct, setNumberProduct] = useState(1);
+    const [isUpdateProduct, setIsUpdateProduct] = useState(false);
+    const [selectSize, setSelectSize] = useState(undefined);
+    const [isChecked, setIsChecked] = useState(false);
+
+    const { productView, setProductView } = handleProductView;
+
+    useEffect(() => {
+        const getDataProductView = async () => {
+            if (productId) {
+                const dataProductView = await httpRequest.get(`data/${productId}`);
+                setProductView(dataProductView.data);
+            } else {
+                setProductView(productViewInStore);
+            }
+        };
+        getDataProductView();
+    }, [productId]);
+
+    useEffect(() => {
+        if (productView.size) {
+            const sizeProduct = sizes.map((sizeProd) => {
+                return sizeProd.size == productView.size
+                    ? { ...sizeProd, isChecked: true }
+                    : { ...sizeProd, isChecked: false };
+            });
+            const index = sizes.findIndex((sizeProd) => sizeProd.size == productView.size);
+            setSelectSize(productView.size);
+            setSizeActive(index);
+            setSizes(sizeProduct);
+            setIsChecked(true);
+            setIsUpdateProduct(true);
+            setNumberProduct(productView.numberProducts);
+        }
+    }, [productView]);
+
+    const isAddOrByProduct = useMemo(
+        () => user.products.every((product) => productView.name != product.name || product.size != selectSize),
+        [selectSize],
+    );
+
+    const handleClearSize = () => {
+        setIsChecked(false);
+        setSizeActive(undefined);
+        setSizes(dataSizes);
+    };
+
+    const handelSelectSize = (e, index) => {
+        const { value, checked } = e.target;
+        setSelectSize(value);
+        setSizeActive(index);
+        setIsChecked(true);
+        const newSizes = sizes.map((size) =>
+            size.size == value ? { ...size, isChecked: checked } : { ...size, isChecked: false },
+        );
+        setSizes(newSizes);
+        if (!checked) {
+            handleClearSize();
+        }
+    };
+
+    const handleMinusNumber = () => {
+        if (numberProduct > 1) {
+            setNumberProduct((number) => number - 1);
+        }
+    };
+
+    const handleIncreaseNumber = () => {
+        setNumberProduct((number) => number + 1);
+    };
+
+    const handleBuyOrAddProduct = async () => {
+        const productChange = {
+            ...productView,
+            size: selectSize,
+            numberProducts: numberProduct,
+        };
+
+        if (isChecked) {
+            let newUser;
+
+            // add product in cart
+            if (productId) {
+                newUser = {
+                    ...user,
+                    products: [
+                        ...user.products,
+                        {
+                            ...productChange,
+                            id: uuidv4(),
+                        },
+                    ],
+                };
+            }
+
+            // update product cart
+            if (!productId) {
+                const indexUpdateProduct = user.products.findIndex(
+                    (prod) => prod.name == productView.name && prod.size == productView.size,
+                );
+
+                const newProduct = [...user.products];
+
+                newProduct[indexUpdateProduct] = productChange;
+                newUser = {
+                    ...user,
+                    products: newProduct,
+                };
+            }
+
+            // product already exist
+            if (!isAddOrByProduct) {
+                if (isChecked) {
+                    setIsMessage(!isAddOrByProduct);
+                    setSizeError(selectSize);
+                    return;
+                }
+            }
+
+            // start updating
+            if (newUser) {
+                if (isLogin) {
+                    await updateUser(newUser);
+                }
+                await dispatch(setUserCurrent(newUser));
+            }
+        }
+    };
+    const handleAddProduct = async () => {
+        if (isChecked) {
+            await handleBuyOrAddProduct();
+            if (!isAddOrByProduct) return;
+            await navigate('/cart');
+        } else {
+            alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');
+        }
+    };
+
+    const handleBuy = async () => {
+        if (!isChecked) {
+            alert('Chọn các tùy chọn cho sản phẩm trước khi bạn thanh toán.');
+        } else {
+            await handleBuyOrAddProduct();
+            if (!isAddOrByProduct) return;
+            await navigate(`/buy`);
+        }
+    };
 
     return (
         <>
             <div className="px-[15px] lg:px-0">
-
                 <div className="lg:grid lg:grid-cols-11 lg:gap-x-10">
-
                     <div className="col-span-5">
                         <img src={productView.img} alt="img" />
                     </div>
@@ -97,7 +252,6 @@ const Product = ({
 
                                 <span className="mx-3">{numberProduct}</span>
                                 <span
-                                    
                                     className="select-none px-3 border-[1px] border-[#ccc] cursor-pointer lg:hover:bg-[#e7e7e7]"
                                     onClick={handleIncreaseNumber}
                                 >
