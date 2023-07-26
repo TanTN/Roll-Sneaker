@@ -115,7 +115,7 @@ const User = () => {
                         <Avatar
                             src={avatar.link}
                             className="cursor-pointer relative border-[1px] border-[#a02222]"
-                            sx={{ height: 55, width: 55, fontSize: 26, fontWeight: 'lag', fontWeight: 'lag' }}
+                            sx={{ height: 55, width: 55, fontSize: 26, fontWeight: 'lag' }}
                             alt={userCurrent.username}
                             onClick={() => {
                                 if (avatar.link) setIsRoomAvatar(true);
