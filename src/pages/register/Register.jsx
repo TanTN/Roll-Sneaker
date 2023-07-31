@@ -6,52 +6,19 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { AiOutlineLoading } from 'react-icons/ai';
 
 import { validateRegister } from '@/services/validateFormService';
 import { postUser } from '@/services/userService';
 import { setIsAdmin, setIsLogin, setUserCurrent } from '@/store/reducerStore';
 
-
 const Register = () => {
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const root = useRef();
-
-    // create toast message error email and password, register success
-    const handleAddMessage = (content, isRegisterSuccess) => {
-        const main = root.current;
-        if (main) {
-            const toast = document.createElement('div');
-
-            const clearSetTimeout = setTimeout(() => main.removeChild(toast), 3600);
-
-            toast.onclick = (e) => {
-                if (e.target.closest('.close')) {
-                    main.removeChild(toast);
-                    clearTimeout(clearSetTimeout);
-                }
-            };
-
-            toast.innerHTML = `
-            <div class=${isRegisterSuccess ? 'text-[#3DDC84]' : 'text-primary'}>
-                <i class="fa-solid fa-circle-xmark"></i>
-            </div>
-            <div class='ml-3'>
-                <p class=${isRegisterSuccess ? 'text-[#3DDC84] font-medium' : 'text-primary font-medium'}>Error</p>
-                <p class='text-sm font-normal'>${content}</p>
-            </div>
-            <div class='close absolute top-1 right-2'>
-                <i class="fa-solid fa-xmark text-gray-400"></i>
-            </div>
-            `;
-
-            toast.classList.add('toast-messgae');
-            toast.classList.add(`${isRegisterSuccess && 'border-[#3DDC84]'}`);
-            main.appendChild(toast);
-        }
-    };
 
     const initialValues = {
         username: '',
@@ -94,17 +61,25 @@ const Register = () => {
                     dispatch(setIsLogin(true));
                     dispatch(setIsAdmin(false));
 
-                    handleAddMessage('Bạn đã đăng kí tài khoản thành công', true);
-                    setTimeout(() => navigate('/'), 3000);
+                    toast.success('Bạn đã đăng kí tài khoản thành công!', {
+                        autoClose: 1000,
+                    });
+                    setTimeout(() => navigate('/'), 2000);
                 }
 
                 if (!isEmail && !isUsername) {
-                    handleAddMessage('Username đã tồn tại');
+                    toast.error('Username đã tồn tại', {
+                        autoClose: 3000,
+                    });
                 } else {
                     if (!isEmail) {
-                        handleAddMessage('Email đã được đăng kí');
+                        toast.error('Email đã được đăng kí', {
+                            autoClose: 3000,
+                        });
                     } else if (!isUsername) {
-                        handleAddMessage('Username đã tồn tại');
+                        toast.error('Username đã tồn tại', {
+                            autoClose: 3000,
+                        });
                     }
                 }
             }}
@@ -112,10 +87,8 @@ const Register = () => {
             {(formik) => (
                 <div className="flex justify-center items-center w-screen h-screen bgRegister lg:bg-[rgb(209,178,217)] lg:noBg">
                     <div className="flex flex-row-reverse w-[90%] md:w-[50%] lg:w-[932px] lg:min-h-[600px] bg-white rounded-[10px] overflow-hidden">
-                        
                         {/* content right */}
                         <div className="hidden lg:flex flex-col gap-10 flex-1 p-[50px] bgRegister text-white">
-
                             <span className="text-[100px] leading-[100px] font-semibold font-Crimson">
                                 Roll Sneaker.
                             </span>
@@ -152,16 +125,14 @@ const Register = () => {
                                     Back
                                 </Link>
                             </div>
-
                         </div>
 
                         <div className="flex relative flex-col gap-10 flex-1 w-100% font-semibold p-[30px] md:p-[50px]">
-
                             <h1 className="text-black font-Crimson">Register</h1>
 
                             <div>
                                 {/* error message */}
-                                <div className="absolute top-[5%] right-[2%]" ref={root}></div>
+                                <ToastContainer />
 
                                 <Form className="flex flex-col gap-0">
                                     <div className="text-sm">
@@ -258,7 +229,6 @@ const Register = () => {
                                             Back
                                         </Link>
                                     </div>
-
                                 </Form>
                             </div>
                         </div>
