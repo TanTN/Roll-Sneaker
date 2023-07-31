@@ -132,7 +132,9 @@ const Register = () => {
 
                             <div>
                                 {/* error message */}
-                                <ToastContainer />
+                                <div className="text-[14px]">
+                                    <ToastContainer />
+                                </div>
 
                                 <Form className="flex flex-col gap-0">
                                     <div className="text-sm">
