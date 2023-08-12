@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 import { IoIosClose } from 'react-icons/io';
 
@@ -18,6 +19,9 @@ const ProductInMain = ({ dataProduct, category }) => {
         e.stopPropagation();
         await deleteProduct(data);
         await dispatch(fetchApiData());
+        toast.info('Sản phẩm đã bị xóa', {
+            autoClose: 3000,
+        })
     };
 
     const handleNavigateProductDetail = (data) => {

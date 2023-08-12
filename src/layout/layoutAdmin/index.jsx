@@ -37,8 +37,8 @@ const LayoutAdmin = ({ children }) => {
                         <NavLink
                             to="/admin/createProduct"
                             className={({ isActive }) =>
-                                `flex gap-[5px] items-center text-[18px] p-3 ${
-                                    isActive && 'text-base font-medium bg-white rounded-[8px] drop-shadow-ShadowRoot'
+                                `flex gap-[5px] items-center text-[16px] p-3 ${
+                                    isActive && 'font-medium bg-white rounded-[8px] drop-shadow-ShadowRoot'
                                 }`
                             }
                         >
@@ -52,7 +52,7 @@ const LayoutAdmin = ({ children }) => {
                                 className="flex justify-between items-center mx-2  cursor-pointer"
                                 onClick={() => setIsShowCategory(!isShowCategory)}
                             >
-                                <div className="flex gap-[5px] items-center text-[18px]">
+                                <div className="flex gap-[5px] items-center text-[16px]">
                                     <BiCategoryAlt />
                                     <span>Category</span>
                                 </div>
@@ -63,9 +63,9 @@ const LayoutAdmin = ({ children }) => {
                                     <NavLink
                                         to="/admin/category/HOT"
                                         className={({ isActive }) => {
-                                            return `p-2 text-[#929292]${
+                                            return `p-2 text-[14px] ${
                                                 isActive &&
-                                                'text-sm font-medium text-black bg-white rounded-[8px] drop-shadow-ShadowRoot'
+                                                'font-medium text-black bg-white rounded-[8px] drop-shadow-ShadowRoot'
                                             }`;
                                         }}
                                     >
@@ -74,9 +74,9 @@ const LayoutAdmin = ({ children }) => {
                                     <NavLink
                                         to="/admin/category/Nike"
                                         className={({ isActive }) => {
-                                            return `p-2 text-[#929292]${
+                                            return `p-2 text-[14px] ${
                                                 isActive &&
-                                                'text-sm font-medium text-black bg-white rounded-[8px] drop-shadow-ShadowRoot'
+                                                'font-medium text-black bg-white rounded-[8px] drop-shadow-ShadowRoot'
                                             }`;
                                         }}
                                     >
@@ -85,9 +85,9 @@ const LayoutAdmin = ({ children }) => {
                                     <NavLink
                                         to="/admin/category/Adidas"
                                         className={({ isActive }) => {
-                                            return `p-2 text-[#929292]${
+                                            return `p-2 text-[14px] ${
                                                 isActive &&
-                                                'text-sm font-medium text-black bg-white rounded-[8px] drop-shadow-ShadowRoot'
+                                                'font-medium text-black bg-white rounded-[8px] drop-shadow-ShadowRoot'
                                             }`;
                                         }}
                                     >
@@ -96,9 +96,9 @@ const LayoutAdmin = ({ children }) => {
                                     <NavLink
                                         to="/admin/category/MLB"
                                         className={({ isActive }) => {
-                                            return `p-2 text-[#929292]${
+                                            return `p-2 text-[14px] ${
                                                 isActive &&
-                                                'text-sm font-medium text-black bg-white rounded-[8px] drop-shadow-ShadowRoot'
+                                                'font-medium text-black bg-white rounded-[8px] drop-shadow-ShadowRoot'
                                             }`;
                                         }}
                                     >
@@ -115,7 +115,7 @@ const LayoutAdmin = ({ children }) => {
                                 className="flex justify-between items-center mx-2 cursor-pointer"
                                 onClick={() => setIsShowAllUser(!isShowAllUser)}
                             >
-                                <div className="flex gap-[5px] items-center text-[18px]">
+                                <div className="flex gap-[5px] items-center text-[16px]">
                                     <FiUsers />
                                     <span>All user</span>
                                 </div>
@@ -147,7 +147,7 @@ const LayoutAdmin = ({ children }) => {
                                             >
                                                 {user.username[0].toUpperCase()}
                                             </Avatar>
-                                            <span className=" hover:text-primary">{user.username}</span>
+                                            <span className="text-[14px] hover:text-primary">{user.username}</span>
                                         </NavLink>
                                     ))}
                                 </div>

@@ -9,7 +9,7 @@ import HowToSelect from './HowToSelect';
 import Button from '@/components/button';
 import { updateUser } from '@/services/userService';
 import dataSizes from '@/data/dataSizes';
-import { setUserCurrent, setProduct } from '@/store/reducerStore';
+import { setUserCurrent } from '@/store/reducerStore';
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 const httpRequest = axios.create({
@@ -29,7 +29,6 @@ const Product = ({ handleProductView, setIsMessage, setSizeError }) => {
     const [sizeActive, setSizeActive] = useState(undefined);
 
     const [numberProduct, setNumberProduct] = useState(1);
-    const [isUpdateProduct, setIsUpdateProduct] = useState(false);
     const [selectSize, setSelectSize] = useState(undefined);
     const [isChecked, setIsChecked] = useState(false);
 
@@ -59,7 +58,6 @@ const Product = ({ handleProductView, setIsMessage, setSizeError }) => {
             setSizeActive(index);
             setSizes(sizeProduct);
             setIsChecked(true);
-            setIsUpdateProduct(true);
             setNumberProduct(productView.numberProducts);
         }
     }, [productView]);
@@ -150,16 +148,18 @@ const Product = ({ handleProductView, setIsMessage, setSizeError }) => {
             // start updating
             if (newUser) {
                 if (isLogin) {
-                    await updateUser(newUser);
+                    updateUser(user);
                 }
                 await dispatch(setUserCurrent(newUser));
             }
         }
     };
+
     const handleAddProduct = async () => {
         if (isChecked) {
             await handleBuyOrAddProduct();
             if (!isAddOrByProduct) return;
+            
             await navigate('/cart');
         } else {
             alert('Chọn các tùy chọn cho sản phẩm trước khi cho sản phẩm vào giỏ hàng của bạn.');

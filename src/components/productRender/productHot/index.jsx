@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 
@@ -7,8 +7,8 @@ import Image from '@/components/Image';
 
 const ProductHot = ({ dataSneaker, title, isReload }) => {
     const isLoading = useSelector((state) => state.data.dataPending);
-
     const navigate = useNavigate();
+
 
     const handleNavigateProductDetail = async (data) => {
         await navigate(`/detailProduct/${data.id}`);
@@ -16,6 +16,7 @@ const ProductHot = ({ dataSneaker, title, isReload }) => {
         // reload when click product in the product detail page
         if (isReload) await location.reload();
     };
+
     return (
         <div className="mb-[50px] overflow-hidden md:mb-[70px]">
             <h2 className="text-center mb-[20px] md:mb-[40px]">{title}</h2>
@@ -34,9 +35,9 @@ const ProductHot = ({ dataSneaker, title, isReload }) => {
                                         <img src={data.img} alt="product1" className="lg:scale-125 object-cover" />
                                     </div>
                                     
-                                    <div className="group/edit invisible lg:group-hover/item:visible overflow-hidden absolute left-0 top-0 right-0 ">
+                                    <div className="group/edit hidden lg:group-hover/item:block overflow-hidden absolute left-0 top-0 right-0 ">
                                         <Image
-                                            className="lg:group-hover/item:animate-fadeInScaleImg object-cover"
+                                            className="lg:group-hover/item:animate-fadeInImg object-cover"
                                             src={data.imgHover}
                                             alt="product"
                                         />

@@ -17,7 +17,7 @@ export default {
                 c2: '#adadad',
             },
             animation: {
-                fadeInScaleImg: 'fadeIn 0.5s linear',
+                fadeInImg: 'fadeInImg .3s linear',
                 fadeInMes1: 'fadeInMes1 2s ease-in-out infinite',
                 fadeInMes2: 'fadeInMes2 2s ease-in-out infinite',
                 fadeInTips: 'fadeInTips 0.6s linear',
@@ -29,8 +29,8 @@ export default {
             },
             keyframes: {
                 // product hot
-                fadeInScaleImg: {
-                    '0%': { opacity: '.5', transform: 'scale(1.2)' },
+                fadeInImg: {
+                    '0%': { opacity: '.5', transform: 'scale(1.1)' },
                     '100%': { opacity: '1', transform: 'scale(1)' },
                 },
                 // offset search Pc

@@ -131,7 +131,7 @@ const Register = () => {
                             <h1 className="text-black font-Crimson">Register</h1>
 
                             <div>
-                                {/* error message */}
+                                {/* message */}
                                 <div className="text-[14px]">
                                     <ToastContainer />
                                 </div>

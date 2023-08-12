@@ -32,7 +32,7 @@ const User = () => {
 
     const handleViewAvatar = (e) => {
         const file = e.target.files[0];
-        setAvatar(() => ({ file, link: URL.createObjectURL(file) }));
+        if (file) setAvatar(() => ({ file, link: URL.createObjectURL(file) }));
     };
 
     const handleChangeAvatar = () => {
@@ -114,7 +114,7 @@ const User = () => {
 
                         <Avatar
                             src={avatar.link}
-                            className="cursor-pointer relative border-[1px] border-[#a02222]"
+                            className={`${avatar.link && 'cursor-pointer'} relative border-[1px] border-[#a02222]`}
                             sx={{ height: 55, width: 55, fontSize: 26, fontWeight: 'lag' }}
                             alt={userCurrent.username}
                             onClick={() => {

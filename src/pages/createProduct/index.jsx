@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FormControl, Input, InputLabel, MenuItem, Select } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { AiOutlineHome } from 'react-icons/ai';
 
@@ -76,30 +77,46 @@ const CreateProduct = () => {
                 setNameProduct('');
                 setPriceProduct('');
                 setCategory('');
+                toast.info('Sản phẩm đã được tạo', {
+                    autoClose: 3000,
+                })
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err))
+            ;
     };
     return (
         <>
             <div className="flex items-center lg:bg-[#eeeeee] pl-4 py-2 mb-[10px]">
+                {/* message */}
+                <div className="text-[14px]">
+                    <ToastContainer />
+                </div>
+
                 <AiOutlineHome className="hover:text-[#030303]" />
+
                 <Link to="/" className="px-2 text-[#585858] hover:text-[#000000] text-sm md:text-base cursor-pointer">
                     Trang chủ
                 </Link>
+
                 <span>/</span>
                 <span className="pl-2 text-[#585858]">Tạo sản phẩm</span>
             </div>
+
             <h3 className="mt-[30px]">Tạo sản phẩm :</h3>
             <WrapperBill className="md:mb-[50px] md:mt-[20px]">
+
                 <form className="flex flex-col gap-10">
+
                     <div className="flex flex-col">
                         <label htmlFor="nameProduct">Tên sản phẩm :</label>
                         <Input id="nameProduct" value={nameProduct} className="p-0" onChange={handleNameProduct} />
                     </div>
+
                     <div className="flex flex-col">
                         <label htmlFor="price">Giá :</label>
                         <Input id="price" value={priceProduct} className="p-0" onChange={handlePriceProduct} />
                     </div>
+
                     <FormControl variant="filled" className="w-[300px]">
                         <InputLabel id="category" className="text-xl">
                             Category :
@@ -110,6 +127,7 @@ const CreateProduct = () => {
                             <MenuItem value="MLB">MLB</MenuItem>
                         </Select>
                     </FormControl>
+
                     <div>
                         <input type="file" id="image" hidden onChange={(e) => handleImage(e)} />
                         <label
@@ -119,7 +137,9 @@ const CreateProduct = () => {
                             Thêm ảnh
                         </label>
                     </div>
+
                     {file && <img src={file} alt="" className="w-[255px] h-[268px]" />}
+
                     <div>
                         <Button
                             onClick={handleSubmit}
