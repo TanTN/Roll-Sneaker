@@ -1,7 +1,7 @@
 # Thông tin project:
 #### Project có tên là ***Shop giày Roll Sneaker***.
 #### Project được clone từ một web bán giày với các feature mới được thêm vào.
-##### Link Project <https://vercel.com/tantn/sneaker-store/A14eSi3ou2JfQxtWh815y5ycwhh8>
+##### Link Project <https://sneaker-store-fjwdlyp30-tantn.vercel.app/>
 ##### Link github <https://github.com/TanTN/sneaker-store.git>
 
 ## Thông tin chi tiết:
