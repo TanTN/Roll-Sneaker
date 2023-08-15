@@ -12,17 +12,18 @@ const Adidas = () => {
     const allData = useSelector((state) => state.data.dataSneaker);
 
     const [data, setData] = useState([]);
-
-    let numberShowProduct = 8;
+    const [numberShowProduct, setNumberShowProduct] = useState(4);
+    const [dataNikeLength, setDataNikeLength] = useState();
 
     useEffect(() => {
         const dataAdidas = allData.filter((product) => product.category === 'Adidas');
+        setDataNikeLength(dataAdidas.length)
         setData(dataAdidas.slice(0, numberShowProduct));
-    }, [allData]);
+    }, [numberShowProduct,allData]);
 
     const handleLoadMoreProduct = () => {
-        if (numberShowProduct < data.length) {
-            numberShowProduct += 4
+        if (numberShowProduct < dataNikeLength) {
+            setNumberShowProduct(numberShowProduct + 4)
         }
     }
 
@@ -47,7 +48,7 @@ const Adidas = () => {
                 <ProductInMain dataProduct={data} />
             </div>
             <div className='flex justify-center mt-[30px]'>
-                <Button className="flex gap-1 items-center border-[1px] border-black hover:bg-black hover:text-white transition" onClick={handleLoadMoreProduct}>
+                <Button className={`flex gap-1 items-center border-[1px] border-black hover:bg-black hover:text-white transition ${numberShowProduct >= dataNikeLength ? 'bg-black text-white' : 'bg-white text-black'}`} onClick={handleLoadMoreProduct}>
                     Xem thêm
                     <AiFillCaretDown className='text-cyan'/>
                 </Button>

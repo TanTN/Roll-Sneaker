@@ -2,11 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 
-import { AiFillCaretDown } from "react-icons/ai";
-
 import LoadingImage from '@/components/loading/loadingImage';
 import Image from '@/components/Image';
-import Button from '@/components/button';
 
 const ProductHot = ({ dataSneaker, title, isReload }) => {
     const isLoading = useSelector((state) => state.data.dataPending);

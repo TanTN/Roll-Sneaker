@@ -12,7 +12,7 @@ const Nike = () => {
 
     const [data, setData] = useState([]);
     const [numberShowProduct, setNumberShowProduct] = useState(4);
-    const [dataNikeLength, setDataNikeLength] = useState(4);
+    const [dataNikeLength, setDataNikeLength] = useState();
 
     useEffect(() => {
         const dataNike = allData.filter((product) => product.category === 'Nike');
@@ -45,7 +45,7 @@ const Nike = () => {
                 <ProductInMain dataProduct={data} />
             </div>
             <div className='flex justify-center mt-[30px]'>
-                <Button className="flex gap-1 items-center border-[1px] border-black hover:bg-black hover:text-white transition" onClick={handleLoadMoreProduct}>
+                <Button className={`flex gap-1 items-center border-[1px] border-black hover:bg-black hover:text-white transition ${numberShowProduct >= dataNikeLength ? 'bg-black text-white' : 'bg-white text-black'}`} onClick={handleLoadMoreProduct}>
                     Xem thêm
                     <AiFillCaretDown className='text-cyan'/>
                 </Button>
