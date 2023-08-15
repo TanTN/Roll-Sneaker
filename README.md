@@ -1,16 +1,19 @@
 
 # Roll Sneaker
 
-### Roll Sneaker là một sản phẩm web app bán hàng viết bằng React 18 trên công cụ phát triển Vite.
-### Sản phẩm được clone từ web <https://shopgiayreplica.com/?fbclid=IwAR0uRUx_yjvYzJJROHqx4yOuqcOBwQdJ2BuNbvPa72qEnnvzBzJ1IJBWjN8> bán các sản phẩm giày, dép với các feature mới được thêm vào và được deploy lên Vercel.
+#### Roll Sneaker là một sản phẩm web app bán hàng viết bằng React 18 trên công cụ phát triển Vite.
+#### Sản phẩm được clone từ web <https://shopgiayreplica.com/?fbclid=IwAR0uRUx_yjvYzJJROHqx4yOuqcOBwQdJ2BuNbvPa72qEnnvzBzJ1IJBWjN8> bán các sản phẩm giày, dép với các feature mới được thêm vào và được deploy lên Vercel.
 
-### Link Project demo  <https://sneaker-store-fjwdlyp30-tantn.vercel.app/>
+#### Link Project demo  <https://sneaker-store-fjwdlyp30-tantn.vercel.app/>
 
 ## Installation:
 ```sh
 npm install
+```
+```sh
 npm run build
 ```
+
 ## Usage:
 ```sh
 npm start
