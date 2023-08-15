@@ -13,6 +13,7 @@ export default {
             },
             colors: {
                 primary: '#ce1111',
+                cyan: '#00d1b7',
                 c1: '#505050',
                 c2: '#adadad',
             },
