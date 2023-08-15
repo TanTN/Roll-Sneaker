@@ -7,15 +7,15 @@ const httpRequest = axios.create({
 });
 
 const postHistoryOrder = async (product) => {
-    const res = await httpRequest.post('historyOrder', product);
+    await httpRequest.post('historyOrder', product);
 };
 
 const postProduct = async (product) => {
-    const res = await httpRequest.post('data', product);
+    await httpRequest.post('data', product);
 };
 
 const deleteProduct = async (product) => {
-    const res = await httpRequest.delete(`data/${product.id}`);
+    await httpRequest.delete(`data/${product.id}`);
 };
 
 const getHistoryOrder = async () => {
@@ -24,6 +24,6 @@ const getHistoryOrder = async () => {
 };
 
 const deleteHistoryOrder = async (id) => {
-    const res = await httpRequest.delete(`historyOrder/${id}`);
+    await httpRequest.delete(`historyOrder/${id}`);
 };
 export {postHistoryOrder, postProduct, deleteProduct, getHistoryOrder, deleteHistoryOrder}

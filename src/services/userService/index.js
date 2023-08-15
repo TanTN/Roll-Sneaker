@@ -8,11 +8,11 @@ const httpRequest = axios.create({
 });
 
 const postUser = async (value) => {
-    const res = await httpRequest.post('user', value);
+    await httpRequest.post('user', value);
 };
 
 const updateUser = async (value) => {
-    const res = await httpRequest.put(`user/${value.id}`, value);
+    await httpRequest.put(`user/${value.id}`, value);
 };
 
 const getAllUser = async (dispatch) => {
