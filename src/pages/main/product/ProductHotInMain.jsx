@@ -30,7 +30,7 @@ const ProductHotInMain = () => {
     return (
         <>
             <ProductHot dataSneaker={dataSneaker} title={title} />
-            <div className="flex justify-center mt-[-40px] mb-[70px]">
+            <div className="flex justify-center mt-[-40px] mb-[50px]">
                 <Button
                     className={`flex gap-1 items-center border-[1px] border-black hover:bg-black hover:text-white transition ${numberShowProduct >= dataNikeLength ? 'bg-black text-white' : 'bg-white text-black'}`}
                     onClick={handleLoadMoreProduct}
