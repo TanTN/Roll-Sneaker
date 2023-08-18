@@ -31,13 +31,13 @@ const ProductHot = ({ dataSneaker, title, isReload }) => {
                             <div className="group/item relative cursor-pointer" onClick={() => handleNavigateProductDetail(data)}>
                                 <div className="lg:h-[268px] overflow-hidden">
                                     
-                                    <div className="group/edit lg:visible lg:group-hover/item:invisible lg:w-[100%] lg:h-[100%] flex items-center">
+                                    <div className="group/edit lg:opacity-100 lg:group-hover/item:opacity-0 lg:w-[100%] lg:h-[100%] flex items-center">
                                         <img src={data.img} alt="product1" className="lg:scale-125 object-cover" />
                                     </div>
                                     
-                                    <div className="group/edit hidden lg:group-hover/item:block overflow-hidden absolute left-0 top-0 right-0 ">
+                                    <div className="group/edit opacity-0 ease-in-out duration-[0.8s] transition-opacity lg:group-hover/item:opacity-100 lg:group-hover/item:transition-opacity lg:group-hover/item:duration-[1s] lg:group-hover/item:ease-in-out overflow-hidden absolute left-0 top-0 right-0">
                                         <Image
-                                            className="lg:group-hover/item:animate-fadeInImg object-cover"
+                                            className="lg:group-hover/item:animate-fadeInImg object-cover" 
                                             src={data.imgHover}
                                             alt="product"
                                         />
