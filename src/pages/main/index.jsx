@@ -62,6 +62,7 @@ const Main = () => {
         prevArrow: <SamplePrevArrow />,
         nextArrow: <SampleNextArrow />,
     };
+    
     return (
         <div className="mt-[94px] max-w-[1140px] mx-auto md:mt-[90px] lg:mt-0">
             {/* slider picture */}
