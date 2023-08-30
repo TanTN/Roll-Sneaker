@@ -166,7 +166,7 @@ const FormAdress = ({
             </div>
 
             <div className="pb-2">
-                <label htmlFor="adress" className={`${errors.adress && isError ? 'text-primary' : ''}`}>Địa chỉ <span className='text'>(*)</span>:</label>
+                <label htmlFor="adress" className={`${errors.adress && isError ? 'text-primary' : ''}`}>Địa chỉ <span className='text-primary'>(*)</span>:</label>
                 <Controller
                     rules={{ required: true }}
                     name="adress"

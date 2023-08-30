@@ -39,7 +39,7 @@ const MenuNavbar = ({ isMenu, clickMenu, isScroll }) => {
                 {/* background of menu */}
                 <div className="fixed w-[100%] top-0 bottom-0 bg-[#292929d5] lg:hidden" onClick={clickMenu}></div>
 
-                <div className="fixed top-0 bottom-0 bg-black w-[70%] text-c2 overflow-y-auto lg:w-[1140px] lg:mx-auto lg:overflow-visible lg:bg-[#ffffff] lg:flex lg:items-center lg:justify-between lg:text-[#202020] lg:border-transparent lg:static lg:h-[50px]">
+                <div className="fixed top-0 bottom-0 bg-black w-[70%] text-c2 overflow-y-auto lg:flex xl:gap-3 lg:w-[95%] xl:w-[1140px] lg:mx-auto lg:overflow-visible lg:bg-[#ffffff] lg:items-center lg:justify-between lg:text-[#202020] lg:border-transparent lg:static lg:h-[50px]">
                     {dataMenuNavbar.map((data, index) => (
                         <div key={index} className="group/item lg:relative ">
                             <div
@@ -47,9 +47,7 @@ const MenuNavbar = ({ isMenu, clickMenu, isScroll }) => {
                                 onClick={() => handleShowSubs(data)}
                             >
                                 <div
-                                    className={`pl-3 ${
-                                        index === 0 && 'lg:pl-0'
-                                    } leading-[50px] grow text-[18px] font-semibold cursor-pointer border-r-[1px] border-[#3030309f] lg:font-bold lg:border-transparent lg:text-[15px]`}
+                                    className={`leading-[50px] grow text-[18px] font-semibold cursor-pointer border-r-[1px] border-[#3030309f] lg:font-semibold lg:border-transparent lg:text-[14px]`}
                                 >
                                     {data.header}
                                 </div>
@@ -65,8 +63,8 @@ const MenuNavbar = ({ isMenu, clickMenu, isScroll }) => {
                                                 <BsXLg />
                                             </div>
                                         ) : (
-                                            <div className="group/edit lg:group-hover/item:rotate-180">
-                                                <FaAngleDown />
+                                            <div className="group/edit lg:group-hover/item:rotate-180 font-normal">
+                                                <FaAngleDown size={13}/>
                                             </div>
                                         )}
                                     </div>

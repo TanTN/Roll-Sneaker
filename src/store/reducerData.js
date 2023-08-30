@@ -7,8 +7,8 @@ const httpRequest = axios.create({
 });
 
 export const fetchApiData = createAsyncThunk('data/fetchApiData', async () => {
-    const res = await httpRequest.get('data');
-    return res.data;
+            const res = await httpRequest.get('data');
+        return res.data;
 });
 
 const dataSlice = createSlice({
