@@ -55,6 +55,7 @@ const Register = () => {
                 const { isEmail, isUsername } = await validateRegister(values);
 
                 if (isEmail && isUsername) {
+                    delete values.confirmPassword
                     const user = { ...values, products: [], information: {}, isAdmin: false, id: uuidv4() };
                     await postUser(user);
                     dispatch(setUserCurrent(user));
